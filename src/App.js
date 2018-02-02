@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div className="container">
           <Header />
           <Switch>
             <Route path="/" component={Dashboard} exact={true } />

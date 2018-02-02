@@ -1,4 +1,21 @@
 html {
   color: blue; }
 
+.container {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 150px auto;
+  grid-template-columns: 1fr 4fr 1fr; }
+
+header {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  grid-column-end: 6; }
+
+.content {
+  grid-row-start: 2;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  background-color: red; }
+
 /*# sourceMappingURL=styles.css.map */
