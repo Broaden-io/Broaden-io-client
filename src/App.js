@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 import './App.css';
+import Dashboard from './components/Dashboard';
+import Rubric from './components/Rubric';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Hi There</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <BrowserRouter>
+        <div>
+          <Switch>
+            <Route path="/" component={Dashboard} exact={true } />
+            <Route path="/rubric" component={Rubric} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
