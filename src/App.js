@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
-import './App.css';
+import './styles/styles.css';
 import Dashboard from './components/Dashboard';
 import Rubric from './components/Rubric';
 import Header from './components/Header';

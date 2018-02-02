@@ -8,7 +8,7 @@ class Header extends Component {
       <header>
 
         <NavLink to="/"exact={true}>Dashboard</NavLink>
-        <NavLink to="/rubric">Rubric</NavLink>
+        <NavLink to="/rubrics">Rubrics</NavLink>
       </header>
     );
   }
