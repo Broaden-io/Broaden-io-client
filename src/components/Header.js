@@ -6,9 +6,8 @@ class Header extends Component {
     // TODO:add activeClassName for when the link is selected
     return (
       <header>
-
         <NavLink to="/"exact={true}>Dashboard</NavLink>
-        <NavLink to="/rubrics">Rubrics</NavLink>
+        <NavLink to="/rubric">Show Rubric</NavLink>
       </header>
     );
   }

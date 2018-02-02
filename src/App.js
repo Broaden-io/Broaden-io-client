@@ -12,7 +12,7 @@ class App extends Component {
         <div className="container">
           <Header />
           <Switch>
-            <Route path="/" component={Dashboard} exact={true } />
+            <Route path="/" component={Dashboard} exact={true} />
             <Route path="/rubric" component={Rubric} />
           </Switch>
         </div>
