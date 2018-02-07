@@ -4,6 +4,7 @@ import './styles/styles.css';
 import Dashboard from './components/Dashboard';
 import Rubric from './components/Rubric';
 import Header from './components/Header';
+import RegisterForm from './components/RegisterForm';
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
           <Switch>
             <Route path="/" component={Dashboard} exact={true} />
             <Route path="/rubric" component={Rubric} />
+            <Route path="/register" component={RegisterForm} />
           </Switch>
         </div>
       </BrowserRouter>
