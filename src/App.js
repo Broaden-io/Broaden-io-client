@@ -6,23 +6,32 @@ import Rubric from './components/Rubric';
 import Header from './components/Header';
 import RegisterForm from './components/RegisterForm';
 import axios from 'axios';
-const serverURL = 'https://rubrics-dashboard.herokuapp.com/';
+const serverURL = 'https://rubrics-dashboard.herokuapp.com';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      isAuthenticated: false
+      isAuthenticated: false,
+      errorMessage: '',
+      isError: false
     }
   }
 
   requestRegister(e, user) {
     console.log(user);
     // make a call to the server
-    axios.post(serverURL + 'signup', user)
+    axios.post(`${serverURL}/signup`, user)
     .then(res => {
       console.log(res);
+      if (res.status == 200) {
+          this.setState({isAuthenticated: true, errorMessage: '', isError: false });
+      }
+    })
+    .catch(err => {
+      console.log('Failed to register');
+      this.setState({isAuthenticated: false, errorMessage: err.message, isError: true })
     })
   }
 
