@@ -4,7 +4,7 @@ import '../styles/styles.css';
 class Dashboard extends Component {
   render() {
     return (
-      <div className="content">
+      <div class="content">
         Dashboard
       </div>
     );

@@ -1,6 +1,3 @@
-html {
-  color: blue;
-}
 
 .container {
   display: grid;
@@ -19,5 +16,4 @@ header {
   grid-row-start: 2;
   grid-column-start: 2;
   grid-column-end: 3;
-  background-color: red;
 }
