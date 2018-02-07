@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import '../styles/styles.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import TextField from 'material-ui/TextField'
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 class RegisterForm extends Component {
   constructor(props) {
@@ -39,6 +40,35 @@ class RegisterForm extends Component {
               }}
               />
               <br />
+              <TextField
+                hintText="First name"
+                floatingLabelText="First name"
+                onChange={(event, newValue) => {
+                  this.setState({firstName:newValue})
+                }}
+                />
+                <TextField
+                  hintText="Last name"
+                  floatingLabelText="Last name"
+                  onChange={(event, newValue) => {
+                    this.setState({lastName:newValue})
+                  }}
+                  />
+                <br />
+                <TextField
+                  hintText="Email"
+                  type="email"
+                  floatingLabelText="Email"
+                  onChange={(event, newValue) => {
+                    this.setState({lastName:newValue})
+                  }}
+                  />
+                <br />
+              <RaisedButton label="Submit" primary={true} onClick={(e) => {
+                e.preventDefault();
+                this.props.requestRegister(e, this.state);
+                }
+              } />
           </div>
         </MuiThemeProvider>
       </div>
