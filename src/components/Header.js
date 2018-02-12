@@ -9,13 +9,14 @@ class Header extends Component {
       <header>
         {loggedIn &&
           <div>
-            <NavLink to="/"exact={true}>Dashboard</NavLink>
+            <NavLink to="/" exact={true}>Dashboard</NavLink>
             <NavLink to="/rubric">Show Rubric</NavLink>
           </div>
         }
         {!loggedIn &&
           <div>
-            Login      SignUp
+            <NavLink to="/login"> Login </NavLink>
+            <NavLink to="/register"> Register </NavLink>
           </div>
 
         }
