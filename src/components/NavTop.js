@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
 
 class NavTop extends Component {
   render() {
@@ -28,7 +27,7 @@ class NavTop extends Component {
               <span className="icon-bar" />
               <span className="icon-bar" />
             </button>
-            <a className="navbar-brand" href="#"> Dashboard </a>
+            <a className="navbar-brand" href=""> Dashboard </a>
           </div>
           <div className="collapse navbar-collapse">
             <ul className="nav navbar-nav navbar-right">
@@ -43,7 +42,7 @@ class NavTop extends Component {
               </li>
               <li className="dropdown">
                 <a
-                  href="#"
+                  href=""
                   className="dropdown-toggle"
                   data-toggle="dropdown">
                   <i className="material-icons">notifications</i>
@@ -55,27 +54,27 @@ class NavTop extends Component {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="#">
+                    <a href="">
                       Mike John responded to your email
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="">
                       You have 5 new tasks
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="">
                       You're now friend with Andrew
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="">
                       Another Notification
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="">
                       Another One
                     </a>
                   </li>
@@ -83,7 +82,7 @@ class NavTop extends Component {
               </li>
               <li>
                 <a
-                  href="#pablo"
+                  href=""
                   className="dropdown-toggle"
                   data-toggle="dropdown">
                   <i className="material-icons">person</i>

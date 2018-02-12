@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Route, NavLink, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import Sidebar from './Sidebar'
-import Login from './Login'
 import serverPath from '../paths'
 import axios from 'axios'
 
@@ -18,7 +17,9 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    this.checkAuth()
+    if (!this.state.authChecked) {
+      this.checkAuth()
+    }
   }
 
   checkAuth() {
@@ -33,12 +34,12 @@ class Home extends Component {
         })
       } else {
         console.log(response.message)
-        return <Redirect push={true} to='/login' />
+         return <Redirect push={true} to='/login' />
       }
     })
     .catch(error => {
       console.log('error!', error)
-      return <Redirect push={true} to='/login' />
+       return <Redirect push to='/login' />
     })
   }
 

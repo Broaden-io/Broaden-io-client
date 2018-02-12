@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import { Link, NavLink, Redirect } from 'react-router-dom';
-import NavTop from './NavTop'
+import { Link, Redirect } from 'react-router-dom';
 import bcrypt from 'bcryptjs'
 import serverPath from '../paths'
 import axios from 'axios'
-import SweetAlert from 'sweetalert2-react'
-import {sweetalert2}from 'sweetalert2';
 
 class SignUp extends Component {
 
@@ -28,12 +25,14 @@ class SignUp extends Component {
   submitForm() {
     bcrypt.genSalt(11, (err, salt) => {
       bcrypt.hash(this.state.rawPassword, salt, (err, hash) => {
-        {/*Save to DB*/}
         const newUser = {...this.state.registerForm, password: hash}
         axios.post(`${serverPath}/signup`, newUser)
         .then(response => {
           if (response.status === 200) {
-            <Redirect push to='/' />
+            console.log('User created!')
+            return <Redirect push to='/' />
+          } else {
+            console.log('Something went wrong')
           }
         })
         .catch(error => {
@@ -62,7 +61,9 @@ class SignUp extends Component {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <a className="navbar-brand" href="/">🤯  RubricPro</a>
+              <a className="navbar-brand" href="/">
+                <span role="img" description="emoji" aria-label="emoji">🤯</span> RubricPro
+                </a>
             </div>
             <div className="collapse navbar-collapse">
               <ul className="nav navbar-nav navbar-right">
@@ -136,7 +137,6 @@ class SignUp extends Component {
                                   <i className="material-icons">account_circle</i>  Log In
                                     <div className="ripple-container"></div></Link>
                                   </div>
-                                  <form className="form" method="" action="">
                                     <div className="card-content">
                                       <div className="input-group">
                                         <span className="input-group-addon">
@@ -172,11 +172,10 @@ class SignUp extends Component {
                                           text="Your account has been created successfully!"
                                           onConfirm={() => this.setState({ submitted: false })}
                                           />*/}
-                                        <button className="btn btn-info btn-round" ref={(submitButton) => { this.submitButton = submitButton}} onClick={this.sendSweetAlert}>Get Started...</button>
+                                        <button className="btn btn-info btn-round" ref={(submitButton) => { this.submitButton = submitButton}} onClick={this.submitForm()}>Get Started...</button>
 
 
                                       </div>
-                                    </form>
                                   </div>
                                 </div>
                               </div>

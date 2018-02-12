@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Link, NavLink, Redirect } from 'react-router-dom';
-import NavTop from './NavTop'
-import bcrypt from 'bcryptjs'
+import { Link } from 'react-router-dom';
 import serverPath from '../paths'
 import axios from 'axios'
 
@@ -10,6 +8,7 @@ class Login extends Component {
   constructor(props) {
     super(props)
     this.sendSweetAlert = this.sendSweetAlert.bind(this)
+    this.submitForm = this.submitForm.bind(this)
 
     this.state = {
       loginForm: {
@@ -24,7 +23,6 @@ class Login extends Component {
   }
 
   refresh() {
-    {/*demo.checkFullPageBackgroundImage();*/}
     this.setState({loaded: true})
   }
 
@@ -35,21 +33,17 @@ class Login extends Component {
   }
 
   submitForm() {
-    {/*bcrypt.genSalt(11, (err, salt) => {
-      bcrypt.hash(this.state.rawPassword, salt, (err, hash) => {*/}
-        {/*Save to DB*/}
-
-        axios.post(`${serverPath}/login`, this.state.loginForm)
-        .then(response => {
-          if (response.status === 200) {
-            <Redirect push to='/' />
-          }
-        })
-        .catch(error => {
-          console.log('error!', error)
-        })
-      {/*});
-    });*/}
+    axios.post(`${serverPath}/login`, this.state.loginForm)
+    .then(response => {
+      console.log("Here is the Response...",response)
+      if (response.status === 200) {
+        const user = response.data.user
+         this.props.history.push("/", { isLoggedIn: true, user: user, authChecked: true});
+      }
+    })
+    .catch(error => {
+      console.log('error!', error)
+    })
   }
 
   sendSweetAlert() {
@@ -62,6 +56,7 @@ class Login extends Component {
   render() {
     return (
       <div className="off-canvas-sidebar">
+        {console.log(this.state)}
         <nav className="navbar navbar-primary navbar-transparent navbar-absolute">
           <div className="container">
             <div className="navbar-header">
@@ -91,31 +86,31 @@ class Login extends Component {
                         </Link>
                       </li>
 
-                      </ul>
-                    </div>
+                    </ul>
                   </div>
-                </nav>
-                <div className="wrapper wrapper-full-page">
-                  <div className="full-page login-page" filter-color="blue" data-image="assets/img/login.jpeg">
-                    <div className="content">
-                      <div className="container">
-                        <div className="row">
-                          <div className="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                            <form method="#" action="#">
-                              <div className="card card-login">
-                                <div className="card-header text-center" data-background-color="blue">
-                                  <h4 className="card-title">Login</h4>
+                </div>
+              </nav>
+              <div className="wrapper wrapper-full-page">
+                <div className="full-page login-page" filter-color="blue" data-image="assets/img/login.jpeg">
+                  <div className="content">
+                    <div className="container">
+                      <div className="row">
+                        <div className="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+                          <form method="#" action="#">
+                            <div className="card card-login">
+                              <div className="card-header text-center" data-background-color="blue">
+                                <h4 className="card-title">Login</h4>
 
-                                  {/*<div className="social-line">
-                                    <a href="#btn" className="btn btn-just-icon btn-simple">
-                                      <i className="fa fa-facebook-square"></i>
-                                    </a>
-                                    <a href="#pablo" className="btn btn-just-icon btn-simple">
-                                      <i className="fa fa-twitter"></i>
-                                    </a>
-                                    <a href="#eugen" className="btn btn-just-icon btn-simple">
-                                      <i className="fa fa-google-plus"></i>
-                                    </a>
+                                {/*<div className="social-line">
+                                  <a href="#btn" className="btn btn-just-icon btn-simple">
+                                  <i className="fa fa-facebook-square"></i>
+                                  </a>
+                                  <a href="#pablo" className="btn btn-just-icon btn-simple">
+                                  <i className="fa fa-twitter"></i>
+                                  </a>
+                                  <a href="#eugen" className="btn btn-just-icon btn-simple">
+                                  <i className="fa fa-google-plus"></i>
+                                  </a>
                                   </div>*/}
                                 </div>
                                 <p className="category text-center">Don't have an account?</p>
@@ -129,7 +124,7 @@ class Login extends Component {
                                     </span>
                                     <div className="form-group label-floating">
                                       <label className="control-label">username</label>
-                                      <input type="text" value={this.state.loginForm.username} onChange={(e) => this.setState({loginForm: {username: e.target.value}})} className="form-control" />
+                                      <input type="text" value={this.state.loginForm.username} onChange={(e) => this.setState({loginForm: {...this.state.loginForm, username: e.target.value}})} className="form-control" />
                                     </div>
                                   </div>
 
@@ -139,12 +134,12 @@ class Login extends Component {
                                     </span>
                                     <div className="form-group label-floating">
                                       <label className="control-label">Password</label>
-                                      <input type="password" value={this.state.loginForm.password} onChange={(e) => this.setState({loginForm: {password: e.target.value}})} className="form-control" />
+                                      <input type="password" value={this.state.loginForm.password} onChange={(e) => this.setState({loginForm: {...this.state.loginForm, password: e.target.value}})} className="form-control" />
                                     </div>
                                   </div>
                                 </div>
                                 <div className="footer text-center">
-                                  <button onClick={this.submitForm()} className="btn btn-rose btn-simple btn-wd btn-lg">Let's go</button>
+                                  <button onClick={this.submitForm} className="btn btn-rose btn-simple btn-wd btn-lg">Let's go</button>
                                 </div>
                               </div>
                             </form>
@@ -156,42 +151,42 @@ class Login extends Component {
                       <div className="container">
                         {/*<nav className="pull-left">
                           <ul>
-                            <li>
-                              <a href="#">
-                                Home
-                              </a>
-                            </li>
-                            <li>
-                              <a href="#">
-                                Company
-                              </a>
-                            </li>
-                            <li>
-                              <a href="#">
-                                Portofolio
-                              </a>
-                            </li>
-                            <li>
-                              <a href="#">
-                                Blog
-                              </a>
-                            </li>
+                          <li>
+                          <a href="#">
+                          Home
+                          </a>
+                          </li>
+                          <li>
+                          <a href="#">
+                          Company
+                          </a>
+                          </li>
+                          <li>
+                          <a href="#">
+                          Portofolio
+                          </a>
+                          </li>
+                          <li>
+                          <a href="#">
+                          Blog
+                          </a>
+                          </li>
                           </ul>
-                        </nav>*/}
-                        <p className="copyright pull-right">
-                          &copy;
+                          </nav>*/}
+                          <p className="copyright pull-right">
+                            &copy;
 
                             {/*{`${(document.write(new Date().getFullYear()))}`}*/}
 
-                          <a href="http://www.creative-tim.com"> RubricPRO </a>, made with love to better education
-                          </p>
-                        </div>
-                      </footer>
+                            <a href="http://www.creative-tim.com"> RubricPRO </a>, made with love to better education
+                            </p>
+                          </div>
+                        </footer>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
+                );
+              }
             }
-          }
 
-          export default Login;
+            export default Login;

@@ -18,7 +18,7 @@ class Sidebar extends Component {
             <a
               href="/"
               className="simple-text logo-mini">
-              🤯
+              <span role="img" description="emoji" aria-label="emoji">🤯</span>
             </a>
             <a
               href="/"
@@ -29,7 +29,7 @@ class Sidebar extends Component {
           <div className="sidebar-wrapper">
             <div className="user">
               <div className="photo">
-                <img src="../../public/assets/img/faces/avatar.jpg" />
+                <img alt="Rubric user" src="../../public/assets/img/faces/avatar.jpg" />
               </div>
               <div className="info">
                 <a
@@ -37,7 +37,7 @@ class Sidebar extends Component {
                   href="#collapseExample"
                   className="collapsed">
                   <span>
-                    Tania Andrew
+                    Adam Braus
                     <b className="caret" />
                   </span>
                 </a>
@@ -45,19 +45,19 @@ class Sidebar extends Component {
                 <div className="collapse" id="collapseExample">
                   <ul className="nav">
                     <li>
-                      <a href="#">
+                      <a href="">
                         <span className="sidebar-mini"> MP </span>
                         <span className="sidebar-normal"> My Profile </span>
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="">
                         <span className="sidebar-mini"> EP </span>
                         <span className="sidebar-normal"> Edit Profile </span>
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="">
                         <span className="sidebar-mini"> S </span>
                         <span className="sidebar-normal"> Settings </span>
                       </a>
