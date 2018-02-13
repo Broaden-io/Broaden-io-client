@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import bcrypt from 'bcryptjs'
 import serverPath from '../paths'
 import axios from 'axios'
+import SweetAlert from 'sweetalert2-react'
 
 class SignUp extends Component {
 
@@ -165,15 +166,15 @@ class SignUp extends Component {
                                       </div>
 
                                       <div className="footer text-center">
-                                        {/*<button className="btn btn-info btn-round" onClick={() => this.setState({ submitted: true })}>Get Started...</button>
+                                        <button className="btn btn-info btn-round" onClick={() => this.setState({ submitted: true })}>Get Started...</button>
                                         <SweetAlert
                                           show={this.state.submitted}
                                           title="Awesome"
                                           text="Your account has been created successfully!"
                                           onConfirm={() => this.setState({ submitted: false })}
-                                          />*/}
-                                        <button className="btn btn-info btn-round" ref={(submitButton) => { this.submitButton = submitButton}} onClick={this.submitForm()}>Get Started...</button>
-
+                                          />
+                                        {/*<button className="btn btn-info btn-round" ref={(submitButton) => { this.submitButton = submitButton}} onClick={this.submitForm()}>Get Started...</button>
+*/}
 
                                       </div>
                                   </div>
