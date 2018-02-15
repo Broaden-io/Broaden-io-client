@@ -32,7 +32,7 @@ class SignUp extends Component {
         .then(response => {
           if (response.status === 200) {
             console.log('User created!')
-            return <Redirect push to='/' />
+            this.props.history.push('/')
           } else {
             console.log('Something went wrong')
           }
