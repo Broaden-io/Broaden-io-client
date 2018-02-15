@@ -10,6 +10,7 @@ class SignUp extends Component {
   constructor(props) {
     super(props)
     this.sendSweetAlert = this.sendSweetAlert.bind(this)
+    this.submitForm = this.submitForm.bind(this)
 
     this.state = {
       registerForm: {
@@ -143,38 +144,38 @@ class SignUp extends Component {
                                         <span className="input-group-addon">
                                           <i className="material-icons">face</i>
                                         </span>
-                                        <input type="text" value={this.state.registerForm.username} onChange={(e) => this.setState({registerForm: {username: e.target.value}})} className="form-control" placeholder="Username..."/>
+                                        <input type="text" value={this.state.registerForm.username} onChange={(e) => this.setState({...this.state, registerForm: {...this.state.registerForm, username: e.target.value}})} className="form-control" placeholder="Username..."/>
                                       </div>
                                       <div className="input-group">
                                         <span className="input-group-addon">
                                           <i className="material-icons">email</i>
                                         </span>
-                                        <input type="text" value={this.state.registerForm.email} onChange={(e) => this.setState({registerForm: {email: e.target.value}})} className="form-control" placeholder="Email..."/>
+                                        <input type="text" value={this.state.registerForm.email} onChange={(e) => this.setState({...this.state, registerForm: {...this.state.registerForm, email: e.target.value}})} className="form-control" placeholder="Email..."/>
                                       </div>
                                       <div className="input-group">
                                         <span className="input-group-addon">
                                           <i className="material-icons">lock_outline</i>
                                         </span>
-                                        <input type="password" value={this.state.rawPassword} onChange={(e) => this.setState({rawPassword: e.target.value})} placeholder="Password..." className="form-control" />
+                                        <input type="password" value={this.state.rawPassword} onChange={(e) => this.setState({...this.state, rawPassword: e.target.value})} placeholder="Password..." className="form-control" />
                                       </div>
                                       {/*<!-- If you want to add a checkbox to this form, uncomment this code -->*/}
                                       <div className="checkbox">
                                         <label>
-                                          <input type="checkbox" name="optionsCheckboxes" checked={this.state.isHuman} onChange={(e) => this.setState({isHuman: !this.state.isHuman})}/> I am not a robot!
+                                          <input type="checkbox" name="optionsCheckboxes" checked={this.state.isHuman} onChange={(e) => this.setState({...this.state, isHuman: !this.state.isHuman})}/> I am not a robot!
                                           </label>
                                         </div>
                                       </div>
 
                                       <div className="footer text-center">
-                                        <button className="btn btn-info btn-round" onClick={() => this.setState({ submitted: true })}>Get Started...</button>
+                                        {/*<button className="btn btn-info btn-round" onClick={() => this.setState({ submitted: true })}>Get Started...</button>
                                         <SweetAlert
                                           show={this.state.submitted}
                                           title="Awesome"
                                           text="Your account has been created successfully!"
                                           onConfirm={() => this.setState({ submitted: false })}
-                                          />
-                                        {/*<button className="btn btn-info btn-round" ref={(submitButton) => { this.submitButton = submitButton}} onClick={this.submitForm()}>Get Started...</button>
-*/}
+                                          />*/}
+                                        <button className="btn btn-info btn-round" onClick={this.submitForm}>Get Started...</button>
+
 
                                       </div>
                                   </div>
