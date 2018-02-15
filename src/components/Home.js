@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import serverPath from '../paths';
 import axios from 'axios';
+import Dashboard from './Dashboard'
 import { instanceOf } from 'prop-types';
 import { Cookies, withCookies } from 'react-cookie';
 
@@ -24,11 +25,12 @@ class Home extends Component {
 
   componentWillMount() {
     const { cookies } = this.props;
+
     if (!this.state.authChecked) {
       //this.checkAuth()
       // check if the cookie is stored
       this.setState({
-        isLoggedIn: cookies.get("RubricsApp"),
+        isLoggedIn: cookies.get("RubricsApp") !== "",
         authChecked: true
       })
     }
@@ -59,8 +61,8 @@ class Home extends Component {
     // TODO:add activeClassName for when the link is selected
     return (
       <Route exact path="/" render={() => (
-          this.isLoggedIn ? (
-            <Sidebar/>
+          this.state.isLoggedIn ? (
+            <Dashboard />
           ) : (
             <Redirect to="/login"/>
 

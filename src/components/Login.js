@@ -57,7 +57,7 @@ class Login extends Component {
         const user = response.data.user
         console.log(response.data)
         {this.setTokenCookie(response.data.token)}
-        this.props.history.push("/", { isLoggedIn: true, user: user, authChecked: true});
+        this.props.history.push("/");
       }
     })
     .catch(error => {
