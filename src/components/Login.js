@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import serverPath from '../paths'
-import axios from 'axios'
+import serverPath from '../paths';
+import axios from 'axios';
+import { instanceOf } from 'prop-types';
+import { Cookies, withCookies } from 'react-cookie';
 
 class Login extends Component {
+
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired
+  };
 
   constructor(props) {
     super(props)
     this.sendSweetAlert = this.sendSweetAlert.bind(this)
+    this.setTokenCookie = this.setTokenCookie.bind(this)
     this.submitForm = this.submitForm.bind(this)
 
     this.state = {
@@ -20,6 +27,16 @@ class Login extends Component {
       submitted: false,
       loaded: false
     }
+  }
+
+  componentWillMount() {
+    const { cookies } = this.props;
+  }
+
+  setTokenCookie(token) {
+    const { cookies } = this.props;
+    cookies.set('RubricsApp', token, { path: '/'} );
+    console.log(cookies.get('RubricsApp'));
   }
 
   refresh() {
@@ -38,7 +55,9 @@ class Login extends Component {
       console.log("Here is the Response...",response)
       if (response.status === 200) {
         const user = response.data.user
-         this.props.history.push("/", { isLoggedIn: true, user: user, authChecked: true});
+        console.log(response.data)
+        {this.setTokenCookie(response.data.token)}
+        this.props.history.push("/");
       }
     })
     .catch(error => {
@@ -189,4 +208,4 @@ class Login extends Component {
               }
             }
 
-            export default Login;
+            export default withCookies(Login);
