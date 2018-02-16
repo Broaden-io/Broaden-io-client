@@ -34,12 +34,12 @@ class Home extends Component {
         })
       } else {
         console.log(response.message)
-         return <Redirect push={true} to='/login' />
+         this.props.history.push('/login')
       }
     })
     .catch(error => {
       console.log('error!', error)
-       return <Redirect push to='/login' />
+       this.props.history.push('/login')
     })
   }
 
@@ -50,7 +50,7 @@ class Home extends Component {
           this.isLoggedIn ? (
             <Sidebar/>
           ) : (
-            <Redirect to="/login"/>
+            this.props.history.push('/login')
 
           )
         )}/>
