@@ -32,13 +32,13 @@ class NavTop extends Component {
           <div className="collapse navbar-collapse">
             <ul className="nav navbar-nav navbar-right">
               <li>
-                <a
-                  href="#pablo"
+                <button
+                  to='/logout'
                   className="dropdown-toggle"
                   data-toggle="dropdown">
-                  <i className="material-icons">dashboard</i>
+                  <i className="material-icons">person</i>
                   <p className="hidden-lg hidden-md">Dashboard</p>
-                </a>
+                </button>
               </li>
               <li className="dropdown">
                 <a

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { CookiesProvider, withCookies } from 'react-cookie'
 import Home from './components/Home'
 import SignUp from './components/SignUp'
@@ -13,11 +13,11 @@ class App extends Component {
       <CookiesProvider >
         <BrowserRouter>
           <div className="wrapper">
-            <Switch>
+
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={SignUp} />
-            </Switch>
+
           </div>
         </BrowserRouter>
       </CookiesProvider>

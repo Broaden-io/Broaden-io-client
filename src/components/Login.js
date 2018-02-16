@@ -29,10 +29,6 @@ class Login extends Component {
     }
   }
 
-  componentWillMount() {
-    const { cookies } = this.props;
-  }
-
   setTokenCookie(token) {
     const { cookies } = this.props;
     cookies.set('RubricsApp', token, { path: '/'} );
@@ -57,7 +53,7 @@ class Login extends Component {
         const user = response.data.user
         console.log(response.data)
         {this.setTokenCookie(response.data.token)}
-        this.props.history.push("/");
+        this.props.history.push(`/${this.state.loginForm.username}`);
       }
     })
     .catch(error => {
@@ -75,7 +71,6 @@ class Login extends Component {
   render() {
     return (
       <div className="off-canvas-sidebar">
-        {console.log(this.state)}
         <nav className="navbar navbar-primary navbar-transparent navbar-absolute">
           <div className="container">
             <div className="navbar-header">

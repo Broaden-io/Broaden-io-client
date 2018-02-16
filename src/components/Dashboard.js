@@ -6,113 +6,7 @@ class Dashboard extends Component {
       <div className="wrapper">
 
         <div className="main-panel">
-          <nav className="navbar navbar-transparent navbar-absolute">
-            <div className="container-fluid">
-              <div className="navbar-minimize">
-                <button
-                  id="minimizeSidebar"
-                  className="btn btn-round btn-white btn-fill btn-just-icon">
-                  <i className="material-icons visible-on-sidebar-regular">more_vert</i>
-                  <i className="material-icons visible-on-sidebar-mini">view_list</i>
-                </button>
-              </div>
-              <div className="navbar-header">
-                <button
-                  type="button"
-                  className="navbar-toggle"
-                  data-toggle="collapse"
-                  >
-                  <span className="sr-only">
-                    Toggle navigation
-                  </span>
-                  <span className="icon-bar" />
-                  <span className="icon-bar" />
-                  <span className="icon-bar" />
-                </button>
-                <a className="navbar-brand" href="#"> Dashboard </a>
-              </div>
-              <div className="collapse navbar-collapse">
-                <ul className="nav navbar-nav navbar-right">
-                  <li>
-                    <a
-                      href="#pablo"
-                      className="dropdown-toggle"
-                      data-toggle="dropdown">
-                      <i className="material-icons">dashboard</i>
-                      <p className="hidden-lg hidden-md">Dashboard</p>
-                    </a>
-                  </li>
-                  <li className="dropdown">
-                    <a
-                      href="#"
-                      className="dropdown-toggle"
-                      data-toggle="dropdown">
-                      <i className="material-icons">notifications</i>
-                      <span className="notification">5</span>
-                      <p className="hidden-lg hidden-md">
-                        Notifications
-                        <b className="caret" />
-                      </p>
-                    </a>
-                    <ul className="dropdown-menu">
-                      <li>
-                        <a href="#">
-                          Mike John responded to your email
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          You have 5 new tasks
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          You're now friend with Andrew
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          Another Notification
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          Another One
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a
-                      href="#pablo"
-                      className="dropdown-toggle"
-                      data-toggle="dropdown">
-                      <i className="material-icons">person</i>
-                      <p className="hidden-lg hidden-md">Profile</p>
-                    </a>
-                  </li>
-                  <li className="separator hidden-lg hidden-md" />
-                </ul>
-                <form
-                  className="navbar-form navbar-right"
-                  role="search">
-                  <div className="form-group form-search is-empty">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder=" Search " />
-                    <span className="material-input" />
-                  </div>
-                  <button
-                    type="submit"
-                    className="btn btn-white btn-round btn-just-icon">
-                    <i className="material-icons">search</i>
-                    <div className="ripple-container" />
-                  </button>
-                </form>
-              </div>
-            </div>
-          </nav>
+
           <div className="content">
             <div className="container-fluid">
               <div className="row">
@@ -135,7 +29,7 @@ class Dashboard extends Component {
                                 <tr>
                                   <td>
                                     <div className="flag">
-                                      <img src="assets/img/flags/US.png" />
+                                      <img alt="US" src="assets/img/flags/US.png" />
                                     </div>
                                   </td>
                                   <td>USA</td>
@@ -149,7 +43,7 @@ class Dashboard extends Component {
                                 <tr>
                                   <td>
                                     <div className="flag">
-                                      <img src="assets/img/flags/DE.png" />
+                                      <img alt="DE" src="assets/img/flags/DE.png" />
                                     </div>
                                   </td>
                                   <td>Germany</td>
@@ -163,7 +57,7 @@ class Dashboard extends Component {
                                 <tr>
                                   <td>
                                     <div className="flag">
-                                      <img src="assets/img/flags/AU.png" />
+                                      <img alt="AU" src="assets/img/flags/AU.png" />
                                     </div>
                                   </td>
                                   <td>Australia</td>
@@ -177,7 +71,7 @@ class Dashboard extends Component {
                                 <tr>
                                   <td>
                                     <div className="flag">
-                                      <img src="assets/img/flags/GB.png" />
+                                      <img alt="GB" src="assets/img/flags/GB.png" />
                                     </div>
                                   </td>
                                   <td>
@@ -193,7 +87,7 @@ class Dashboard extends Component {
                                 <tr>
                                   <td>
                                     <div className="flag">
-                                      <img src="assets/img/flags/RO.png" />
+                                      <img alt="RO" src="assets/img/flags/RO.png" />
                                     </div>
                                   </td>
                                   <td>Romania</td>
@@ -207,7 +101,7 @@ class Dashboard extends Component {
                                 <tr>
                                   <td>
                                     <div className="flag">
-                                      <img src="assets/img/flags/BR.png" />
+                                      <img alt="BR" src="assets/img/flags/BR.png" />
                                     </div>
                                   </td>
                                   <td>Brasil</td>
@@ -462,6 +356,7 @@ class Dashboard extends Component {
                                         <a href="#pablo">
                                           <img
                                             className="img"
+                                            alt="card2"
                                             src="assets/img/card-2.jpeg" />
                                         </a>
                                       </div>
@@ -498,7 +393,7 @@ class Dashboard extends Component {
                                             </button>
                                           </div>
                                           <h4 className="card-title">
-                                            <a href="#pablo">
+                                            <a href="">
                                               Cozy 5 Stars Apartment
                                             </a>
                                           </h4>
@@ -526,6 +421,7 @@ class Dashboard extends Component {
                                             <a href="#pablo">
                                               <img
                                                 className="img"
+                                                alt="card3"
                                                 src="assets/img/card-3.jpeg" />
                                             </a>
                                           </div>
@@ -562,7 +458,7 @@ class Dashboard extends Component {
                                                 </button>
                                               </div>
                                               <h4 className="card-title">
-                                                <a href="#pablo">
+                                                <a href="">
                                                   Office Studio
                                                 </a>
                                               </h4>
@@ -587,9 +483,10 @@ class Dashboard extends Component {
                                               <div
                                                 className="card-image"
                                                 data-header-animation="true">
-                                                <a href="#pablo">
+                                                <a href="">
                                                   <img
                                                     className="img"
+                                                    alt="card1"
                                                     src="assets/img/card-1.jpeg" />
                                                 </a>
                                               </div>
@@ -654,22 +551,22 @@ class Dashboard extends Component {
                                             <nav className="pull-left">
                                               <ul>
                                                 <li>
-                                                  <a href="#">
+                                                  <a href="">
                                                     Home
                                                   </a>
                                                 </li>
                                                 <li>
-                                                  <a href="#">
+                                                  <a href="">
                                                     Company
                                                   </a>
                                                 </li>
                                                 <li>
-                                                  <a href="#">
+                                                  <a href="">
                                                     Portofolio
                                                   </a>
                                                 </li>
                                                 <li>
-                                                  <a href="#">
+                                                  <a href="">
                                                     Blog
                                                   </a>
                                                 </li>
@@ -677,7 +574,7 @@ class Dashboard extends Component {
                                             </nav>
                                             <p className="copyright pull-right">
                                               ©
-                                              <a href="http://www.creative-tim.com"> Creative Tim </a>, made with love for a better web
+                                              <a href=""> RubricPro </a>, made with love to better education
                                               </p>
                                             </div>
                                           </footer>
