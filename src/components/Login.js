@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import serverPath from '../paths'
 import axios from 'axios'
+import Input from './Input';
 
 class Login extends Component {
 

@@ -9,6 +9,7 @@ class Dashboard extends Component {
           <nav className="navbar navbar-transparent navbar-absolute">
             <div className="container-fluid">
               <div className="navbar-minimize">
+
                 <button
                   id="minimizeSidebar"
                   className="btn btn-round btn-white btn-fill btn-just-icon">
