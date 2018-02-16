@@ -7,6 +7,7 @@
     "axios": "^0.17.1",
     "bcryptjs": "^2.4.3",
     "react": "^16.2.0",
+    "react-cookie": "^2.1.2",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.0",
