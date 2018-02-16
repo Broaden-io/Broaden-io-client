@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import serverPath from '../paths';
 import axios from 'axios';
-import Dashboard from './Dashboard'
 import { instanceOf } from 'prop-types';
 import { Cookies, withCookies } from 'react-cookie';
 

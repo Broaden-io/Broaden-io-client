@@ -50,9 +50,8 @@ class Login extends Component {
     .then(response => {
       console.log("Here is the Response...",response)
       if (response.status === 200) {
-        const user = response.data.user
         console.log(response.data)
-        {this.setTokenCookie(response.data.token)}
+        this.setTokenCookie(response.data.token)
         this.props.history.push(`/${this.state.loginForm.username}`);
       }
     })

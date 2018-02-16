@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { CookiesProvider, withCookies } from 'react-cookie'
+import { CookiesProvider } from 'react-cookie'
 import Home from './components/Home'
 import SignUp from './components/SignUp'
 import Login from './components/Login'

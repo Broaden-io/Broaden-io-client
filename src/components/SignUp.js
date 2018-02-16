@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import bcrypt from 'bcryptjs'
 import serverPath from '../paths'
 import axios from 'axios'
-import SweetAlert from 'sweetalert2-react'
 
 class SignUp extends Component {
 
