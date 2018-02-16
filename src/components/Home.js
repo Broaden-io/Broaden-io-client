@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import serverPath from '../paths';
 import axios from 'axios';
-import Dashboard from './Dashboard'
 import { instanceOf } from 'prop-types';
 import { Cookies, withCookies } from 'react-cookie';
 
@@ -15,7 +14,7 @@ class Home extends Component {
 
   constructor(props) {
     super(props)
-
+    this.isAuth = this.isAuth.bind(this)
     this.state = {
       isLoggedIn: false,
       user: {},
@@ -29,8 +28,10 @@ class Home extends Component {
     if (!this.state.authChecked) {
       //this.checkAuth()
       // check if the cookie is stored
+      const cookieValue = (cookies.get("RubricsApp") !== "") ? cookies.get("RubricsApp") : false
+
       this.setState({
-        isLoggedIn: cookies.get("RubricsApp") !== "",
+        isLoggedIn: cookieValue,
         authChecked: true
       })
     }
@@ -48,26 +49,35 @@ class Home extends Component {
         })
       } else {
         console.log(response.message)
-         this.props.history.push('/login')
+        this.props.history.push('/login')
       }
     })
     .catch(error => {
       console.log('error!', error)
-       this.props.history.push('/login')
+      this.props.history.push('/login')
     })
   }
 
-  render() {
-    // TODO:add activeClassName for when the link is selected
-    return (
-      <Route exact path="/" render={() => (
-          this.state.isLoggedIn ? (
-            <Dashboard />
-          ) : (
-            this.props.history.push('/login')
+  isAuth() {
 
-          )
-        )}/>
+    return ((this.state.user.id) ? (this.props.history.push(`/${this.state.user.id}`)) : (this.props.history.push('/signup')))
+  }
+
+  render() {
+
+    return (
+      <div>
+        console.log("loggedIn?: ", this.state.isLoggedIn)
+        <Route path='/:userToken' render={() => (
+          (this.state.isLoggedIn ) ? (
+            <Sidebar />
+            ) : (
+              this.props.history.push('/login')
+            )
+          )}
+        />
+        {this.isAuth()}
+      </div>
       );
     }
   }
