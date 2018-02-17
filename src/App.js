@@ -13,11 +13,9 @@ class App extends Component {
       <CookiesProvider >
         <BrowserRouter>
           <div className="wrapper">
-
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={SignUp} />
-
           </div>
         </BrowserRouter>
       </CookiesProvider>
