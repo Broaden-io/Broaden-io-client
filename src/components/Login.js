@@ -32,7 +32,6 @@ class Login extends Component {
   setTokenCookie(token) {
     const { cookies } = this.props;
     cookies.set('RubricsApp', token, { path: '/'} );
-    console.log(cookies.get('RubricsApp'));
   }
 
   refresh() {
@@ -48,15 +47,13 @@ class Login extends Component {
   submitForm() {
     axios.post(`${serverPath}/login`, this.state.loginForm)
     .then(response => {
-      console.log("Here is the Response...",response)
       if (response.status === 200) {
-        console.log(response.data)
         this.setTokenCookie(response.data.token)
         this.props.history.push(`/${this.state.loginForm.username}`);
       }
     })
     .catch(error => {
-      console.log('error!', error)
+      
     })
   }
 

@@ -41,19 +41,16 @@ class Home extends Component {
     axios.get(`${serverPath}/authcheck`)
     .then(response => {
       if (response.isLoggedIn) {
-        console.log(response.message)
         this.setState({
           isLoggedIn: true,
           user: response.user,
           authChecked: true
         })
       } else {
-        console.log(response.message)
         this.props.history.push('/login')
       }
     })
     .catch(error => {
-      console.log('error!', error)
       this.props.history.push('/login')
     })
   }
@@ -67,7 +64,6 @@ class Home extends Component {
 
     return (
       <div>
-        console.log("loggedIn?: ", this.state.isLoggedIn)
         <Route path='/:userToken' render={() => (
           (this.state.isLoggedIn ) ? (
             <Sidebar />
