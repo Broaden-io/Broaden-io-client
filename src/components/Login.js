@@ -4,6 +4,7 @@ import serverPath from '../paths';
 import axios from 'axios';
 import { instanceOf } from 'prop-types';
 import { Cookies, withCookies } from 'react-cookie';
+import Input from './Input'
 
 class Login extends Component {
 
@@ -125,6 +126,7 @@ class Login extends Component {
                                   <i className="fa fa-google-plus"></i>
                                   </a>
                                   </div>*/}
+
                                 </div>
                                 <p className="category text-center">Don't have an account?</p>
                                 <p className="category text-center">

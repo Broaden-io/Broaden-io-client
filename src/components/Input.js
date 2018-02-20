@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 
+// Here's a code Snippet of how to contruct this component in HTML: -->
+// <Input name="email" type="email" label="Email Address" required={true}
+// errorMessage="Bad email address"validation="/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/" />
+
 class Input extends Component {
 
-  const { label, required, name, type } = this.props;
+  //Should consider decomposing props objects into multiple variables so we dont
+  //have to call this.props.* when using prop variables
 
   state = {
     inputText: "",
@@ -13,41 +18,43 @@ class Input extends Component {
     e.preventDefault();
     this.setState({
       inputText: e.target.value
-    }, this.checkValidation())
+    }, this.validate())
   }
 
-  checkValidation = () => {
-    // console.log("checking validation")
-    // console.log(this.props.validation)
-    // TODO
-    // if (!this.props.validation) {
-    //   return;
-    // }
-    // // if (this.state.validation doesn't match this.state.inputText regex):
-    // // set validation STYLE == false (ex. red text)
-    // switch (this.props.type) {
-    //   case 'email':
-    //     // check regex
-    //     // if it passes,
-    //     // set this.state({ validated: true})
-    //     // otherwise: set this.state({validated: false })
-    //     break;
-    //   case 'username':
-    //     break;
-    //   default:
-    //     break;
-    // }
+  validate = () => {
+    if (this.props.validation) {
+      const regex = new RegExp(this.props.validation)
+      if (regex.test(this.state.inputText)){
+        this.state.validated = true
+      } else {
+        this.state.validated = false
+      }
+    }
+  }
+
+
+  drawErrorMessage = () => {
+    if (this.props.errorMessage) {
+      return this.props.errorMessage
+    } else {
+      return "Invalid input"
+    }
   }
 
   render() {
 
     return(
       <div className="form-group label-floating is-empty">
-          <label className="control-label">{label}<small>{required ? "*" : ""}</small></label>
-          <input className="form-control" name={name} type={type}
-          required={required} aria-required={required}
-          onChange={this.setInputText} value={this.state.inputText}
-          />
+        <div className="form-control-feedback">{this.state.validated ? "" : this.drawErrorMessage()}</div>
+        <label className="control-label">
+          {this.props.label}
+          <small>
+            {this.props.required ? "*" : ""}
+          </small>
+        </label>
+          <input className="form-control" name={this.props.name} type={this.props.type}
+          required={this.props.required} aria-required={this.props.required}
+          onChange={this.setInputText} value={this.state.inputText}/>
           <span className="material-input"></span>
       </div>
 
