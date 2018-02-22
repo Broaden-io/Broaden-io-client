@@ -23,7 +23,6 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div className="wrapper">
 
         <div className="main-panel">
 
@@ -32,7 +31,7 @@ class Dashboard extends Component {
 
               <footer className="footer">
                 <div className="container-fluid">
-                  <Rubric name="test"/>
+                  <Rubric name={this.props.rubrics.rubricsList[0].name}/>
                     <nav className="pull-left">
                         <ul>
                           <li>
@@ -65,7 +64,6 @@ class Dashboard extends Component {
                 </div>
               </div>
             </div>
-          </div>
 
     );
   }

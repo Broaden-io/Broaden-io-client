@@ -23,7 +23,7 @@ export const requestRubricsIndex = () => ({
 })
 
 export const receiveRubricsIndex = (rubrics) => ({
-  type: 'RUBRIC_SUCCESS',
+  type: 'RUBRICS_INDEX_SUCCESS',
   isFetching: false,
   rubrics
 })
