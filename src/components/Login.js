@@ -45,6 +45,7 @@ class Login extends Component {
     this.submitButton.swal(options)
   }
 
+
   render() {
     return (
       <div className="off-canvas-sidebar">
@@ -181,14 +182,14 @@ class Login extends Component {
               }
             }
 
-            const mapStateToProps = (state) => {
-              return {
-                auth: state.auth
-              }
-            }
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  }
+}
 
-            const mapDispatchToProps = (dispatch) => {
-              return bindActionCreators(Actions, dispatch);
-            }
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(Actions, dispatch);
+}
 
-            export default (mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

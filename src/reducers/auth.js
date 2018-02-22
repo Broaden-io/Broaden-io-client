@@ -6,7 +6,7 @@ const authDefaultState = {
 }
 
 export default (state = authDefaultState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'LOGIN_REQUEST':
       return {
         isFetching: true,

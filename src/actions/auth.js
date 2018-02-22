@@ -1,4 +1,4 @@
-
+import history from '../routers/history';
 import serverPath from '../paths';
 
 export const requestSignUp = (creds) => ({
@@ -71,7 +71,7 @@ export function loginUser(creds) {
 
     return fetch(`${serverPath}/login`, config).then((res) => {
       console.log(res)
-      if (res.status != 200) {
+      if (res.status !== 200) {
         dispatch(loginError(res.statusText));
         return Promise.reject("Could not login");
       }
@@ -80,10 +80,10 @@ export function loginUser(creds) {
         console.log(json);
         console.log("logged in!")
         localStorage.setItem('token', json.token);
-        console.log(localStorage.getItem('token'))
-        console.log('sending receive login dispatch')
+        console.log(localStorage.getItem('token'));
+        console.log('sending receive login dispatch');
         console.log(dispatch(receiveLogin({token: json.token})));
-        history.push('/');
+        history.push(`/`); // forward to /username
     }).catch(err => console.log("Error: " + err));
   }
 }
@@ -93,5 +93,6 @@ export function logoutUser () {
       dispatch(requestLogout());
       localStorage.removeItem('token');
       dispatch(receiveLogout());
+      history.push(`/`);
     }
 }
