@@ -4,7 +4,8 @@ import serverPath from '../paths';
 import axios from 'axios';
 import { instanceOf } from 'prop-types';
 import { Cookies, withCookies } from 'react-cookie';
-import Input from './Input'
+import Input from './Input';
+import Checkbox from './Checkbox';
 
 class Login extends Component {
 
@@ -54,7 +55,7 @@ class Login extends Component {
       }
     })
     .catch(error => {
-      
+
     })
   }
 
