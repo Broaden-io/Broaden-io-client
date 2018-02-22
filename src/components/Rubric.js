@@ -38,7 +38,14 @@ class Rubric extends Component {
           ]
         }
       ]
-    }
+    },
+    { name: "CSS", Scales: [
+      { name: "Basic Properties and Styles", Criteria: [
+        {text: "Can use all basic properties and styles", level: 1},
+        ]
+      }
+    ]
+  }
   ]
 
     return comp.map((competency) => {
