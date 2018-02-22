@@ -1,8 +1,7 @@
+// TODO: Update to include array of rubrics
+
 export default (state = {
-  rubric: {
-    name:"",
-    id: 0
-  }
+  rubricsList: []
 }, action) => {
   switch (action.type) {
     case 'REQUEST_RUBRIC':
@@ -14,7 +13,7 @@ export default (state = {
       return {
         isFetching: false,
         errorMessage: '',
-        rubric: action.rubric
+        rubrics: [...state.rubrics, action.rubric]
       }
     case 'RUBRIC_FAILURE':
       return {

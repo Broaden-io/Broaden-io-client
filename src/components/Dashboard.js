@@ -12,7 +12,13 @@ class Dashboard extends Component {
   }
 
   componentWillMount() {
-    this.getRubricById(10000);
+    this.props.getRubricById(10000);
+  }
+
+  getRubrics() {
+    this.props.rubrics.rubricsList.map((rubric, index) => {
+      return <Rubric name={rubric.name} key={index} />
+    })
   }
 
   render() {
@@ -61,9 +67,9 @@ class Dashboard extends Component {
             </div>
           </div>
 
-                                    );
-                                  }
-                                }
+    );
+  }
+}
 
 const mapStateToProps = (state) => {
   return {

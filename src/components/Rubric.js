@@ -1,9 +1,49 @@
 import React, { Component } from 'react';
 
+const Competency = props => {
+  const {name, scales} = props;
+  return (
+    <tr>
+      <td>{name}</td>
+      <td className="text-right">
+
+      </td>
+      <td className="text-right">
+        53.23%
+      </td>
+      <td className="text-right">
+        53.23%
+      </td>
+      <td className="text-right">
+        53.23%
+      </td>
+    </tr>
+  )
+}
+
 class Rubric extends Component {
 
   constructor(props) {
     super(props);
+    this.getCompetencies = this.getCompetencies.bind(this);
+  }
+
+  getCompetencies() {
+    const comp = [ // TODO: replace with PROPS
+      { name: "HTML and Templating", Scales: [
+        { name: "HTML From Memory", Criteria: [
+          {text: "Needs to look up tags occasionally", level: 1},
+          {text: "Can write basic and advanced HTML tags", level: 2},
+          {text: "Uses HTML tags semantically", level: 3}
+          ]
+        }
+      ]
+    }
+  ]
+
+    return comp.map((competency) => {
+      return <Competency name={competency.name} scales={competency.Scales}/>
+    })
   }
 
   render() {
@@ -25,92 +65,7 @@ class Rubric extends Component {
                   <div className="table-responsive table-sales">
                     <table className="table">
                       <tbody>
-                        <tr>
-                          <td>
-                            <div className="flag">
-                              <img alt="US" src="assets/img/flags/US.png" />
-                            </div>
-                          </td>
-                          <td></td>
-                          <td className="text-right">
-                            2.920
-                          </td>
-                          <td className="text-right">
-                            53.23%
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div className="flag">
-                              <img alt="DE" src="assets/img/flags/DE.png" />
-                            </div>
-                          </td>
-                          <td>Germany</td>
-                          <td className="text-right">
-                            1.300
-                          </td>
-                          <td className="text-right">
-                            20.43%
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div className="flag">
-                              <img alt="AU" src="assets/img/flags/AU.png" />
-                            </div>
-                          </td>
-                          <td>Australia</td>
-                          <td className="text-right">
-                            760
-                          </td>
-                          <td className="text-right">
-                            10.35%
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div className="flag">
-                              <img alt="GB" src="assets/img/flags/GB.png" />
-                            </div>
-                          </td>
-                          <td>
-                            United Kingdom
-                          </td>
-                          <td className="text-right">
-                            690
-                          </td>
-                          <td className="text-right">
-                            7.87%
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div className="flag">
-                              <img alt="RO" src="assets/img/flags/RO.png" />
-                            </div>
-                          </td>
-                          <td>Romania</td>
-                          <td className="text-right">
-                            600
-                          </td>
-                          <td className="text-right">
-                            5.94%
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div className="flag">
-                              <img alt="BR" src="assets/img/flags/BR.png" />
-                            </div>
-                          </td>
-                          <td>Brasil</td>
-                          <td className="text-right">
-                            550
-                          </td>
-                          <td className="text-right">
-                            4.34%
-                          </td>
-                        </tr>
+                        {this.getCompetencies()}
                       </tbody>
                     </table>
                   </div>
