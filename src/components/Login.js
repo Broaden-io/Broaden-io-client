@@ -6,6 +6,7 @@ import { instanceOf } from 'prop-types';
 import { Cookies, withCookies } from 'react-cookie';
 import Input from './Input';
 import Checkbox from './Checkbox';
+import RadioButton from './RadioButton'
 
 class Login extends Component {
 
