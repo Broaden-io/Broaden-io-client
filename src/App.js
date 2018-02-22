@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { CookiesProvider } from 'react-cookie'
-import Home from './components/Home'
-import SignUp from './components/SignUp'
-import Login from './components/Login'
-
+import Home from './components/Home';
+import SignUp from './components/SignUp';
+import Login from './components/Login';
+import { Provider } from 'react-redux';
+import ConfigureStore from './store/ConfigureStore';
 
 class App extends Component {
 
   render() {
     return (
-      <CookiesProvider >
+      <Provider store={store}>
         <BrowserRouter>
           <div className="wrapper">
               <Route exact path="/" component={Home} />
@@ -18,7 +18,7 @@ class App extends Component {
               <Route path="/signup" component={SignUp} />
           </div>
         </BrowserRouter>
-      </CookiesProvider>
+      </Provider>
     );
   }
 }
