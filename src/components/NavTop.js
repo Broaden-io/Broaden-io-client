@@ -34,7 +34,7 @@ class NavTop extends Component {
             <ul className="nav navbar-nav navbar-right">
               <li className="dropdown">
                 <a
-                  href="#"
+                  href=""
                   className="dropdown-toggle"
                   data-toggle="dropdown">
                   <i className="material-icons">notifications</i>

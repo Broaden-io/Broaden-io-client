@@ -1,4 +1,9 @@
-export default (state = {}, action) => {
+export default (state = {
+  rubric: {
+    name:"",
+    id: 0
+  }
+}, action) => {
   switch (action.type) {
     case 'REQUEST_RUBRIC':
       return {
