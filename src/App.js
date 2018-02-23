@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { Router, Route } from 'react-router-dom';
-import Home from './components/Home';
-import SignUp from './components/SignUp';
-import RubricsIndex from './components/RubricsIndex';
-import Login from './components/Login';
+import { Router } from 'react-router-dom';
+import Routes from './components/Routes'
 import { Provider } from 'react-redux';
 import history from './routers/history';
 import ConfigureStore from './store/ConfigureStore';
@@ -16,12 +13,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router history={history}>
-          <div className="wrapper">
-              <Route exact path="/" component={Home} />
-              <Route path="/rubrics" component={RubricsIndex} />
-              <Route path="/login" component={Login} />
-              <Route path="/signup" component={SignUp} />
-          </div>
+          <Routes />
         </Router>
       </Provider>
     );

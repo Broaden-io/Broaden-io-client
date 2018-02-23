@@ -27,7 +27,7 @@ class Login extends Component {
   submitForm() {
     this.props.loginUser(this.state.loginForm).then(() => {
       console.log('then')
-      history.push(`/`);
+      history.push(`/${this.state.loginForm.username}`);
     });
   }
 

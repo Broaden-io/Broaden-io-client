@@ -80,6 +80,12 @@ export function loginUser(creds) {
         console.log(json);
         console.log("logged in!")
         localStorage.setItem('token', json.token);
+        localStorage.setItem('userId', json.user.id)
+        localStorage.setItem('username', json.user.username)
+        localStorage.setItem('firstName', json.user.firstName)
+        localStorage.setItem('lastName', json.user.lastName)
+        localStorage.setItem('email', json.user.email)
+        localStorage.setItem('avatarURL', json.user.avatarURL)
         console.log(localStorage.getItem('token'));
         dispatch(receiveLogin({token: json.token, user: json.user}));
         //history.push(`/`); // forward to /username
@@ -91,6 +97,12 @@ export function logoutUser() {
     return dispatch => {
       dispatch(requestLogout());
       localStorage.removeItem('token');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('username');
+      localStorage.removeItem('firstName');
+      localStorage.removeItem('lastName');
+      localStorage.removeItem('email');
+      localStorage.removeItem('avatarURL');
       dispatch(receiveLogout());
       history.push(`/`);
     }
