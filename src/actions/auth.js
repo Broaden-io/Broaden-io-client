@@ -33,7 +33,8 @@ export const receiveLogin = (response) => ({
   type: 'LOGIN_SUCCESS',
   isFetching: false,
   isAuthenticated: true,
-  token: response.token
+  token: response.token,
+  user: response.user
 })
 
 export const loginError = (message) => ({
@@ -82,7 +83,7 @@ export function loginUser(creds) {
         localStorage.setItem('token', json.token);
         console.log(localStorage.getItem('token'));
         console.log('sending receive login dispatch');
-        console.log(dispatch(receiveLogin({token: json.token})));
+        console.log(dispatch(receiveLogin({token: json.token, user: json.user})));
         history.push(`/`); // forward to /username
     }).catch(err => console.log("Error: " + err));
   }

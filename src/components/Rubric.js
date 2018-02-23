@@ -29,27 +29,27 @@ class Rubric extends Component {
   }
 
   getCompetencies() {
-    const comp = [ // TODO: replace with PROPS
-      { name: "HTML and Templating", Scales: [
-        { name: "HTML From Memory", Criteria: [
-          {text: "Needs to look up tags occasionally", level: 1},
-          {text: "Can write basic and advanced HTML tags", level: 2},
-          {text: "Uses HTML tags semantically", level: 3}
-          ]
-        }
-      ]
-    },
-    { name: "CSS", Scales: [
-      { name: "Basic Properties and Styles", Criteria: [
-        {text: "Can use all basic properties and styles", level: 1},
-        ]
-      }
-    ]
-  }
-  ]
+  //   const comp = [ // TODO: replace with PROPS
+  //     { name: "HTML and Templating", Scales: [
+  //       { name: "HTML From Memory", Criteria: [
+  //         {text: "Needs to look up tags occasionally", level: 1},
+  //         {text: "Can write basic and advanced HTML tags", level: 2},
+  //         {text: "Uses HTML tags semantically", level: 3}
+  //         ]
+  //       }
+  //     ]
+  //   },
+  //   { name: "CSS", Scales: [
+  //     { name: "Basic Properties and Styles", Criteria: [
+  //       {text: "Can use all basic properties and styles", level: 1},
+  //       ]
+  //     }
+  //   ]
+  // }
+  // ]
 
-    return comp.map((competency) => {
-      return <Competency name={competency.name} scales={competency.Scales}/>
+    return this.props.competencies.map((competency, index) => {
+      return <Competency key={index} name={competency.name} scales={competency.Scales}/>
     })
   }
 

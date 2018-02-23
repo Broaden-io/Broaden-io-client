@@ -2,7 +2,7 @@
 
 export default (state = {
   rubricsList: [
-    { name: "" }
+    { name: "Default" }
   ]
 }, action) => {
   switch (action.type) {
@@ -17,7 +17,6 @@ export default (state = {
         errorMessage: '',
         rubricsList: [...state.rubrics, action.rubric]
       }
-
     case 'RUBRICS_INDEX_SUCCESS':
       return {
         isFetching: false,

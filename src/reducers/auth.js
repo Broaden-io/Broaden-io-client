@@ -17,7 +17,8 @@ export default (state = authDefaultState, action) => {
       return {
         isFetching: false,
         isAuthenticated: true,
-        errorMessage: ''
+        errorMessage: '',
+        user: action.user
       }
     case 'LOGIN_FAILURE':
       return {
@@ -29,7 +30,7 @@ export default (state = authDefaultState, action) => {
       return {
         isFetching: false,
         isAuthenticated: false,
-        errorMessage: 'Could not logout'
+        errorMessage: ''
       }
     case 'SIGNUP_FAILURE':
       return {
