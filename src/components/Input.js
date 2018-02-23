@@ -25,9 +25,13 @@ class Input extends Component {
     if (this.props.validation) {
       const regex = new RegExp(this.props.validation)
       if (regex.test(this.state.inputText)){
-        this.state.validated = true
+        this.setState({
+          validated: true
+        })
       } else {
-        this.state.validated = false
+        this.setState({
+          validated: false
+        })
       }
     }
   }
