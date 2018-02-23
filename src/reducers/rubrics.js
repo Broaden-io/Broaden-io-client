@@ -1,14 +1,24 @@
 // TODO: Update to include array of rubrics
 
-export default (state = [], action) => {
+const rubricsReducer = (state = {}, action) => {
   switch (action.type) {
     case 'RUBRICS_INDEX_SUCCESS':
-      return [
-        ...action.rubrics
-      ]
-    case 'RUBRIC_FAILURE':
-      return state
+      return {
+        ...state,
+        rubrics: [...action.rubrics]
+      }
+    case 'RUBRICS_FAILURE':
+      return {
+        ...state
+      }
+    case 'REQUEST_RUBRICS_INDEX':
+      return {
+        ...state,
+        isFetching: action.isFetching
+      }
     default:
       return state
   }
 }
+
+export default rubricsReducer
