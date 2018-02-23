@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import NavTop from './NavTop'
 import Dashboard from './Dashboard'
+import * as Actions from '../actions/auth';
+import { connect } from 'react-redux';
 
 class Sidebar extends Component {
   render() {
@@ -24,7 +26,7 @@ class Sidebar extends Component {
                     <div className="info">
                         <a data-toggle="collapse" href="" className="collapsed">
                             <span>
-                                Tania Andrew
+                                
                                 <b className="caret"></b>
                             </span>
                         </a>
