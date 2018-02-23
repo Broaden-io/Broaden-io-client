@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 class NavTop extends Component {
   render() {
-    // TODO:add activeClassName for when the link is selected
+
     return (
+
       <nav className="navbar navbar-transparent navbar-absolute">
         <div className="container-fluid">
           <div className="navbar-minimize">
@@ -31,15 +32,6 @@ class NavTop extends Component {
           </div>
           <div className="collapse navbar-collapse">
             <ul className="nav navbar-nav navbar-right">
-              <li>
-                <button
-                  to='/logout'
-                  className="dropdown-toggle"
-                  data-toggle="dropdown">
-                  <i className="material-icons">person</i>
-                  <p className="hidden-lg hidden-md">Dashboard</p>
-                </button>
-              </li>
               <li className="dropdown">
                 <a
                   href=""
@@ -84,7 +76,7 @@ class NavTop extends Component {
                 <a
                   href=""
                   className="dropdown-toggle"
-                  data-toggle="dropdown">
+                  data-toggle="dropdown-profile">
                   <i className="material-icons">person</i>
                   <p className="hidden-lg hidden-md">Profile</p>
                 </a>
@@ -111,6 +103,7 @@ class NavTop extends Component {
           </div>
         </div>
       </nav>
+
     );
   }
 }
