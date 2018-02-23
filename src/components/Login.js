@@ -2,20 +2,17 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import serverPath from '../paths';
 import axios from 'axios';
-import { instanceOf } from 'prop-types';
-import { Cookies, withCookies } from 'react-cookie';
-import Input from './Input'
+import Input from './Input';
+import Checkbox from './Checkbox';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as Actions from '../actions/auth';
 
 class Login extends Component {
-
-  static propTypes = {
-    cookies: instanceOf(Cookies).isRequired
-  };
 
   constructor(props) {
     super(props)
     this.sendSweetAlert = this.sendSweetAlert.bind(this)
-    this.setTokenCookie = this.setTokenCookie.bind(this)
     this.submitForm = this.submitForm.bind(this)
 
     this.state = {
@@ -30,11 +27,6 @@ class Login extends Component {
     }
   }
 
-  setTokenCookie(token) {
-    const { cookies } = this.props;
-    cookies.set('RubricsApp', token, { path: '/'} );
-  }
-
   refresh() {
     this.setState({loaded: true})
   }
@@ -46,23 +38,13 @@ class Login extends Component {
   }
 
   submitForm() {
-    axios.post(`${serverPath}/login`, this.state.loginForm)
-    .then(response => {
-      if (response.status === 200) {
-        this.setTokenCookie(response.data.token)
-        this.props.history.push(`/${this.state.loginForm.username}`);
-      }
-    })
-    .catch(error => {
-      
-    })
+    this.props.loginUser(this.state.loginForm);
   }
 
   sendSweetAlert() {
     const options = { title:"Good job!", text: "You clicked the button!", type: "success", buttonsStyling: true, confirmButtonClass: "btn btn-success"}
     this.submitButton.swal(options)
   }
-
 
 
   render() {
@@ -201,4 +183,14 @@ class Login extends Component {
               }
             }
 
-            export default withCookies(Login);
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(Actions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

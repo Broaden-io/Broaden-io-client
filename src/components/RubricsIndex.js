@@ -2,8 +2,19 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../actions/rubrics';
+import Rubric from './Rubric';
 
-class Dashboard extends Component {
+class RubricsIndex extends Component {
+
+  componentWillMount() {
+    this.props.getRubricById(10000);
+  }
+
+  getRubrics() {
+    return this.props.rubrics.rubricsList.map((rubric, index) => {
+      return <Rubric name={rubric.name} key={index} />
+    })
+  }
 
   render() {
     return (
@@ -15,6 +26,7 @@ class Dashboard extends Component {
 
               <footer className="footer">
                 <div className="container-fluid">
+                  {this.getRubrics()}
                     <nav className="pull-left">
                         <ul>
                           <li>
@@ -52,4 +64,14 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {
+    rubrics: state.rubrics
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(Actions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RubricsIndex);

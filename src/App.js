@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import { CookiesProvider } from 'react-cookie'
-import Home from './components/Home'
-import SignUp from './components/SignUp'
-import Login from './components/Login'
+import { Router, Route, browserHistory } from 'react-router-dom';
+import Home from './components/Home';
+import SignUp from './components/SignUp';
+import Login from './components/Login';
+import { Provider } from 'react-redux';
+import history from './routers/history';
+import ConfigureStore from './store/ConfigureStore';
 
+const store = ConfigureStore();
 
 class App extends Component {
 
   render() {
     return (
-      <CookiesProvider >
-        <BrowserRouter>
+      <Provider store={store}>
+        <Router history={history}>
           <div className="wrapper">
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={SignUp} />
           </div>
-        </BrowserRouter>
-      </CookiesProvider>
+        </Router>
+      </Provider>
     );
   }
 }
