@@ -68,7 +68,6 @@ export function loginUser(creds) {
 
   return dispatch => {
     dispatch(requestLogin(creds));
-    console.log('sent request login dispatch')
 
     return fetch(`${serverPath}/login`, config).then((res) => {
       console.log(res)
@@ -82,9 +81,8 @@ export function loginUser(creds) {
         console.log("logged in!")
         localStorage.setItem('token', json.token);
         console.log(localStorage.getItem('token'));
-        console.log('sending receive login dispatch');
-        console.log(dispatch(receiveLogin({token: json.token, user: json.user})));
-        history.push(`/`); // forward to /username
+        dispatch(receiveLogin({token: json.token, user: json.user}));
+        //history.push(`/`); // forward to /username
     }).catch(err => console.log("Error: " + err));
   }
 }

@@ -9,8 +9,7 @@ import { connect } from 'react-redux';
 class Home extends Component {
 
   render() {
-    console.log("logged in:" +this.props.auth.isAuthenticated)
-
+    console.log("logged in: " + this.props.auth.isAuthenticated)
 
     return (
       <div>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
+import history from '../routers/history';
 import { Link } from 'react-router-dom';
-import serverPath from '../paths';
-import axios from 'axios';
 import Input from './Input';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -26,25 +25,27 @@ class Login extends Component {
     }
   }
 
-  refresh() {
-    this.setState({loaded: true})
-  }
-
-  componentDidMount() {
-    if (!this.state.loaded) {
-      this.refresh()
-    }
-  }
+  // refresh() {
+  //   this.setState({loaded: true})
+  // }
+  //
+  // componentDidMount() {
+  //   if (!this.state.loaded) {
+  //     this.refresh()
+  //   }
+  // }
 
   submitForm() {
-    this.props.loginUser(this.state.loginForm);
+    this.props.loginUser(this.state.loginForm).then(() => {
+      console.log('then')
+      history.push(`/`);
+    });
   }
 
   sendSweetAlert() {
     const options = { title:"Good job!", text: "You clicked the button!", type: "success", buttonsStyling: true, confirmButtonClass: "btn btn-success"}
     this.submitButton.swal(options)
   }
-
 
   render() {
     return (
@@ -62,11 +63,6 @@ class Login extends Component {
             </div>
             <div className="collapse navbar-collapse">
               <ul className="nav navbar-nav navbar-right">
-                <li>
-                  <Link to="/">
-                    <i className="material-icons">dashboard</i> Dashboard
-                    </Link>
-                  </li>
                   <li className="">
                     <Link to="/signup">
                       <i className="material-icons">person_add</i> Sign Up
@@ -92,19 +88,6 @@ class Login extends Component {
                             <div className="card card-login">
                               <div className="card-header text-center" data-background-color="blue">
                                 <h4 className="card-title">Login</h4>
-
-                                {/*<div className="social-line">
-                                  <a href="#btn" className="btn btn-just-icon btn-simple">
-                                  <i className="fa fa-facebook-square"></i>
-                                  </a>
-                                  <a href="#pablo" className="btn btn-just-icon btn-simple">
-                                  <i className="fa fa-twitter"></i>
-                                  </a>
-                                  <a href="#eugen" className="btn btn-just-icon btn-simple">
-                                  <i className="fa fa-google-plus"></i>
-                                  </a>
-                                  </div>*/}
-
                                 </div>
                                 <p className="category text-center">Don't have an account?</p>
                                 <p className="category text-center">
@@ -142,30 +125,6 @@ class Login extends Component {
                     </div>
                     <footer className="footer">
                       <div className="container">
-                        {/*<nav className="pull-left">
-                          <ul>
-                          <li>
-                          <a href="#">
-                          Home
-                          </a>
-                          </li>
-                          <li>
-                          <a href="#">
-                          Company
-                          </a>
-                          </li>
-                          <li>
-                          <a href="#">
-                          Portofolio
-                          </a>
-                          </li>
-                          <li>
-                          <a href="#">
-                          Blog
-                          </a>
-                          </li>
-                          </ul>
-                          </nav>*/}
                           <p className="copyright pull-right">
                             &copy;
 

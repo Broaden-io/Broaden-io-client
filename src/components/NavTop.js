@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as Actions from '../actions/auth';
 
 class NavTop extends Component {
   render() {
@@ -32,6 +35,9 @@ class NavTop extends Component {
           </div>
           <div className="collapse navbar-collapse">
             <ul className="nav navbar-nav navbar-right">
+              <li>
+                <button onClick={this.props.logoutUser} > Logout </button>
+              </li>
               <li className="dropdown">
                 <a
                   href=""
@@ -108,4 +114,14 @@ class NavTop extends Component {
   }
 }
 
-export default NavTop;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(Actions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavTop);
