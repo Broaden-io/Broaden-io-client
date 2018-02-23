@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Router, Route, browserHistory } from 'react-router-dom';
 import Home from './components/Home';
 import SignUp from './components/SignUp';
+import RubricsIndex from './components/RubricsIndex';
 import Login from './components/Login';
 import { Provider } from 'react-redux';
 import history from './routers/history';
@@ -17,6 +18,7 @@ class App extends Component {
         <Router history={history}>
           <div className="wrapper">
               <Route exact path="/" component={Home} />
+              <Route path="/rubrics" component={RubricsIndex} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={SignUp} />
           </div>

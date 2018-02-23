@@ -1,33 +1,13 @@
 // TODO: Update to include array of rubrics
 
-export default (state = {
-  rubricsList: [
-    { name: "Default" }
-  ]
-}, action) => {
+export default (state = [], action) => {
   switch (action.type) {
-    case 'REQUEST_RUBRIC':
-      return {
-        isFetching: true,
-        errorMessage: ''
-      }
-    case 'RUBRIC_SUCCESS':
-      return {
-        isFetching: false,
-        errorMessage: '',
-        rubricsList: [...state.rubrics, action.rubric]
-      }
     case 'RUBRICS_INDEX_SUCCESS':
-      return {
-        isFetching: false,
-        errorMessage: '',
-        rubricsList: [action.rubrics]
-      }
+      return [
+        ...action.rubrics
+      ]
     case 'RUBRIC_FAILURE':
-      return {
-        isFetching: false,
-        errorMessage: action.message
-      }
+      return state
     default:
       return state
   }
