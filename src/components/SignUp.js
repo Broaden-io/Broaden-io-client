@@ -30,14 +30,11 @@ class SignUp extends Component {
         axios.post(`${serverPath}/signup`, newUser)
         .then(response => {
           if (response.status === 200) {
-            console.log('User created!')
             this.props.history.push('/')
           } else {
-            console.log('Something went wrong')
           }
         })
         .catch(error => {
-          console.log('error!', error)
         })
       });
     });
