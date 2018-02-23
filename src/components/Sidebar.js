@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NavTop from './NavTop'
 import Dashboard from './Dashboard'
+import Footer from './Footer'
 import * as Actions from '../actions/auth';
 import { connect } from 'react-redux';
 
@@ -8,7 +9,7 @@ class Sidebar extends Component {
   render() {
     return (
       <div className="wrapper">
-        <div className="sidebar" data-active-color="rose" data-background-color="black" data-image="assets/img/sidebar-1.jpg">
+        <div className="sidebar" data-active-color="rose" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
 
             <div className="logo">
                 <a href="" className="simple-text logo-mini">
@@ -26,7 +27,7 @@ class Sidebar extends Component {
                     <div className="info">
                         <a data-toggle="collapse" href="" className="collapsed">
                             <span>
-                                
+
                                 <b className="caret"></b>
                             </span>
                         </a>
@@ -287,9 +288,14 @@ class Sidebar extends Component {
                 </ul>
             </div>
         </div>
+        <div className="main-panel">
 
         <NavTop />
+
         <Dashboard />
+
+        <Footer />
+        </div>
 
       </div>
 

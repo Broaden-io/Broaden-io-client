@@ -7,7 +7,6 @@ class NavTop extends Component {
   render() {
 
     return (
-
       <nav className="navbar navbar-transparent navbar-absolute">
         <div className="container-fluid">
           <div className="navbar-minimize">
@@ -109,6 +108,7 @@ class NavTop extends Component {
           </div>
         </div>
       </nav>
+
 
     );
   }
