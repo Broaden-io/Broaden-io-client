@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Route, browserHistory } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import Home from './components/Home';
 import SignUp from './components/SignUp';
 import RubricsIndex from './components/RubricsIndex';

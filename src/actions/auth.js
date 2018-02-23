@@ -87,7 +87,7 @@ export function loginUser(creds) {
   }
 }
 
-export function logoutUser () {
+export function logoutUser() {
     return dispatch => {
       dispatch(requestLogout());
       localStorage.removeItem('token');

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import history from '../routers/history';
 import { Link } from 'react-router-dom';
-import Input from './Input';
-import Checkbox from './Checkbox';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../actions/auth';
@@ -25,16 +23,6 @@ class Login extends Component {
       loaded: false
     }
   }
-
-  // refresh() {
-  //   this.setState({loaded: true})
-  // }
-  //
-  // componentDidMount() {
-  //   if (!this.state.loaded) {
-  //     this.refresh()
-  //   }
-  // }
 
   submitForm() {
     this.props.loginUser(this.state.loginForm).then(() => {
@@ -60,7 +48,7 @@ class Login extends Component {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <a className="navbar-brand" href="">RubricPRO</a>
+              <a className="navbar-brand" href="">Trubric.io</a>
             </div>
             <div className="collapse navbar-collapse">
               <ul className="nav navbar-nav navbar-right">

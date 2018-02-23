@@ -28,18 +28,17 @@ export function getRubrics() {
 
   return dispatch => {
     dispatch(requestRubricsIndex());
-    console.log("calling dispatch")
 
     return fetch(`${serverPath}/rubrics`, config).then((res) => {
-      console.log(res);
       if (res.status !== 200) {
         dispatch(rubricError(res.message));
         return Promise.reject("Could not get rubrics index")
       }
       return res.json();
     }).then((json) => {
-      console.log(json);
-      dispatch(receiveRubricsIndex(json.rubrics))
-    }).catch(err => console.log("Error: " + err));
+      dispatch(receiveRubricsIndex(json))
+    }).catch(err => {
+      alert('There was an error: ', err)
+    });
   }
 }

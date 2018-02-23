@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import NavTop from './NavTop'
 import Dashboard from './Dashboard'
 import Footer from './Footer'
-import * as Actions from '../actions/auth';
-import { connect } from 'react-redux';
 
 class Sidebar extends Component {
   render() {
@@ -16,7 +14,7 @@ class Sidebar extends Component {
 
                 </a>
                 <a href="" className="simple-text logo-normal">
-                    RubricPro
+                    Trubric.io
                 </a>
             </div>
             <div className="sidebar-wrapper">
