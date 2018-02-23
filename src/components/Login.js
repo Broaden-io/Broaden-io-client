@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import history from '../routers/history';
 import { Link } from 'react-router-dom';
 import Input from './Input';
+import Checkbox from './Checkbox';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../actions/auth';
