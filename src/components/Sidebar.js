@@ -68,7 +68,7 @@ class Sidebar extends Component {
               </div>
             </div>
             <ul className="nav">
-              <MenuItem title="Dashboard" active={true} icon="dashboard" path={`/${localStorage.getItem('username')}`}/>
+              <MenuItem title="Dashboard" active={true} icon="dashboard" path={`/${localStorage.getItem('username')}/dashboard`}/>
               <MenuItem title="Rubrics" active={false} icon="assessment" path={`/${localStorage.getItem('username')}/rubrics`} />
 
             </ul>
@@ -77,17 +77,25 @@ class Sidebar extends Component {
         <div className="main-panel">
 
           <NavTop />
-          <Switch>
-            <Route path={`/${localStorage.getItem('username')}`} render={() => <Dashboard />}/>
-            <Route path={`/${localStorage.getItem('username')}/rubrics`} render={() => <RubricsIndex />}/>
-          </Switch>
-          <Footer />
 
+          <div className="content">
+            <div className="container-fluid">
+
+              <Switch>
+                <Route path={`/:username/dashboard`} component={Dashboard} />
+                <Route path={`/:username/rubrics`} component={RubricsIndex} />
+              </Switch>
+              {/*<Route path={`/${localStorage.getItem('username')}`} render={() => <Dashboard />}/>
+            <Route path={`/${localStorage.getItem('username')}/rubrics`} render={() => <RubricsIndex />}/>*/}
+          </div>
         </div>
-      </div>
+        <Footer />
 
-    );
-  }
+      </div>
+    </div>
+
+  );
+}
 }
 
 export default Sidebar;

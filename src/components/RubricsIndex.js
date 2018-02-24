@@ -7,7 +7,7 @@ class RubricElement extends Component {
   render() {
     return (
       <tr>
-        <td className="text-center">this.props.index</td>
+        <td className="text-center">{this.props.index + 1}</td>
         <td>{this.props.name}</td>
         <td>{this.props.description}</td>
       </tr>
@@ -23,10 +23,11 @@ class RubricsIndex extends Component {
 
   drawRubrics() {
     console.log('RUBRICS', this.props)
-    if (!this.props.isFetching) {
+    if (this.props.rubrics !== null && this.props.rubrics !== {}) {
        const theRubes = this.props.rubrics.map((rubric, index) => {
         return (<RubricElement key={index} index={index} name={rubric.name} description={rubric.description} />)
       })
+      console.log('THERUBES', theRubes)
       return theRubes
     }
   }
@@ -50,7 +51,8 @@ class RubricsIndex extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.drawRubrics}
+                  {console.log('Props', this.props)}
+                  {this.drawRubrics()}
                 </tbody>
               </table>
             </div>
