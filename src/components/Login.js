@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import history from '../routers/history';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
