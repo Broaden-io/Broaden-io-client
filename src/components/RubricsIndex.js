@@ -2,71 +2,71 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../actions/rubrics';
-import Rubric from './Rubric';
+
+class RubricElement extends Component {
+  render() {
+    return (
+      <tr>
+        <td className="text-center">{this.props.index + 1}</td>
+        <td>{this.props.name}</td>
+        <td>{this.props.description}</td>
+      </tr>
+    )
+  }
+}
 
 class RubricsIndex extends Component {
 
   componentWillMount() {
-    this.props.getRubricById(10000);
+    this.props.getRubrics();
   }
 
-  getRubrics() {
-    return this.props.rubrics.rubricsList.map((rubric, index) => {
-      return <Rubric name={rubric.name} key={index} />
-    })
+  drawRubrics() {
+    console.log('RUBRICS', this.props)
+    if (this.props.rubrics !== null && this.props.rubrics !== {}) {
+       const theRubes = this.props.rubrics.map((rubric, index) => {
+        return (<RubricElement key={index} index={index} name={rubric.name} description={rubric.description} />)
+      })
+      console.log('THERUBES', theRubes)
+      return theRubes
+    }
   }
 
   render() {
     return (
-
-        <div className="main-panel">
-
-          <div className="content">
-            <div className="container-fluid">
-
-              <footer className="footer">
-                <div className="container-fluid">
-                  {this.getRubrics()}
-                    <nav className="pull-left">
-                        <ul>
-                          <li>
-                            <a href="">
-                                  Home
-                            </a>
-                           </li>
-                           <li>
-                             <a href="">
-                                Company
-                             </a>
-                           </li>
-                           <li>
-                            <a href="">
-                              Portofolio
-                            </a>
-                            </li>
-                            <li>
-                              <a href="">
-                                Blog
-                              </a>
-                            </li>
-                          </ul>
-                        </nav>
-                        <p className="copyright pull-right">
-                          © <a href=""> RubricPro </a>, made with love to better education
-                        </p>
-                    </div>
-                  </footer>
-                </div>
-              </div>
+      <div className="col-md-12">
+        <div className="card">
+          <div className="card-header card-header-icon" data-background-color="rose">
+            <i className="material-icons">assignment</i>
+          </div>
+          <div className="card-content">
+            <h4 className="card-title">Rubrics</h4>
+            <div className="table-responsive">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th className="text-center">#</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {console.log('Props', this.props)}
+                  {this.drawRubrics()}
+                </tbody>
+              </table>
             </div>
-
+          </div>
+        </div>
+      </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    rubrics: state.rubrics
+    rubrics: state.rubrics,
+    isFetching: state.isFetching
   }
 }
 
