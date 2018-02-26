@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import history from '../routers/history';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -27,7 +26,7 @@ class Login extends Component {
   submitForm() {
     this.props.loginUser(this.state.loginForm).then(() => {
       console.log('then')
-      history.push(`/${this.state.loginForm.username}`);
+      this.props.history.push(`/${this.state.loginForm.username}`);
     });
   }
 

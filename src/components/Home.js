@@ -6,11 +6,15 @@ import { connect } from 'react-redux';
 
 class Home extends Component {
 
+  constructor(props) {
+    super(props);
+  }
+
   render() {
 
     return (
       <div>
-        { this.props.auth.isAuthenticated && <Sidebar /> }
+        { this.props.auth.isAuthenticated && <Sidebar {...this.props}/> }
         { !this.props.auth.isAuthenticated && <Login /> }
       </div>
       );
