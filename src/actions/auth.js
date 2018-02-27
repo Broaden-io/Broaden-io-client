@@ -94,8 +94,10 @@ export function loginUser(creds) {
 }
 
 export function logoutUser() {
-    return dispatch => {
-      dispatch(requestLogout());
+    // check that this happens
+    // dispatch(requestLogout());
+
+
       localStorage.removeItem('token');
       localStorage.removeItem('userId');
       localStorage.removeItem('username');
@@ -103,7 +105,11 @@ export function logoutUser() {
       localStorage.removeItem('lastName');
       localStorage.removeItem('email');
       localStorage.removeItem('avatarURL');
-      dispatch(receiveLogout());
+
+      // dispatch(receiveLogout());
+
       history.push(`/`);
-    }
+
+      // check this ...
+
 }
