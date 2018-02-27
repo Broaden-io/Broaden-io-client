@@ -3,6 +3,7 @@ import { Route, Link, Switch } from 'react-router-dom';
 import NavTop from './NavTop';
 import Dashboard from './Dashboard';
 import RubricsIndex from './RubricsIndex';
+import Rubric from './Rubric';
 import Footer from './Footer';
 
 const MenuItem = props => {
@@ -18,6 +19,7 @@ const MenuItem = props => {
 
 class Sidebar extends Component {
   render() {
+
     return (
       <div className="wrapper">
         <div className="sidebar" data-active-color="rose" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
@@ -83,6 +85,7 @@ class Sidebar extends Component {
               <Switch>
                 <Route path={`/:username/dashboard`} component={Dashboard} />
                 <Route path={`/:username/rubrics`} component={RubricsIndex} />
+                <Route path={`/rubrics/:id`} component={Rubric} />
               </Switch>
               {/*<Route path={`/${localStorage.getItem('username')}`} render={() => <Dashboard />}/>
             <Route path={`/${localStorage.getItem('username')}/rubrics`} render={() => <RubricsIndex />}/>*/}
