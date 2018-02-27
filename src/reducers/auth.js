@@ -2,40 +2,53 @@
 
 const authDefaultState = {
   isFetching: false,
-  isAuthenticated: localStorage.getItem('token') ? true : false
+  isAuthenticated: localStorage.getItem('token') ? true : false,
+  user: {
+    id: localStorage.getItem('userId') ? localStorage.getItem('userId') : "",
+    username: localStorage.getItem('username') ? localStorage.getItem('username') : "",
+    email: localStorage.getItem('email') ? localStorage.getItem('email') : "",
+    firstName: localStorage.getItem('firstName') ? localStorage.getItem('firstName') : "",
+    lastName: localStorage.getItem('lastName') ? localStorage.getItem('lastName') : "",
+    avatarURL: localStorage.getItem('avatarURL') ? localStorage.getItem('avatarURL') : "",
+  }
 }
 
 export default (state = authDefaultState, action) => {
   switch (action.type) {
     case 'LOGIN_REQUEST':
       return {
-        isFetching: true,
-        isAuthenticated: false,
+        ...state,
+        isFetching: action.isFetching,
+        isAuthenticated: action.isAuthenticated,
         errorMessage: ''
       }
     case 'LOGIN_SUCCESS':
       return {
-        isFetching: false,
-        isAuthenticated: true,
+        ...state,
+        isFetching: action.isFetching,
+        isAuthenticated: action.isAuthenticated,
         errorMessage: '',
         user: action.user
       }
     case 'LOGIN_FAILURE':
       return {
-        isFetching: false,
-        isAuthenticated: false,
+        ...state,
+        isFetching: action.isFetching,
+        isAuthenticated: action.isAuthenticated,
         errorMessage: action.message
       }
     case 'LOGOUT_SUCCESS':
       return {
-        isFetching: false,
-        isAuthenticated: false,
+        ...state,
+        isFetching: action.isFetching,
+        isAuthenticated: action.isAuthenticated,
         errorMessage: ''
       }
     case 'SIGNUP_FAILURE':
       return {
-        isFetching: false,
-        isAuthenticated: false,
+        ...state,
+        isFetching: action.isFetching,
+        isAuthenticated: action.isAuthenticated,
         errorMessage: 'Could not sign up '
       }
     default:

@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as AuthActions from '../actions/auth';
 
 class NavTop extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      sidebarIsMini: false
+    }
+  }
+
   render() {
 
     return (
-
       <nav className="navbar navbar-transparent navbar-absolute">
         <div className="container-fluid">
-          <div className="navbar-minimize">
+          {/*<div className="navbar-minimize">
             <button
+              onClick={this.setState({sidebarIsMini: !this.state.sidebarIsMini})}
               id="minimizeSidebar"
               className="btn btn-round btn-white btn-fill btn-just-icon">
               <i className="material-icons visible-on-sidebar-regular">more_vert</i>
               <i className="material-icons visible-on-sidebar-mini">view_list</i>
             </button>
-          </div>
+          </div>*/}
           <div className="navbar-header">
             <button
               type="button"
@@ -32,6 +42,7 @@ class NavTop extends Component {
           </div>
           <div className="collapse navbar-collapse">
             <ul className="nav navbar-nav navbar-right">
+
               <li className="dropdown">
                 <a
                   href=""
@@ -72,7 +83,12 @@ class NavTop extends Component {
                   </li>
                 </ul>
               </li>
-              <li>
+              <li className=" ">
+                <a href="" onClick={this.props.logoutUser}>
+                  <i className="material-icons">fingerprint</i> Logout
+                  </a>
+                </li>
+              <li className="dropdown">
                 <a
                   href=""
                   className="dropdown-toggle"
@@ -80,6 +96,33 @@ class NavTop extends Component {
                   <i className="material-icons">person</i>
                   <p className="hidden-lg hidden-md">Profile</p>
                 </a>
+                <ul className="dropdown-menu">
+                  <li>
+                    <a href="">
+                      Mike John responded to your email
+                    </a>
+                  </li>
+                  <li>
+                    <a href="">
+                      You have 5 new tasks
+                    </a>
+                  </li>
+                  <li>
+                    <a href="">
+                      You're now friend with Andrew
+                    </a>
+                  </li>
+                  <li>
+                    <a href="">
+                      Another Notification
+                    </a>
+                  </li>
+                  <li>
+                    <a href="">
+                      Another One
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li className="separator hidden-lg hidden-md" />
             </ul>
@@ -104,8 +147,13 @@ class NavTop extends Component {
         </div>
       </nav>
 
+
     );
   }
 }
 
-export default NavTop;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(AuthActions, dispatch)
+}
+
+export default connect(mapDispatchToProps)(NavTop);

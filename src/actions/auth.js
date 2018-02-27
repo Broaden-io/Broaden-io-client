@@ -68,7 +68,6 @@ export function loginUser(creds) {
 
   return dispatch => {
     dispatch(requestLogin(creds));
-    console.log('sent request login dispatch')
 
     return fetch(`${serverPath}/login`, config).then((res) => {
       console.log(res)
@@ -81,19 +80,36 @@ export function loginUser(creds) {
         console.log(json);
         console.log("logged in!")
         localStorage.setItem('token', json.token);
+        localStorage.setItem('userId', json.user.id)
+        localStorage.setItem('username', json.user.username)
+        localStorage.setItem('firstName', json.user.firstName)
+        localStorage.setItem('lastName', json.user.lastName)
+        localStorage.setItem('email', json.user.email)
+        localStorage.setItem('avatarURL', json.user.avatarURL)
         console.log(localStorage.getItem('token'));
-        console.log('sending receive login dispatch');
-        console.log(dispatch(receiveLogin({token: json.token, user: json.user})));
-        history.push(`/`); // forward to /username
+        dispatch(receiveLogin({token: json.token, user: json.user}));
+        //history.push(`/`); // forward to /username
     }).catch(err => console.log("Error: " + err));
   }
 }
 
-export function logoutUser () {
-    return dispatch => {
-      dispatch(requestLogout());
+export function logoutUser() {
+    // check that this happens
+    // dispatch(requestLogout());
+
+
       localStorage.removeItem('token');
-      dispatch(receiveLogout());
+      localStorage.removeItem('userId');
+      localStorage.removeItem('username');
+      localStorage.removeItem('firstName');
+      localStorage.removeItem('lastName');
+      localStorage.removeItem('email');
+      localStorage.removeItem('avatarURL');
+
+      // dispatch(receiveLogout());
+
       history.push(`/`);
-    }
+
+      // check this ...
+
 }
