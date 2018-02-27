@@ -13,7 +13,6 @@ class Routes extends Component {
         <Route path="/" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/rubrics/:id" component={Rubric} />
       </div>
     );
   }
