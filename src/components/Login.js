@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import serverPath from '../paths';
+import axios from 'axios';
+import { instanceOf } from 'prop-types';
+import { Cookies, withCookies } from 'react-cookie';
+import Input from './Input';
+import Checkbox from './Checkbox';
 import { withRouter } from 'react-router'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

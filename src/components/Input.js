@@ -37,13 +37,7 @@ class Input extends Component {
   }
 
 
-  drawErrorMessage = () => {
-    if (this.props.errorMessage) {
-      return this.props.errorMessage
-    } else {
-      return "Invalid input"
-    }
-  }
+  drawErrorMessage = () => this.props.errorMessage || "Invalid input"
 
   render() {
 
