@@ -17,7 +17,7 @@ class RubricElement extends Component {
         <td className="text-center"> {this.props.index + 1} </td>
         <td>
           <div>
-            <Link to={`/rubrics/${this.props.rubricId}`} >
+            <Link to={`/rubrics/${this.props.rubricId}`}>
               {this.props.name}
             </Link>
           </div>
