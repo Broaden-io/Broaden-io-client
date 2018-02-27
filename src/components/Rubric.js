@@ -3,21 +3,7 @@ import React, { Component } from 'react';
 const Competency = props => {
   const {name, scales} = props;
   return (
-    <tr>
-      <td>{name}</td>
-      <td className="text-right">
-
-      </td>
-      <td className="text-right">
-        53.23%
-      </td>
-      <td className="text-right">
-        53.23%
-      </td>
-      <td className="text-right">
-        53.23%
-      </td>
-    </tr>
+    <div> Competency </div>
   )
 }
 
@@ -55,35 +41,8 @@ class Rubric extends Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-md-12">
-          <div className="card">
-            <div
-              className="card-header card-header-icon"
-              data-background-color="green">
-              <i className="material-icons"></i>
-            </div>
-            <div className="card-content">
-              <h4 className="card-title">
-                {this.props.name}
-              </h4>
-              <div className="row">
-                <div className="col-md-5">
-                  <div className="table-responsive table-sales">
-                    <table className="table">
-                      <tbody>
-                        {this.getCompetencies()}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div className="col-md-6 col-md-offset-1">
-                  <div id="worldMap" className="map" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div>
+        Testing
       </div>
     );
   }
