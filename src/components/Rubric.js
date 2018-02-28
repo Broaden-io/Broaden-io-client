@@ -4,11 +4,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 const Competency = props => {
-  const {name, isActive} = props;
   return (
-    <li className={isActive}>
+    <li className={props.isActive}
+      onClick={() => {
+        props.setActiveComp(props.i)
+      }}>
       <a href="#dashboard-2" role="tab" data-toggle="tab" aria-expanded="true">
-        <i className="material-icons">dashboard</i> {name}
+        <i className="material-icons">dashboard</i> {props.name}
       </a>
     </li>
   )
@@ -19,6 +21,9 @@ class Rubric extends Component {
   constructor(props) {
     super(props);
     this.getCompetencies = this.getCompetencies.bind(this);
+    this.state = {
+      activeCompetencyIndex: 0
+    }
   }
 
   componentWillMount() {
@@ -26,14 +31,25 @@ class Rubric extends Component {
     this.props.getRubricById(id);
   }
 
+  setActiveComp(index) {
+    this.setState({
+      activeCompetencyIndex: index
+    })
+  }
+
   getCompetencies() {
     if (this.props.rubric.Competencies) {
       return this.props.rubric.Competencies.map((comp, index) => {
         var isActiveClass = "";
-        if (index == 0) {
+        if (index === 0) {
           isActiveClass = "active";
         }
-        return <Competency name={comp.name} key={index} isActive={isActiveClass}/>
+        return <Competency
+          name={comp.name}
+          key={index}
+          i={index}
+          isActive={isActiveClass}
+          setActiveComp={this.setActiveComp.bind(this)} />
       })
     }
   }
