@@ -4,9 +4,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 const Competency = props => {
-  const {name, scales} = props;
+  const {name, isActive} = props;
   return (
-    <div> Competency </div>
+    <li className={isActive}>
+      <a href="#dashboard-2" role="tab" data-toggle="tab" aria-expanded="true">
+        <i className="material-icons">dashboard</i> {name}
+      </a>
+    </li>
   )
 }
 
@@ -14,16 +18,24 @@ class Rubric extends Component {
 
   constructor(props) {
     super(props);
-    this.getRubric = this.getRubric.bind(this);
+    this.getCompetencies = this.getCompetencies.bind(this);
   }
 
   componentWillMount() {
-    this.getRubric();
-  }
-
-  getRubric() {
     const id = this.props.match.params.id;
     this.props.getRubricById(id);
+  }
+
+  getCompetencies() {
+    if (this.props.rubric.Competencies) {
+      return this.props.rubric.Competencies.map((comp, index) => {
+        var isActiveClass = "";
+        if (index == 0) {
+          isActiveClass = "active";
+        }
+        return <Competency name={comp.name} key={index} isActive={isActiveClass}/>
+      })
+    }
   }
 
   render() {
@@ -40,42 +52,8 @@ class Rubric extends Component {
             <div className="row">
               <div className="col-md-2">
                 <ul className="nav nav-pills nav-pills-icons nav-pills-rose nav-stacked" role="tablist">
-                <li className="active">
-                  <a href="#dashboard-2" role="tab" data-toggle="tab" aria-expanded="true">
-                    <i className="material-icons">dashboard</i> HTML & Templating
-                  </a>
-                </li>
-                <li className="">
-                  <a href="#schedule-2" role="tab" data-toggle="tab" aria-expanded="false">
-                    <i className="material-icons">explore</i> CSS
-                  </a>
-                </li>
-                <li className="">
-                  <a href="#schedule-2" role="tab" data-toggle="tab" aria-expanded="false">
-                    <i className="material-icons">code</i> Client-Side JavaScript
-                  </a>
-                </li>
-                <li className="">
-                  <a href="#schedule-2" role="tab" data-toggle="tab" aria-expanded="false">
-                    <i className="material-icons">backup</i> Backend
-                  </a>
-                </li>
-                <li className="">
-                  <a href="#schedule-2" role="tab" data-toggle="tab" aria-expanded="false">
-                    <i className="material-icons">lock</i> DevOps and Security
-                  </a>
-                </li>
-                <li className="">
-                  <a href="#schedule-2" role="tab" data-toggle="tab" aria-expanded="false">
-                    <i className="material-icons">bug_report</i> Testing and Debugging
-                  </a>
-                </li>
-                <li className="">
-                  <a href="#schedule-2" role="tab" data-toggle="tab" aria-expanded="false">
-                    <i className="material-icons">line_style</i> Databases
-                  </a>
-                </li>
-              </ul>
+                  {this.getCompetencies()}
+                </ul>
             </div>
             <div className="col-md-10">
               <div className="tab-content">
