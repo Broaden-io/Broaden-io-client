@@ -7,7 +7,7 @@ const Competency = props => {
   return (
     <li className={props.isActive}
       onClick={() => {
-        props.setActiveComp(props.i)
+        props.setActiveComp(props.index)
       }}>
       <a href="#dashboard-2" role="tab" data-toggle="tab" aria-expanded="true">
         <i className="material-icons">dashboard</i> {props.name}
@@ -20,10 +20,11 @@ class Rubric extends Component {
 
   constructor(props) {
     super(props);
-    this.getCompetencies = this.getCompetencies.bind(this);
     this.state = {
       activeCompetencyIndex: 0
     }
+    this.getCompetencies = this.getCompetencies.bind(this);
+    this.getCriteriaForLevel = this.getCriteriaForLevel.bind(this)
   }
 
   componentWillMount() {
@@ -47,11 +48,62 @@ class Rubric extends Component {
         return <Competency
           name={comp.name}
           key={index}
-          i={index}
+          index={index}
           isActive={isActiveClass}
           setActiveComp={this.setActiveComp.bind(this)} />
       })
     }
+  }
+
+  getCriteriaForLevel(level) {
+    const index = this.state.activeCompetencyIndex;
+    const scales = [];
+    if (this.props.rubric.Competencies) {
+      const scales = this.props.rubric.Competencies[index];
+    } 
+
+    const levelNames = ['Initial', 'Approaching', 'Overtaking', 'Innovating'];
+    // iterate through the four levels
+    // and add header for each level
+    // iterate through the scales for the current Competency
+    // and add the criteria that have the level that matches the level we're on
+      // get the criteria for the given level
+      var criteria = [];
+      for (var j = 0; j < scales.length; j++) {
+        console.log(scales[j])
+        // each element in scales is a criteria object
+        // so get the criteria for which the level is each to the level we're on
+        for (var i = 0; i < scales[j].Criteria.length; i++) {
+          console.log(scales[j].Criteria[i].level)
+          if (scales[j].Criteria[i]= level) {
+            criteria.push(
+              <tr>
+                <td>
+                  <div className="checkbox">
+                    <label>
+                      <input type="checkbox" name="optionsCheckboxes" defaultChecked="" />
+                    </label>
+                  </div>
+                </td>
+                <td>{scales[j].name}</td>
+              </tr>
+            )
+          }
+        }
+        }
+
+
+      return (
+        <div className="col-md-3">
+          <h3>{levelNames[level - 1]}</h3>
+          <table className="table">
+            <tbody>
+              {criteria}
+            </tbody>
+          </table>
+        </div>
+      )
+
   }
 
   render() {
@@ -74,37 +126,7 @@ class Rubric extends Component {
             <div className="col-md-10">
               <div className="tab-content">
                 <div className="tab-pane active" id="dashboard-2">
-                  <div className="col-md-3">
-                    <h3>Initial</h3>
-                    <hr />
-                  <table className="table">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div className="checkbox">
-                            <label>
-                              <input type="checkbox" name="optionsCheckboxes" defaultChecked="" />
-                            </label>
-                          </div>
-                        </td>
-                        <td>Can write the basic HTML boilerplate from memory</td>
-
-                      </tr>
-                      <tr>
-                        <td>
-                          <div className="checkbox">
-                            <label>
-                              <input type="checkbox" name="optionsCheckboxes" defaultChecked=""/>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Needs to look up tags occasionally from documentation</td>
-
-                      </tr>
-
-                    </tbody>
-                  </table>
-                </div>
+                  {this.getCriteriaForLevel(1)}
                 <div className="col-md-3">
                   <h3>Approaching</h3>
                   <hr />
