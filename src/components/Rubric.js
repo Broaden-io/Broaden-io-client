@@ -3,7 +3,7 @@ import * as Actions from '../actions/rubric';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-const Competency = props => {
+const CompetencyButton = props => {
   return (
     <li className={props.isActive}
       onClick={() => {
@@ -16,6 +16,21 @@ const Competency = props => {
   )
 }
 
+const Criteria = props => {
+  return (
+    <tr>
+      <td>
+        <div className="checkbox">
+          <label>
+            <input type="checkbox" name="optionsCheckboxes" defaultChecked="" />
+          </label>
+        </div>
+      </td>
+      <td>{props.text}</td>
+    </tr>
+  )
+}
+
 class Rubric extends Component {
 
   constructor(props) {
@@ -23,7 +38,7 @@ class Rubric extends Component {
     this.state = {
       activeCompetencyIndex: 0
     }
-    this.getCompetencies = this.getCompetencies.bind(this);
+    this.getCompetencyButtons = this.getCompetencyButtons.bind(this);
     this.getCriteriaForLevel = this.getCriteriaForLevel.bind(this)
   }
 
@@ -38,14 +53,14 @@ class Rubric extends Component {
     })
   }
 
-  getCompetencies() {
+  getCompetencyButtons() {
     if (this.props.rubric.Competencies) {
       return this.props.rubric.Competencies.map((comp, index) => {
         var isActiveClass = "";
         if (index === 0) {
           isActiveClass = "active";
         }
-        return <Competency
+        return <CompetencyButton
           name={comp.name}
           key={index}
           index={index}
@@ -59,52 +74,18 @@ class Rubric extends Component {
     const index = this.state.activeCompetencyIndex;
     const scales = [];
     if (this.props.rubric.Competencies) {
-      const scales = this.props.rubric.Competencies[index];
-    } 
-
-    const levelNames = ['Initial', 'Approaching', 'Overtaking', 'Innovating'];
-    // iterate through the four levels
-    // and add header for each level
-    // iterate through the scales for the current Competency
-    // and add the criteria that have the level that matches the level we're on
-      // get the criteria for the given level
-      var criteria = [];
-      for (var j = 0; j < scales.length; j++) {
-        console.log(scales[j])
-        // each element in scales is a criteria object
-        // so get the criteria for which the level is each to the level we're on
-        for (var i = 0; i < scales[j].Criteria.length; i++) {
-          console.log(scales[j].Criteria[i].level)
-          if (scales[j].Criteria[i]= level) {
-            criteria.push(
-              <tr>
-                <td>
-                  <div className="checkbox">
-                    <label>
-                      <input type="checkbox" name="optionsCheckboxes" defaultChecked="" />
-                    </label>
-                  </div>
-                </td>
-                <td>{scales[j].name}</td>
-              </tr>
-            )
-          }
-        }
-        }
-
-
-      return (
-        <div className="col-md-3">
-          <h3>{levelNames[level - 1]}</h3>
-          <table className="table">
-            <tbody>
-              {criteria}
-            </tbody>
-          </table>
-        </div>
-      )
-
+      return this.props.rubric.Competencies[index].Scales.map((scale, index) => {
+        // if the criteria level matches the level parameter, add the
+        // criteria component
+        return scale.Criteria.filter(criteria => criteria.level == level).map((criteria, index) => {
+          return <Criteria text={criteria.text} />
+        })
+      })
+    }
   }
+
+
+
 
   render() {
     return (
@@ -120,54 +101,29 @@ class Rubric extends Component {
             <div className="row">
               <div className="col-md-2">
                 <ul className="nav nav-pills nav-pills-icons nav-pills-rose nav-stacked" role="tablist">
-                  {this.getCompetencies()}
+                  {this.getCompetencyButtons()}
                 </ul>
             </div>
             <div className="col-md-10">
               <div className="tab-content">
                 <div className="tab-pane active" id="dashboard-2">
-                  {this.getCriteriaForLevel(1)}
+                <div className="col-md-3">
+                  <h3> Initial </h3>
+                  <hr />
+                  <table className="table">
+                    <tbody>
+                      {this.getCriteriaForLevel(1)}
+                    </tbody>
+                  </table>
+                </div>
                 <div className="col-md-3">
                   <h3>Approaching</h3>
                   <hr />
-                <table className="table">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div className="checkbox">
-                          <label>
-                            <input type="checkbox" name="optionsCheckboxes" defaultChecked="" />
-                          </label>
-                        </div>
-                      </td>
-                      <td>Can write basic and advanced HTML tags from memory</td>
-
-                    </tr>
-                    <tr>
-                      <td>
-                        <div className="checkbox">
-                          <label>
-                            <input type="checkbox" name="optionsCheckboxes" />
-                          </label>
-                        </div>
-                      </td>
-                      <td>Indentation is flawless</td>
-
-                    </tr>
-                    <tr>
-                      <td>
-                        <div className="checkbox">
-                          <label>
-                            <input type="checkbox" name="optionsCheckboxes" defaultChecked="" />
-                          </label>
-                        </div>
-                      </td>
-                      <td>Has experience with one templating engine</td>
-
-                    </tr>
-
-                  </tbody>
-                </table>
+                  <table className="table">
+                    <tbody>
+                      {this.getCriteriaForLevel(2)}
+                    </tbody>
+                  </table>
               </div>
               <div className="col-md-3">
                 <h3>Overtaking</h3>
@@ -175,40 +131,7 @@ class Rubric extends Component {
 
               <table className="table">
                 <tbody>
-                  <tr>
-                    <td>
-                      <div className="checkbox">
-                        <label>
-                          <input type="checkbox" name="optionsCheckboxes" />
-                        </label>
-                      </div>
-                    </td>
-                    <td>Uses HTML tags semantically, e.g. uses structural tags (section, header, footer, article, etc.)</td>
-
-                  </tr>
-                  <tr>
-                    <td>
-                      <div className="checkbox">
-                        <label>
-                          <input type="checkbox" name="optionsCheckboxes" />
-                        </label>
-                      </div>
-                    </td>
-                    <td>Has experience with a few templating engines</td>
-
-                  </tr>
-                  <tr>
-                    <td>
-                      <div className="checkbox">
-                        <label>
-                          <input type="checkbox" name="optionsCheckboxes" />
-                        </label>
-                      </div>
-                    </td>
-                    <td>Can use advanced HTML tags such as meta tags, title tags, and optimize page load time</td>
-
-                  </tr>
-
+                  {this.getCriteriaForLevel(3)}
                 </tbody>
               </table>
             </div>
@@ -217,29 +140,7 @@ class Rubric extends Component {
               <hr />
             <table className="table">
               <tbody>
-                <tr>
-                  <td>
-                    <div className="checkbox">
-                      <label>
-                        <input type="checkbox" name="optionsCheckboxes" />
-                      </label>
-                    </div>
-                  </td>
-                  <td>Has experience and expertise with multiple templating engines</td>
-
-                </tr>
-                <tr>
-                  <td>
-                    <div className="checkbox">
-                      <label>
-                        <input type="checkbox" name="optionsCheckboxes" />
-                      </label>
-                    </div>
-                  </td>
-                  <td>Has manipulated and written HTML programmatically</td>
-
-                </tr>
-
+                {this.getCriteriaForLevel(4)}
               </tbody>
             </table>
           </div>
