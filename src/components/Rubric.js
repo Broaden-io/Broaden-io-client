@@ -39,7 +39,8 @@ class Rubric extends Component {
       activeCompetencyIndex: 0
     }
     this.getCompetencyButtons = this.getCompetencyButtons.bind(this);
-    this.getCriteriaForLevel = this.getCriteriaForLevel.bind(this)
+    this.getCriteriaForLevel = this.getCriteriaForLevel.bind(this);
+    this.getLevels = this.getLevels.bind(this);
   }
 
   componentWillMount() {
@@ -84,7 +85,22 @@ class Rubric extends Component {
     }
   }
 
-
+  getLevels() {
+    const levelNames = ['Initial', 'Approaching', 'Overtaking', 'Innovating'];
+    return levelNames.map((levelName, index) => {
+      return (
+        <div className='col-md-3'>
+          <h3> {levelName} </h3>
+          <hr />
+          <table className="table">
+            <tbody>
+              {this.getCriteriaForLevel(index + 1)}
+            </tbody>
+          </table>
+        </div>
+      )
+    })
+  }
 
 
   render() {
@@ -107,43 +123,7 @@ class Rubric extends Component {
             <div className="col-md-10">
               <div className="tab-content">
                 <div className="tab-pane active" id="dashboard-2">
-                <div className="col-md-3">
-                  <h3> Initial </h3>
-                  <hr />
-                  <table className="table">
-                    <tbody>
-                      {this.getCriteriaForLevel(1)}
-                    </tbody>
-                  </table>
-                </div>
-                <div className="col-md-3">
-                  <h3>Approaching</h3>
-                  <hr />
-                  <table className="table">
-                    <tbody>
-                      {this.getCriteriaForLevel(2)}
-                    </tbody>
-                  </table>
-              </div>
-              <div className="col-md-3">
-                <h3>Overtaking</h3>
-                <hr />
-
-              <table className="table">
-                <tbody>
-                  {this.getCriteriaForLevel(3)}
-                </tbody>
-              </table>
-            </div>
-            <div className="col-md-3">
-              <h3>Innovating</h3>
-              <hr />
-            <table className="table">
-              <tbody>
-                {this.getCriteriaForLevel(4)}
-              </tbody>
-            </table>
-          </div>
+                  {this.getLevels()}
                 </div>
               </div>
             </div>
