@@ -22,7 +22,7 @@ const Criteria = props => {
       <td>
         <div className="checkbox">
           <label>
-            <input type="checkbox" name="optionsCheckboxes" defaultChecked="" />
+            <input type="checkbox" name="optionsCheckboxes" defaultChecked={false} />
           </label>
         </div>
       </td>
