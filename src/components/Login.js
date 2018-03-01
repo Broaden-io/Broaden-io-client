@@ -4,8 +4,6 @@ import serverPath from '../paths';
 import axios from 'axios';
 import { instanceOf } from 'prop-types';
 import { Cookies, withCookies } from 'react-cookie';
-import Input from './Input';
-import Checkbox from './Checkbox';
 import { withRouter } from 'react-router'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -102,7 +100,6 @@ class Login extends Component {
                                   <input type="text" value={this.state.loginForm.username} onChange={(e) => this.setState({loginForm: {...this.state.loginForm, username: e.target.value}})} className="form-control" />
                                 </div>
                               </div>
-                              
                               <div className="input-group">
                                 <span className="input-group-addon">
                                   <i className="material-icons">lock_outline</i>
