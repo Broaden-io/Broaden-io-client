@@ -18,6 +18,7 @@ import {
   AccessTime,
   Accessibility
 } from "material-ui-icons";
+import "../assets/css/material-dashboard-react.css";
 
 var Chartist = require("chartist");
 
@@ -55,7 +56,7 @@ class Dashboard extends Component {
                   listener={completedTasksChart.animation}
                 />
             }
-              chartColor="gray"
+              chartColor="red"
               title="Weekly Progress"
               text="Number of criteria completed per week across all rubrics"
               statIcon={AccessTime}
