@@ -1,4 +1,23 @@
 import React, { Component } from 'react';
+import ChartCard from './ChartCard'
+import ChartistGraph from "react-chartist";
+import {
+  dailySalesChart,
+  emailsSubscriptionChart,
+  completedTasksChart
+} from "../variables/charts";
+import {
+  ContentCopy,
+  Store,
+  InfoOutline,
+  Warning,
+  DateRange,
+  LocalOffer,
+  Update,
+  ArrowUpward,
+  AccessTime,
+  Accessibility
+} from "material-ui-icons";
 
 class Dashboard extends Component {
 
@@ -7,31 +26,23 @@ class Dashboard extends Component {
       <div>
         <div className="row">
           <div className="col-md-4">
-            <div className="card card-chart">
-              <div className="card-header" data-background-color="rose" data-header-animation="true">
-                <div className="ct-chart" id="websiteViewsChart"></div>
-              </div>
-              <div className="card-content">
-                <div className="card-actions">
-                  <button type="button" className="btn btn-danger btn-simple fix-broken-card">
-                    <i className="material-icons">build</i> Fix Header!
-                    </button>
-                    <button type="button" className="btn btn-info btn-simple" rel="tooltip" data-placement="bottom" title="Refresh">
-                      <i className="material-icons">refresh</i>
-                    </button>
-                    <button type="button" className="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="Change Date">
-                      <i className="material-icons">edit</i>
-                    </button>
-                  </div>
-                  <h4 className="card-title">Overall Progress</h4>
-                  <p className="category">Last Assessment</p>
-                </div>
-                <div className="card-footer">
-                  <div className="stats">
-                    <i className="material-icons">access_time</i> assessment taken 2 days ago
-                    </div>
-                  </div>
-                </div>
+            <ChartCard
+              chart={
+                <ChartistGraph
+                  className="ct-chart"
+                  data={completedTasksChart.data}
+                  type="Line"
+                  options={completedTasksChart.options}
+                  listener={completedTasksChart.animation}
+                />
+              }
+              chartColor="red"
+              title="Completed Tasks"
+              text="Last Campaign Performance"
+              statIcon={AccessTime}
+              statText="campaign sent 2 days ago"
+            />
+
               </div>
               <div className="col-md-4">
                 <div className="card card-chart">
