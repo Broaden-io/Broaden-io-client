@@ -8,10 +8,6 @@ import { withRouter } from 'react-router'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../actions/auth';
-<<<<<<< HEAD
-=======
-import Checkbox from './Checkbox';
->>>>>>> 17c5a6052c39433c3baf849a66fb41550f0a2bb7
 import RadioButton from './RadioButton'
 
 class Login extends Component {
