@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 
 import chartCardStyle from "../variables/styles/chartCardStyle";
 
-class ChartCard extends Component {
+class ChartCard2 extends Component {
 
   constructor(props) {
     super(props)
@@ -45,8 +45,8 @@ class ChartCard extends Component {
   return(
     <Card className={this.props.card}>
       <CardHeader
-        style={
-          chartCardStyle[this.props.chartColor+"CardHeader"]
+        className={
+          this.props.cardHeader + " " + this.props.chartColor + "CardHeader"
         }
         subheader={this.props.chart}
       />
@@ -82,4 +82,4 @@ class ChartCard extends Component {
 
 
 
-export default withStyles(chartCardStyle)(ChartCard);
+export default withStyles(chartCardStyle)(ChartCard2);
