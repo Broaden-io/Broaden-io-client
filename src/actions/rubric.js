@@ -24,7 +24,9 @@ export function getRubricById(id) {
     method: 'GET',
     headers: {
       'Accept': 'application/json, text/plain, */*',
-      'Content-Type': 'application/x-www-form-urlencoded' }
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+     }
   }
 
   return dispatch => {

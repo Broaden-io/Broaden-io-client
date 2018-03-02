@@ -3,7 +3,7 @@ import thunkMiddleware from 'redux-thunk';
 import authReducer from '../reducers/auth';
 import rubricsReducer from '../reducers/rubrics';
 import rubricReducer from '../reducers/rubric';
-import sidebarMiniReducer from '../reducers/sidebarMini';
+import assessmentReducer from '../reducers/assessment';
 
 let createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 
@@ -14,7 +14,7 @@ export default () => {
       auth: authReducer,
       rubrics: rubricsReducer,
       rubric: rubricReducer,
-      sidebarIsMini: sidebarMiniReducer,
+      assessment: assessmentReducer,
     })
   );
 
