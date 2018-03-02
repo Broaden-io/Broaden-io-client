@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "chartist": "^0.10.1",
     "aws-sdk": "^2.191.0",
     "axios": "^0.17.1",
     "bcryptjs": "^2.4.3",
+    "chartist": "^0.10.1",
     "material-ui": "1.0.0-beta.34",
     "material-ui-icons": "1.0.0-beta.17",
     "prop-types": "^15.6.0",

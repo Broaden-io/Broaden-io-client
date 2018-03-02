@@ -105,8 +105,14 @@ class Dashboard extends Component {
                           data={{
                             series: [[75,25]]
                           }}
-                          type="Pie"
+                          type="Bar"
                           options={{
+                            axisX: {
+                                      labelInterpolationFnc: function(value, index) {
+                                        return index % 2 === 0 ? value : null;
+                                      }
+                                    },
+                            donut: true,
                             stackBars: true,
                             showLabels: true,
                             chartPadding: {
