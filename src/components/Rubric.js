@@ -10,7 +10,7 @@ const CompetencyButton = props => {
         props.setActiveComp(props.index)
       }}>
       <a href="#dashboard-2" role="tab" data-toggle="tab" aria-expanded="true">
-        <i className="material-icons">dashboard</i> {props.name}
+        <i className="material-icons">{props.icon}</i> {props.name}
       </a>
     </li>
   )
@@ -22,7 +22,7 @@ const Criteria = props => {
       <td>
         <div className="checkbox">
           <label>
-            <input type="checkbox" name="optionsCheckboxes" defaultChecked="" />
+            <input type="checkbox" name="optionsCheckboxes" defaultChecked={false} />
           </label>
         </div>
       </td>
@@ -38,6 +38,7 @@ class Rubric extends Component {
     this.state = {
       activeCompetencyIndex: 0
     }
+    this.icons = [ "dashboard", "explore", "code", "backup", "lock", "bug_report", "line_style", "perm_identity", "star_rate" ]
     this.getCompetencyButtons = this.getCompetencyButtons.bind(this);
     this.getCriteriaForLevel = this.getCriteriaForLevel.bind(this);
     this.getLevels = this.getLevels.bind(this);
@@ -66,6 +67,7 @@ class Rubric extends Component {
           key={index}
           index={index}
           isActive={isActiveClass}
+          icon={this.icons[index]}
           setActiveComp={this.setActiveComp.bind(this)} />
       })
     }
@@ -89,11 +91,11 @@ class Rubric extends Component {
     const levelNames = ['Initial', 'Approaching', 'Overtaking', 'Innovating'];
     return levelNames.map((levelName, index) => {
       return (
-        <div className='col-md-3'>
+        <div key={index} className='col-md-3'>
           <h3> {levelName} </h3>
           <hr />
           <table className="table">
-            <tbody>
+            <tbody key={index} >
               {this.getCriteriaForLevel(index + 1)}
             </tbody>
           </table>

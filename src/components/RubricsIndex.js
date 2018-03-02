@@ -35,12 +35,10 @@ class RubricsIndex extends Component {
   }
 
   drawRubrics() {
-    console.log('RUBRICS', this.props)
     if (this.props.rubrics !== null && this.props.rubrics !== {}) {
        const theRubes = this.props.rubrics.map((rubric, index) => {
         return (<RubricElement key={index} index={index} name={rubric.name} rubricId={rubric.id} description={rubric.description} />)
       })
-      console.log('THERUBES', theRubes)
       return theRubes
     }
   }
@@ -64,7 +62,6 @@ class RubricsIndex extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {console.log('Props', this.props)}
                   {this.drawRubrics()}
                 </tbody>
               </table>

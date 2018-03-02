@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import bcrypt from 'bcryptjs'
 import serverPath from '../paths'
 import axios from 'axios'
+import Footer from './Footer'
 
 class SignUp extends Component {
 
@@ -180,41 +181,7 @@ class SignUp extends Component {
                             </div>
                           </div>
                         </div>
-                        <footer className="footer">
-                          <div className="container">
-                            <nav className="pull-left">
-                              {/*<ul>
-                                <li>
-                                <a href="#">
-                                Home
-                                </a>
-                                </li>
-                                <li>
-                                <a href="#">
-                                Company
-                                </a>
-                                </li>
-                                <li>
-                                <a href="#">
-                                Portofolio
-                                </a>
-                                </li>
-                                <li>
-                                <a href="#">
-                                Blog
-                                </a>
-                                </li>
-                                </ul>*/}
-                              </nav>
-                              <p className="copyright pull-right">
-                                &copy;
-
-                                { <script>document.write(new Date().getFullYear())</script> }
-
-                                <a href=""> RubricPro </a>, made with love to better education
-                                </p>
-                              </div>
-                            </footer>
+                        <Footer />
                           </div>
                         </div>
                       </div>

@@ -1,25 +1,25 @@
 import history from '../routers/history';
 import serverPath from '../paths';
 
-export const requestRubric = (id) => ({
-  type: 'REQUEST_RUBRIC_BY_ID',
+export const requestAssessment = (id) => ({
+  type: 'REQUEST_ASSESSMENT_BY_ID',
   isFetching: true
 })
 
-export const receiveRubric = (rubric) => ({
-  type: 'RUBRIC_SUCCESS',
+export const receiveAssessment = (assessment) => ({
+  type: 'ASSESSMENT_SUCCESS',
   isFetching: false,
-  rubric
+  assessment
 })
 
-export const rubricError = (message) => ({
-  type: 'RUBRIC_FAILURE',
+export const assessmentError = (message) => ({
+  type: 'ASSESSMENT_FAILURE',
   isFetching: false,
   message
 })
 
-// GET RUBRIC BY ID - rubrics show
-export function getRubricById(id) {
+// GET ASSESSMENT BY ID - assessments show
+export function getAssessmentById(id) {
   let config = {
     method: 'GET',
     headers: {
@@ -30,19 +30,19 @@ export function getRubricById(id) {
   }
 
   return dispatch => {
-    dispatch(requestRubric(id));
+    dispatch(requestAssessment(id));
     console.log("calling dispatch")
 
-    return fetch(`${serverPath}/rubrics/${id}`, config).then((res) => {
+    return fetch(`${serverPath}/assessments/${id}`, config).then((res) => {
       console.log(res);
       if (res.status !== 200) {
-        dispatch(rubricError(res.message));
-        return Promise.reject("Could not get rubric")
+        dispatch(assessmentError(res.message));
+        return Promise.reject("Could not get assessment")
       }
       return res.json();
     }).then((json) => {
       console.log(json);
-      dispatch(receiveRubric(json.rubric))
+      dispatch(receiveAssessment(json.assessment))
     }).catch(err => console.log("Error: " + err));
   }
 }

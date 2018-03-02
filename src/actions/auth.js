@@ -108,7 +108,7 @@ export function logoutUser() {
 
       // dispatch(receiveLogout());
 
-      history.push(`/`);
+      history.push(`/login`);
 
       // check this ...
 
