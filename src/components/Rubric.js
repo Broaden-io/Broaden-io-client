@@ -92,10 +92,10 @@ class Rubric extends Component {
     return levelNames.map((levelName, index) => {
       return (
         <div key={index} className='col-md-3'>
-          <h3 key={index}> {levelName} </h3>
-          <hr key={index} />
-          <table key={index} className="table">
-            <tbody>
+          <h3> {levelName} </h3>
+          <hr />
+          <table className="table">
+            <tbody key={index} >
               {this.getCriteriaForLevel(index + 1)}
             </tbody>
           </table>
