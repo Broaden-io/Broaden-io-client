@@ -10,8 +10,6 @@ import { withRouter } from 'react-router'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../actions/auth';
-import Input from './Input';
-import Checkbox from './Checkbox';
 import RadioButton from './RadioButton'
 
 class Login extends Component {
@@ -102,7 +100,7 @@ class Login extends Component {
                                   <input type="text" value={this.state.loginForm.username} onChange={(e) => this.setState({loginForm: {...this.state.loginForm, username: e.target.value}})} className="form-control" />
                                 </div>
                               </div>
-                              
+
                               <div className="input-group">
                                 <span className="input-group-addon">
                                   <i className="material-icons">lock_outline</i>
