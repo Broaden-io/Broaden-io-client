@@ -82,11 +82,10 @@ class Sidebar extends Component {
           <div className="content">
             <div className="container-fluid">
 
-              <Switch>
+
                 <Route path={`/:username/dashboard`} component={Dashboard} />
                 <Route path={`/:username/rubrics`} component={RubricsIndex} />
                 <Route path={`/rubrics/:id`} component={Rubric} />
-              </Switch>
               {/*<Route path={`/${localStorage.getItem('username')}`} render={() => <Dashboard />}/>
             <Route path={`/${localStorage.getItem('username')}/rubrics`} render={() => <RubricsIndex />}/>*/}
           </div>
