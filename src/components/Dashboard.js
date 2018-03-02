@@ -126,9 +126,9 @@ class Dashboard extends Component {
                           listener={emailsSubscriptionChart.animation}
                         />
                     }
-                      chartColor="green"
-                      title="Criterion Progress"
-                      text="Percent of completed for each criterion in starred rubric"
+                      chartColor="purple"
+                      title="Relative Progress"
+                      text="Your progress on your starred rubric compared to your friends."
                       statIcon={AccessTime}
                       statText="Starred Rubric: 'Full Stack Web'"
                     />
