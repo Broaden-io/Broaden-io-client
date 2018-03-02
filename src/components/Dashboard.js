@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 class Dashboard extends Component {
 
@@ -484,4 +487,9 @@ class Dashboard extends Component {
                             }
                           }
 
-                          export default Dashboard;
+                          const mapStateToProps = (state) => {
+                            return {
+                            }
+                          }
+
+                          export default withRouter(connect(mapStateToProps)(Dashboard))

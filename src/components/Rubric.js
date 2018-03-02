@@ -10,7 +10,7 @@ const CompetencyButton = props => {
         props.setActiveComp(props.index)
       }}>
       <a href="#dashboard-2" role="tab" data-toggle="tab" aria-expanded="true">
-        <i className="material-icons">dashboard</i> {props.name}
+        <i className="material-icons">{props.icon}</i> {props.name}
       </a>
     </li>
   )
@@ -38,6 +38,7 @@ class Rubric extends Component {
     this.state = {
       activeCompetencyIndex: 0
     }
+    this.icons = [ "dashboard", "explore", "code", "backup", "lock", "bug_report", "line_style", "perm_identity", "star_rate" ]
     this.getCompetencyButtons = this.getCompetencyButtons.bind(this);
     this.getCriteriaForLevel = this.getCriteriaForLevel.bind(this);
     this.getLevels = this.getLevels.bind(this);
@@ -66,6 +67,7 @@ class Rubric extends Component {
           key={index}
           index={index}
           isActive={isActiveClass}
+          icon={this.icons[index]}
           setActiveComp={this.setActiveComp.bind(this)} />
       })
     }

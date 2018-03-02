@@ -70,7 +70,7 @@ class Sidebar extends Component {
               </div>
             </div>
             <ul className="nav">
-              <MenuItem title="Dashboard" active={this.props.location.pathname == `/${localStorage.getItem('username')}/dashboard`} icon="dashboard" path={`/${localStorage.getItem('username')}/dashboard`}/>
+              <MenuItem title="Dashboard" active={(this.props.location.pathname == `/${localStorage.getItem('username')}/dashboard`) || (this.props.location.pathname == `/${localStorage.getItem('username')}`)} icon="dashboard" path={`/${localStorage.getItem('username')}/dashboard`}/>
               <MenuItem title="Rubrics" active={this.props.location.pathname == `/${localStorage.getItem('username')}/rubrics`} icon="assessment" path={`/${localStorage.getItem('username')}/rubrics`} />
             </ul>
           </div>
