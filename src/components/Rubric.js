@@ -91,10 +91,10 @@ class Rubric extends Component {
     const levelNames = ['Initial', 'Approaching', 'Overtaking', 'Innovating'];
     return levelNames.map((levelName, index) => {
       return (
-        <div className='col-md-3'>
-          <h3> {levelName} </h3>
-          <hr />
-          <table className="table">
+        <div key={index} className='col-md-3'>
+          <h3 key={index}> {levelName} </h3>
+          <hr key={index} />
+          <table key={index} className="table">
             <tbody>
               {this.getCriteriaForLevel(index + 1)}
             </tbody>
