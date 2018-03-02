@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom';
 import serverPath from '../paths';
 import axios from 'axios';
 import { instanceOf } from 'prop-types';
-import { Cookies, withCookies } from 'react-cookie';
 import Input from './Input';
-import Checkbox from './Checkbox';
 import { withRouter } from 'react-router'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../actions/auth';
+<<<<<<< HEAD
+=======
+import Checkbox from './Checkbox';
+>>>>>>> 17c5a6052c39433c3baf849a66fb41550f0a2bb7
 import RadioButton from './RadioButton'
 
 class Login extends Component {

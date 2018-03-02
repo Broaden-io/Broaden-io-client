@@ -1,4 +1,26 @@
 import React, { Component } from 'react';
+import ChartCard from './ChartCard'
+import ChartistGraph from "react-chartist";
+import {
+  dailySalesChart,
+  emailsSubscriptionChart,
+  completedTasksChart
+} from "../variables/charts";
+import {
+  ContentCopy,
+  Store,
+  InfoOutline,
+  Warning,
+  DateRange,
+  LocalOffer,
+  Update,
+  ArrowUpward,
+  AccessTime,
+  Accessibility
+} from "material-ui-icons";
+import "../assets/css/material-dashboard-react.css";
+
+var Chartist = require("chartist");
 
 class Dashboard extends Component {
 
@@ -7,88 +29,112 @@ class Dashboard extends Component {
       <div>
         <div className="row">
           <div className="col-md-4">
-            <div className="card card-chart">
-              <div className="card-header" data-background-color="rose" data-header-animation="true">
-                <div className="ct-chart" id="websiteViewsChart"></div>
+            {/* https://gionkunz.github.io/chartist-js/examples.html */}
+            <ChartCard
+              chart={
+                <ChartistGraph
+                  className="ct-chart"
+                  data={{
+                    labels: ["Week 5", "Week 6", "Week 7", "Week 8"],
+                    series: [[1, 5, 3, 7]]
+                  }}
+                  type="Line"
+                  options={{
+                    lineSmooth: Chartist.Interpolation.cardinal({
+                      tension: 0
+                    }),
+                    showArea: true,
+                    low: 0,
+                    high: 10,
+                    chartPadding: {
+                      top: 0,
+                      right: 0,
+                      bottom: 0,
+                      left: 0
+                    }
+                  }}
+                  listener={completedTasksChart.animation}
+                />
+            }
+              chartColor="red"
+              title="Weekly Progress"
+              text="Number of criteria completed per week across all rubrics"
+              statIcon={AccessTime}
+              statText="Last criteria completed 2 days ago"
+            />
               </div>
-              <div className="card-content">
-                <div className="card-actions">
-                  <button type="button" className="btn btn-danger btn-simple fix-broken-card">
-                    <i className="material-icons">build</i> Fix Header!
-                    </button>
-                    <button type="button" className="btn btn-info btn-simple" rel="tooltip" data-placement="bottom" title="Refresh">
-                      <i className="material-icons">refresh</i>
-                    </button>
-                    <button type="button" className="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="Change Date">
-                      <i className="material-icons">edit</i>
-                    </button>
-                  </div>
-                  <h4 className="card-title">Overall Progress</h4>
-                  <p className="category">Last Assessment</p>
-                </div>
-                <div className="card-footer">
-                  <div className="stats">
-                    <i className="material-icons">access_time</i> assessment taken 2 days ago
-                    </div>
-                  </div>
-                </div>
-              </div>
+
               <div className="col-md-4">
-                <div className="card card-chart">
-                  <div className="card-header" data-background-color="green" data-header-animation="true">
-                    <div className="ct-chart" id="dailySalesChart"></div>
+                {/* https://gionkunz.github.io/chartist-js/examples.html */}
+                <ChartCard
+                  chart={
+                    <ChartistGraph
+                      className="ct-chart"
+                      data={{
+                        labels: ["HTML", "CSS", "JS", "Misc"],
+                        series: [[80, 90, 40, 50]]
+                      }}
+                      type="Bar"
+                      options={{
+                        stackBars: true,
+                        low: 0,
+                        high: 100,
+                        chartPadding: {
+                          top: 0,
+                          right: 0,
+                          bottom: 0,
+                          left: 0
+                        }
+                      }}
+                      listener={emailsSubscriptionChart.animation}
+                    />
+                }
+                  chartColor="green"
+                  title="Criterion Progress"
+                  text="Percent of completed for each criterion in starred rubric"
+                  statIcon={AccessTime}
+                  statText="Starred Rubric: 'Full Stack Web'"
+                />
                   </div>
-                  <div className="card-content">
-                    <div className="card-actions">
-                      <button type="button" className="btn btn-danger btn-simple fix-broken-card">
-                        <i className="material-icons">build</i> Fix Header!
-                        </button>
-                        <button type="button" className="btn btn-info btn-simple" rel="tooltip" data-placement="bottom" title="Refresh">
-                          <i className="material-icons">refresh</i>
-                        </button>
-                        <button type="button" className="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="Change Date">
-                          <i className="material-icons">edit</i>
-                        </button>
+
+                  <div className="col-md-4">
+                    {/* https://gionkunz.github.io/chartist-js/examples.html */}
+                    <ChartCard
+                      chart={
+                        <ChartistGraph
+                          className="ct-chart"
+                          data={{
+                            series: [[75,25]]
+                          }}
+                          type="Bar"
+                          options={{
+                            axisX: {
+                                      labelInterpolationFnc: function(value, index) {
+                                        return index % 2 === 0 ? value : null;
+                                      }
+                                    },
+                            donut: true,
+                            stackBars: true,
+                            showLabels: true,
+                            chartPadding: {
+                              top: 0,
+                              right: 0,
+                              bottom: 0,
+                              left: 0
+                            }
+                          }}
+                          listener={emailsSubscriptionChart.animation}
+                        />
+                    }
+                      chartColor="purple"
+                      title="Relative Progress"
+                      text="Your progress on your starred rubric compared to your friends."
+                      statIcon={AccessTime}
+                      statText="Starred Rubric: 'Full Stack Web'"
+                    />
                       </div>
-                      <h4 className="card-title">Completed Criteria</h4>
-                      <p className="category">
-                        <span className="text-success"><i className="fa fa-long-arrow-up"></i> 6% </span> increase in since last week</p>
-                      </div>
-                      <div className="card-footer">
-                        <div className="stats">
-                          <i className="material-icons">access_time</i> updated 4 minutes ago
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-md-4">
-                      <div className="card card-chart">
-                        <div className="card-header" data-background-color="blue" data-header-animation="true">
-                          <div className="ct-chart" id="completedTasksChart"></div>
-                        </div>
-                        <div className="card-content">
-                          <div className="card-actions">
-                            <button type="button" className="btn btn-danger btn-simple fix-broken-card">
-                              <i className="material-icons">build</i> Fix Header!
-                              </button>
-                              <button type="button" className="btn btn-info btn-simple" rel="tooltip" data-placement="bottom" title="Refresh">
-                                <i className="material-icons">refresh</i>
-                              </button>
-                              <button type="button" className="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="Change Date">
-                                <i className="material-icons">edit</i>
-                              </button>
-                            </div>
-                            <h4 className="card-title">Incomplete Actions</h4>
-                            <p className="category">Last Action Performance</p>
-                          </div>
-                          <div className="card-footer">
-                            <div className="stats">
-                              <i className="material-icons">access_time</i> assessment taken 2 days ago
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                </div>
+
                       <div className="row">
                         <div className="col-lg-3 col-md-6 col-sm-6">
                           <div className="card card-stats">
