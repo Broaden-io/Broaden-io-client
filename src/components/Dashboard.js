@@ -55,7 +55,7 @@ class Dashboard extends Component {
                   listener={completedTasksChart.animation}
                 />
             }
-              chartColor="green"
+              chartColor="gray"
               title="Weekly Progress"
               text="Number of criteria completed per week across all rubrics"
               statIcon={AccessTime}

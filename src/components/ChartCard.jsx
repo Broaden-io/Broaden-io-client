@@ -43,6 +43,9 @@ class ChartCard extends Component {
 
   render() {
   return(
+    <div>
+      <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"/>
+      <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
     <Card className={this.props.card}>
       <CardHeader
         style={
@@ -76,6 +79,7 @@ class ChartCard extends Component {
         </div>
       </CardActions>
     </Card>
+  </div>
   );
 }
 }
