@@ -126,7 +126,7 @@ class Login extends Component {
 
                       {/*{`${(document.write(new Date().getFullYear()))}`}*/}
 
-                      <a href="http://www.creative-tim.com"> RubricPRO </a>, made with love to better education
+                      <a href="/"> RubricPRO </a>, made with love to better education
                       </p>
                     </div>
                   </footer>

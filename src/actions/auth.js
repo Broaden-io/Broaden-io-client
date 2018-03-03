@@ -47,7 +47,7 @@ export const loginError = (message) => ({
 export const requestLogout = () => ({
   type: 'LOGOUT_REQUEST',
   isFetching: true,
-  isAuthenticated: true
+  isAuthenticated: false
 })
 
 export const receiveLogout = () => ({
@@ -88,7 +88,7 @@ export function loginUser(creds) {
         localStorage.setItem('avatarURL', json.user.avatarURL)
         console.log(localStorage.getItem('token'));
         dispatch(receiveLogin({token: json.token, user: json.user}));
-        //history.push(`/`); // forward to /username
+        history.push(`/${json.user.username}/dashboard`); // forward to /username
     }).catch(err => console.log("Error: " + err));
   }
 }
@@ -108,7 +108,7 @@ export function logoutUser() {
 
       // dispatch(receiveLogout());
 
-      history.push(`/login`);
+      history.push(`/`);
 
       // check this ...
 
