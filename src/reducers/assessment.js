@@ -6,9 +6,9 @@ export default (state = {}, action) => {
         isFetching: action.isFetching
       }
     case 'ASSESSMENT_SUCCESS':
+      const assessment = action.assessment
       return {
-        ...state,
-        assessment: action.assessment,
+        ...assessment,
         isFetching: action.isFetching
       }
     case 'ASSESSMENT_FAILURE':

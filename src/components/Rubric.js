@@ -42,6 +42,7 @@ class Rubric extends Component {
     this.getCompetencyButtons = this.getCompetencyButtons.bind(this);
     this.getCriteriaForLevel = this.getCriteriaForLevel.bind(this);
     this.getLevels = this.getLevels.bind(this);
+    this.getIsFetching = this.getIsFetching.bind(this);
   }
 
   componentWillMount() {
@@ -104,28 +105,34 @@ class Rubric extends Component {
     })
   }
 
+  getIsFetching() {
+    if (this.props.assessment == null || this.props.assessment.isFetching == null) {
+      return true;
+    }
+    return this.props.assessment.isFetching;
+  }
+
 
   render() {
     return (
       <div className="col-md-12">
-        {console.log("This is 'isFetching' ", this.props.assessment.isFetching)}
         <div className="card">
           <div className="card-header">
-            <h4 className="card-title"> {this.props.assessment.isFetching ? "" : this.props.assessment.rubricJSON.name + " "}
-              <small className="category">{this.props.assessment.isFetching ? "" : this.props.assessment.rubricJSON.description}</small>
+            <h4 className="card-title"> {this.getIsFetching() ? "" : this.props.assessment.rubricJSON.name + " "}
+              <small className="category">{this.getIsFetching() ? "" : this.props.assessment.rubricJSON.description}</small>
             </h4>
           </div>
           <div className="card-content">
             <div className="row">
               <div className="col-md-2">
                 <ul className="nav nav-pills nav-pills-icons nav-pills-rose nav-stacked" role="tablist">
-                  {this.props.assessment.isFetching ? "" : this.getCompetencyButtons()}
+                  {this.getIsFetching() ? "" : this.getCompetencyButtons()}
                 </ul>
             </div>
             <div className="col-md-10">
               <div className="tab-content">
                 <div className="tab-pane active" id="dashboard-2">
-                  {this.props.assessment.isFetching ? "" : this.getLevels()}
+                  {this.getIsFetching() ? "" : this.getLevels()}
                 </div>
               </div>
             </div>
@@ -139,7 +146,6 @@ class Rubric extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("Map state to props: ", state)
   return {
     assessment: state.assessment
   }
