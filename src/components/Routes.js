@@ -15,7 +15,7 @@ class Routes extends Component {
   }
 
   render() {
-
+    const isLoggedIn = this.props.auth.isAuthenticated
 
     return (
       <div className="wrapper">
@@ -24,8 +24,8 @@ class Routes extends Component {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
 
-          {(isLoggedIn) ? (<Redirect from="/" to={`/${localStorage.getItem('username')}/dashboard`} />) :
-          (<Redirect from="/" to="/login" />)}
+          {(isLoggedIn) ? (<Redirect exact={true} from="/" to={`/${localStorage.getItem('username')}`} />) :
+          (<Redirect exact={true} from="/" to="/login" />)}
         </Switch>
       </div>
     );

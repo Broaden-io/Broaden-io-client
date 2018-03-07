@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Link, Switch, Redirect } from 'react-router-dom';
 import NavTop from './NavTop';
 import Dashboard from './Dashboard';
 import RubricsIndex from './RubricsIndex';
@@ -85,6 +85,7 @@ class Sidebar extends Component {
                 <Route path={`/:username/dashboard`} component={Dashboard} />
                 <Route path={`/:username/rubrics`} component={RubricsIndex} />
                 <Route path={`/rubrics/:id`} component={Rubric} />
+                <Redirect  from="/:username" to="/:username/dashboard" />)
               </Switch>
               {/*<Route path={`/${localStorage.getItem('username')}`} render={() => <Dashboard />}/>
             <Route path={`/${localStorage.getItem('username')}/rubrics`} render={() => <RubricsIndex />}/>*/}
