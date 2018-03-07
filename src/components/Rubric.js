@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as Actions from '../actions/rubric';
+import * as Actions from '../actions/assessment';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -46,7 +46,7 @@ class Rubric extends Component {
 
   componentWillMount() {
     const id = this.props.match.params.id;
-    this.props.getRubricById(id);
+    this.props.getAssessment(localStorage.getItem("userId"), id);
   }
 
   setActiveComp(index) {
@@ -56,8 +56,8 @@ class Rubric extends Component {
   }
 
   getCompetencyButtons() {
-    if (this.props.rubric.Competencies) {
-      return this.props.rubric.Competencies.map((comp, index) => {
+    if (this.props.assessment.rubricJSON.Competencies) {
+      return this.props.assessment.rubricJSON.Competencies.map((comp, index) => {
         var isActiveClass = "";
         if (index === 0) {
           isActiveClass = "active";
@@ -76,8 +76,8 @@ class Rubric extends Component {
   getCriteriaForLevel(level) {
     const index = this.state.activeCompetencyIndex;
     const scales = [];
-    if (this.props.rubric.Competencies) {
-      return this.props.rubric.Competencies[index].Scales.map((scale, index) => {
+    if (this.props.assessment.rubricJSON.Competencies) {
+      return this.props.assessment.rubricJSON.Competencies[index].Scales.map((scale, index) => {
         // if the criteria level matches the level parameter, add the
         // criteria component
         return scale.Criteria.filter(criteria => criteria.level == level).map((criteria, index) => {
@@ -107,25 +107,25 @@ class Rubric extends Component {
 
   render() {
     return (
-
       <div className="col-md-12">
+        {console.log("This is 'isFetching' ", this.props.assessment.isFetching)}
         <div className="card">
           <div className="card-header">
-            <h4 className="card-title"> {this.props.rubric.name + " "}
-              <small className="category">{this.props.rubric.description}</small>
+            <h4 className="card-title"> {this.props.assessment.isFetching ? "" : this.props.assessment.rubricJSON.name + " "}
+              <small className="category">{this.props.assessment.isFetching ? "" : this.props.assessment.rubricJSON.description}</small>
             </h4>
           </div>
           <div className="card-content">
             <div className="row">
               <div className="col-md-2">
                 <ul className="nav nav-pills nav-pills-icons nav-pills-rose nav-stacked" role="tablist">
-                  {this.getCompetencyButtons()}
+                  {this.props.assessment.isFetching ? "" : this.getCompetencyButtons()}
                 </ul>
             </div>
             <div className="col-md-10">
               <div className="tab-content">
                 <div className="tab-pane active" id="dashboard-2">
-                  {this.getLevels()}
+                  {this.props.assessment.isFetching ? "" : this.getLevels()}
                 </div>
               </div>
             </div>
@@ -139,8 +139,9 @@ class Rubric extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log("Map state to props: ", state)
   return {
-    rubric: state.rubric
+    assessment: state.assessment
   }
 }
 
