@@ -12,7 +12,7 @@ Single Page application that allows students to achieve measurable feedback by g
 - [Tassos Laumbrou](https://www.linkedin.com/in/lambrou/) - Front/Back End
 - [Alirie Gray](https://www.linkedin.com/in/alirie-gray/) - Front End/ Back End
 - [Jeff Chiu](https://www.linkedin.com/in/jeffchiu1) - Full Stack
-- [Shane Austrie](linkedin.com/in/shaneaustrie) - Frontend
+- [Shane Austrie](https://www.linkedin.com/in/shaneaustrie) - Frontend
 
 For the Front-end side, we use React and Redux and uses create-react-app, Webpack, HMR, PostCSS & Express. This project also uses a boilerplate CSS theme for bootstrap known as [Material UI Dashboard Pro](https://www.creative-tim.com/product/material-dashboard).
 
