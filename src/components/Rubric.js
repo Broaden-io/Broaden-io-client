@@ -16,6 +16,14 @@ const CompetencyButton = props => {
   )
 }
 
+const Competency = props => {
+  return (
+    <div className={props.active} id="dashboard-2">
+      {this.props.getIsFetching() ? "" : this.props.getLevels(index)}
+    </div>
+  )
+}
+
 const Criteria = props => {
   return (
     <tr>
@@ -40,6 +48,7 @@ class Rubric extends Component {
     }
     this.icons = [ "dashboard", "explore", "code", "backup", "lock", "bug_report", "line_style", "perm_identity", "star_rate" ]
     this.getCompetencyButtons = this.getCompetencyButtons.bind(this);
+    this.getCompetencies = this.getCompetencies.bind(this);
     this.getCriteriaForLevel = this.getCriteriaForLevel.bind(this);
     this.getLevels = this.getLevels.bind(this);
     this.getIsFetching = this.getIsFetching.bind(this);
@@ -56,8 +65,27 @@ class Rubric extends Component {
     })
   }
 
+  getCompetencies() {
+    if (this.props.assessment.rubricJSON) {
+      return this.props.assessment.rubricJSON.Competencies.map((comp, index) => {
+        var active = "tab-pane";
+        if (index == this.state.activeCompetencyIndex) {
+          active = "tab-pane active";
+        }
+        return (
+          <Competency
+            key={index}
+            index={index}
+            getLevels={this.getLevels.bind(this)}
+            setActiveTab={this.setActiveTab.bind(this)}
+          />
+        )
+      })
+    }
+  }
+
   getCompetencyButtons() {
-    if (this.props.assessment.rubricJSON.Competencies) {
+    if (this.props.assessment.rubricJSON) {
       return this.props.assessment.rubricJSON.Competencies.map((comp, index) => {
         var isActiveClass = "";
         if (index === 0) {
@@ -74,11 +102,10 @@ class Rubric extends Component {
     }
   }
 
-  getCriteriaForLevel(level) {
-    const index = this.state.activeCompetencyIndex;
+  getCriteriaForLevel(level, compIndex) {
     const scales = [];
     if (this.props.assessment.rubricJSON.Competencies) {
-      return this.props.assessment.rubricJSON.Competencies[index].Scales.map((scale, index) => {
+      return this.props.assessment.rubricJSON.Competencies[compIndex].Scales.map((scale, index) => {
         // if the criteria level matches the level parameter, add the
         // criteria component
         return scale.Criteria.filter(criteria => criteria.level == level).map((criteria, index) => {
@@ -88,7 +115,7 @@ class Rubric extends Component {
     }
   }
 
-  getLevels() {
+  getLevels(compIndex) {
     const levelNames = ['Initial', 'Approaching', 'Overtaking', 'Innovating'];
     return levelNames.map((levelName, index) => {
       return (
@@ -97,7 +124,7 @@ class Rubric extends Component {
           <hr />
           <table className="table">
             <tbody key={index} >
-              {this.getCriteriaForLevel(index + 1)}
+              {this.getCriteriaForLevel(index + 1, compIndex)}
             </tbody>
           </table>
         </div>
@@ -131,9 +158,7 @@ class Rubric extends Component {
             </div>
             <div className="col-md-10">
               <div className="tab-content">
-                <div className="tab-pane active" id="dashboard-2">
-                  {this.getIsFetching() ? "" : this.getLevels()}
-                </div>
+                {this.getCompetencies()}
               </div>
             </div>
           </div>
