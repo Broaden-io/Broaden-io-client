@@ -16,14 +16,6 @@ const CompetencyButton = props => {
   )
 }
 
-const Competency = props => {
-  return (
-    <div className={props.active} id="dashboard-2">
-      {this.props.getIsFetching() ? "" : this.props.getLevels(index)}
-    </div>
-  )
-}
-
 const Criteria = props => {
   return (
     <tr>
@@ -47,8 +39,8 @@ class Rubric extends Component {
       activeCompetencyIndex: 0
     }
     this.icons = [ "dashboard", "explore", "code", "backup", "lock", "bug_report", "line_style", "perm_identity", "star_rate" ]
-    this.getCompetencyButtons = this.getCompetencyButtons.bind(this);
     this.getCompetencies = this.getCompetencies.bind(this);
+    this.getCompetencyButtons = this.getCompetencyButtons.bind(this);
     this.getCriteriaForLevel = this.getCriteriaForLevel.bind(this);
     this.getLevels = this.getLevels.bind(this);
     this.getIsFetching = this.getIsFetching.bind(this);
@@ -65,39 +57,40 @@ class Rubric extends Component {
     })
   }
 
-  getCompetencies() {
+  getCompetencyButtons() {
     if (this.props.assessment.rubricJSON) {
       return this.props.assessment.rubricJSON.Competencies.map((comp, index) => {
-        var active = "tab-pane";
-        if (index == this.state.activeCompetencyIndex) {
-          active = "tab-pane active";
+        var active = "";
+        if (index === this.state.activeCompetencyIndex) {
+          active = "active";
         }
         return (
-          <Competency
-            key={index}
-            index={index}
-            getLevels={this.getLevels.bind(this)}
-            setActiveTab={this.setActiveTab.bind(this)}
-          />
+          this.getIsFetching() ? "" :
+            <CompetencyButton
+              name={comp.name}
+              key={index}
+              index={index}
+              isActive={active}
+              icon={this.icons[index]}
+              setActiveComp={this.setActiveComp.bind(this)}
+            />
         )
       })
     }
   }
 
-  getCompetencyButtons() {
+  getCompetencies() {
     if (this.props.assessment.rubricJSON) {
       return this.props.assessment.rubricJSON.Competencies.map((comp, index) => {
-        var isActiveClass = "";
-        if (index === 0) {
-          isActiveClass = "active";
+        var active = "";
+        if (index === this.state.activeCompetencyIndex) {
+          active = "active";
         }
-        return <CompetencyButton
-          name={comp.name}
-          key={index}
-          index={index}
-          isActive={isActiveClass}
-          icon={this.icons[index]}
-          setActiveComp={this.setActiveComp.bind(this)} />
+        return (
+          <div className={`tab-pane ${active}`} id="dashboard-2">
+            {this.getIsFetching() ? "" : this.getLevels(index)}
+          </div>
+        )
       })
     }
   }
@@ -153,19 +146,19 @@ class Rubric extends Component {
             <div className="row">
               <div className="col-md-2">
                 <ul className="nav nav-pills nav-pills-icons nav-pills-rose nav-stacked" role="tablist">
-                  {this.getIsFetching() ? "" : this.getCompetencyButtons()}
+                  {this.getCompetencyButtons()}
+
                 </ul>
-            </div>
-            <div className="col-md-10">
-              <div className="tab-content">
-                {this.getCompetencies()}
+              </div>
+              <div className="col-md-10">
+                <div className="tab-content">
+                  {this.getCompetencies()}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
     );
   }
 }
