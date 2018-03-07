@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import ChartCard from './ChartCard'
 import ChartistGraph from "react-chartist";
 import {
@@ -21,6 +24,7 @@ import {
 import "../assets/css/material-dashboard-react.css";
 
 var Chartist = require("chartist");
+
 
 class Dashboard extends Component {
 
@@ -530,4 +534,9 @@ class Dashboard extends Component {
                             }
                           }
 
-                          export default Dashboard;
+                          const mapStateToProps = (state) => {
+                            return {
+                            }
+                          }
+
+                          export default withRouter(connect(mapStateToProps)(Dashboard))
