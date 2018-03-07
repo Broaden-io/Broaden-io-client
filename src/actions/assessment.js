@@ -1,8 +1,8 @@
 import history from '../routers/history';
 import serverPath from '../paths';
 
-export const requestAssessment = (id) => ({
-  type: 'REQUEST_ASSESSMENT_BY_ID',
+export const requestAssessment = (userId, rubricId) => ({
+  type: 'REQUEST_ASSESSMENT',
   isFetching: true
 })
 
@@ -19,7 +19,8 @@ export const assessmentError = (message) => ({
 })
 
 // GET ASSESSMENT BY ID - assessments show
-export function getAssessmentById(id) {
+export function getAssessment(userId, rubricId) {
+  console.log(`User id: ${userId} and rubric id: ${rubricId}` )
   let config = {
     method: 'GET',
     headers: {
@@ -30,18 +31,16 @@ export function getAssessmentById(id) {
   }
 
   return dispatch => {
-    dispatch(requestAssessment(id));
+    dispatch(requestAssessment(userId, rubricId));
     console.log("calling dispatch")
 
-    return fetch(`${serverPath}/assessments/${id}`, config).then((res) => {
-      console.log(res);
+    return fetch(`${serverPath}/users/${userId}/rubrics/${rubricId}/assessments`, config).then((res) => {
       if (res.status !== 200) {
         dispatch(assessmentError(res.message));
         return Promise.reject("Could not get assessment")
       }
       return res.json();
     }).then((json) => {
-      console.log(json);
       dispatch(receiveAssessment(json.assessment))
     }).catch(err => console.log("Error: " + err));
   }

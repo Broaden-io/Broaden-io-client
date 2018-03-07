@@ -1,22 +1,36 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import authReducer from '../reducers/auth';
 import rubricsReducer from '../reducers/rubrics';
 import rubricReducer from '../reducers/rubric';
 import assessmentReducer from '../reducers/assessment';
 
-let createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
+// let createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 
 export default () => {
   // Store creation
-  const store = createStoreWithMiddleware(
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+  const store = createStore(
     combineReducers({
       auth: authReducer,
       rubrics: rubricsReducer,
       rubric: rubricReducer,
       assessment: assessmentReducer,
-    })
-  );
+    }),
+    composeEnhancers(
+      applyMiddleware(thunkMiddleware)
+    )
+
+  )
+  // const store = createStoreWithMiddleware(
+  //   combineReducers({
+  //     auth: authReducer,
+  //     rubrics: rubricsReducer,
+  //     rubric: rubricReducer,
+  //     assessment: assessmentReducer,
+  //   })
+  // );
 
   return store;
 }

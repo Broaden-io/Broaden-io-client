@@ -1,12 +1,23 @@
 export default (state = {}, action) => {
   switch (action.type) {
+    case 'REQUEST_ASSESSMENT':
+      return {
+        ...state,
+        isFetching: action.isFetching
+      }
     case 'ASSESSMENT_SUCCESS':
-      return action.assessment
+      const assessment = action.assessment
+      return {
+        ...assessment,
+        isFetching: action.isFetching
+      }
     case 'ASSESSMENT_FAILURE':
       return {
-        errorMessage: action.message
+        ...state,
+        errorMessage: action.message,
+        isFetching: action.isFetching
       }
     default:
-      return state
+      return {...state}
   }
 }
