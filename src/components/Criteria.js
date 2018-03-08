@@ -8,27 +8,11 @@ class Criteria extends Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      isChecked: this.props.answer
-    }
   }
 
   handleCheck(e) {
     e.preventDefault();
-    if (this.state.isChecked) {
-      this.setState({
-        isChecked: false
-      }, () => {
-        this.props.updateAssesment(this.props.assessment.assessmentObject, this.props.id)
-      })
-    } else {
-      this.setState({
-        isChecked: true
-      }, () => {
-        this.props.updateAssesment(this.props.assessment.assessmentObject, this.props.id)
-      })
-    }
+    this.props.updateAssesment(this.props.assessment.assessmentObject, this.props.id)
   }
 
   render() {
@@ -38,7 +22,7 @@ class Criteria extends Component {
           <div className="checkbox">
             <label>
               <input type="checkbox" name="optionsCheckboxes"
-                checked={this.state.isChecked}
+                checked={this.props.answer}
                 onChange={this.handleCheck.bind(this)}
                />
             </label>
