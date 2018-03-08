@@ -62,6 +62,7 @@ export function updateAssesment(assessment, criteriaId){
   }
 
   console.log(newAssesment)
+  //console.log(newAssesment.rubricJSON.Competencies[0].Scales[0].Criteria[0].answer)
 
   // then send the updated assessment object to the backend
   let config = {
