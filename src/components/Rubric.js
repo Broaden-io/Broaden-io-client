@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as Actions from '../actions/assessment';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import uuidv1 from 'uuid/v1';
 
 const CompetencyButton = props => {
   return (
@@ -68,7 +69,7 @@ class Rubric extends Component {
           this.getIsFetching() ? "" :
             <CompetencyButton
               name={comp.name}
-              key={index}
+              key={uuidv1()}
               index={index}
               isActive={active}
               icon={this.icons[index]}
@@ -87,7 +88,7 @@ class Rubric extends Component {
           active = "active";
         }
         return (
-          <div className={`tab-pane ${active}`} id="dashboard-2">
+          <div className={`tab-pane ${active}`} key={uuidv1()} id="dashboard-2">
             {this.getIsFetching() ? "" : this.renderLevels(index)}
           </div>
         )
@@ -112,11 +113,11 @@ class Rubric extends Component {
     const levelNames = ['Initial', 'Approaching', 'Overtaking', 'Innovating'];
     return levelNames.map((levelName, index) => {
       return (
-        <div key={index} className='col-md-3'>
+        <div key={uuidv1()} className='col-md-3'>
           <h3> {levelName} </h3>
           <hr />
-          <table className="table">
-            <tbody key={index} >
+          <table key={uuidv1()} className="table">
+            <tbody key={uuidv1()} >
               {this.renderCriteriaForLevel(index + 1, compIndex)}
             </tbody>
           </table>
