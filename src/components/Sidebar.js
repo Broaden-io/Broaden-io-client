@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Link, Switch, Redirect } from 'react-router-dom';
+import { Route, Link, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router'
-import { connect } from 'react-redux';
 import NavTop from './NavTop';
 import Dashboard from './Dashboard';
 import RubricsIndex from './RubricsIndex';
@@ -85,12 +84,12 @@ class Sidebar extends Component {
             <ul className="nav">
               <MenuItem
                 title="Dashboard"
-                active={(this.props.location.pathname == `/${user.username}/dashboard`) || (this.props.location.pathname == `/dashboard`)}
+                active={(this.props.location.pathname === `/${user.username}/dashboard`) || (this.props.location.pathname === `/dashboard`)}
                 icon="dashboard"
                 path={`/dashboard`}/>
               <MenuItem
                 title="Rubrics"
-                active={this.props.location.pathname == `/rubrics`}
+                active={this.props.location.pathname === `/rubrics`}
                 icon="assessment"
                 path={`/rubrics`} />
             </ul>
@@ -103,7 +102,6 @@ class Sidebar extends Component {
           <div className="content">
             <div className="container-fluid">
               <Switch>
-                {console.log('USER.USERNAME', user.username)}
                 <Route path={`/dashboard`} component={Dashboard} />
                 <Route exact={true} path={`/rubrics`} component={RubricsIndex} />
                 <Route path={`/rubrics/:id`} component={Rubric} />

@@ -1,26 +1,13 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router'
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ChartCard from './ChartCard'
 import ChartistGraph from "react-chartist";
 import {
-  dailySalesChart,
   emailsSubscriptionChart,
   completedTasksChart
 } from "../variables/charts";
-import {
-  ContentCopy,
-  Store,
-  InfoOutline,
-  Warning,
-  DateRange,
-  LocalOffer,
-  Update,
-  ArrowUpward,
-  AccessTime,
-  Accessibility
-} from "material-ui-icons";
+import { AccessTime } from "material-ui-icons";
 import "../assets/css/material-dashboard-react.css";
 
 var Chartist = require("chartist");

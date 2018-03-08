@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import serverPath from '../paths';
-import axios from 'axios';
-import { instanceOf } from 'prop-types';
-import Input from './Input';
 import { withRouter } from 'react-router'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../actions/auth';
-import RadioButton from './RadioButton'
 
 class Login extends Component {
 

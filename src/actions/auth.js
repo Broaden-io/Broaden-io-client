@@ -70,7 +70,6 @@ export function loginUser(creds) {
     dispatch(requestLogin(creds));
 
     return fetch(`${serverPath}/login`, config).then((res) => {
-      console.log(res)
       if (res.status !== 200) {
         dispatch(loginError(res.statusText));
         return Promise.reject("Could not login");
@@ -86,7 +85,6 @@ export function loginUser(creds) {
         localStorage.setItem('lastName', json.user.lastName)
         localStorage.setItem('email', json.user.email)
         localStorage.setItem('avatarURL', json.user.avatarURL)
-        console.log(localStorage.getItem('token'));
         dispatch(receiveLogin({token: json.token, user: json.user}));
         history.push(`/dashboard`); // forward to /username
     }).catch(err => console.log("Error: " + err));
@@ -96,8 +94,6 @@ export function loginUser(creds) {
 export function logoutUser() {
     // check that this happens
     // dispatch(requestLogout());
-
-
       localStorage.removeItem('token');
       localStorage.removeItem('userId');
       localStorage.removeItem('username');
@@ -105,7 +101,6 @@ export function logoutUser() {
       localStorage.removeItem('lastName');
       localStorage.removeItem('email');
       localStorage.removeItem('avatarURL');
-
       // dispatch(receiveLogout());
 
       history.push(`/`);

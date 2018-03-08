@@ -98,12 +98,11 @@ class Rubric extends Component {
   }
 
   renderCriteriaForLevel(level, compIndex) {
-    const scales = [];
     if (this.props.assessment.rubricJSON.Competencies) {
       return this.props.assessment.rubricJSON.Competencies[compIndex].Scales.map((scale, index) => {
         // if the criteria level matches the level parameter, add the
         // criteria component
-        return scale.Criteria.filter(criteria => criteria.level == level).map((criteria, index) => {
+        return scale.Criteria.filter(criteria => criteria.level === level).map((criteria, index) => {
           return <Criteria text={criteria.text} />
         })
       })

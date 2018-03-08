@@ -43,7 +43,6 @@ export function getRubrics() {
       }
       return res.json();
     }).then((json) => {
-      console.log('Rubrics in getRubrics()', json)
       dispatch(receiveRubricsIndex(json))
     }).catch(err => {
       alert('There was an error: ', err)
