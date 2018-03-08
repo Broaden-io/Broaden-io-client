@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Checkbox from './Checkbox';
 import * as Actions from '../actions/assessment';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -24,7 +25,7 @@ const Criteria = props => {
       <td>
         <div className="checkbox">
           <label>
-            <input type="checkbox" name="optionsCheckboxes" defaultChecked={false} />
+            <input type="checkbox" name="optionsCheckboxes" checked={props.answer} />
           </label>
         </div>
       </td>
@@ -97,18 +98,6 @@ class Rubric extends Component {
     }
   }
 
-  renderCriteriaForLevel(level, compIndex) {
-    if (this.props.assessment.rubricJSON.Competencies) {
-      return this.props.assessment.rubricJSON.Competencies[compIndex].Scales.map((scale, index) => {
-        // if the criteria level matches the level parameter, add the
-        // criteria component
-        return scale.Criteria.filter(criteria => criteria.level === level).map((criteria, index) => {
-          return <Criteria text={criteria.text} />
-        })
-      })
-    }
-  }
-
   renderLevels(compIndex) {
     const levelNames = ['Initial', 'Approaching', 'Overtaking', 'Innovating'];
     return levelNames.map((levelName, index) => {
@@ -126,13 +115,24 @@ class Rubric extends Component {
     })
   }
 
+  renderCriteriaForLevel(level, compIndex) {
+    if (this.props.assessment.rubricJSON.Competencies) {
+      return this.props.assessment.rubricJSON.Competencies[compIndex].Scales.map((scale, index) => {
+        // if the criteria level matches the level parameter, add the
+        // criteria component
+        return scale.Criteria.filter(criteria => criteria.level === level).map((criteria, index) => {
+          return <Criteria text={criteria.text} />
+        })
+      })
+    }
+  }
+
   getIsFetching() {
     if (this.props.assessment == null || this.props.assessment.isFetching == null) {
       return true;
     }
     return this.props.assessment.isFetching;
   }
-
 
   render() {
     return (

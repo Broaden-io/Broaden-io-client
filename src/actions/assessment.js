@@ -17,6 +17,30 @@ export const assessmentError = (message) => ({
   message
 })
 
+export const requestUpdateAssessment = () => ({
+  type: 'REQUEST_UPDATE',
+  isFetching: true
+})
+
+export const setUpdatedAssessment = (assessment) => ({
+  type: 'UPDATE_ASSESSMENT',
+  isFetching: false,
+  assessment
+})
+
+// takes in a criteriaId and a value (boolean) for that criteria, indicating
+// whether or not it is checked
+// sends a call to the backend to update the assessment with the new value
+// for the specified criteriaId
+// then sends the updated assessment in an action to set the state with
+// the updated assessment
+export function updateAssesment(assessment, criteriaId){
+
+
+
+
+}
+
 // GET ASSESSMENT BY ID - assessments show
 export function getAssessment(userId, rubricId) {
   let config = {

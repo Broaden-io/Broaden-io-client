@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class Checkbox extends Component {
 
-
   state = {
     checked: this.props.beChecked ? true : false
   }
@@ -28,7 +27,7 @@ class Checkbox extends Component {
       if (!this.state.checked) {
         this.props.positiveAction();
       } else {
-        this.props.negativeActions();
+        this.props.negativeAction();
       }
     }
   }
