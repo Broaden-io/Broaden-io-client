@@ -116,11 +116,6 @@ class Rubric extends Component {
     }
   }
 
-  handleCheck(e) {
-    e.preventDefault();
-    this.props.updateAssesment(this.props.assessment.assessmentObject, e.target.id);
-  }
-
   getIsFetching() {
     if (this.props.assessment == null || this.props.assessment.isFetching == null) {
       return true;

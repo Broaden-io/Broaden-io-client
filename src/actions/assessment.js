@@ -37,9 +37,56 @@ export function updateAssesment(assessment, criteriaId){
 
   // look through the assessment object to find the criteria
   // with the id criteriaId
-  // then toggle the answer on that criteria
-  // then send the updated assessment object to the backend
 
+  var newRubricJson = {
+    ...assessment.rubricJSON,
+    Competencies: assessment.rubricJSON.Competencies.map((comp, index) => {
+      return comp.Scales.map((scale, index) => {
+        return scale.Criteria.map((criteria, index) => {
+          if (criteria.id === criteriaId) {
+            return {
+              ...criteria,
+              answer: !criteria.answer // toggle the answer
+            }
+          } else {
+            return criteria
+          }
+        })
+      })
+    })
+  }
+
+  var newAssesment = {
+    ...assessment,
+    rubricJSON: newRubricJson
+  }
+
+  console.log(newAssesment)
+
+  // then send the updated assessment object to the backend
+  let config = {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    },
+    body: newAssesment
+  }
+
+  return dispatch => {
+    dispatch(requestUpdateAssessment());
+    return fetch(`${serverPath}/assessments/${newAssesment.id}`, config).then((res) => {
+      if (res.status !== 200) {
+        dispatch(assessmentError(res.message));
+        return Promise.reject("Could not update assessment");
+      }
+      return res.json();
+    }).then((json) => {
+      console.log(json);
+      dispatch(setUpdatedAssessment(json.assessment));
+    }).catch(err => console.log("Error: " + err));
+  }
 
 }
 
