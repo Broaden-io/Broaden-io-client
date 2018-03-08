@@ -28,15 +28,17 @@ export const setUpdatedAssessment = (assessment) => ({
   assessment
 })
 
-// takes in a criteriaId and a value (boolean) for that criteria, indicating
-// whether or not it is checked
+// takes in a criteriaId and an assessment
 // sends a call to the backend to update the assessment with the new value
 // for the specified criteriaId
 // then sends the updated assessment in an action to set the state with
 // the updated assessment
 export function updateAssesment(assessment, criteriaId){
 
-
+  // look through the assessment object to find the criteria
+  // with the id criteriaId
+  // then toggle the answer on that criteria
+  // then send the updated assessment object to the backend
 
 
 }
