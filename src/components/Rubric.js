@@ -39,10 +39,10 @@ class Rubric extends Component {
       activeCompetencyIndex: 0
     }
     this.icons = [ "dashboard", "explore", "code", "backup", "lock", "bug_report", "line_style", "perm_identity", "star_rate" ]
-    this.getCompetencies = this.getCompetencies.bind(this);
-    this.getCompetencyButtons = this.getCompetencyButtons.bind(this);
-    this.getCriteriaForLevel = this.getCriteriaForLevel.bind(this);
-    this.getLevels = this.getLevels.bind(this);
+    this.renderCompetencies = this.renderCompetencies.bind(this);
+    this.renderCompetencyButtons = this.renderCompetencyButtons.bind(this);
+    this.renderCriteriaForLevel = this.renderCriteriaForLevel.bind(this);
+    this.renderLevels = this.renderLevels.bind(this);
     this.getIsFetching = this.getIsFetching.bind(this);
   }
 
@@ -57,7 +57,7 @@ class Rubric extends Component {
     })
   }
 
-  getCompetencyButtons() {
+  renderCompetencyButtons() {
     if (this.props.assessment.rubricJSON) {
       return this.props.assessment.rubricJSON.Competencies.map((comp, index) => {
         var active = "";
@@ -79,7 +79,7 @@ class Rubric extends Component {
     }
   }
 
-  getCompetencies() {
+  renderCompetencies() {
     if (this.props.assessment.rubricJSON) {
       return this.props.assessment.rubricJSON.Competencies.map((comp, index) => {
         var active = "";
@@ -88,14 +88,14 @@ class Rubric extends Component {
         }
         return (
           <div className={`tab-pane ${active}`} id="dashboard-2">
-            {this.getIsFetching() ? "" : this.getLevels(index)}
+            {this.getIsFetching() ? "" : this.renderLevels(index)}
           </div>
         )
       })
     }
   }
 
-  getCriteriaForLevel(level, compIndex) {
+  renderCriteriaForLevel(level, compIndex) {
     const scales = [];
     if (this.props.assessment.rubricJSON.Competencies) {
       return this.props.assessment.rubricJSON.Competencies[compIndex].Scales.map((scale, index) => {
@@ -108,7 +108,7 @@ class Rubric extends Component {
     }
   }
 
-  getLevels(compIndex) {
+  renderLevels(compIndex) {
     const levelNames = ['Initial', 'Approaching', 'Overtaking', 'Innovating'];
     return levelNames.map((levelName, index) => {
       return (
@@ -117,7 +117,7 @@ class Rubric extends Component {
           <hr />
           <table className="table">
             <tbody key={index} >
-              {this.getCriteriaForLevel(index + 1, compIndex)}
+              {this.renderCriteriaForLevel(index + 1, compIndex)}
             </tbody>
           </table>
         </div>
@@ -146,13 +146,13 @@ class Rubric extends Component {
             <div className="row">
               <div className="col-md-2">
                 <ul className="nav nav-pills nav-pills-icons nav-pills-rose nav-stacked" role="tablist">
-                  {this.getCompetencyButtons()}
+                  {this.renderCompetencyButtons()}
 
                 </ul>
               </div>
               <div className="col-md-10">
                 <div className="tab-content">
-                  {this.getCompetencies()}
+                  {this.renderCompetencies()}
                 </div>
               </div>
             </div>
