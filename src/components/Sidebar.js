@@ -1,24 +1,37 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router'
+import { connect } from 'react-redux';
 import NavTop from './NavTop';
 import Dashboard from './Dashboard';
 import RubricsIndex from './RubricsIndex';
 import Rubric from './Rubric';
 import Footer from './Footer';
 
-const MenuItem = props => {
-  return (
-    <li className={(props.active) ? `active` : ``}>
-      <Link to={props.path}>
-        <i className="material-icons">{props.icon}</i>
-        <p> {props.title} </p>
-      </Link>
-    </li>
-  )
-}
+const MenuItem = withRouter(
+  (props) => {
+    return (
+      <li className={(props.active) ? `active` : ``}>
+        <Link to={props.path}>
+          <i className="material-icons">{props.icon}</i>
+          <p> {props.title} </p>
+        </Link>
+      </li>
+    )
+  }
+)
 
 class Sidebar extends Component {
+
   render() {
+
+    const user = {
+      username: localStorage.getItem('username'),
+      userId: localStorage.getItem('userId'),
+      firstName: localStorage.getItem('firstName'),
+      lastName: localStorage.getItem('lastName'),
+      avatarURL: localStorage.getItem('avatarURL'),
+    }
 
     return (
       <div className="wrapper">
@@ -35,12 +48,12 @@ class Sidebar extends Component {
           <div className="sidebar-wrapper">
             <div className="user">
               <div className="photo">
-                <img alt="avatar" src={localStorage.getItem('avatarURL')} />
+                <img alt="avatar" src={user.avatarURL} />
               </div>
               <div className="info">
                 <a href="" className="">
                   <span>
-                    {`${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`}
+                    {`${user.firstName} ${user.lastName}`}
                     <b className="caret"></b>
                   </span>
                 </a>
@@ -70,8 +83,16 @@ class Sidebar extends Component {
               </div>
             </div>
             <ul className="nav">
-              <MenuItem title="Dashboard" active={(this.props.location.pathname == `/${localStorage.getItem('username')}/dashboard`) || (this.props.location.pathname == `/${localStorage.getItem('username')}`)} icon="dashboard" path={`/${localStorage.getItem('username')}/dashboard`}/>
-              <MenuItem title="Rubrics" active={this.props.location.pathname == `/${localStorage.getItem('username')}/rubrics`} icon="assessment" path={`/${localStorage.getItem('username')}/rubrics`} />
+              <MenuItem
+                title="Dashboard"
+                active={(this.props.location.pathname == `/${user.username}/dashboard`) || (this.props.location.pathname == `/dashboard`)}
+                icon="dashboard"
+                path={`/dashboard`}/>
+              <MenuItem
+                title="Rubrics"
+                active={this.props.location.pathname == `/rubrics`}
+                icon="assessment"
+                path={`/rubrics`} />
             </ul>
           </div>
         </div>
@@ -82,11 +103,13 @@ class Sidebar extends Component {
           <div className="content">
             <div className="container-fluid">
               <Switch>
-                <Route path={`/:username/dashboard`} component={Dashboard} />
-                <Route path={`/:username/rubrics`} component={RubricsIndex} />
+                {console.log('USER.USERNAME', user.username)}
+                <Route path={`/dashboard`} component={Dashboard} />
+                <Route exact={true} path={`/rubrics`} component={RubricsIndex} />
                 <Route path={`/rubrics/:id`} component={Rubric} />
-                <Redirect  from="/:username" to="/:username/dashboard" />)
               </Switch>
+              {/*<Redirect exact={true} from={`/${user.username}`} to={`/${user.username}/dashboard`} />*/}
+
               {/*<Route path={`/${localStorage.getItem('username')}`} render={() => <Dashboard />}/>
             <Route path={`/${localStorage.getItem('username')}/rubrics`} render={() => <RubricsIndex />}/>*/}
           </div>
@@ -100,4 +123,4 @@ class Sidebar extends Component {
 }
 }
 
-export default Sidebar;
+export default withRouter(Sidebar);

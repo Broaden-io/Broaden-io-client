@@ -1,5 +1,3 @@
-
-
 const authDefaultState = {
   isFetching: false,
   isAuthenticated: localStorage.getItem('token') ? true : false,

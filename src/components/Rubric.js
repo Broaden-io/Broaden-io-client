@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as Actions from '../actions/rubric';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
 
 const CompetencyButton = props => {
   return (
@@ -148,4 +149,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(Actions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Rubric);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Rubric));

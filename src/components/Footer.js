@@ -8,7 +8,7 @@ class Footer extends Component {
         <div className="container-fluid">
             <nav className="pull-left">
                 <ul>
-                  <li>
+                  {/*<li>
                     <a href="">
                           Home
                     </a>
@@ -27,7 +27,7 @@ class Footer extends Component {
                       <a href="">
                         Contact
                       </a>
-                    </li>
+                    </li>*/}
                   </ul>
                 </nav>
                 <p className="copyright pull-right">

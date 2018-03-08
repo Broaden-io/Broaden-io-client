@@ -88,7 +88,7 @@ export function loginUser(creds) {
         localStorage.setItem('avatarURL', json.user.avatarURL)
         console.log(localStorage.getItem('token'));
         dispatch(receiveLogin({token: json.token, user: json.user}));
-        history.push(`/${json.user.username}/dashboard`); // forward to /username
+        history.push(`/dashboard`); // forward to /username
     }).catch(err => console.log("Error: " + err));
   }
 }

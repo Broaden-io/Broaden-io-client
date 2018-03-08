@@ -33,8 +33,7 @@ class Login extends Component {
   submitForm(e) {
     e.preventDefault();
     this.props.loginUser(this.state.loginForm).then(() => {
-      console.log('username', this.state.loginForm.username)
-      this.props.history.push(`/${this.state.loginForm.username}`);
+      this.props.history.push(`/dashboard`);
     });
   }
 

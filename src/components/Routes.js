@@ -2,11 +2,19 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
-import Home from './Home';
 import SignUp from './SignUp';
 import Login from './Login';
 import Rubric from './Rubric';
 import Sidebar from './Sidebar'
+
+const AuthCheck = withRouter(
+  (props) =>
+  props.auth.isAuthenticated ? (
+    <Sidebar/>
+  ) : (
+    <Login/>
+  )
+);
 
 class Routes extends Component {
 
@@ -20,13 +28,9 @@ class Routes extends Component {
     return (
       <div className="wrapper">
         {console.log('ISLOGGEDIN', isLoggedIn)}
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={SignUp} />
-
-          {(isLoggedIn) ? (<Redirect exact={true} from="/" to={`/${localStorage.getItem('username')}`} />) :
-          (<Redirect exact={true} from="/" to="/login" />)}
-        </Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={SignUp} />
+        { isLoggedIn ? <Sidebar/> : <Login/> }
       </div>
     );
   }
