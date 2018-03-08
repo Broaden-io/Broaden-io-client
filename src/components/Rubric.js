@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as Actions from '../actions/assessment';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
 import uuidv1 from 'uuid/v1';
 
 const CompetencyButton = props => {
@@ -97,12 +98,11 @@ class Rubric extends Component {
   }
 
   renderCriteriaForLevel(level, compIndex) {
-    const scales = [];
     if (this.props.assessment.rubricJSON.Competencies) {
       return this.props.assessment.rubricJSON.Competencies[compIndex].Scales.map((scale, index) => {
         // if the criteria level matches the level parameter, add the
         // criteria component
-        return scale.Criteria.filter(criteria => criteria.level == level).map((criteria, index) => {
+        return scale.Criteria.filter(criteria => criteria.level === level).map((criteria, index) => {
           return <Criteria text={criteria.text} />
         })
       })
@@ -174,4 +174,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(Actions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Rubric);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Rubric));

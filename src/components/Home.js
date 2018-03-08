@@ -16,16 +16,9 @@ class Home extends Component {
 
     return (
       <div>
-
-        { this.props.auth.isAuthenticated && <Sidebar {...this.props} /> }
-        { !this.props.auth.isAuthenticated && (
-          <div>
-            <Switch>
-              <Route path="/login" component={Login} />
-              <Route path="/signup" component={SignUp} />
-            </Switch>
-          </div>
-        )}
+        {console.log("PROPS", this.props)}
+        { this.props.auth.isAuthenticated && <Redirect to={`/${localStorage.getItem('username')}/dashboard`} /> }
+        { !this.props.auth.isAuthenticated && <Redirect to="/login"/>}
       </div>
     );
   }

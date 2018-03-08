@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import serverPath from '../paths';
-import axios from 'axios';
-import { instanceOf } from 'prop-types';
-import Input from './Input';
 import { withRouter } from 'react-router'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../actions/auth';
-import RadioButton from './RadioButton'
 
 class Login extends Component {
 
@@ -32,8 +27,7 @@ class Login extends Component {
   submitForm(e) {
     e.preventDefault();
     this.props.loginUser(this.state.loginForm).then(() => {
-      console.log('username', this.state.loginForm.username)
-      this.props.history.push(`/${this.state.loginForm.username}`);
+      this.props.history.push(`/dashboard`);
     });
   }
 
@@ -125,7 +119,7 @@ class Login extends Component {
 
                       {/*{`${(document.write(new Date().getFullYear()))}`}*/}
 
-                      <a href="http://www.creative-tim.com"> RubricPRO </a>, made with love to better education
+                      <a href="/"> RubricPRO </a>, made with love to better education
                       </p>
                     </div>
                   </footer>

@@ -1,32 +1,27 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
 import * as Actions from '../actions/rubrics';
 
-class RubricElement extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-
+const RubricElement = withRouter(
+  (props) => {
     return (
       <tr>
-        <td className="text-center"> {this.props.index + 1} </td>
+        <td className="text-center"> {props.index + 1} </td>
         <td>
           <div>
-            <Link to={`/rubrics/${this.props.rubricId}`}>
-              {this.props.name}
+            <Link to={`/rubrics/${props.rubricId}`}>
+              {props.name}
             </Link>
           </div>
         </td>
-        <td> {this.props.description} </td>
+        <td> {props.description} </td>
       </tr>
     )
   }
-}
+)
 
 class RubricsIndex extends Component {
 
@@ -84,4 +79,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(Actions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RubricsIndex);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RubricsIndex));

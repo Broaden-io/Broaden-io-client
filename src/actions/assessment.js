@@ -1,4 +1,3 @@
-import history from '../routers/history';
 import serverPath from '../paths';
 
 export const requestAssessment = (userId, rubricId) => ({
@@ -20,7 +19,6 @@ export const assessmentError = (message) => ({
 
 // GET ASSESSMENT BY ID - assessments show
 export function getAssessment(userId, rubricId) {
-  console.log(`User id: ${userId} and rubric id: ${rubricId}` )
   let config = {
     method: 'GET',
     headers: {
@@ -32,8 +30,6 @@ export function getAssessment(userId, rubricId) {
 
   return dispatch => {
     dispatch(requestAssessment(userId, rubricId));
-    console.log("calling dispatch")
-
     return fetch(`${serverPath}/users/${userId}/rubrics/${rubricId}/assessments`, config).then((res) => {
       if (res.status !== 200) {
         dispatch(assessmentError(res.message));

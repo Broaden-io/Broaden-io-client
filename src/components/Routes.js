@@ -1,19 +1,34 @@
 import React, { Component } from 'react';
-import { Route, Switch} from 'react-router-dom';
-import Home from './Home';
+import { Route } from 'react-router-dom';
+import { withRouter } from 'react-router'
+import { connect } from 'react-redux';
 import SignUp from './SignUp';
 import Login from './Login';
-import Rubric from './Rubric';
+import Sidebar from './Sidebar'
 
 class Routes extends Component {
 
+  redirect() {
+
+  }
+
   render() {
+    const isLoggedIn = this.props.auth.isAuthenticated
+
     return (
       <div className="wrapper">
-          <Route path="/" component={Home} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={SignUp} />
+        { isLoggedIn ? <Sidebar/> : <Login/> }
       </div>
     );
   }
 }
 
-export default Routes;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(Routes))
