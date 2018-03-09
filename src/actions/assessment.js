@@ -1,4 +1,5 @@
 import serverPath from '../paths';
+import axios from 'axios';
 
 export const requestAssessment = (userId, rubricId) => ({
   type: 'REQUEST_ASSESSMENT',
@@ -62,38 +63,35 @@ export function updateAssesment(assessment, criteriaId){
     })
   }
 
-  var newAssesment = {
+  var newAssessment = {
     ...assessment,
     rubricJSON: newRubricJson
   }
-
-  console.log(newAssesment)
-  //console.log(newAssesment.rubricJSON.Competencies[0].Scales[0].Criteria[0].answer)
 
   // then send the updated assessment object to the backend
   let config = {
     method: 'PUT',
     headers: {
-      'Accept': 'application/json, text/plain, */*',
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     },
-    body: newAssesment
+    body: newAssessment
   }
 
   return dispatch => {
     dispatch(requestUpdateAssessment());
-    return fetch(`${serverPath}/assessments/${newAssesment.id}`, config).then((res) => {
-      if (res.status !== 200) {
-        dispatch(assessmentError(res.message));
-        return Promise.reject("Could not update assessment");
-      }
-      return res.json();
-    }).then((json) => {
-      console.log(json);
-      dispatch(setUpdatedAssessment(json.assessment));
-    }).catch(err => console.log("Error: " + err));
-  }
+    return axios.post(`${serverPath}/assessments/${newAssessment.id}`, newAssessment).then((res) => {
+        if (res.status !== 200) {
+          dispatch(assessmentError(res.message));
+          return Promise.reject("Could not update assessment");
+        }
+        console.log(res)
+        return res.data.assessment;
+      }).then((assessment) => {
+        console.log(assessment);
+        dispatch(setUpdatedAssessment(assessment));
+      }).catch(err => console.log("Error: " + err));
+    }
 
 }
 

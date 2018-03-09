@@ -47,13 +47,11 @@ class Rubric extends Component {
 
   renderCompetencyButtons() {
     if (this.props.assessment.assessmentObject) {
-      console.log("Assessment:", this.props.assessment)
       const asessementParsed = {
         ...this.props.assessment.assessmentObject,
-        rubricJSON: JSON.parse(this.props.assessment.assessmentObject.rubricJSON)
+        rubricJSON: (this.props.assessment.assessmentObject.rubricJSON)
       }
-      console.log('ASESSEMENTPARSED', asessementParsed)
-      return asessementParsed.Competencies.map((comp, index) => {
+      return asessementParsed.rubricJSON.Competencies.map((comp, index) => {
         var active = "";
         if (index === this.state.activeCompetencyIndex) {
           active = "active";
@@ -77,9 +75,9 @@ class Rubric extends Component {
     if (this.props.assessment.assessmentObject) {
       const asessementParsed = {
         ...this.props.assessment.assessmentObject,
-        rubricJSON: JSON.parse(this.props.assessment.assessmentObject.rubricJSON)
+        rubricJSON: (this.props.assessment.assessmentObject.rubricJSON)
       }
-      return asessementParsed.Competencies.map((comp, index) => {
+      return asessementParsed.rubricJSON.Competencies.map((comp, index) => {
         var active = "";
         if (index === this.state.activeCompetencyIndex) {
           active = "active";
