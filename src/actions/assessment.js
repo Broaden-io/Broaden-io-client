@@ -56,10 +56,16 @@ export function updateAssesment(assessment, criteriaId){
               } else {
                 return criteria
               }
+            }).sort((a , b) => {
+              return a.id - b.id;
             })
           }
+        }).sort((a , b) => {
+          return a.id - b.id;
         })
       }
+    }).sort((a , b) => {
+      return a.id - b.id;
     })
   }
 

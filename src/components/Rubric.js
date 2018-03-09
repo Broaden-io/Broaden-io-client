@@ -6,18 +6,18 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import uuidv1 from 'uuid/v1';
 
-const CompetencyButton = props => {
+const CompetencyButton = withRouter(props => {
   return (
     <li className={props.isActive}
       onClick={() => {
         props.setActiveComp(props.index)
       }}>
-      <a href="#dashboard-2" role="tab" data-toggle="tab" aria-expanded="true">
+      <a href="" onClick={(e) => e.preventDefault()} role="tab" data-toggle="tab" aria-expanded="true">
         <i className="material-icons">{props.icon}</i> {props.name}
       </a>
     </li>
   )
-}
+})
 
 class Rubric extends Component {
 
@@ -47,17 +47,14 @@ class Rubric extends Component {
 
   renderCompetencyButtons() {
     if (this.props.assessment.assessmentObject) {
-      const asessementParsed = {
-        ...this.props.assessment.assessmentObject,
-        rubricJSON: (this.props.assessment.assessmentObject.rubricJSON)
-      }
-      return asessementParsed.rubricJSON.Competencies.map((comp, index) => {
+
+      return this.props.assessment.assessmentObject.rubricJSON.Competencies.map((comp, index) => {
+
         var active = "";
         if (index === this.state.activeCompetencyIndex) {
           active = "active";
         }
         return (
-          this.getIsFetching() ? "" :
             <CompetencyButton
               name={comp.name}
               key={uuidv1()}
@@ -67,31 +64,36 @@ class Rubric extends Component {
               setActiveComp={this.setActiveComp.bind(this)}
             />
         )
+      }).sort((a , b) => {
+        return a.id - b.id;
       })
     }
   }
 
   renderCompetencies() {
+
     if (this.props.assessment.assessmentObject) {
-      const asessementParsed = {
-        ...this.props.assessment.assessmentObject,
-        rubricJSON: (this.props.assessment.assessmentObject.rubricJSON)
-      }
-      return asessementParsed.rubricJSON.Competencies.map((comp, index) => {
+
+      return this.props.assessment.assessmentObject.rubricJSON.Competencies.map((comp, index) => {
+
         var active = "";
         if (index === this.state.activeCompetencyIndex) {
           active = "active";
         }
+
         return (
           <div className={`tab-pane ${active}`} key={uuidv1()} id="dashboard-2">
             {this.getIsFetching() ? "" : this.renderLevels(index)}
           </div>
         )
+      }).sort((a , b) => {
+        return a.id - b.id;
       })
     }
   }
 
   renderLevels(compIndex) {
+
     const levelNames = ['Initial', 'Approaching', 'Overtaking', 'Innovating'];
     return levelNames.map((levelName, index) => {
       return (
@@ -109,6 +111,7 @@ class Rubric extends Component {
   }
 
   renderCriteriaForLevel(level, compIndex) {
+
     if (this.props.assessment.assessmentObject.rubricJSON.Competencies) {
       return this.props.assessment.assessmentObject.rubricJSON.Competencies[compIndex].Scales.map((scale, index) => {
         // if the criteria level matches the level parameter, add the
@@ -119,7 +122,11 @@ class Rubric extends Component {
             answer={criteria.answer}
             id={criteria.id}
             text={criteria.text} />
+        }).sort((a , b) => {
+          return a.id - b.id;
         })
+      }).sort((a , b) => {
+        return a.id - b.id;
       })
     }
   }
