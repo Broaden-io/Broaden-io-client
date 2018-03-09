@@ -85,10 +85,8 @@ export function updateAssesment(assessment, criteriaId){
           dispatch(assessmentError(res.message));
           return Promise.reject("Could not update assessment");
         }
-        console.log(res)
         return res.data.assessment;
       }).then((assessment) => {
-        console.log(assessment);
         dispatch(setUpdatedAssessment(assessment));
       }).catch(err => console.log("Error: " + err));
     }
