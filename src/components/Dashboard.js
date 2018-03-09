@@ -12,7 +12,6 @@ import "../assets/css/material-dashboard-react.css";
 
 var Chartist = require("chartist");
 
-
 class Dashboard extends Component {
 
   render() {

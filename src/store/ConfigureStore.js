@@ -4,6 +4,7 @@ import authReducer from '../reducers/auth';
 import rubricsReducer from '../reducers/rubrics';
 import rubricReducer from '../reducers/rubric';
 import assessmentReducer from '../reducers/assessment';
+import assessmentsReducer from '../reducers/assessments';
 
 // let createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 
@@ -17,6 +18,7 @@ export default () => {
       rubrics: rubricsReducer,
       rubric: rubricReducer,
       assessment: assessmentReducer,
+      assessments: assessmentsReducer,
     }),
     composeEnhancers(
       applyMiddleware(thunkMiddleware)
