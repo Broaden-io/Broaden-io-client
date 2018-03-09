@@ -6,16 +6,29 @@ export default (state = {}, action) => {
         isFetching: action.isFetching
       }
     case 'ASSESSMENT_SUCCESS':
-      const assessment = action.assessment
       return {
-        ...assessment,
-        isFetching: action.isFetching
+        errorMessage: '',
+        isFetching: action.isFetching,
+        assessmentObject: action.assessment
       }
     case 'ASSESSMENT_FAILURE':
       return {
         ...state,
         errorMessage: action.message,
         isFetching: action.isFetching
+      }
+    case 'REQUEST_UPDATE':
+      return {
+        ...state,
+        errorMessage: '',
+        isFetching: action.isFetching
+      }
+    case 'UPDATE_ASSESSMENT':
+      return {
+        ...state,
+        errorMessage: '',
+        isFetching: action.isFetching,
+        assessmentObject: action.assessment
       }
     default:
       return {...state}
