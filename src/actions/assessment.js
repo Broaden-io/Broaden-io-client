@@ -41,18 +41,24 @@ export function updateAssesment(assessment, criteriaId){
   var newRubricJson = {
     ...assessment.rubricJSON,
     Competencies: assessment.rubricJSON.Competencies.map((comp, index) => {
-      return comp.Scales.map((scale, index) => {
-        return scale.Criteria.map((criteria, index) => {
-          if (criteria.id === criteriaId) {
-            return {
-              ...criteria,
-              answer: !criteria.answer // toggle the answer
-            }
-          } else {
-            return criteria
+      return {
+        ...comp,
+        Scales: comp.Scales.map((scale, index) => {
+          return {
+            ...scale,
+            Criteria: scale.Criteria.map((criteria, index) => {
+              if (criteria.id === criteriaId) {
+                return {
+                  ...criteria,
+                  answer: !criteria.answer // toggle the answer
+                }
+              } else {
+                return criteria
+              }
+            })
           }
         })
-      })
+      }
     })
   }
 
@@ -99,7 +105,7 @@ export function getAssessment(userId, rubricId) {
       'Accept': 'application/json, text/plain, */*',
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Bearer ' + localStorage.getItem('token')
-     }
+    }
   }
 
   return dispatch => {
