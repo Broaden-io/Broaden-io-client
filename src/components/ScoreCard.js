@@ -33,7 +33,7 @@ class ScoreCard extends React.Component {
           <div className="card-content">
             <div className="typography">
 
-              <h4 className="card-title">Full Stack Web Rubric</h4>
+              <h3 className="card-title">Full Stack Web Skills</h3>
               <div className="row">
 
                 <div className="justify-content-center">
