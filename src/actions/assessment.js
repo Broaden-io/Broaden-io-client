@@ -75,14 +75,14 @@ export function updateAssesment(assessment, criteriaId){
   }
 
   // then send the updated assessment object to the backend
-  let config = {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-    },
-    body: newAssessment
-  }
+  // let config = {
+  //   method: 'PUT',
+  //   headers: {
+  //     'Content-Type': 'application/x-www-form-urlencoded',
+  //     'Authorization': 'Bearer ' + localStorage.getItem('token')
+  //   },
+  //   body: newAssessment
+  // }
 
   return dispatch => {
     dispatch(requestUpdateAssessment());
