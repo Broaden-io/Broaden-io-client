@@ -27,7 +27,7 @@ class ScoreCard extends React.Component {
     return (
       <div className="col-md-5">
         <div className="card">
-          <div className="card-header card-header-icon" data-background-color="red">
+          <div className="card-header card-header-icon" data-background-color="blue">
             <i className="material-icons">pie_chart</i>
           </div>
           <div className="card-content">
