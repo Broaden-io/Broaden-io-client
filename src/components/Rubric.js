@@ -50,11 +50,7 @@ const CompetencyButton = withRouter(props => {
               answer={criteria.answer}
               id={criteria.id}
               text={criteria.text} />
-          }).sort((a , b) => {
-            return a.id - b.id;
           })
-        }).sort((a , b) => {
-          return a.id - b.id;
         })
       }
     }
@@ -79,17 +75,15 @@ const CompetencyButton = withRouter(props => {
     renderCompetencies() {
       if (this.props.assessment.assessmentObject) {
         return this.props.assessment.assessmentObject.rubricJSON.Competencies.map((comp, index) => {
-          var active = "";
+          let active = '';
           if (index === this.state.activeCompetencyIndex) {
-            active = "active";
+            active = 'active';
           }
           return (
             <div className={`tab-pane ${active}`} key={uuidv1()} id="dashboard-2">
-              {this.getIsFetching() ? "" : this.renderLevels(index)}
+              {this.getIsFetching() ? '' : this.renderLevels(index)}
             </div>
           )
-        }).sort((a , b) => {
-          return a.id - b.id;
         })
       }
     }
@@ -101,9 +95,9 @@ const CompetencyButton = withRouter(props => {
     renderCompetencyButtons() {
       if (this.props.assessment.assessmentObject) {
         return this.props.assessment.assessmentObject.rubricJSON.Competencies.map((comp, index) => {
-          var active = "";
+          let active = '';
           if (index === this.state.activeCompetencyIndex) {
-            active = "active";
+            active = 'active';
           }
           return (
             <CompetencyButton
@@ -115,8 +109,6 @@ const CompetencyButton = withRouter(props => {
               setActiveComp={this.setActiveComp.bind(this)}
               />
           )
-        }).sort((a , b) => {
-          return a.id - b.id;
         })
       }
     }
@@ -133,8 +125,8 @@ const CompetencyButton = withRouter(props => {
         <div className="col-md-12">
           <div className="card">
             <div className="card-header">
-              <h2 className="card-title"> {this.getIsFetching() ? "" : this.props.assessment.assessmentObject.rubricJSON.name + " "}
-                <br/> <small className="category">{this.getIsFetching() ? "" : this.props.assessment.assessmentObject.rubricJSON.description}</small>
+              <h2 className="card-title"> {this.getIsFetching() ? null : this.props.assessment.assessmentObject.rubricJSON.name + " "}
+                <br/> <small className="category">{this.getIsFetching() ? null : this.props.assessment.assessmentObject.rubricJSON.description}</small>
               </h2>
             </div>
             <div className="card-content">
