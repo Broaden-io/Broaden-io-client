@@ -12,7 +12,7 @@ class Criteria extends Component {
 
   handleCheck(e) {
     e.preventDefault();
-    this.props.updateAssesment(this.props.assessment.assessmentObject, this.props.id)
+    this.props.updateAssessment(this.props.assessment.assessmentObject, this.props.id)
   }
 
   render() {

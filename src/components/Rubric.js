@@ -40,8 +40,9 @@ const CompetencyButton = withRouter(props => {
     }
 
     renderCriteriaForLevel(level, compIndex) {
-      if (this.props.assessment.assessmentObject.rubricJSON.Competencies) {
-        return this.props.assessment.assessmentObject.rubricJSON.Competencies[compIndex].Scales.map((scale, index) => {
+      const { Competencies } = this.props.assessment.assessmentObject.rubricJSON;
+      if (Competencies) {
+        return Competencies[compIndex].Scales.map((scale, index) => {
           // if the criteria level matches the level parameter, add the
           // criteria component
           return scale.Criteria.filter(criteria => criteria.level === level).map((criteria, index) => {
@@ -94,7 +95,8 @@ const CompetencyButton = withRouter(props => {
 
     renderCompetencyButtons() {
       if (this.props.assessment.assessmentObject) {
-        return this.props.assessment.assessmentObject.rubricJSON.Competencies.map((comp, index) => {
+        const { Competencies } = this.props.assessment.assessmentObject.rubricJSON;
+        return Competencies.map((comp, index) => {
           let active = '';
           if (index === this.state.activeCompetencyIndex) {
             active = 'active';
@@ -114,7 +116,7 @@ const CompetencyButton = withRouter(props => {
     }
 
     getIsFetching() {
-      if (this.props.assessment == null || this.props.assessment.isFetching == null) {
+      if (this.props.assessment === null || this.props.assessment.isFetching == null) {
         return true;
       }
       return this.props.assessment.isFetching;
