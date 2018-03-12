@@ -33,13 +33,12 @@ componentWillMount() {
           })}
         </div>
       </div>
-
-
     );
   }
 }
 
 const mapStateToProps = (state) => {
+  console.log("State in map state to props: ", state)
   return {
     assessments: state.assessments
   }

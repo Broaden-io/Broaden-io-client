@@ -1,4 +1,7 @@
-export default (state = {}, action) => {
+export default (state = {
+  isFetching: true,
+  assessmentsObject: []
+}, action) => {
   switch (action.type) {
     case 'REQUEST_ASSESSMENTS':
       return {
@@ -6,7 +9,8 @@ export default (state = {}, action) => {
         isFetching: action.isFetching
       }
     case 'ASSESSMENTS_SUCCESS':
-    console.log("state", state)
+      console.log("state", state)
+      console.log(action)
       return {
         ...state,
         errorMessage: '',
