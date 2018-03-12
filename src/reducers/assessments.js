@@ -9,8 +9,6 @@ export default (state = {
         isFetching: action.isFetching
       }
     case 'ASSESSMENTS_SUCCESS':
-      console.log("state", state)
-      console.log(action)
       return {
         ...state,
         errorMessage: '',

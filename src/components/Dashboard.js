@@ -26,10 +26,9 @@ componentWillMount() {
     const { assessmentsObject, isFetching } = this.props.assessments
     return (
       <div>
-        {console.log("props", this.props)}
         <div className="row">
-          {isFetching ? null : assessmentsObject.map((assessment)=>{
-              return <ScoreCard assessment={assessment}/>
+          {isFetching ? null : assessmentsObject.map((assessment, index)=>{
+              return <ScoreCard key={index} assessment={assessment}/>
           })}
         </div>
       </div>
@@ -38,7 +37,6 @@ componentWillMount() {
 }
 
 const mapStateToProps = (state) => {
-  console.log("State in map state to props: ", state)
   return {
     assessments: state.assessments
   }

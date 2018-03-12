@@ -38,7 +38,6 @@ export function getAssessments(userId){
       }
       return res.json();
     }).then((json) => {
-      console.log("JSON", json)
       dispatch(receiveAssessments(json.assessments))
     }).catch(err => console.log("Error: " + err));
   }

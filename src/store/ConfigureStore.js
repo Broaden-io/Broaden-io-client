@@ -11,7 +11,6 @@ import assessmentsReducer from '../reducers/assessments';
 export default () => {
   // Store creation
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  console.log("assessmentsReducer", assessmentsReducer)
   const store = createStore(
     combineReducers({
       auth: authReducer,
