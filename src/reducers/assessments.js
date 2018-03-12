@@ -6,6 +6,7 @@ export default (state = {}, action) => {
         isFetching: action.isFetching
       }
     case 'ASSESSMENTS_SUCCESS':
+    console.log("state", state)
       return {
         ...state,
         errorMessage: '',
