@@ -2,28 +2,47 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router'
 import ChartistGraph from 'react-chartist';
 
-class ScoreCard extends React.Component {
+class CompetencyScore extends Component {
+
+  constructor(props) {
+    super(props)
+  }
+
+  calculateCompetencyScore() {
+    {/*
+    TODO: Calculate the total points of the user's checked criteria
+    TODO: Calculate the total points possible
+    */}
+
+    const scoreTotals = {
+      userTotal = 0
+      competencyTotal = 0
+    }
+
+    
+
+    return (81)
+  }
+
   render() {
+    return (
+      <tr>
+        <td><h5>{this.props.competency.name}</h5></td>
+        <td>
+          <h4 className="text-default">
+            <strong>{this.calculateCompetencyScore()}%</strong>
+          </h4>
+        </td>
+      </tr>
+    )
+  }
+}
 
-    var data = {
-      labels: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10'],
-      series: [
-        [1, 2, 4, 8, 6, -2, -1, -4, -6, -2]
-      ]
-    };
+class ScoreCard extends React.Component {
 
-    var options = {
-      high: 10,
-      low: -10,
-      axisX: {
-        labelInterpolationFnc: function(value, index) {
-          return index % 2 === 0 ? value : null;
-        }
-      }
-    };
-
-    var type = 'Bar'
-
+  render() {
+    const assessment = this.props.assessment.rubricJSON
+    const { name, description, Competencies } = assessment
     return (
       <div className="col-md-5">
         <div className="card">
@@ -33,7 +52,7 @@ class ScoreCard extends React.Component {
           <div className="card-content">
             <div className="typography">
 
-              <h4 className="card-title">Full Stack Web Rubric</h4>
+              <h4 className="card-title">{name}</h4>
               <div className="row">
 
                 <div className="justify-content-center">
@@ -78,44 +97,19 @@ class ScoreCard extends React.Component {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td><h5>HTML and Templating</h5></td>
-                          <td><h4 className="text-success"><strong>92%</strong></h4></td>
-                        </tr>
-                        <tr>
-                          <td><h5>CSS</h5></td>
-                          <td><h4 className="text-warning"><strong>77%</strong></h4></td>
-                        </tr>
-                        <tr>
-                          <td><h5>Client-Side Javascript</h5></td>
-                          <td><h4 className="text-success"><strong>94%</strong></h4></td>
-                        </tr>
-                        <tr>
-                          <td><h5>Backend Skills</h5></td>
-                          <td><h4 className="text-info"><strong>84%</strong></h4></td>
-                        </tr>
-                        <tr>
-                          <td><h5>DevOps and Security</h5></td>
-                          <td><h4 className="text-warning"><strong>70%</strong></h4></td>
-                        </tr>
-                        <tr>
-                          <td><h5>Testing and Debugging</h5></td>
-                          <td><h4 className="text-info"><strong>82%</strong></h4></td>
-                        </tr>
-                        <tr>
-                          <td><h5>Databases - SQL and NoSQL</h5></td>
-                          <td><h4 className="text-danger"><strong>68%</strong></h4></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+                      {Competencies.map((competency, index) => {
+                        return <CompetencyScore key={index} competency={competency} />
+                      })}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      )
-    }
+      </div>
+    )
   }
+}
 
-  export default withRouter(ScoreCard);
+export default withRouter(ScoreCard);
