@@ -19,7 +19,7 @@ export const assessmentsError = (message) => ({
 })
 
 // GET ASSESSMENTs BY USERID - assessments index
-export function getAssessments(userId) {
+export function getAssessments(userId){
   let config = {
     method: 'GET',
     headers: {
@@ -38,6 +38,7 @@ export function getAssessments(userId) {
       }
       return res.json();
     }).then((json) => {
+      console.log("JSON", json)
       dispatch(receiveAssessments(json.assessments))
     }).catch(err => console.log("Error: " + err));
   }

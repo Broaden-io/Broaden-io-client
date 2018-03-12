@@ -7,9 +7,10 @@ export default (state = {}, action) => {
       }
     case 'ASSESSMENTS_SUCCESS':
       return {
+        ...state,
         errorMessage: '',
         isFetching: action.isFetching,
-        assessmentsObject: action.assessment
+        assessmentsObject: action.assessments
       }
     case 'ASSESSMENTS_FAILURE':
       return {
