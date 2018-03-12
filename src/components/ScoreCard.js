@@ -25,7 +25,7 @@ class ScoreCard extends React.Component {
     var type = 'Bar'
 
     return (
-      <div className="col-md-5">
+      <div className="col-md-4">
         <div className="card">
           <div className="card-header card-header-icon" data-background-color="blue">
             <i className="material-icons">pie_chart</i>
@@ -69,17 +69,18 @@ class ScoreCard extends React.Component {
           <div className="card-footer">
             <div className="container">
               <div className="row">
-                <div className="table-responsive">
-                  <table className="table">
-                    <thead className="text-primary">
-                      <tr>
-                        <th>Competency</th>
-                        <th>Score</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><h5>HTML and Templating</h5></td>
+                <div className="col-12">
+                  <div className="table-responsive">
+                    <table className="table">
+                      <thead className="text-primary">
+                        <tr>
+                          <th>Competency</th>
+                          <th>Score</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><h5>HTML and Templating</h5></td>
                           <td><h4 className="text-success"><strong>92%</strong></h4></td>
                         </tr>
                         <tr>
@@ -114,8 +115,9 @@ class ScoreCard extends React.Component {
             </div>
           </div>
         </div>
-      )
-    }
+      </div>
+    )
   }
+}
 
-  export default withRouter(ScoreCard);
+export default withRouter(ScoreCard);
