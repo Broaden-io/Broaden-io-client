@@ -82,7 +82,7 @@ const CompetencyButton = withRouter(props => {
           }
           return (
             <div className={`tab-pane ${active}`} key={uuidv1()} id="dashboard-2">
-              {this.getIsFetching() ? '' : this.renderLevels(index)}
+              {this.getIsFetching() ? null : this.renderLevels(index)}
             </div>
           )
         })
