@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router'
 import ChartistGraph from 'react-chartist';
+import { Link } from 'react-router-dom';
 
 const CompetencyScore = withRouter(
   props => (
@@ -64,8 +65,17 @@ const CompetencyScore = withRouter(
             </div>
             <div className="card-content">
               <div className="typography">
+                <div className="card-title" style={{display: 'block'}}>
+                  <div className="d-flex justify-content-between">
 
-                <h4 className="card-title">{name}</h4>
+                      <h4 className="card-title" style={{ display: 'inline' }}>{name}</h4>
+
+                    <Link to={`/rubrics/${this.props.assessment.rubricId}`} class="btn btn-default btn-simple btn-fab btn-fab-mini" style={{ display: 'inline', paddingLeft:50 }}>
+                      <i class="material-icons">create</i>
+                      <div class="ripple-container"></div>
+                    </Link>
+                  </div>
+                </div>
                 <div className="row">
 
                   <div className="justify-content-center">
