@@ -64,7 +64,7 @@ class ScoreCard extends React.Component {
     const { name, description, Competencies } = assessment
     const totalScore = this.calculateTotalScore()
     return (
-      <div className="col-md-5">
+      <div className="col-md-4">
         <div className="card">
           <div className="card-header card-header-icon" data-background-color="blue">
             <i className="material-icons">pie_chart</i>
@@ -72,7 +72,7 @@ class ScoreCard extends React.Component {
           <div className="card-content">
             <div className="typography">
 
-              <h4 className="card-title">{name}</h4>
+              <h3 className="card-title">{name}</h3>
               <div className="row">
 
                 <div className="justify-content-center">
@@ -96,7 +96,6 @@ class ScoreCard extends React.Component {
                 </div>
 
               </div>
-
               <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div className="panel panel-default">
                   <div className="panel-heading" role="tab" id="headingOne">
