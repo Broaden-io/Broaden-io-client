@@ -51,10 +51,14 @@ const CompetencyButton = withRouter(props => {
               answer={criteria.answer}
               id={criteria.id}
               text={criteria.text} />
+            }).sort((a , b) => {
+              return a.id - b.id;
+            })
+          }).sort((a , b) => {
+            return a.id - b.id;
           })
-        })
+        }
       }
-    }
 
     renderLevels(compIndex) {
       const levelNames = ['Initial', 'Approaching', 'Overtaking', 'Innovating'];
