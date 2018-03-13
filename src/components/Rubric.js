@@ -121,22 +121,22 @@ const CompetencyButton = withRouter(props => {
     getIsFetching() {
       const { assessment } = this.props
       const { isFetching } = assessment
-      if (assessment === null || isFetching === null) {
+      if (assessment === null || isFetching == null) {
         return true;
       }
       return isFetching;
     }
 
     render() {
-      const { rubricJSON: assessment } = this.props.assessment.assessmentObject
-      const { name, description } = assessment
+      // const { rubricJSON: assessment } = this.props.assessment.assessmentObject
+      // const { name, description } = assessment
 
       return (
         <div className="col-md-12">
           <div className="card">
             <div className="card-header">
-              <h2 className="card-title"> {this.getIsFetching() ? null : name + " "}
-                <br/> <small className="category">{this.getIsFetching() ? null : description}</small>
+              <h2 className="card-title"> {this.getIsFetching() ? null : this.props.assessment.assessmentObject.rubricJSON.name + " "}
+                <br/> <small className="category">{this.getIsFetching() ? null : this.props.assessment.assessmentObject.rubricJSON.description}</small>
               </h2>
             </div>
             <div className="card-content">
