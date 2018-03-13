@@ -25,8 +25,8 @@ class CompetencyScore extends Component {
 class ScoreCard extends React.Component {
 
   constructor(props) {
-      super(props)
-      this.calculateTotalScore = this.calculateTotalScore.bind(this)
+    super(props)
+    this.calculateTotalScore = this.calculateTotalScore.bind(this)
   }
 
 
@@ -96,48 +96,44 @@ class ScoreCard extends React.Component {
                 </div>
 
               </div>
-            </div>
-          </div>
 
-          <div className="card-footer">
-            <div className="container">
-              <div className="row">
-
-                <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                    <div className="panel panel-default">
-                        <div className="panel-heading" role="tab" id="headingOne">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                <h4 className="panel-title">
-                                    Details
-                                    <i className="material-icons">keyboard_arrow_down</i>
-                                </h4>
-                            </a>
-                        </div>
-                        <div id="collapseOne" className="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                            <div className="panel-body">
-                              <div className="table-responsive">
-                                <table className="table">
-                                  <thead className="text-primary">
-                                    <tr>
-                                      <th>Competency</th>
-                                      <th>Score</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    {Competencies.map((competency, index) => {
-                                      const score = this.calculateCompetencyScore(competency)
-                                      return <CompetencyScore key={index} score={score} name={competency.name} />
-                                    })}
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                        </div>
+              <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div className="panel panel-default">
+                  <div className="panel-heading" role="tab" id="headingOne">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded={false} aria-controls="collapseOne">
+                      <h4 className="panel-title">
+                        See Details...
+                        <i className="material-icons">keyboard_arrow_down</i>
+                      </h4>
+                    </a>
+                  </div>
+                  <div id="collapseOne" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div className="panel-body">
+                      <div className="table-responsive">
+                        <table className="table">
+                          <thead className="text-primary">
+                            <tr>
+                              <th>COMPETENCY</th>
+                              <th>SCORE</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {Competencies.map((competency, index) => {
+                              const score = this.calculateCompetencyScore(competency)
+                              return <CompetencyScore key={index} score={score} name={competency.name} />
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
+                  </div>
                 </div>
               </div>
+
             </div>
           </div>
+
+
         </div>
       </div>
     )
