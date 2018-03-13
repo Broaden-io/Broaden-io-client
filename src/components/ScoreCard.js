@@ -24,7 +24,20 @@ class CompetencyScore extends Component {
 
 class ScoreCard extends React.Component {
 
-  state = { competencyScore: [] }
+  constructor(props) {
+      super(props)
+      this.calculateTotalScore = this.calculateTotalScore.bind(this)
+  }
+
+
+  calculateTotalScore(){
+    const { Competencies } = this.props.assessment.rubricJSON
+    const totalSum = Competencies.reduce((acc, currentComp, currentCompIndex, competencies) => {
+      return acc + (this.calculateCompetencyScore(currentComp)/ 100)
+    }, 0)
+    const result = (totalSum/Competencies.length) * 100
+    return result.toFixed(0)
+  }
 
   calculateCompetencyScore(competency) {
 
@@ -49,6 +62,7 @@ class ScoreCard extends React.Component {
   render() {
     const assessment = this.props.assessment.rubricJSON
     const { name, description, Competencies } = assessment
+    const totalScore = this.calculateTotalScore()
     return (
       <div className="col-md-5">
         <div className="card">
@@ -64,51 +78,62 @@ class ScoreCard extends React.Component {
                 <div className="justify-content-center">
                   <div className="col-sm-5">
                     <span className="tim-note">OVERALL SCORE</span>
-                    <h1>81%</h1>
+                    <h1>{ totalScore }%</h1>
                   </div>
                 </div>
                 <div className="col-sm-12">
                   <div className="progress progress-line-info">
-                    <div className="progress-bar progress-bar-info" role="progressbar" aria-valuenow="81" aria-valuemin="0" aria-valuemax="100" style={{width: '81%'}}>
-                      <span className="sr-only">81% Complete</span>
+                    <div
+                      className="progress-bar progress-bar-info"
+                      role="progressbar"
+                      aria-valuenow={ totalScore }
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style={{width: `${ totalScore }%`}}>
+                      <span className="sr-only">{ totalScore }% Complete</span>
                     </div>
                   </div>
                 </div>
 
               </div>
             </div>
-            {/*<h6 className="text-left">HTML and Templating  </h6>
-            <h3>92%</h3>
-            <div className="col-xs-12">
-            <div className="progress progress-line-info">
-            <div className="progress-bar progress-bar-info" role="progressbar" aria-valuenow="81" aria-valuemin="0" aria-valuemax="100" style={{width: '81%'}}>
-            <span className="sr-only">92% Complete</span>
-            </div>
-            </div>
-            </div>*/}
           </div>
 
-
-          <div id="chartPreferences" className="ct-chart"></div>
-          {/*<ChartistGraph data={data} options={options} type={type} />*/}
           <div className="card-footer">
             <div className="container">
               <div className="row">
-                <div className="table-responsive">
-                  <table className="table">
-                    <thead className="text-primary">
-                      <tr>
-                        <th>Competency</th>
-                        <th>Score</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {Competencies.map((competency, index) => {
-                        const score = this.calculateCompetencyScore(competency)
-                        return <CompetencyScore key={index} score={score} name={competency.name} />
-                      })}
-                    </tbody>
-                  </table>
+
+                <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div className="panel panel-default">
+                        <div className="panel-heading" role="tab" id="headingOne">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <h4 className="panel-title">
+                                    Details
+                                    <i className="material-icons">keyboard_arrow_down</i>
+                                </h4>
+                            </a>
+                        </div>
+                        <div id="collapseOne" className="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div className="panel-body">
+                              <div className="table-responsive">
+                                <table className="table">
+                                  <thead className="text-primary">
+                                    <tr>
+                                      <th>Competency</th>
+                                      <th>Score</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {Competencies.map((competency, index) => {
+                                      const score = this.calculateCompetencyScore(competency)
+                                      return <CompetencyScore key={index} score={score} name={competency.name} />
+                                    })}
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
               </div>
             </div>
