@@ -8,29 +8,13 @@ class CompetencyScore extends Component {
     super(props)
   }
 
-  calculateCompetencyScore() {
-    {/*
-    TODO: Calculate the total points of the user's checked criteria
-    TODO: Calculate the total points possible
-    */}
-
-    const scoreTotals = {
-      userTotal = 0
-      competencyTotal = 0
-    }
-
-    
-
-    return (81)
-  }
-
   render() {
     return (
       <tr>
-        <td><h5>{this.props.competency.name}</h5></td>
+        <td><h5>{this.props.name}</h5></td>
         <td>
           <h4 className="text-default">
-            <strong>{this.calculateCompetencyScore()}%</strong>
+            <strong>{this.props.score}%</strong>
           </h4>
         </td>
       </tr>
@@ -39,6 +23,28 @@ class CompetencyScore extends Component {
 }
 
 class ScoreCard extends React.Component {
+
+  state = { competencyScore: [] }
+
+  calculateCompetencyScore(competency) {
+
+    const scoreTotals = {
+      userTotal: 0,
+      competencyTotal: 0
+    }
+
+    const { Scales } = competency
+
+    Scales.map((scale, index) => {
+      scale.Criteria.map((criterion, index) => {
+        criterion.answer && (scoreTotals.userTotal += criterion.level)
+        scoreTotals.competencyTotal += criterion.level
+      })
+    })
+
+    const score = scoreTotals.competencyTotal === 0 ? 0 : (scoreTotals.userTotal/scoreTotals.competencyTotal *100)
+    return score.toFixed(0)
+  }
 
   render() {
     const assessment = this.props.assessment.rubricJSON
@@ -98,7 +104,8 @@ class ScoreCard extends React.Component {
                     </thead>
                     <tbody>
                       {Competencies.map((competency, index) => {
-                        return <CompetencyScore key={index} competency={competency} />
+                        const score = this.calculateCompetencyScore(competency)
+                        return <CompetencyScore key={index} score={score} name={competency.name} />
                       })}
                     </tbody>
                   </table>
