@@ -19,7 +19,7 @@ export const assessmentsError = (message) => ({
 })
 
 // GET ASSESSMENTs BY USERID - assessments index
-export function getAssessments(userId) {
+export function getAssessments(userId){
   let config = {
     method: 'GET',
     headers: {

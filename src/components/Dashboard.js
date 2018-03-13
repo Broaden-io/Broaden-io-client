@@ -1,3 +1,5 @@
+import * as Actions from '../actions/assessments';
+import { bindActionCreators } from 'redux';
 import React, { Component } from 'react';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
@@ -15,22 +17,33 @@ var Chartist = require("chartist");
 
 class Dashboard extends Component {
 
+componentWillMount() {
+  const userId = localStorage.getItem('userId')
+  this.props.getAssessments(userId)
+}
+
   render() {
+    const { assessmentsObject, isFetching } = this.props.assessments
     return (
       <div>
         <div className="row">
-          <ScoreCard />
+          {isFetching ? null : assessmentsObject.map((assessment, index)=>{
+              return <ScoreCard key={index} assessment={assessment}/>
+          })}
         </div>
       </div>
-
-
     );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
+    assessments: state.assessments
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Dashboard))
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(Actions, dispatch);
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Dashboard))

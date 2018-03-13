@@ -1,4 +1,7 @@
-export default (state = {}, action) => {
+export default (state = {
+  isFetching: true,
+  assessmentsObject: []
+}, action) => {
   switch (action.type) {
     case 'REQUEST_ASSESSMENTS':
       return {
@@ -7,9 +10,10 @@ export default (state = {}, action) => {
       }
     case 'ASSESSMENTS_SUCCESS':
       return {
+        ...state,
         errorMessage: '',
         isFetching: action.isFetching,
-        assessmentsObject: action.assessment
+        assessmentsObject: action.assessments
       }
     case 'ASSESSMENTS_FAILURE':
       return {
