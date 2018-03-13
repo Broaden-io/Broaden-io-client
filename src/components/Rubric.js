@@ -40,9 +40,8 @@ const CompetencyButton = withRouter(props => {
     }
 
     renderCriteriaForLevel(level, compIndex) {
-      const { Competencies } = this.props.assessment.assessmentObject.rubricJSON;
-      if (Competencies) {
-        return Competencies[compIndex].Scales.map((scale, index) => {
+      if (this.props.assessment.assessmentObject.rubricJSON.Competencies) {
+        return this.props.assessment.assessmentObject.rubricJSON.Competencies[compIndex].Scales.map((scale, index) => {
           // if the criteria level matches the level parameter, add the
           // criteria component
           return scale.Criteria.filter(criteria => criteria.level === level).map((criteria, index) => {
@@ -51,7 +50,11 @@ const CompetencyButton = withRouter(props => {
               answer={criteria.answer}
               id={criteria.id}
               text={criteria.text} />
+          }).sort((a , b) => {
+            return a.id - b.id;
           })
+        }).sort((a , b) => {
+          return a.id - b.id;
         })
       }
     }
@@ -74,19 +77,19 @@ const CompetencyButton = withRouter(props => {
     }
 
     renderCompetencies() {
-      const { assessmentObject } = this.props.assessment
-      if (assessmentObject) {
-        const { Competencies } = assessmentObject.rubricJSON
-        return Competencies.map((comp, index) => {
-          let active = '';
+      if (this.props.assessment.assessmentObject) {
+        return this.props.assessment.assessmentObject.rubricJSON.Competencies.map((comp, index) => {
+          var active = "";
           if (index === this.state.activeCompetencyIndex) {
-            active = 'active';
+            active = "active";
           }
           return (
             <div className={`tab-pane ${active}`} key={uuidv1()} id="dashboard-2">
-              {this.getIsFetching() ? null : this.renderLevels(index)}
+              {this.getIsFetching() ? "" : this.renderLevels(index)}
             </div>
           )
+        }).sort((a , b) => {
+          return a.id - b.id;
         })
       }
     }
@@ -96,13 +99,11 @@ const CompetencyButton = withRouter(props => {
     }
 
     renderCompetencyButtons() {
-      const { assessmentObject } = this.props.assessment
-      if (assessmentObject) {
-        const { Competencies } = assessmentObject.rubricJSON;
-        return Competencies.map((comp, index) => {
-          let active = '';
+      if (this.props.assessment.assessmentObject) {
+        return this.props.assessment.assessmentObject.rubricJSON.Competencies.map((comp, index) => {
+          var active = "";
           if (index === this.state.activeCompetencyIndex) {
-            active = 'active';
+            active = "active";
           }
           return (
             <CompetencyButton
@@ -114,29 +115,26 @@ const CompetencyButton = withRouter(props => {
               setActiveComp={this.setActiveComp.bind(this)}
               />
           )
+        }).sort((a , b) => {
+          return a.id - b.id;
         })
       }
     }
 
     getIsFetching() {
-      const { assessment } = this.props
-      const { isFetching } = assessment
-      if (assessment === null || isFetching === null) {
+      if (this.props.assessment == null || this.props.assessment.isFetching == null) {
         return true;
       }
-      return isFetching;
+      return this.props.assessment.isFetching;
     }
 
     render() {
-      const { rubricJSON: assessment } = this.props.assessment.assessmentObject
-      const { name, description } = assessment
-
       return (
         <div className="col-md-12">
           <div className="card">
             <div className="card-header">
-              <h2 className="card-title"> {this.getIsFetching() ? null : name + " "}
-                <br/> <small className="category">{this.getIsFetching() ? null : description}</small>
+              <h2 className="card-title"> {this.getIsFetching() ? "" : this.props.assessment.assessmentObject.rubricJSON.name + " "}
+                <br/> <small className="category">{this.getIsFetching() ? "" : this.props.assessment.assessmentObject.rubricJSON.description}</small>
               </h2>
             </div>
             <div className="card-content">
