@@ -27,7 +27,9 @@ class SignUp extends Component {
   }
 
   validate() {
-    if (this.state.registerForm.username.length > 1 && this.state.isHuman ) {
+    if (this.state.registerForm.username.length > 1
+      && this.state.isHuman
+      && this.state.rawPassword.length > 7) {
       this.setState({
         isValid: true
       })
