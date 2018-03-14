@@ -57,7 +57,6 @@ export const receiveLogout = () => ({
 })
 
 export function loginUser(creds) {
-  console.log("requesting login...")
   let config = {
     method: 'POST',
     headers: {
@@ -76,8 +75,6 @@ export function loginUser(creds) {
       }
       return res.json();
     }).then((json) => {
-        console.log(json);
-        console.log("logged in!")
         localStorage.setItem('token', json.token);
         localStorage.setItem('userId', json.user.id)
         localStorage.setItem('username', json.user.username)
