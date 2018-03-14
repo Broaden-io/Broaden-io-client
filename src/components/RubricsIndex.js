@@ -9,11 +9,10 @@ const RubricElement = withRouter(
   (props) => {
     return (
       <tr>
-        <td className="text-center"> {props.index + 1} </td>
         <td>
           <div>
-            <Link to={`/rubrics/${props.rubricId}`}>
-              {props.name}
+            <Link to={`/rubrics/${props.rubricId}`} className="text-info" style={{letterSpacing: '1px'}}>
+              <h4 style={{ fontWeight: 400 }}>{props.name}</h4>
             </Link>
           </div>
         </td>
@@ -48,14 +47,13 @@ class RubricsIndex extends Component {
             <i className="material-icons">assignment</i>
           </div>
           <div className="card-content">
-            <h4 className="card-title">Rubrics</h4>
+            <h4 className="card-title">Please Pick a Rubric...</h4>
             <div className="table-responsive">
               <table className="table">
                 <thead>
                   <tr>
-                    <th className="text-center">#</th>
-                    <th>Name</th>
-                    <th>Description</th>
+                    <th><h2 style={{ marginTop: 0 }}><small>Name</small></h2></th>
+                    <th><h2 style={{ marginTop: 0 }}><small>Description</small></h2></th>
                   </tr>
                 </thead>
                 <tbody>
