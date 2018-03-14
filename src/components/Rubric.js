@@ -78,9 +78,9 @@ const CompetencyButton = withRouter(props => {
     }
 
     renderCompetencies() {
-      const { assessmentObject } = this.props.assessment
+      const { assessmentObject } = this.props.assessment;
       if (assessmentObject) {
-        const { Competencies } = assessmentObject.rubricJSON
+        const { Competencies } = assessmentObject.rubricJSON;
         return Competencies.map((comp, index) => {
           let active = '';
           if (index === this.state.activeCompetencyIndex) {
@@ -100,7 +100,7 @@ const CompetencyButton = withRouter(props => {
     }
 
     renderCompetencyButtons() {
-      const { assessmentObject } = this.props.assessment
+      const { assessmentObject } = this.props.assessment;
       if (assessmentObject) {
         const { Competencies } = assessmentObject.rubricJSON;
         return Competencies.map((comp, index) => {
@@ -123,8 +123,8 @@ const CompetencyButton = withRouter(props => {
     }
 
     getIsFetching() {
-      const { assessment } = this.props
-      const { isFetching } = assessment
+      const { assessment } = this.props;
+      const { isFetching } = assessment;
       if (assessment === null || isFetching == null) {
         return true;
       }
@@ -132,8 +132,6 @@ const CompetencyButton = withRouter(props => {
     }
 
     render() {
-      // const { rubricJSON: assessment } = this.props.assessment.assessmentObject
-      // const { name, description } = assessment
 
       return (
         <div className="col-md-12">
