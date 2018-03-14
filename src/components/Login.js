@@ -41,11 +41,12 @@ class Login extends Component {
       <div className="off-canvas-sidebar">
         <nav className="navbar navbar-primary navbar-transparent navbar-absolute">
           <div className="container">
-            <ToastContainer
-              hideProgressBar={true}
-              newestOnTop={true}
-              autoClose={5000}
-            />
+          <ToastContainer
+            hideProgressBar={true}
+            position={'top-center'}
+            newestOnTop={true}
+            autoClose={5000}
+          />
             <div className="navbar-header">
               <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
                 <span className="sr-only">Toggle navigation</span>

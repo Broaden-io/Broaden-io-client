@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { Alert } from './Alert';
 import bcrypt from 'bcryptjs';
 import serverPath from '../paths';
@@ -27,9 +27,9 @@ class SignUp extends Component {
   }
 
   validate() {
-    if (this.state.registerForm.username.length > 1
+    if (this.state.registerForm.username.length > 4
       && this.state.isHuman
-      && this.state.rawPassword.length > 7) {
+      && this.state.rawPassword.length > 4) {
       this.setState({
         isValid: true
       })
@@ -71,6 +71,7 @@ class SignUp extends Component {
           <div className="container">
             <ToastContainer
               hideProgressBar={true}
+              position={'top-center'}
               newestOnTop={true}
               autoClose={5000}
             />
