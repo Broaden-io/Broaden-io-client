@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
 import * as Actions from '../actions/auth';
 
 class Login extends Component {
 
   constructor(props) {
     super(props)
-    this.sendSweetAlert = this.sendSweetAlert.bind(this)
+    this.showErrorMessage = this.showErrorMessage.bind(this)
     this.submitForm = this.submitForm.bind(this)
 
     this.state = {
@@ -27,13 +28,17 @@ class Login extends Component {
   submitForm(e) {
     e.preventDefault();
     this.props.loginUser(this.state.loginForm).then(() => {
-      this.props.history.push(`/dashboard`);
+      if (this.props.auth.isAuthenticated) {
+        this.props.history.push(`/dashboard`);
+      } else {
+        console.log("Failed to log in!")
+        showErrorMessage
+      }
     });
   }
 
-  sendSweetAlert() {
-    const options = { title:"Good job!", text: "You clicked the button!", type: "success", buttonsStyling: true, confirmButtonClass: "btn btn-success"}
-    this.submitButton.swal(options)
+  showErrorMessage() {
+
   }
 
   render() {
@@ -62,7 +67,6 @@ class Login extends Component {
                       <i className="material-icons">fingerprint</i> Login
                       </Link>
                     </li>
-
                   </ul>
                 </div>
               </div>

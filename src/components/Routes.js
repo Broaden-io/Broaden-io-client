@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
 import SignUp from './SignUp';
@@ -8,18 +8,14 @@ import Sidebar from './Sidebar'
 
 class Routes extends Component {
 
-  redirect() {
-
-  }
-
   render() {
-    const isLoggedIn = this.props.auth.isAuthenticated
+    const isLoggedIn = this.props.auth.isAuthenticated;
 
     return (
       <div className="wrapper">
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
-        { isLoggedIn ? <Sidebar/> : <Login/> }
+        { isLoggedIn ? <Sidebar/> : <Login /> }
       </div>
     );
   }

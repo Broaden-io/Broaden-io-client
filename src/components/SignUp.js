@@ -66,20 +66,15 @@ class SignUp extends Component {
             </div>
             <div className="collapse navbar-collapse">
               <ul className="nav navbar-nav navbar-right">
-                <li>
-                  <a href="">
-                    <i className="material-icons">dashboard</i> Dashboard
-                    </a>
-                  </li>
                   <li className=" active ">
                     <a href="">
                       <i className="material-icons">person_add</i> Sign Up
                       </a>
                     </li>
                     <li className="">
-                      <a href="">
+                      <Link to='/login'>
                         <i className="material-icons">fingerprint</i> Login
-                        </a>
+                      </Link>
                       </li>
                     </ul>
                   </div>
