@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router'
 import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
+import { connect } from 'react-redux';
 import * as Actions from '../actions/auth';
-
+import { Alert } from './Alert';
 class Login extends Component {
 
   constructor(props) {
     super(props)
-    this.showErrorMessage = this.showErrorMessage.bind(this)
     this.submitForm = this.submitForm.bind(this)
 
     this.state = {
@@ -32,13 +31,9 @@ class Login extends Component {
         this.props.history.push(`/dashboard`);
       } else {
         console.log("Failed to log in!")
-        showErrorMessage
+        Alert('loginError')
       }
     });
-  }
-
-  showErrorMessage() {
-
   }
 
   render() {
@@ -46,6 +41,11 @@ class Login extends Component {
       <div className="off-canvas-sidebar">
         <nav className="navbar navbar-primary navbar-transparent navbar-absolute">
           <div className="container">
+            <ToastContainer
+              hideProgressBar={true}
+              newestOnTop={true}
+              autoClose={5000}
+            />
             <div className="navbar-header">
               <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
                 <span className="sr-only">Toggle navigation</span>

@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import bcrypt from 'bcryptjs'
-import serverPath from '../paths'
-import axios from 'axios'
-import Footer from './Footer'
+import { ToastContainer, toast } from 'react-toastify';
+import { Alert } from './Alert';
+import bcrypt from 'bcryptjs';
+import serverPath from '../paths';
+import axios from 'axios';
+import Footer from './Footer';
 
 class SignUp extends Component {
 
   constructor(props) {
     super(props)
-    this.sendSweetAlert = this.sendSweetAlert.bind(this)
     this.submitForm = this.submitForm.bind(this)
 
     this.state = {
@@ -33,19 +34,15 @@ class SignUp extends Component {
           if (response.status === 200) {
             this.props.history.push('/')
           } else {
+            return Promise.reject('could not signup')
           }
         })
         .catch(error => {
+          Alert('signupError');
         })
       });
     });
   }
-
-  sendSweetAlert() {
-    const options = { title:"Good job!", text: "You clicked the button!", type: "success", buttonsStyling: true, confirmButtonClass: "btn btn-success"}
-    this.submitButton.swal(options)
-  }
-
 
 
   render() {
@@ -53,6 +50,11 @@ class SignUp extends Component {
       <div className="off-canvas-sidebar">
         <nav className="navbar navbar-primary navbar-transparent navbar-absolute">
           <div className="container">
+            <ToastContainer
+              hideProgressBar={true}
+              newestOnTop={true}
+              autoClose={5000}
+            />
             <div className="navbar-header">
               <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
                 <span className="sr-only">Toggle navigation</span>
