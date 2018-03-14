@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router'
 import ChartistGraph from 'react-chartist';
+import { Link } from 'react-router-dom';
+import uuidv1 from 'uuid/v1';
 
 const CompetencyScore = withRouter(
   props => (
@@ -56,6 +58,7 @@ const CompetencyScore = withRouter(
       const assessment = this.props.assessment.rubricJSON
       const { name, description, Competencies } = assessment
       const totalScore = this.calculateTotalScore()
+      const key = uuidv1()
       return (
         <div className="col-md-4">
           <div className="card">
@@ -64,8 +67,17 @@ const CompetencyScore = withRouter(
             </div>
             <div className="card-content">
               <div className="typography">
+                <div className="card-title" style={{display: 'block'}}>
+                  <div className="d-flex justify-content-between">
 
-                <h4 className="card-title">{name}</h4>
+                      <h4 className="card-title" style={{ display: 'inline' }}>{name}</h4>
+
+                    <Link to={`/rubrics/${this.props.assessment.rubricId}`} className="btn btn-default btn-simple btn-fab btn-fab-mini" style={{ display: 'inline', paddingLeft:50 }}>
+                      <i className="material-icons">create</i>
+                      <div className="ripple-container"></div>
+                    </Link>
+                  </div>
+                </div>
                 <div className="row">
 
                   <div className="justify-content-center">
@@ -89,17 +101,17 @@ const CompetencyScore = withRouter(
                   </div>
 
                 </div>
-                <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div className="panel-group" id={`accordion${key}`} role="tablist" aria-multiselectable="true">
                   <div className="panel panel-default">
-                    <div className="panel-heading" role="tab" id="headingOne">
-                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded={false} aria-controls="collapseOne">
+                    <div className="panel-heading" role="tab" id={`headingOne${key}`}>
+                      <a role="button" data-toggle="collapse" data-parent={`#accordion${key}`} href={`#collapseOne${key}`} aria-expanded={false} aria-controls={`collapseOne${key}`}>
                         <h4 className="panel-title">
                           See Details...
                           <i className="material-icons">keyboard_arrow_down</i>
                         </h4>
                       </a>
                     </div>
-                    <div id="collapseOne" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div id={`collapseOne${key}`} className="panel-collapse collapse" role="tabpanel" aria-labelledby={`#headingOne${key}`}>
                       <div className="panel-body">
                         <div className="table-responsive">
                           <table className="table">

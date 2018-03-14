@@ -6756,7 +6756,7 @@ h2.title {
 
 .perfect-scrollbar-off .sidebar .sidebar-wrapper,
 .perfect-scrollbar-off .main-panel {
-    overflow: auto;
+    overflow: hidden;
 }
 
 .visible-on-sidebar-regular {
@@ -9854,7 +9854,8 @@ fieldset[disabled] .form-group.is-focused .checkbox label {
     position: absolute;
     left: 0;
     content: "";
-    background-color: rgba(0, 0, 0, 0.84);
+    /* background-color: rgba(0, 0, 0, 0.84); */
+    background-color: rgba(0, 0, 0, 0);
     height: 20px;
     width: 20px;
     border-radius: 100%;
