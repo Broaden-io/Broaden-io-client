@@ -54,8 +54,6 @@ const CompetencyScore = withRouter(
       return score.toFixed(0)
     }
 
-
-
     render() {
       const assessment = this.props.assessment.rubricJSON
       const { name, description, Competencies } = assessment
@@ -74,9 +72,9 @@ const CompetencyScore = withRouter(
 
                       <h4 className="card-title" style={{ display: 'inline' }}>{name}</h4>
 
-                    <Link to={`/rubrics/${this.props.assessment.rubricId}`} class="btn btn-default btn-simple btn-fab btn-fab-mini" style={{ display: 'inline', paddingLeft:50 }}>
-                      <i class="material-icons">create</i>
-                      <div class="ripple-container"></div>
+                    <Link to={`/rubrics/${this.props.assessment.rubricId}`} className="btn btn-default btn-simple btn-fab btn-fab-mini" style={{ display: 'inline', paddingLeft:50 }}>
+                      <i className="material-icons">create</i>
+                      <div className="ripple-container"></div>
                     </Link>
                   </div>
                 </div>

@@ -32,6 +32,8 @@ class Sidebar extends Component {
       avatarURL: localStorage.getItem('avatarURL'),
     }
 
+    const renderedUserName = ((user.firstName == 'null') || (user.lastName == 'null')) ? user.username : `${user.firstName} ${user.lastName}`;
+
     return (
       <div className="wrapper">
         <div className="sidebar" data-active-color="rose" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
@@ -52,7 +54,7 @@ class Sidebar extends Component {
               <div className="info">
                 <a href="" className="">
                   <span>
-                    {`${user.firstName} ${user.lastName}`}
+                    {renderedUserName}
                     <b className="caret"></b>
                   </span>
                 </a>
