@@ -34,7 +34,7 @@ export const setUpdatedAssessment = (assessment) => ({
 // for the specified criteriaId
 // then sends the updated assessment in an action to set the state with
 // the updated assessment
-export function updateAssesment(assessment, criteriaId){
+export function updateAssessment(assessment, criteriaId){
 
   // look through the assessment object to find the criteria
   // with the id criteriaId
@@ -68,6 +68,7 @@ export function updateAssesment(assessment, criteriaId){
       return a.id - b.id;
     })
   }
+
 
   var newAssessment = {
     ...assessment,
