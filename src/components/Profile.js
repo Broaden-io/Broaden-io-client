@@ -9,10 +9,10 @@ class Profile extends Component {
         <div className="col-md-8">
           <div className="card">
             <div className="card-header card-header-icon" data-background-color="row">
-              <i class="material-icons">perm_identity</i>
+              <i className="material-icons">perm_identity</i>
             </div>
             <div className="card-content">
-              <h4 className="card-title"> Edit Profile - </h4>  <small class="category">Complete your profile</small>
+              <h4 className="card-title"> Edit Profile - </h4>  <small className="category">Complete your profile</small>
             </div>
           </div>
         </div>
