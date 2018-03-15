@@ -14,12 +14,10 @@ class Routes extends Component {
   }
 
   handleRedirect() {
-    if (this.props.location.pathname === '/') {
-      if (this.props.auth.isAuthenticated) {
-        return <Sidebar />
-      } else {
-          return <Redirect from='/' to='/login' exact />
-      }
+    if (this.props.auth.isAuthenticated) {
+      return <Sidebar />
+    } else if (this.props.location.pathname === '/') {
+        return <Redirect from='/' to='/login' exact />
     }
   }
 
