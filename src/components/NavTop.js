@@ -48,50 +48,18 @@ class NavTop extends Component {
             </div>
             <div className="collapse navbar-collapse">
               <ul className="nav navbar-nav navbar-right">
-                  <li className=" ">
+                  <li className="">
                     <a href="" onClick={() => {
                       this.props.logoutUser();
                     }}>
                       <i className="material-icons">fingerprint</i> Logout
                     </a>
                   </li>
-                  <li className="dropdown">
-                    <a href=""
-                      onClick={() => {
-                        this.props.logoutUser();
-                      }}
-                      className="dropdown-toggle"
-                      data-toggle="dropdown-profile">
+                  <li>
+                    <a href={`/profile/${localStorage.getItem('username')}`}>
                       <i className="material-icons">person</i>
                       <p className="hidden-lg hidden-md">Profile</p>
                     </a>
-                    <ul className="dropdown-menu">
-                      <li>
-                        <a href="">
-                          Mike John responded to your email
-                        </a>
-                      </li>
-                      <li>
-                        <a href="">
-                          You have 5 new tasks
-                        </a>
-                      </li>
-                      <li>
-                        <a href="">
-                          You're now friend with Andrew
-                        </a>
-                      </li>
-                      <li>
-                        <a href="">
-                          Another Notification
-                        </a>
-                      </li>
-                      <li>
-                        <a href="">
-                          Another One
-                        </a>
-                      </li>
-                    </ul>
                   </li>
                   <li className="separator hidden-lg hidden-md" />
                 </ul>

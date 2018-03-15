@@ -13,7 +13,17 @@ class Profile extends Component {
     }
   }
 
+  // make sure that the user can only submit an edit request for their OWN user account
+
   render() {
+    const user = {
+      username: localStorage.getItem('username'),
+      userId: localStorage.getItem('userId'),
+      firstName: localStorage.getItem('firstName'),
+      lastName: localStorage.getItem('lastName'),
+      avatarURL: localStorage.getItem('avatarURL'),
+    }
+
     return(
       <div className="row">
         <div className="col-md-8">
@@ -30,13 +40,13 @@ class Profile extends Component {
                   <div className="col-md-3">
                     <div className="form-group label-floating is-empty">
                       <label className="control-label">Username</label>
-                      <input type="text" className="form-control" />
+                      <input type="text" className="form-control" value={this.state.username} onChange={(e) => this.setState({username: e.target.value})}/>
                     <span className="material-input"></span></div>
                   </div>
                   <div className="col-md-4">
                     <div className="form-group label-floating is-empty">
                       <label className="control-label">Email address</label>
-                      <input type="email" className="form-control" />
+                      <input type="email" className="form-control" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}/>
                     <span className="material-input"></span></div>
                   </div>
                   </div>
