@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import bcrypt from 'bcryptjs'
-import serverPath from '../paths'
-import axios from 'axios'
-import Footer from './Footer'
+import { ToastContainer } from 'react-toastify';
+import { Alert } from './Alert';
+import bcrypt from 'bcryptjs';
+import serverPath from '../paths';
+import axios from 'axios';
+import Footer from './Footer';
 
 class SignUp extends Component {
 
   constructor(props) {
     super(props)
-    this.sendSweetAlert = this.sendSweetAlert.bind(this)
-    this.submitForm = this.submitForm.bind(this)
+    this.submitForm = this.submitForm.bind(this);
+    this.validate = this.validate.bind(this);
 
     this.state = {
       registerForm: {
@@ -24,28 +26,42 @@ class SignUp extends Component {
     }
   }
 
+  validate() {
+    if (this.state.registerForm.username.length > 4
+      && this.state.isHuman
+      && this.state.rawPassword.length > 4) {
+      this.setState({
+        isValid: true
+      })
+    } else {
+      this.setState({
+        isValid: false
+      })
+    }
+  }
+
   submitForm() {
-    bcrypt.genSalt(11, (err, salt) => {
-      bcrypt.hash(this.state.rawPassword, salt, (err, hash) => {
-        const newUser = {...this.state.registerForm, password: hash}
-        axios.post(`${serverPath}/signup`, newUser)
-        .then(response => {
-          if (response.status === 200) {
-            this.props.history.push('/')
-          } else {
-          }
-        })
-        .catch(error => {
-        })
+    if (this.state.isValid) {
+      bcrypt.genSalt(11, (err, salt) => {
+        bcrypt.hash(this.state.rawPassword, salt, (err, hash) => {
+          const newUser = {...this.state.registerForm, password: hash}
+          axios.post(`${serverPath}/signup`, newUser)
+          .then(response => {
+            if (response.status === 200) {
+              this.props.history.push('/');
+            } else {
+              return Promise.reject('could not signup')
+            }
+          })
+          .catch(error => {
+            Alert('signupError');
+          })
+        });
       });
-    });
+    } else {
+      Alert('signupError');
+    }
   }
-
-  sendSweetAlert() {
-    const options = { title:"Good job!", text: "You clicked the button!", type: "success", buttonsStyling: true, confirmButtonClass: "btn btn-success"}
-    this.submitButton.swal(options)
-  }
-
 
 
   render() {
@@ -53,6 +69,12 @@ class SignUp extends Component {
       <div className="off-canvas-sidebar">
         <nav className="navbar navbar-primary navbar-transparent navbar-absolute">
           <div className="container">
+            <ToastContainer
+              hideProgressBar={true}
+              position={'top-center'}
+              newestOnTop={true}
+              autoClose={5000}
+            />
             <div className="navbar-header">
               <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
                 <span className="sr-only">Toggle navigation</span>
@@ -66,20 +88,15 @@ class SignUp extends Component {
             </div>
             <div className="collapse navbar-collapse">
               <ul className="nav navbar-nav navbar-right">
-                <li>
-                  <a href="">
-                    <i className="material-icons">dashboard</i> Dashboard
-                    </a>
-                  </li>
                   <li className=" active ">
                     <a href="">
                       <i className="material-icons">person_add</i> Sign Up
                       </a>
                     </li>
                     <li className="">
-                      <a href="">
+                      <Link to='/login'>
                         <i className="material-icons">fingerprint</i> Login
-                        </a>
+                      </Link>
                       </li>
                     </ul>
                   </div>
@@ -141,24 +158,40 @@ class SignUp extends Component {
                                         <span className="input-group-addon">
                                           <i className="material-icons">face</i>
                                         </span>
-                                        <input type="text" value={this.state.registerForm.username} onChange={(e) => this.setState({...this.state, registerForm: {...this.state.registerForm, username: e.target.value}})} className="form-control" placeholder="Username..."/>
+                                        <input type="text" value={this.state.registerForm.username} onChange={(e) => {
+                                          this.setState({...this.state, registerForm: {...this.state.registerForm, username: e.target.value}}, () => {
+                                            this.validate();
+                                          })
+                                        }} className="form-control" placeholder="Username..."/>
                                       </div>
                                       <div className="input-group">
                                         <span className="input-group-addon">
                                           <i className="material-icons">email</i>
                                         </span>
-                                        <input type="text" value={this.state.registerForm.email} onChange={(e) => this.setState({...this.state, registerForm: {...this.state.registerForm, email: e.target.value}})} className="form-control" placeholder="Email..."/>
+                                        <input type="text" value={this.state.registerForm.email} onChange={(e) => {
+                                          this.setState({...this.state, registerForm: {...this.state.registerForm, email: e.target.value}}, () => {
+                                            this.validate()
+                                          })
+                                        }} className="form-control" placeholder="Email..."/>
                                       </div>
                                       <div className="input-group">
                                         <span className="input-group-addon">
                                           <i className="material-icons">lock_outline</i>
                                         </span>
-                                        <input type="password" value={this.state.rawPassword} onChange={(e) => this.setState({...this.state, rawPassword: e.target.value})} placeholder="Password..." className="form-control" />
+                                        <input type="password" value={this.state.rawPassword} onChange={(e) => {
+                                          this.setState({...this.state, rawPassword: e.target.value}, () => {
+                                            this.validate();
+                                          })
+                                        }} placeholder="Password..." className="form-control" />
                                       </div>
                                       {/*<!-- If you want to add a checkbox to this form, uncomment this code -->*/}
                                       <div className="checkbox">
                                         <label>
-                                          <input type="checkbox" name="optionsCheckboxes" checked={this.state.isHuman} onChange={(e) => this.setState({...this.state, isHuman: !this.state.isHuman})}/> I am not a robot!
+                                          <input type="checkbox" name="optionsCheckboxes" checked={this.state.isHuman} onChange={(e) => {
+                                            this.setState({...this.state, isHuman: !this.state.isHuman}, () => {
+                                              this.validate();
+                                            })
+                                          }}/> I am not a robot!
                                           </label>
                                         </div>
                                       </div>
