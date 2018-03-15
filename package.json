@@ -7,6 +7,7 @@
     "axios": "^0.17.1",
     "bcryptjs": "^2.4.3",
     "chartist": "^0.10.1",
+    "lint": "^1.1.2",
     "material-ui": "1.0.0-beta.34",
     "material-ui-icons": "1.0.0-beta.17",
     "prop-types": "^15.6.0",

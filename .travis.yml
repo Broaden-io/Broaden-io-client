@@ -1,6 +1,6 @@
 language: node_js
 node_js:
- - "node"
-env:
-- MY_VAR=TassosIsOldMan
-- NODE_ENV=TEST
+  - 8.9.4
+script:
+  - "npm run lint"
+  - "npm run test"
