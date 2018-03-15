@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as AuthActions from '../actions/auth';
+import { withRouter } from 'react-router'
+import * as Actions from '../actions/auth';
 
 class NavTop extends Component {
   constructor(props) {
@@ -89,14 +90,18 @@ class NavTop extends Component {
                   </ul>
                   </li>*/}
                   <li className=" ">
-                    <a href="" onClick={this.props.logoutUser}>
+                    <a href="" onClick={() => {
+                      this.props.logoutUser();
+                    }}>
                       <i className="material-icons">fingerprint
                       </i> Logout
                     </a>
                   </li>
                   <li className="dropdown">
                     <a href=""
-                      onClick={() => this.props.history.push(`/${localStorage.getItem('username')}`)}
+                      onClick={() => {
+                        this.props.logoutUser();
+                      }}
                       className="dropdown-toggle"
                       data-toggle="dropdown-profile">
                       <i className="material-icons">person</i>
@@ -157,9 +162,14 @@ class NavTop extends Component {
         );
       }
     }
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  }
+}
 
-    const mapDispatchToProps = (dispatch) => {
-      return bindActionCreators(AuthActions, dispatch)
-    }
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(Actions, dispatch);
+}
 
-    export default connect(mapDispatchToProps)(NavTop);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavTop))

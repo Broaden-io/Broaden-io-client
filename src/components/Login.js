@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { ToastContainer, toast } from 'react-toastify';
 import { connect } from 'react-redux';

@@ -44,12 +44,6 @@ export const loginError = (message) => ({
   message
 })
 
-export const requestLogout = () => ({
-  type: 'LOGOUT_REQUEST',
-  isFetching: true,
-  isAuthenticated: false
-})
-
 export const receiveLogout = () => ({
   type: 'LOGOUT_SUCCESS',
   isFetching: false,
@@ -98,10 +92,9 @@ export function logoutUser() {
       localStorage.removeItem('lastName');
       localStorage.removeItem('email');
       localStorage.removeItem('avatarURL');
-      // dispatch(receiveLogout());
-
-      history.push(`/`);
-
-      // check this ...
+      return dispatch => {
+        dispatch(receiveLogout());
+        history.push(`/login`);
+      }
 
 }
