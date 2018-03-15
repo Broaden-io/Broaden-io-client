@@ -52,7 +52,7 @@ class Sidebar extends Component {
                 <img alt="avatar" src={user.avatarURL} />
               </div>
               <div className="info">
-                <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+                <a data-toggle="collapse" href="#collapseExample" className="collapsed">
                   <span>
                     {renderedUserName}
                     <b className="caret"></b>
@@ -60,23 +60,23 @@ class Sidebar extends Component {
                 </a>
                 <div className="clearfix"></div>
                 <div className="collapse" id="collapseExample">
-                  <ul class="nav">
+                  <ul className="nav">
                       <li>
-                          <Link to={`/profile/${user.username}`} exact>
-                              <span class="sidebar-mini"> MP </span>
-                              <span class="sidebar-normal"> My Profile </span>
+                          <Link to={`/profile/${user.username}`}>
+                              <span className="sidebar-mini"> MP </span>
+                              <span className="sidebar-normal"> My Profile </span>
                           </Link>
                       </li>
                       <li>
-                          <Link to={`/profile/${user.username}`} exact>
-                              <span class="sidebar-mini"> EP </span>
-                              <span class="sidebar-normal"> Edit Profile </span>
+                          <Link to={`/profile/${user.username}`}>
+                              <span className="sidebar-mini"> EP </span>
+                              <span className="sidebar-normal"> Edit Profile </span>
                           </Link>
                       </li>
                       <li>
                           <a href="#">
-                              <span class="sidebar-mini"> S </span>
-                              <span class="sidebar-normal"> Settings </span>
+                              <span className="sidebar-mini"> S </span>
+                              <span className="sidebar-normal"> Settings </span>
                           </a>
                       </li>
                   </ul>
