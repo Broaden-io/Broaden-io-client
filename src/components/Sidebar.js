@@ -67,13 +67,13 @@ class Sidebar extends Component {
                   <ul className="nav">
                     <li>
                       <Link to={`/profile/${user.username}`}>
-                        <span className="sidebar-mini"> MP </span>
+                        <span className="sidebar-mini"> <i className="material-icons">person</i> </span>
                         <span className="sidebar-normal"> My Profile </span>
                       </Link>
                     </li>
                     <li>
                       <Link to={`/profile/${user.username}`}>
-                        <span className="sidebar-mini"> EP </span>
+                        <span className="sidebar-mini"> <i className="material-icons">settings</i> </span>
                         <span className="sidebar-normal"> Edit Profile </span>
                       </Link>
                     </li>
@@ -81,7 +81,7 @@ class Sidebar extends Component {
                       <a href="#" onClick={() => {
                         this.props.logoutUser();
                       }}>
-                        <span className="sidebar-mini"> L </span>
+                        <span className="sidebar-mini"> <i className="material-icons">fingerprint</i> </span>
                         <span className="sidebar-normal"> Logout </span>
                       </a>
                     </li>

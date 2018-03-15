@@ -138,14 +138,14 @@ class Login extends Component {
         }
       }
 
-      const mapStateToProps = (state) => {
-        return {
-          auth: state.auth
-        }
-      }
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  }
+}
 
-      const mapDispatchToProps = (dispatch) => {
-        return bindActionCreators(Actions, dispatch);
-      }
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(Actions, dispatch);
+}
 
-      export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))
