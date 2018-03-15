@@ -8,14 +8,25 @@ import Sidebar from './Sidebar'
 
 class Routes extends Component {
 
-  render() {
-    const isLoggedIn = this.props.auth.isAuthenticated;
+  constructor(props) {
+    super(props);
+    this.handleRedirect = this.handleRedirect.bind(this);
+  }
 
+  handleRedirect() {
+    if (this.props.auth.isAuthenticated) {
+      return <Sidebar />
+    } else if (this.props.location.pathname === '/') {
+        return <Redirect from='/' to='/login' exact />
+    }
+  }
+
+  render() {
     return (
       <div className="wrapper">
+        {this.handleRedirect()}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
-        { isLoggedIn ? <Sidebar/> : <Login /> }
       </div>
     );
   }
