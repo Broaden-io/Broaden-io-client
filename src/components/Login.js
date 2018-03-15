@@ -124,7 +124,7 @@ class Login extends Component {
 
                       {/*{`${(document.write(new Date().getFullYear()))}`}*/}
 
-                      <a href="/"> RubricPRO </a>, made with love to better education
+                      <a href="/"> Trubric </a>, made with love to better education
                       </p>
                     </div>
                   </footer>
