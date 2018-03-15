@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as Actions from '../actions/auth';
 import NavTop from './NavTop';
 import Dashboard from './Dashboard';
 import RubricsIndex from './RubricsIndex';
@@ -62,24 +65,26 @@ class Sidebar extends Component {
                 <div className="clearfix"></div>
                 <div className="collapse" id="collapseExample">
                   <ul className="nav">
-                      <li>
-                          <Link to={`/profile/${user.username}`}>
-                              <span className="sidebar-mini"> MP </span>
-                              <span className="sidebar-normal"> My Profile </span>
-                          </Link>
-                      </li>
-                      <li>
-                          <Link to={`/profile/${user.username}`}>
-                              <span className="sidebar-mini"> EP </span>
-                              <span className="sidebar-normal"> Edit Profile </span>
-                          </Link>
-                      </li>
-                      <li>
-                          <a href="#">
-                              <span className="sidebar-mini"> S </span>
-                              <span className="sidebar-normal"> Settings </span>
-                          </a>
-                      </li>
+                    <li>
+                      <Link to={`/profile/${user.username}`}>
+                        <span className="sidebar-mini"> MP </span>
+                        <span className="sidebar-normal"> My Profile </span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={`/profile/${user.username}`}>
+                        <span className="sidebar-mini"> EP </span>
+                        <span className="sidebar-normal"> Edit Profile </span>
+                      </Link>
+                    </li>
+                    <li>
+                      <a href="#" onClick={() => {
+                        this.props.logoutUser();
+                      }}>
+                        <span className="sidebar-mini"> L </span>
+                        <span className="sidebar-normal"> Logout </span>
+                      </a>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -110,19 +115,24 @@ class Sidebar extends Component {
                 <Route path={`/rubrics/:id`} component={Rubric} />
                 <Route path="/profile/:username" component={Profile} />
               </Switch>
-              {/*<Redirect exact={true} from={`/${user.username}`} to={`/${user.username}/dashboard`} />*/}
-
-              {/*<Route path={`/${localStorage.getItem('username')}`} render={() => <Dashboard />}/>
-            <Route path={`/${localStorage.getItem('username')}/rubrics`} render={() => <RubricsIndex />}/>*/}
           </div>
         </div>
         <Footer />
 
       </div>
     </div>
-
   );
 }
 }
 
-export default withRouter(Sidebar);
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(Actions, dispatch);
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sidebar))
