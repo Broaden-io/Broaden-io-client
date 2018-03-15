@@ -15,6 +15,9 @@ class Routes extends Component {
 
   handleRedirect() {
     if (this.props.auth.isAuthenticated) {
+      if (this.props.location.pathname === '/signup' || this.props.location.pathname === '/login') {
+        return <Redirect from={this.props.location.pathname} to='/dashboard' exact />
+      }
       return <Sidebar />
     } else if (this.props.location.pathname === '/') {
         return <Redirect from='/' to='/login' exact />
