@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { withRouter } from 'react-router'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { Alert } from './Alert';
+import * as Actions from '../actions/auth';
 import bcrypt from 'bcryptjs';
 import serverPath from '../paths';
 import axios from 'axios';
@@ -52,8 +56,11 @@ class SignUp extends Component {
               } else {
                 return Promise.reject('could not signup')
               }
-            })
-            .catch(error => {
+            }).then(() => {
+              if (!this.props.auth.isAuthenticated) {
+                Alert('signupError');
+              }
+            }).catch(error => {
               Alert('signupError');
             })
           });
@@ -223,4 +230,14 @@ class SignUp extends Component {
                   }
                 }
 
-                export default SignUp;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(Actions, dispatch);
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUp))
