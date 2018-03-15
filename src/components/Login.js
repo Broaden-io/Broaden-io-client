@@ -88,7 +88,7 @@ class Login extends Component {
                             </div>
                             <p className="category text-center">Don't have an account?</p>
                             <p className="category text-center">
-                              <Link className="btn btn-info btn-round" to='/signup'> Sign Up</Link>
+                              <Link className="btn btn-rose btn-simple" to='/signup'> Sign Up</Link>
                             </p>
                             <div className="card-content">
                               <div className="input-group">
@@ -112,7 +112,7 @@ class Login extends Component {
                               </div>
                             </div>
                             <div className="footer text-center">
-                              <button onClick={this.submitForm} className="btn btn-rose btn-simple btn-wd btn-lg">Let's go</button>
+                              <button onClick={this.submitForm} className="btn btn-info btn-round btn-wd btn-lg">Let's go</button>
                             </div>
                           </div>
                         </form>
