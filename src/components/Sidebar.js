@@ -62,16 +62,16 @@ class Sidebar extends Component {
                 <div className="collapse" id="collapseExample">
                   <ul class="nav">
                       <li>
-                          <a href="#">
+                          <Link to={`/profile/${user.username}`} exact>
                               <span class="sidebar-mini"> MP </span>
                               <span class="sidebar-normal"> My Profile </span>
-                          </a>
+                          </Link>
                       </li>
                       <li>
-                          <a href="#">
+                          <Link to={`/profile/${user.username}`} exact>
                               <span class="sidebar-mini"> EP </span>
                               <span class="sidebar-normal"> Edit Profile </span>
-                          </a>
+                          </Link>
                       </li>
                       <li>
                           <a href="#">
