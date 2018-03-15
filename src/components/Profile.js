@@ -2,8 +2,18 @@ import React, { Component } from 'react';
 
 class Profile extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      email: '',
+      bio: '',
+      firstName: '',
+      lastName: ''
+    }
+  }
+
   render() {
-    console.log('profile rendering')
     return(
       <div className="row">
         <div className="col-md-8">
@@ -33,41 +43,13 @@ class Profile extends Component {
                   <div className="row">
                     <div className="col-md-6">
                       <div className="form-group label-floating is-empty">
-                        <label className="control-label">Fist Name</label>
+                        <label className="control-label">First Name</label>
                         <input type="text" className="form-control" />
                       <span className="material-input"></span></div>
                     </div>
                     <div className="col-md-6">
                       <div className="form-group label-floating is-empty">
                         <label className="control-label">Last Name</label>
-                        <input type="text" className="form-control" />
-                      <span className="material-input"></span></div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-12">
-                      <div className="form-group label-floating is-empty">
-                        <label className="control-label">Adress</label>
-                        <input type="text" className="form-control" />
-                      <span className="material-input"></span></div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-4">
-                      <div className="form-group label-floating is-empty">
-                        <label className="control-label">City</label>
-                        <input type="text" className="form-control" />
-                      <span className="material-input"></span></div>
-                    </div>
-                    <div className="col-md-4">
-                      <div className="form-group label-floating is-empty">
-                        <label className="control-label">Country</label>
-                        <input type="text" className="form-control" />
-                      <span className="material-input"></span></div>
-                    </div>
-                    <div className="col-md-4">
-                      <div className="form-group label-floating is-empty">
-                        <label className="control-label">Postal Code</label>
                         <input type="text" className="form-control" />
                       <span className="material-input"></span></div>
                     </div>

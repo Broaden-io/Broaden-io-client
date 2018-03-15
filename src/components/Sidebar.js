@@ -36,7 +36,7 @@ class Sidebar extends Component {
       avatarURL: localStorage.getItem('avatarURL'),
     }
 
-    const renderedUserName = ((user.firstName == 'null') || (user.lastName == 'null')) ? user.username : `${user.firstName} ${user.lastName}`;
+    const renderedUserName = ((user.firstName === 'null') || (user.lastName === 'null')) ? user.username : `${user.firstName} ${user.lastName}`;
 
     return (
       <div className="wrapper">
