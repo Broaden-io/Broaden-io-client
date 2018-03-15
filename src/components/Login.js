@@ -41,12 +41,12 @@ class Login extends Component {
       <div className="off-canvas-sidebar">
         <nav className="navbar navbar-primary navbar-transparent navbar-absolute">
           <div className="container">
-          <ToastContainer
-            hideProgressBar={true}
-            position={'top-center'}
-            newestOnTop={true}
-            autoClose={5000}
-          />
+            <ToastContainer
+              hideProgressBar={true}
+              position={'top-center'}
+              newestOnTop={true}
+              autoClose={5000}
+            />
             <div className="navbar-header">
               <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
                 <span className="sr-only">Toggle navigation</span>
@@ -54,7 +54,10 @@ class Login extends Component {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <a className="navbar-brand" href="">Trubric.io</a>
+              <a className="navbar-brand" href="/">
+                <i className="material-icons">details</i>
+                &nbsp; TRUBRIC.IO
+              </a>
             </div>
             <div className="collapse navbar-collapse">
               <ul className="nav navbar-nav navbar-right">

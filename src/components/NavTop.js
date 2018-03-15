@@ -25,7 +25,9 @@ class NavTop extends Component {
             <i className="material-icons visible-on-sidebar-mini">view_list</i>
             </button>
             </div>*/}
+
             <div className="navbar-header">
+
               <button
                 type="button"
                 className="navbar-toggle"
@@ -38,6 +40,10 @@ class NavTop extends Component {
                 <span className="icon-bar" />
                 <span className="icon-bar" />
               </button>
+
+              <a className="navbar-brand" href="/">
+                  &nbsp; TRUBRIC.IO
+              </a>
             </div>
             <div className="collapse navbar-collapse">
               <ul className="nav navbar-nav navbar-right">

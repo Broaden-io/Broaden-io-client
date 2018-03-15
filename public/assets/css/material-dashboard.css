@@ -6709,7 +6709,7 @@ h2.title {
 
 .main-panel>.content {
     margin-top: 70px;
-    padding: 30px 15px;
+    padding: 7px 15px;
     min-height: calc(100vh - 123px);
 }
 

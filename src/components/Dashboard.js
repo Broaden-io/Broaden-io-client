@@ -19,12 +19,15 @@ var Chartist = require("chartist");
 
 const AddAssessmentButton = (props => {
   return (
-    <div className="col-md-4" style={{paddingTop: 40}}>
-      <Link className="btn btn-lg btn-info btn-simple" to={props.link} style={{backgroundColor: 'rgba(0,0,0,.07)'}}>
-        <i className="material-icons" style={{fontSize: 60}}>add</i>
-        <div className="ripple-container"></div>
-        <h5 style={{letterSpacing: '1px'}}> Take a new assessment </h5>
-      </Link>
+
+    <div className="container">
+      <div className="col-md-4 mr-auto" style={{paddingTop: 70}}>
+        <Link className="btn btn-lg btn-info btn-simple" to={props.link} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
+          <i className="material-icons" style={{fontSize: 60}}>add</i>
+          <div className="ripple-container"></div>
+          <h5 style={{letterSpacing: '1px'}}> Take a new assessment </h5>
+        </Link>
+      </div>
     </div>
 
   )
