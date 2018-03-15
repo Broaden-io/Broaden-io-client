@@ -32,7 +32,7 @@ const CompetencyScore = withRouter(
       }, 0)
       const result = (totalSum/Competencies.length) * 100;
 
-      return typeof(result) === 'number' ? result.toFixed(0) : 0
+      return isNaN(result) ? 0 : result.toFixed(0)
     }
 
     calculateCompetencyScore(competency) {
