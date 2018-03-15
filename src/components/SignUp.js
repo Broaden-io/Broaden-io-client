@@ -157,7 +157,7 @@ class SignUp extends Component {
                             </div>
                             <div className="col-md-5">
                               <div className="social text-center">
-                                <Link to="/login" className="btn btn-info btn-round btn-lg" >
+                                <Link to="/login" className="btn btn-info btn-round" >
                                   <i className="material-icons">account_circle</i>  Log In
                                     <div className="ripple-container"></div></Link>
                                   </div>
@@ -212,7 +212,7 @@ class SignUp extends Component {
                                           text="Your account has been created successfully!"
                                           onConfirm={() => this.setState({ submitted: false })}
                                           />*/}
-                                          <button className="btn btn-info btn-round" onClick={this.submitForm}>Get Started...</button>
+                                          <button className="btn btn-info btn-round btn-lg" onClick={this.submitForm}>Get Started...</button>
 
 
                                         </div>
@@ -241,3 +241,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUp))
+

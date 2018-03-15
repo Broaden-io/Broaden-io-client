@@ -146,7 +146,6 @@ const CompetencyButton = withRouter(props => {
                 <div className="col-md-2">
                   <ul className="nav nav-pills nav-pills-icons nav-pills-rose nav-stacked" role="tablist">
                     {this.renderCompetencyButtons()}
-
                   </ul>
                 </div>
                 <div className="col-md-10">
@@ -162,14 +161,14 @@ const CompetencyButton = withRouter(props => {
     }
   }
 
-  const mapStateToProps = (state) => {
-    return {
-      assessment: state.assessment
-    }
+const mapStateToProps = (state) => {
+  return {
+    assessment: state.assessment
   }
+}
 
-  const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators(Actions, dispatch);
-  }
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(Actions, dispatch);
+}
 
-  export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Rubric));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Rubric));
