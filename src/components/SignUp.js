@@ -52,7 +52,7 @@ class SignUp extends Component {
             axios.post(`${serverPath}/signup`, newUser)
             .then(response => {
               if (response.status === 200) {
-                this.props.loginUser({ username: newUser.username, password: newUser.password })
+                this.props.loginUser({ username: newUser.username, password: this.state.rawPassword })
               } else {
                 return Promise.reject('could not signup')
               }
