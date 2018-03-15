@@ -73,7 +73,7 @@ class Login extends Component {
               </div>
             </nav>
             <div className="wrapper wrapper-full-page">
-              <div className="full-page login-page" filter-color="blue" data-image="assets/img/login.jpeg">
+              <div className="full-page login-page" filter-color="blue" data-image="/assets/img/login.jpeg">
                 <div className="content">
                   <div className="container">
                     <div className="row">

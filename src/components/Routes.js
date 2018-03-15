@@ -14,19 +14,22 @@ class Routes extends Component {
   }
 
   handleRedirect() {
-    if (this.props.auth.isAuthenticated) {
-      return <Sidebar />
+    if (this.props.location.pathname === '/') {
+      if (this.props.auth.isAuthenticated) {
+        return <Sidebar />
+      } else {
+          return <Redirect from='/' to='/login' exact />
+      }
     }
-    return <Redirect to='/login' />
   }
 
   render() {
 
     return (
       <div className="wrapper">
+        {this.handleRedirect()}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
-        {this.handleRedirect()}
       </div>
     );
   }
