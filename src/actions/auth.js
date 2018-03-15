@@ -60,6 +60,8 @@ export function loginUser(creds) {
   }
 
   return dispatch => {
+    console.log('requesting login')
+    console.log(creds)
     dispatch(requestLogin(creds));
 
     return fetch(`${serverPath}/login`, config).then((res) => {
