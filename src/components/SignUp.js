@@ -83,7 +83,7 @@ class SignUp extends Component {
                 <span className="icon-bar"></span>
               </button>
               <a className="navbar-brand" href="/">
-                <span role="img" description="emoji" aria-label="emoji">🤯</span> RubricPro
+                <span role="img" description="emoji" aria-label="emoji">🤯</span> Trubric
                 </a>
             </div>
             <div className="collapse navbar-collapse">
