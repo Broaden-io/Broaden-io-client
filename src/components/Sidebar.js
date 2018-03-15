@@ -6,6 +6,7 @@ import Dashboard from './Dashboard';
 import RubricsIndex from './RubricsIndex';
 import Rubric from './Rubric';
 import Footer from './Footer';
+import Profile from './Profile';
 
 const MenuItem = withRouter(
   (props) => {
@@ -107,6 +108,7 @@ class Sidebar extends Component {
                 <Route path={`/dashboard`} component={Dashboard} />
                 <Route exact={true} path={`/rubrics`} component={RubricsIndex} />
                 <Route path={`/rubrics/:id`} component={Rubric} />
+                <Route path="/profile/:username" component={Profile} />
               </Switch>
               {/*<Redirect exact={true} from={`/${user.username}`} to={`/${user.username}/dashboard`} />*/}
 

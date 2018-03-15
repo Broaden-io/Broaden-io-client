@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import SignUp from './SignUp';
 import Login from './Login';
 import Sidebar from './Sidebar';
-import Profile from './Profile';
 
 class Routes extends Component {
 
@@ -34,7 +33,6 @@ class Routes extends Component {
         {this.handleRedirect()}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/profile/:username" component={Profile} />
       </div>
     );
   }
