@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class Profile extends Component {
 
@@ -13,19 +14,17 @@ class Profile extends Component {
     }
   }
 
+  submitForm() {
+    
+  }
+
   // make sure that the user can only submit an edit request for their OWN user account
 
   render() {
-    const user = {
-      username: localStorage.getItem('username'),
-      userId: localStorage.getItem('userId'),
-      firstName: localStorage.getItem('firstName'),
-      lastName: localStorage.getItem('lastName'),
-      avatarURL: localStorage.getItem('avatarURL'),
-    }
-
     return(
       <div className="row">
+        <div className="col-md-2">
+        </div>
         <div className="col-md-8">
           <div className="card">
             <div className="card-header card-header-icon" data-background-color="rose">
@@ -54,13 +53,13 @@ class Profile extends Component {
                     <div className="col-md-6">
                       <div className="form-group label-floating is-empty">
                         <label className="control-label">First Name</label>
-                        <input type="text" className="form-control" />
+                        <input type="text" className="form-control" value={this.state.firstName} onChange={(e) => this.setState({firstName: e.target.value})}/>
                       <span className="material-input"></span></div>
                     </div>
                     <div className="col-md-6">
                       <div className="form-group label-floating is-empty">
                         <label className="control-label">Last Name</label>
-                        <input type="text" className="form-control" />
+                        <input type="text" className="form-control" value={this.state.lastName} onChange={(e) => this.setState({lastName: e.target.value})}/>
                       <span className="material-input"></span></div>
                     </div>
                   </div>
@@ -69,7 +68,7 @@ class Profile extends Component {
                         <div className="form-group">
                           <label>About Me</label>
                           <div className="form-group label-floating is-empty">
-                            <textarea className="form-control" rows="5"></textarea>
+                            <textarea className="form-control" rows="5" value={this.state.bio} onChange={(e) => this.setState({bio: e.target.value})} ></textarea>
                           <span className="material-input"></span></div>
                         </div>
                       </div>
