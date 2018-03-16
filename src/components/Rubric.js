@@ -47,7 +47,7 @@ const CompetencyButton = withRouter(props => {
           // criteria component
           return scale.Criteria.filter(criteria => criteria.level === level).map((criteria, index) => {
             return <Criteria
-              key={uuidv1()}
+              key={criteria.id}
               answer={criteria.answer}
               id={criteria.id}
               text={criteria.text} />
