@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as Actions from '../actions/auth';
 import NavTop from './NavTop';
 import Dashboard from './Dashboard';
 import RubricsIndex from './RubricsIndex';
 import Rubric from './Rubric';
 import Footer from './Footer';
+import Profile from './Profile';
+import EditProfile from './EditProfile';
 
 const MenuItem = withRouter(
   (props) => {
@@ -32,7 +37,7 @@ class Sidebar extends Component {
       avatarURL: localStorage.getItem('avatarURL'),
     }
 
-    const renderedUserName = ((user.firstName == 'null') || (user.lastName == 'null')) ? user.username : `${user.firstName} ${user.lastName}`;
+    const renderedUserName = ((user.firstName === 'null') || (user.lastName === 'null')) ? user.username : `${user.firstName} ${user.lastName}`;
 
     return (
       <div className="wrapper">
@@ -42,7 +47,7 @@ class Sidebar extends Component {
             <a href="" className="simple-text logo-mini">
               <i className="material-icons">details</i>
             </a>
-            <a href="" className="simple-text logo-normal">
+            <a href="/dashboard" className="simple-text logo-normal">
               Trubric.io
             </a>
           </div>
@@ -52,7 +57,7 @@ class Sidebar extends Component {
                 <img alt="avatar" src={user.avatarURL} />
               </div>
               <div className="info">
-                <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+                <a data-toggle="collapse" href="#collapseExample" className="collapsed">
                   <span>
                     {renderedUserName}
                     <b className="caret"></b>
@@ -60,25 +65,27 @@ class Sidebar extends Component {
                 </a>
                 <div className="clearfix"></div>
                 <div className="collapse" id="collapseExample">
-                  <ul class="nav">
-                      <li>
-                          <Link to={`/profile/${user.username}`} exact>
-                              <span class="sidebar-mini"> MP </span>
-                              <span class="sidebar-normal"> My Profile </span>
-                          </Link>
-                      </li>
-                      <li>
-                          <Link to={`/profile/${user.username}`} exact>
-                              <span class="sidebar-mini"> EP </span>
-                              <span class="sidebar-normal"> Edit Profile </span>
-                          </Link>
-                      </li>
-                      <li>
-                          <a href="#">
-                              <span class="sidebar-mini"> S </span>
-                              <span class="sidebar-normal"> Settings </span>
-                          </a>
-                      </li>
+                  <ul className="nav">
+                    <li>
+                      <Link to={`/${user.username}`}>
+                        <span className="sidebar-mini"> <i className="material-icons">person</i> </span>
+                        <span className="sidebar-normal"> My Profile </span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={`/${user.username}/edit`}>
+                        <span className="sidebar-mini"> <i className="material-icons">settings</i> </span>
+                        <span className="sidebar-normal"> Edit Profile </span>
+                      </Link>
+                    </li>
+                    <li>
+                      <a href="#" onClick={() => {
+                        this.props.logoutUser();
+                      }}>
+                        <span className="sidebar-mini"> <i className="material-icons">fingerprint</i> </span>
+                        <span className="sidebar-normal"> Logout </span>
+                      </a>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -107,20 +114,27 @@ class Sidebar extends Component {
                 <Route path={`/dashboard`} component={Dashboard} />
                 <Route exact={true} path={`/rubrics`} component={RubricsIndex} />
                 <Route path={`/rubrics/:id`} component={Rubric} />
+                <Route path={`/:username`} component={Profile} exact={true} />
+                <Route path={`/:username/edit`} component={EditProfile} exact={true} />
               </Switch>
-              {/*<Redirect exact={true} from={`/${user.username}`} to={`/${user.username}/dashboard`} />*/}
-
-              {/*<Route path={`/${localStorage.getItem('username')}`} render={() => <Dashboard />}/>
-            <Route path={`/${localStorage.getItem('username')}/rubrics`} render={() => <RubricsIndex />}/>*/}
           </div>
         </div>
         <Footer />
 
       </div>
     </div>
-
   );
 }
 }
 
-export default withRouter(Sidebar);
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(Actions, dispatch);
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sidebar))

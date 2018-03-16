@@ -30,8 +30,9 @@ const CompetencyScore = withRouter(
       const totalSum = Competencies.reduce((acc, currentComp, currentCompIndex, competencies) => {
         return acc + (this.calculateCompetencyScore(currentComp)/ 100)
       }, 0)
-      const result = (totalSum/Competencies.length) * 100
-      return result.toFixed(0)
+      const result = (totalSum/Competencies.length) * 100;
+
+      return isNaN(result) ? 0 : result.toFixed(0)
     }
 
     calculateCompetencyScore(competency) {

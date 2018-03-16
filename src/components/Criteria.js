@@ -6,10 +6,6 @@ import { withRouter } from 'react-router'
 
 class Criteria extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   handleCheck(e) {
     e.preventDefault();
     const assessment = this.props.assessment.assessmentObject;

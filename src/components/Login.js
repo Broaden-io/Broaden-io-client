@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
 import { bindActionCreators } from 'redux';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
 import * as Actions from '../actions/auth';
 import { Alert } from './Alert';
@@ -138,14 +138,14 @@ class Login extends Component {
         }
       }
 
-      const mapStateToProps = (state) => {
-        return {
-          auth: state.auth
-        }
-      }
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  }
+}
 
-      const mapDispatchToProps = (dispatch) => {
-        return bindActionCreators(Actions, dispatch);
-      }
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(Actions, dispatch);
+}
 
-      export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))

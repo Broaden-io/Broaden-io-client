@@ -1,5 +1,4 @@
 import serverPath from '../paths';
-import axios from 'axios';
 
 export const requestAssessments = (userId) => ({
   type: 'REQUEST_ASSESSMENTS',

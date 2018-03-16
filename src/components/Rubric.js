@@ -13,7 +13,7 @@ const CompetencyButton = withRouter(props => {
         props.setActiveComp(props.index)
       }}>
       <a href="" onClick={(e) => e.preventDefault()} role="tab" data-toggle="tab" aria-expanded="true">
-        <i className="material-icons">{props.icon}</i> {props.name}
+         {props.name}
         </a>
       </li>
     )
@@ -144,7 +144,7 @@ const CompetencyButton = withRouter(props => {
             <div className="card-content">
               <div className="row">
                 <div className="col-md-2">
-                  <ul className="nav nav-pills nav-pills-icons nav-pills-rose nav-stacked" role="tablist">
+                  <ul className="nav nav-pills nav-pills-rose nav-stacked" role="tablist">
                     {this.renderCompetencyButtons()}
                   </ul>
                 </div>

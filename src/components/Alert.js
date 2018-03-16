@@ -12,5 +12,7 @@ export const Alert = (type) => {
         autoClose: 3000
       });
       break
+    default:
+      break
   }
 }
