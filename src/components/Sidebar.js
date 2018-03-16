@@ -10,6 +10,7 @@ import RubricsIndex from './RubricsIndex';
 import Rubric from './Rubric';
 import Footer from './Footer';
 import Profile from './Profile';
+import EditProfile from './EditProfile';
 
 const MenuItem = withRouter(
   (props) => {
@@ -72,7 +73,7 @@ class Sidebar extends Component {
                       </Link>
                     </li>
                     <li>
-                      <Link to={`/profile/${user.username}`}>
+                      <Link to={`/profile/${user.username}/edit`}>
                         <span className="sidebar-mini"> <i className="material-icons">settings</i> </span>
                         <span className="sidebar-normal"> Edit Profile </span>
                       </Link>
@@ -114,6 +115,7 @@ class Sidebar extends Component {
                 <Route exact={true} path={`/rubrics`} component={RubricsIndex} />
                 <Route path={`/rubrics/:id`} component={Rubric} />
                 <Route path="/profile/:username" component={Profile} />
+                <Route path="/profile/:username/edit" component={EditProfile} />
               </Switch>
           </div>
         </div>
