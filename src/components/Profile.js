@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 class Profile extends Component {
   render() {
-    username: localStorage.getItem('username'),
-    userId: localStorage.getItem('userId'),
-    email: localStorage.getItem('email'),
-    bio: localStorage.getItem('bio'),
-    firstName: localStorage.getItem('firstName'),
-    lastName: localStorage.getItem('lastName'),
-    avatarURL: localStorage.getItem('avatarURL'),
+    username: localStorage.getItem('username');
+    userId: localStorage.getItem('userId');
+    email: localStorage.getItem('email');
+    bio: localStorage.getItem('bio');
+    firstName: localStorage.getItem('firstName');
+    lastName: localStorage.getItem('lastName');
+    avatarURL: localStorage.getItem('avatarURL');
 
     return(
       <div className="row">
