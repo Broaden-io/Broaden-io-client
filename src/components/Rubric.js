@@ -75,7 +75,7 @@ const CompetencyButton = withRouter(props => {
           </div>
         )
       })
-    }                                       
+    }
 
     renderCompetencies() {
       const { assessmentObject } = this.props.assessment;
@@ -91,6 +91,8 @@ const CompetencyButton = withRouter(props => {
               {this.getIsFetching() ? null : this.renderLevels(index)}
             </div>
           )
+        }).sort((a , b) => {
+          return a.id - b.id;
         })
       }
     }
@@ -118,10 +120,11 @@ const CompetencyButton = withRouter(props => {
               setActiveComp={this.setActiveComp.bind(this)}
               />
           )
+        }).sort((a , b) => {
+          return a.id - b.id;
         })
       }
     }
-
     getIsFetching() {
       const { assessment } = this.props;
       const { isFetching } = assessment;
