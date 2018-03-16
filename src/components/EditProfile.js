@@ -22,6 +22,7 @@ class EditProfile extends Component {
 // Kash was here
 
   render() {
+    const { username, email, bio, firstName, lastName } = this.state;
     return(
       <div className="row">
         <div className="col-md-2"></div>
@@ -39,13 +40,13 @@ class EditProfile extends Component {
                   <div className="col-md-3">
                     <div className="form-group label-floating is-empty">
                       <label className="control-label">Username</label>
-                      <input type="text" className="form-control" value={this.state.username} onChange={(e) => this.setState({username: e.target.value})}/>
+                      <input type="text" className="form-control" value={username} onChange={(e) => this.setState({username: e.target.value})}/>
                     <span className="material-input"></span></div>
                   </div>
                   <div className="col-md-4">
                     <div className="form-group label-floating is-empty">
                       <label className="control-label">Email address</label>
-                      <input type="email" className="form-control" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}/>
+                      <input type="email" className="form-control" value={email} onChange={(e) => this.setState({email: e.target.value})}/>
                     <span className="material-input"></span></div>
                   </div>
                   </div>
@@ -53,13 +54,13 @@ class EditProfile extends Component {
                     <div className="col-md-6">
                       <div className="form-group label-floating is-empty">
                         <label className="control-label">First Name</label>
-                        <input type="text" className="form-control" value={this.state.firstName} onChange={(e) => this.setState({firstName: e.target.value})}/>
+                        <input type="text" className="form-control" value={firstName} onChange={(e) => this.setState({firstName: e.target.value})}/>
                       <span className="material-input"></span></div>
                     </div>
                     <div className="col-md-6">
                       <div className="form-group label-floating is-empty">
                         <label className="control-label">Last Name</label>
-                        <input type="text" className="form-control" value={this.state.lastName} onChange={(e) => this.setState({lastName: e.target.value})}/>
+                        <input type="text" className="form-control" value={lastName} onChange={(e) => this.setState({lastName: e.target.value})}/>
                       <span className="material-input"></span></div>
                     </div>
                   </div>

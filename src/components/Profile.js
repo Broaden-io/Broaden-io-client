@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 
 class Profile extends Component {
   render() {
-    const user = {
-      username: localStorage.getItem('username'),
-      userId: localStorage.getItem('userId'),
-      email: localStorage.getItem('email'),
-      bio: localStorage.getItem('bio'),
-      firstName: localStorage.getItem('firstName'),
-      lastName: localStorage.getItem('lastName'),
-      avatarURL: localStorage.getItem('avatarURL'),
-    }
+    username: localStorage.getItem('username'),
+    userId: localStorage.getItem('userId'),
+    email: localStorage.getItem('email'),
+    bio: localStorage.getItem('bio'),
+    firstName: localStorage.getItem('firstName'),
+    lastName: localStorage.getItem('lastName'),
+    avatarURL: localStorage.getItem('avatarURL'),
 
     return(
       <div className="row">
@@ -21,19 +19,19 @@ class Profile extends Component {
               <h4 className="card-title"> My Profile </h4>
               <hr />
               <div col-sm-6>
-                <p> Username: <small> {user.username} </small> </p>
+                <p> Username: <small> {username} </small> </p>
               </div>
               <div col-sm-6>
-                <p> Email: <small> {user.email} </small> </p>
+                <p> Email: <small> {email} </small> </p>
               </div>
               <div col-sm-6>
-                <p> First Name: <small> {user.firstName !== 'null' ? user.firstName : <a className="text-info" href={`/${user.username}/edit`}> Click here to add a first name </a>} </small> </p>
+                <p> First Name: <small> {firstName !== 'null' ? user.firstName : <a className="text-info" href={`/${user.username}/edit`}> Click here to add a first name </a>} </small> </p>
               </div>
               <div col-sm-6>
-                <p> Last Name: <small> {user.lastName !== 'null' ? user.lastName : <a className="text-info" href={`/${user.username}/edit`}> Click here to add a last name </a>} </small> </p>
+                <p> Last Name: <small> {lastName !== 'null' ? user.lastName : <a className="text-info" href={`/${user.username}/edit`}> Click here to add a last name </a>} </small> </p>
               </div>
               <div col-sm-6>
-                <p> Bio: <small> {user.bio !== 'null' ? user.bio : <a className="text-info" href={`/${user.username}/edit`}> Click here to add a bio </a>} </small> </p>
+                <p> Bio: <small> {bio !== 'null' ? user.bio : <a className="text-info" href={`/${user.username}/edit`}> Click here to add a bio </a>} </small> </p>
               </div>
             </div>
           </div>
