@@ -126,8 +126,8 @@ const CompetencyButton = withRouter(props => {
       }
     }
     getIsFetching() {
-      const { assessment } = this.props;
-      if (!assessment.assessmentObject) {
+      const { assessmentObject } = this.props.assessment;
+      if (!assessmentObject) {
         return true;
       }
       return false;
