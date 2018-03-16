@@ -67,8 +67,8 @@ const CompetencyButton = withRouter(props => {
           <div key={uuidv1()} className='col-md-3'>
             <h3> {levelName} </h3>
             <hr />
-            <table key={uuidv1()} className="table">
-              <tbody key={uuidv1()} >
+            <table className="table">
+              <tbody >
                 {this.renderCriteriaForLevel(index + 1, compIndex)}
               </tbody>
             </table>
@@ -91,6 +91,8 @@ const CompetencyButton = withRouter(props => {
               {this.getIsFetching() ? null : this.renderLevels(index)}
             </div>
           )
+        }).sort((a , b) => {
+          return a.id - b.id;
         })
       }
     }
@@ -118,27 +120,28 @@ const CompetencyButton = withRouter(props => {
               setActiveComp={this.setActiveComp.bind(this)}
               />
           )
+        }).sort((a , b) => {
+          return a.id - b.id;
         })
       }
     }
-
     getIsFetching() {
-      const { assessment } = this.props;
-      const { isFetching } = assessment;
-      if (assessment === null || isFetching == null) {
+      const { assessmentObject } = this.props.assessment;
+      if (!assessmentObject) {
         return true;
       }
-      return isFetching;
+      return false;
     }
 
     render() {
-
+      const { assessment } = this.props;
+      const { isFetching } = assessment;
       return (
         <div className="col-md-12">
           <div className="card">
             <div className="card-header">
-              <h2 className="card-title"> {this.getIsFetching() ? null : this.props.assessment.assessmentObject.rubricJSON.name + " "}
-                <br/> <small className="category">{this.getIsFetching() ? null : this.props.assessment.assessmentObject.rubricJSON.description}</small>
+              <h2 className="card-title"> {this.getIsFetching() ? null : assessment.assessmentObject.rubricJSON.name + " "}
+                <br/> <small className="category">{this.getIsFetching() ? null : assessment.assessmentObject.rubricJSON.description}</small>
               </h2>
             </div>
             <div className="card-content">
