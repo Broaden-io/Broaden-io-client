@@ -47,7 +47,7 @@ class Sidebar extends Component {
             <a href="" className="simple-text logo-mini">
               <i className="material-icons">details</i>
             </a>
-            <a href="" className="simple-text logo-normal">
+            <a href="/dashboard" className="simple-text logo-normal">
               Trubric.io
             </a>
           </div>
@@ -67,13 +67,13 @@ class Sidebar extends Component {
                 <div className="collapse" id="collapseExample">
                   <ul className="nav">
                     <li>
-                      <Link to={`/profile/${user.username}`}>
+                      <Link to={`/${user.username}`}>
                         <span className="sidebar-mini"> <i className="material-icons">person</i> </span>
                         <span className="sidebar-normal"> My Profile </span>
                       </Link>
                     </li>
                     <li>
-                      <Link to={`/profile/${user.username}/edit`}>
+                      <Link to={`/${user.username}/edit`}>
                         <span className="sidebar-mini"> <i className="material-icons">settings</i> </span>
                         <span className="sidebar-normal"> Edit Profile </span>
                       </Link>
@@ -114,8 +114,8 @@ class Sidebar extends Component {
                 <Route path={`/dashboard`} component={Dashboard} />
                 <Route exact={true} path={`/rubrics`} component={RubricsIndex} />
                 <Route path={`/rubrics/:id`} component={Rubric} />
-                <Route path="/profile/:username" component={Profile} />
-                <Route path="/profile/:username/edit" component={EditProfile} />
+                <Route path={`/:username`} component={Profile} exact={true} />
+                <Route path={`/:username/edit`} component={EditProfile} exact={true} />
               </Switch>
           </div>
         </div>

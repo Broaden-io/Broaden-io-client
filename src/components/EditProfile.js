@@ -16,15 +16,15 @@ class EditProfile extends Component {
 
   submitForm() {
     // go through items in the state and only send the ones that have been updated
+    // make sure that the user can only submit an edit request for their OWN user account
   }
 
-  // make sure that the user can only submit an edit request for their OWN user account
+// Kash was here
 
   render() {
     return(
       <div className="row">
-        <div className="col-md-2">
-        </div>
+        <div className="col-md-2"></div>
         <div className="col-md-8">
           <div className="card">
             <div className="card-header card-header-icon" data-background-color="rose">
