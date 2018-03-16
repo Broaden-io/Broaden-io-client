@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 
+const username = localStorage.getItem('username');
+const userId = localStorage.getItem('userId');
+const email = localStorage.getItem('email');
+const bio = localStorage.getItem('bio');
+const firstName = localStorage.getItem('firstName');
+const lastName = localStorage.getItem('lastName');
+const avatarURL = localStorage.getItem('avatarURL');
+
 class Profile extends Component {
   render() {
-    username: localStorage.getItem('username');
-    userId: localStorage.getItem('userId');
-    email: localStorage.getItem('email');
-    bio: localStorage.getItem('bio');
-    firstName: localStorage.getItem('firstName');
-    lastName: localStorage.getItem('lastName');
-    avatarURL: localStorage.getItem('avatarURL');
+
 
     return(
       <div className="row">
@@ -25,13 +27,13 @@ class Profile extends Component {
                 <p> Email: <small> {email} </small> </p>
               </div>
               <div col-sm-6>
-                <p> First Name: <small> {firstName !== 'null' ? user.firstName : <a className="text-info" href={`/${user.username}/edit`}> Click here to add a first name </a>} </small> </p>
+                <p> First Name: <small> {firstName !== 'null' ? firstName : <a className="text-info" href={`/${username}/edit`}> Click here to add a first name </a>} </small> </p>
               </div>
               <div col-sm-6>
-                <p> Last Name: <small> {lastName !== 'null' ? user.lastName : <a className="text-info" href={`/${user.username}/edit`}> Click here to add a last name </a>} </small> </p>
+                <p> Last Name: <small> {lastName !== 'null' ? lastName : <a className="text-info" href={`/${username}/edit`}> Click here to add a last name </a>} </small> </p>
               </div>
               <div col-sm-6>
-                <p> Bio: <small> {bio !== 'null' ? user.bio : <a className="text-info" href={`/${user.username}/edit`}> Click here to add a bio </a>} </small> </p>
+                <p> Bio: <small> {bio !== 'null' ? bio : <a className="text-info" href={`/${username}/edit`}> Click here to add a bio </a>} </small> </p>
               </div>
             </div>
           </div>
