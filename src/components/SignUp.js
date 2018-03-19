@@ -111,7 +111,7 @@ class SignUp extends Component {
                 </div>
               </nav>
               <div className="wrapper wrapper-full-page">
-                <div className="full-page register-page" filter-color="info" data-image="/assets/img/login.jpg">
+                <div className="full-page register-page full-page-background" filter-color="info" data-image="/assets/img/login.jpg" style={{backgroundImage: `url(/assets/img/login.jpg)`, width: `100%`}}>
                   <div className="container">
                     <div className="row">
                       <div className="col-md-10 col-md-offset-1">
@@ -241,4 +241,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUp))
-

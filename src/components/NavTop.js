@@ -56,7 +56,7 @@ class NavTop extends Component {
                     </a>
                   </li>
                   <li>
-                    <a href={`/profile/${localStorage.getItem('username')}`}>
+                    <a href={`/${localStorage.getItem('username')}`}>
                       <i className="material-icons">person</i>
                       <p className="hidden-lg hidden-md">Profile</p>
                     </a>
