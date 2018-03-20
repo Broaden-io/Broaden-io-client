@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Criteria from './Criteria';
+import { Link } from 'react-router-dom';
 import * as Actions from '../actions/assessment';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -19,6 +20,37 @@ const CompetencyButton = withRouter(props => {
     )
   })
 
+const AddNextButton = (props => {
+  return (
+
+    <div className="container">
+      <div className="col-md-4 mr-auto" style={{paddingTop: 70}}>
+        <Link className="btn btn-lg btn-info btn-simple" to={props.link} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
+          <i className="material-icons" style={{fontSize: 60}}>add</i>
+          <div className="ripple-container"></div>
+          <h5 style={{letterSpacing: '1px'}}> Next </h5>
+        </Link>
+      </div>
+    </div>
+
+  )
+})
+
+const FinishButton = (props => {
+  return (
+
+    <div className="container">
+      <div className="col-md-4 mr-auto" style={{paddingTop: 70}}>
+        <Link className="btn btn-lg btn-info btn-simple" to={props.link} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
+          <i className="material-icons" style={{fontSize: 60}}>add</i>
+          <div className="ripple-container"></div>
+          <h5 style={{letterSpacing: '1px'}}> Finish </h5>
+        </Link>
+      </div>
+    </div>
+
+  )
+})
   class Rubric extends Component {
 
     constructor(props) {
