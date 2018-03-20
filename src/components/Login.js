@@ -42,7 +42,8 @@ class Login extends Component {
         <nav className="navbar navbar-primary navbar-transparent navbar-absolute">
           <div className="container">
             <ToastContainer
-              hideProgressBar={true}
+              hideProgressBar={false}
+              
               position={'top-center'}
               newestOnTop={true}
               autoClose={5000}
