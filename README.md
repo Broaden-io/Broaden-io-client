@@ -1,12 +1,10 @@
-# Trubric-Frontend
-
-www.trubric.io
+# Frontend 
 
 ## Table of Contents
 
-# Trubric.io
+# 
 
-Single Page application that helps educators to create a discovery platform that helps students preparing skills for CS jobs. Programmers can use this platform to get measurable feedback by giving them tools for diagnostic, self-assessment. You can reach us at through our contact below.
+Single Page application that helps educators to create a discovery platform that helps students preparing skills for CS jobs. Users can use this platform to get measurable feedback through self-assessment. You can reach us at through our contact below.
 
 ### Authors
 - [Tassos Laumbrou](https://www.linkedin.com/in/lambrou/) - Full Stack
@@ -38,8 +36,6 @@ https://docs.google.com/document/d/1mGJIsFSPPdh3_hgxGGXkwspy713-ByaVwYPI0_SX4h0
 This project is licensed under the MIT License - see the [LICENSE.](https://tldrlegal.com/license/mit-license) file for details
 
 -------------------
-
-![screen shot 2018-03-01 at 2 21 22 pm](https://user-images.githubusercontent.com/10523517/36866101-371bc130-1d46-11e8-8e3b-75ac9817e43b.png)
 
 ![screen shot 2018-03-01 at 2 21 22 pm](https://github.com/Jeffchiucp/Rubrics-Frontend/blob/master/cache/Showcase-Devices-Mockup.jpg?raw=true)
 
