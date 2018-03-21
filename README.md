@@ -6,11 +6,11 @@ www.trubric.io
 
 # Trubric.io
 
-Single Page application that allows students to achieve measurable feedback by giving them tools for diagnostic, self-assessment through rubrics created by educators. This is project for Make School. You can reach us at through our contact below.
+Single Page application that helps educators to create a discovery platform that helps students preparing skills for CS jobs. Programmers can use this platform to get measurable feedback by giving them tools for diagnostic, self-assessment. You can reach us at through our contact below.
 
 ### Authors
-- [Tassos Laumbrou](https://www.linkedin.com/in/lambrou/) - Front/Back End
-- [Alirie Gray](https://www.linkedin.com/in/alirie-gray/) - Front End/ Back End
+- [Tassos Laumbrou](https://www.linkedin.com/in/lambrou/) - Full Stack
+- [Alirie Gray](https://www.linkedin.com/in/alirie-gray/) - Full Stack
 - [Jeff Chiu](https://www.linkedin.com/in/jeffchiu1) - Full Stack
 - [Shane Austrie](https://www.linkedin.com/in/shaneaustrie) - Frontend
 
@@ -40,6 +40,9 @@ This project is licensed under the MIT License - see the [LICENSE.](https://tldr
 -------------------
 
 ![screen shot 2018-03-01 at 2 21 22 pm](https://user-images.githubusercontent.com/10523517/36866101-371bc130-1d46-11e8-8e3b-75ac9817e43b.png)
+
+![screen shot 2018-03-01 at 2 21 22 pm](https://github.com/Jeffchiucp/Rubrics-Frontend/blob/master/cache/Showcase-Devices-Mockup.jpg?raw=true)
+
 
 ## Updating to New Releases
 
