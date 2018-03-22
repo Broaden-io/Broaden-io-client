@@ -22,31 +22,23 @@ const CompetencyButton = withRouter(props => {
 
 const NextButton = withRouter(props => {
   return (
-    <div className="container">
-      <div className="col-md-4 mr-auto" style={{paddingTop: 70}}>
-        <button className="btn btn-lg btn-info btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
-          onClick={(e) => {
-            e.preventDefault();
-            props.setActiveComp(props.activeIndex + 1);
-          }}>
-          <div className="ripple-container"></div>
-          <h5 style={{letterSpacing: '1px'}}> Next </h5>
-        </button>
-      </div>
-    </div>
+    <button className="btn btn-lg btn-info btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
+      onClick={(e) => {
+        e.preventDefault();
+        props.setActiveComp(props.activeIndex + 1);
+      }}>
+      <div className="ripple-container"></div>
+      <h5 style={{letterSpacing: '1px'}}> Next </h5>
+    </button>
   )
 })
 
 const FinishButton = withRouter(props => {
   return (
-    <div className="container">
-      <div className="col-md-4 mr-auto" style={{paddingTop: 70}}>
-        <Link className="btn btn-lg btn-info btn-simple" to={`/dashboard`} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
-          <div className="ripple-container"></div>
-          <h5 style={{letterSpacing: '1px'}}> Finish </h5>
-        </Link>
-      </div>
-    </div>
+    <Link className="btn btn-lg btn-info btn-simple" to={`/dashboard`} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
+      <div className="ripple-container"></div>
+      <h5 style={{letterSpacing: '1px'}}> Finish </h5>
+    </Link>
   )
 })
 
@@ -202,7 +194,12 @@ const FinishButton = withRouter(props => {
                     {this.renderCompetencies()}
                   </div>
                 </div>
-                <div class="col-xs-3 col-offset-xs-9">
+              </div>
+              <div className="row">
+                <div className="col-xs-3 col-offset-xs-9"> </div>
+                <div className="col-xs-3 col-offset-xs-9"> </div>
+                <div className="col-xs-3 col-offset-xs-9"> </div>
+                <div className="col-xs-3 col-offset-xs-9" style={{display:'flex', flexDirection:'row', justifyContent:'flex-end'}}>
                   {this.renderNextOrFinish()}
                 </div>
               </div>
