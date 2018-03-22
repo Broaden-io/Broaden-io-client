@@ -20,6 +20,19 @@ const CompetencyButton = withRouter(props => {
     )
   })
 
+const PreviousButton = withRouter(props => {
+  return (
+    <button className="btn btn-lg btn-info btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
+      onClick={(e) => {
+        e.preventDefault();
+        props.setActiveComp(props.activeIndex - 1);
+      }}>
+      <div className="ripple-container"></div>
+      <h5 style={{letterSpacing: '1px'}}> Previous </h5>
+    </button>
+  )
+})
+
 const NextButton = withRouter(props => {
   return (
     <button className="btn btn-lg btn-info btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
@@ -57,6 +70,7 @@ const FinishButton = withRouter(props => {
       this.getIsFetching = this.getIsFetching.bind(this);
       this.renderNextOrFinish = this.renderNextOrFinish.bind(this);
       this.setActiveComp = this.setActiveComp.bind(this);
+      this.renderPreviousButton = this.renderPreviousButton.bind(this);
     }
 
     componentWillMount() {
@@ -170,6 +184,16 @@ const FinishButton = withRouter(props => {
       }
     }
 
+    renderPreviousButton() {
+      const { assessmentObject } = this.props.assessment;
+      if (assessmentObject) {
+        const { Competencies } = assessmentObject.rubricJSON;
+        if ( this.state.activeCompetencyIndex !== 0) {
+          return <PreviousButton activeIndex={this.state.activeCompetencyIndex} setActiveComp={this.setActiveComp} />
+        }
+      }
+    }
+
     render() {
 
       const { assessment } = this.props;
@@ -196,10 +220,14 @@ const FinishButton = withRouter(props => {
                 </div>
               </div>
               <div className="row">
-                <div className="col-xs-3 col-offset-xs-9"> </div>
-                <div className="col-xs-3 col-offset-xs-9"> </div>
-                <div className="col-xs-3 col-offset-xs-9"> </div>
-                <div className="col-xs-3 col-offset-xs-9" style={{display:'flex', flexDirection:'row', justifyContent:'flex-end'}}>
+                <div className="col-md-2"> </div>
+                <div className="col-md-2" style={{display:'flex', flexDirection:'row', justifyContent:'flex-start'}}>
+                  {this.renderPreviousButton()}
+                </div>
+                <div className="col-md-2"> </div>
+                <div className="col-md-2"> </div>
+                <div className="col-md-2"> </div>
+                <div className="col-md-2" style={{display:'flex', flexDirection:'row', justifyContent:'flex-end'}}>
                   {this.renderNextOrFinish()}
                 </div>
               </div>
