@@ -20,9 +20,7 @@ const CompetencyButton = withRouter(props => {
     )
   })
 
-const AddNextButton = (props => {
-  return (
-
+const NextButton = (props) => (
     <div className="container">
       <div className="col-md-4 mr-auto" style={{paddingTop: 70}}>
         <Link className="btn btn-lg btn-info btn-simple" to={props.link} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
@@ -32,13 +30,9 @@ const AddNextButton = (props => {
         </Link>
       </div>
     </div>
-
   )
-})
 
-const FinishButton = (props => {
-  return (
-
+const FinishButton = (props) => (
     <div className="container">
       <div className="col-md-4 mr-auto" style={{paddingTop: 70}}>
         <Link className="btn btn-lg btn-info btn-simple" to={props.link} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
@@ -48,9 +42,8 @@ const FinishButton = (props => {
         </Link>
       </div>
     </div>
-
   )
-})
+
   class Rubric extends Component {
 
     constructor(props) {
@@ -64,6 +57,7 @@ const FinishButton = (props => {
       this.renderCriteriaForLevel = this.renderCriteriaForLevel.bind(this);
       this.renderLevels = this.renderLevels.bind(this);
       this.getIsFetching = this.getIsFetching.bind(this);
+      this.renderNextOrFinish = this.renderNextOrFinish.bind(this);
     }
 
     componentWillMount() {
@@ -133,15 +127,15 @@ const FinishButton = (props => {
       this.setState({ activeCompetencyIndex: index })
     }
 
-    incrementActiveComp() {
-      this.setState({ })
-      //cannot be the last one of the bulletin
-      // this\
-      // passed a bool (if this is the last one or not)
-      // give it the location of the
-      // onchange checks if it's the last one, then push to the dashboard,
-      // if not this.props.
-    }
+    // incrementActiveComp() {
+    //   this.setState({ })
+    //   //cannot be the last one of the bulletin
+    //   // this\
+    //   // passed a bool (if this is the last one or not)
+    //   // give it the location of the
+    //   // onchange checks if it's the last one, then push to the dashboard,
+    //   // if not this.props.
+    // }
 
 // <NextButton setActiveComp={this.setActiveComp} />
 
@@ -178,16 +172,27 @@ const FinishButton = (props => {
       return false;
     }
 
-    renderFinishButton() {
-     // e.preventDefault();
-     //  this.props.loginUser(this.state.loginForm).then(() => {
-     //    if () {
-     //      this.props.history.push(`/dashboard`);
-     //    } else {
-     //      console.log("Failed to log in!")
-     //      Alert('loginError')
-     //    }
-     //  });
+    // renderFinishButton() {
+    //  //  this.props.loginUser(this.state.loginForm).then(() => {
+    //  //    if () {
+    //  //      this.props.history.push(`/dashboard`);
+    //  //    } else {
+    //  //      console.log("Failed to log in!")
+    //  //      Alert('loginError')
+    //  //    }
+    //  //  });
+    // }
+
+    renderNextOrFinish() {
+      const { assessmentObject } = this.props.assessment;
+      if (assessmentObject) {
+        const { Competencies } = assessmentObject.rubricJSON;
+        if ( this.state.activeCompetencyIndex === Competencies.length - 1) {
+          return <FinishButton />
+        } else {
+          return <NextButton />
+        }
+      }
     }
 
 
@@ -217,9 +222,7 @@ const FinishButton = (props => {
                   </div>
                     </div>
                   <div class="col-xs-3 col-offset-xs-9">
-                    <button class="btn btn-primary pull-right">
-                      Next
-                    </button>
+                    {this.renderNextOrFinish()}
                 </div>
               </div>
             </div>
