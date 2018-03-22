@@ -43,7 +43,7 @@ const NextButton = props => (
 
 const FinishButton = withRouter(props => {
   return (
-    <Link className="btn btn-lg btn-info btn-simple" to={`/dashboard`} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
+    <Link className="btn btn-info btn-simple" to={`/dashboard`} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
       <div className="ripple-container"></div>
       <h5 style={{letterSpacing: '1px'}}> Finish </h5>
     </Link>
@@ -216,14 +216,13 @@ const FinishButton = withRouter(props => {
               </div>
               <div className="row">
                 <div className="col-md-2"> </div>
-                <div className="col-md-2" style={{display:'flex', flexDirection:'row', justifyContent:'flex-start'}}>
-                  {this.renderPreviousButton()}
-                </div>
-                <div className="col-md-2"> </div>
-                <div className="col-md-2"> </div>
-                <div className="col-md-2"> </div>
-                <div className="col-md-2" style={{display:'flex', flexDirection:'row', justifyContent:'flex-end'}}>
-                  {this.renderNextOrFinish()}
+                <div style={{display:'flex', justifyContent:'space-between'}}>
+                  <div className="col-md-2" style={{display:'flex', flexDirection:'row', justifyContent:'flex-start'}}>
+                    {this.renderPreviousButton()}
+                  </div>
+                  <div className="col-md-2" style={{display:'flex', flexDirection:'row', justifyContent:'flex-end'}}>
+                    {this.renderNextOrFinish()}
+                  </div>
                 </div>
               </div>
             </div>
