@@ -133,6 +133,19 @@ const FinishButton = (props => {
       this.setState({ activeCompetencyIndex: index })
     }
 
+    incrementActiveComp() {
+      this.setState({ })
+      //cannot be the last one of the bulletin
+      // this\
+      // passed a bool (if this is the last one or not)
+      // give it the location of the
+      // onchange checks if it's the last one, then push to the dashboard,
+      // if not this.props.
+    }
+
+// <NextButton setActiveComp={this.setActiveComp} />
+
+// <button onClick={this.props.setActiveComp()} >
     renderCompetencyButtons() {
       const { assessmentObject } = this.props.assessment;
       if (assessmentObject) {
@@ -165,7 +178,22 @@ const FinishButton = (props => {
       return false;
     }
 
+    renderFinishButton() {
+     // e.preventDefault();
+     //  this.props.loginUser(this.state.loginForm).then(() => {
+     //    if () {
+     //      this.props.history.push(`/dashboard`);
+     //    } else {
+     //      console.log("Failed to log in!")
+     //      Alert('loginError')
+     //    }
+     //  });
+    }
+
+
+
     render() {
+
       const { assessment } = this.props;
       const { isFetching } = assessment;
       return (
@@ -187,6 +215,11 @@ const FinishButton = (props => {
                   <div className="tab-content">
                     {this.renderCompetencies()}
                   </div>
+                    </div>
+                  <div class="col-xs-3 col-offset-xs-9">
+                    <button class="btn btn-primary pull-right">
+                      Next
+                    </button>
                 </div>
               </div>
             </div>
