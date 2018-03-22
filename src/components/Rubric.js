@@ -7,8 +7,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import uuidv1 from 'uuid/v1';
 
-const CompetencyButton = withRouter(props => {
-  return (
+const CompetencyButton = props => (
     <li className={props.isActive}
       onClick={() => {
         props.setActiveComp(props.index)
@@ -18,10 +17,8 @@ const CompetencyButton = withRouter(props => {
         </a>
       </li>
     )
-  })
 
-const PreviousButton = withRouter(props => {
-  return (
+const PreviousButton = props => (
     <button className="btn btn-lg btn-info btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
       onClick={(e) => {
         e.preventDefault();
@@ -31,10 +28,9 @@ const PreviousButton = withRouter(props => {
       <h5 style={{letterSpacing: '1px'}}> Previous </h5>
     </button>
   )
-})
 
-const NextButton = withRouter(props => {
-  return (
+
+const NextButton = props => (
     <button className="btn btn-lg btn-info btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
       onClick={(e) => {
         e.preventDefault();
@@ -44,7 +40,6 @@ const NextButton = withRouter(props => {
       <h5 style={{letterSpacing: '1px'}}> Next </h5>
     </button>
   )
-})
 
 const FinishButton = withRouter(props => {
   return (
