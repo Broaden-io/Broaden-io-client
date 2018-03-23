@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Criteria from './Criteria';
+import { Link } from 'react-router-dom';
 import * as Actions from '../actions/assessment';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import uuidv1 from 'uuid/v1';
 
-const CompetencyButton = withRouter(props => {
-  return (
+const CompetencyButton = props => (
     <li className={props.isActive}
       onClick={() => {
         props.setActiveComp(props.index)
@@ -17,7 +17,38 @@ const CompetencyButton = withRouter(props => {
         </a>
       </li>
     )
-  })
+
+const PreviousButton = props => (
+    <button className="btn btn-lg btn-rose btn-round btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
+      onClick={(e) => {
+        e.preventDefault();
+        props.setActiveComp(props.activeIndex - 1);
+      }}>
+      <div className="ripple-container"></div>
+      <h5 style={{letterSpacing: '1px'}}> Previous </h5>
+    </button>
+  )
+
+
+const NextButton = props => (
+    <button className="btn btn-lg btn-rose btn-round btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
+      onClick={(e) => {
+        e.preventDefault();
+        props.setActiveComp(props.activeIndex + 1);
+      }}>
+      <div className="ripple-container"></div>
+      <h5 style={{letterSpacing: '1px'}}> Next </h5>
+    </button>
+  )
+
+const FinishButton = withRouter(props => {
+  return (
+    <Link className="btn btn-lg btn-rose btn-round btn-simple" to={`/dashboard`} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
+      <div className="ripple-container"></div>
+      <h5 style={{letterSpacing: '1px'}}> Finish </h5>
+    </Link>
+  )
+})
 
   class Rubric extends Component {
 
@@ -32,6 +63,9 @@ const CompetencyButton = withRouter(props => {
       this.renderCriteriaForLevel = this.renderCriteriaForLevel.bind(this);
       this.renderLevels = this.renderLevels.bind(this);
       this.getIsFetching = this.getIsFetching.bind(this);
+      this.renderNextOrFinish = this.renderNextOrFinish.bind(this);
+      this.setActiveComp = this.setActiveComp.bind(this);
+      this.renderPreviousButton = this.renderPreviousButton.bind(this);
     }
 
     componentWillMount() {
@@ -117,7 +151,7 @@ const CompetencyButton = withRouter(props => {
               index={index}
               isActive={active}
               icon={this.icons[index]}
-              setActiveComp={this.setActiveComp.bind(this)}
+              setActiveComp={this.setActiveComp}
               />
           )
         }).sort((a , b) => {
@@ -133,7 +167,30 @@ const CompetencyButton = withRouter(props => {
       return false;
     }
 
+    renderNextOrFinish() {
+      const { assessmentObject } = this.props.assessment;
+      if (assessmentObject) {
+        const { Competencies } = assessmentObject.rubricJSON;
+        if ( this.state.activeCompetencyIndex === Competencies.length - 1) {
+          return <FinishButton />
+        } else {
+          return <NextButton activeIndex={this.state.activeCompetencyIndex} setActiveComp={this.setActiveComp} />
+        }
+      }
+    }
+
+    renderPreviousButton() {
+      const { assessmentObject } = this.props.assessment;
+      if (assessmentObject) {
+        const { Competencies } = assessmentObject.rubricJSON;
+        if ( this.state.activeCompetencyIndex !== 0) {
+          return <PreviousButton activeIndex={this.state.activeCompetencyIndex} setActiveComp={this.setActiveComp} />
+        }
+      }
+    }
+
     render() {
+
       const { assessment } = this.props;
       const { isFetching } = assessment;
       return (
@@ -154,6 +211,17 @@ const CompetencyButton = withRouter(props => {
                 <div className="col-md-10">
                   <div className="tab-content">
                     {this.renderCompetencies()}
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-2"> </div>
+                <div style={{display:'flex', justifyContent:'space-between'}}>
+                  <div className="col-md-2" style={{display:'flex', flexDirection:'row', justifyContent:'flex-start'}}>
+                    {this.renderPreviousButton()}
+                  </div>
+                  <div className="col-md-2" style={{display:'flex', flexDirection:'row', justifyContent:'flex-end'}}>
+                    {this.renderNextOrFinish()}
                   </div>
                 </div>
               </div>
