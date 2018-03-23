@@ -20,12 +20,18 @@ var Chartist = require("chartist");
 const AddAssessmentButton = (props => {
   return (
 
-    <div className="container">
-      <div className="col-md-4 mr-auto" style={{paddingTop: 70}}>
-        <Link className="btn btn-lg btn-info btn-simple" to={props.link} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
+    <div className="col-md-4">
+      <div className="col-md-9 center-block" style={{paddingTop: 70}}>
+        <Link className="btn btn-lg btn-border btn-default" to={props.link} style={{ color: '#888', backgroundColor: 'rgba(0,0,0,.05)'}}>
           <i className="material-icons" style={{fontSize: 60}}>add</i>
-          <div className="ripple-container"></div>
-          <h5 style={{letterSpacing: '1px'}}> Take a new assessment </h5>
+
+         Take a new assessment
+
+          <div className="ripple-container" style={{display: 'flex', height: '400px', alignContent: 'center', justifyContent: 'center'}}>
+          </div>
+
+
+
         </Link>
       </div>
     </div>
@@ -35,10 +41,10 @@ const AddAssessmentButton = (props => {
 
 class Dashboard extends Component {
 
-componentWillMount() {
-  const userId = localStorage.getItem('userId')
-  this.props.getAssessments(userId)
-}
+  componentWillMount() {
+    const userId = localStorage.getItem('userId')
+    this.props.getAssessments(userId)
+  }
 
   render() {
     const { assessmentsObject, isFetching } = this.props.assessments
@@ -46,7 +52,7 @@ componentWillMount() {
       <div>
         <div className="row">
           {isFetching ? null : assessmentsObject.map((assessment, index)=>{
-              return <ScoreCard key={uuidv1()} assessment={assessment}/>
+            return <ScoreCard key={uuidv1()} assessment={assessment}/>
           })}
           <AddAssessmentButton link={`/rubrics`}/>
         </div>
