@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactLoading from 'react-loading';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { bindActionCreators } from 'redux';
@@ -6,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
 import * as Actions from '../actions/auth';
 import { Alert } from './Alert';
+
 class Login extends Component {
 
   constructor(props) {
@@ -43,11 +45,11 @@ class Login extends Component {
           <div className="container">
             <ToastContainer
               hideProgressBar={false}
-              
               position={'top-center'}
               newestOnTop={true}
               autoClose={5000}
             />
+          {/*{this.props.auth.receiveSignUp size="large" color="#0000ff"/> }*/}
             <div className="navbar-header">
               <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
                 <span className="sr-only">Toggle navigation</span>
