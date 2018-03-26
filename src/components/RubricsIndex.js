@@ -53,7 +53,7 @@ class RubricsIndex extends Component {
             <i className="material-icons">assignment</i>
           </div>
           <div className="card-content">
-            <h4 className="card-title">Please Pick a Rubric...</h4>
+            <h4 className="card-title">Please pick a goal or skill that you'd like to track...</h4>
             <div className="table-responsive">
               <table className="table">
                 <thead>
