@@ -9,12 +9,13 @@ const firstName = localStorage.getItem('firstName');
 const lastName = localStorage.getItem('lastName');
 const avatarURL = localStorage.getItem('avatarURL');
 
-function componentDidMount() {
-  mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
-  mixpanel.track("Video play");
-}
-
 class Profile extends Component {
+  
+  componentDidMount() {
+    mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
+    mixpanel.track("Profile Page");
+  }
+
   render() {
 
 

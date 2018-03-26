@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
 import * as Actions from '../actions/rubrics';
+import mixpanel from 'mixpanel-browser';
 
 const RubricElement = withRouter(
   (props) => {
@@ -26,6 +27,11 @@ class RubricsIndex extends Component {
 
   componentWillMount() {
     this.props.getRubrics();
+  }
+
+  componentDidMount() {
+    mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
+    mixpanel.track("Rubrics Index Component Page");
   }
 
   drawRubrics() {

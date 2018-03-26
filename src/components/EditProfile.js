@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import mixpanel from 'mixpanel-browser';
 
 class EditProfile extends Component {
 
@@ -12,6 +13,11 @@ class EditProfile extends Component {
       firstName: '',
       lastName: ''
     }
+  }
+
+  componentDidMount() {
+    mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
+    mixpanel.track("Edit Profile Page");
   }
 
   submitForm() {

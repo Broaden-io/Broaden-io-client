@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import uuidv1 from 'uuid/v1';
+import mixpanel from 'mixpanel-browser';
 
 const CompetencyButton = withRouter(props => {
   return (
@@ -37,6 +38,11 @@ const CompetencyButton = withRouter(props => {
     componentWillMount() {
       const id = this.props.match.params.id;
       this.props.getAssessment(localStorage.getItem("userId"), id);
+    }
+
+    componentDidMount() {
+      mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
+      mixpanel.track("Rubric Component Page");
     }
 
     renderCriteriaForLevel(level, compIndex) {
