@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import mixpanel from 'mixpanel-browser'
 
 const username = localStorage.getItem('username');
 const userId = localStorage.getItem('userId');
@@ -9,6 +10,12 @@ const lastName = localStorage.getItem('lastName');
 const avatarURL = localStorage.getItem('avatarURL');
 
 class Profile extends Component {
+  
+  componentDidMount() {
+    mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
+    mixpanel.track("Profile Page");
+  }
+
   render() {
 
 

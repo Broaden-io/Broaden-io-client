@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import ChartCard from './ChartCard'
 import ScoreCard from './ScoreCard'
 import ChartistGraph from "react-chartist";
+import mixpanel from 'mixpanel-browser'
 import {
   emailsSubscriptionChart,
   completedTasksChart
@@ -38,6 +39,11 @@ class Dashboard extends Component {
     const userId = localStorage.getItem('userId')
     this.props.getAssessments(userId)
   }
+
+componentDidMount() {
+  mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
+  mixpanel.track("Dashboard Page");
+}
 
   render() {
     const { assessmentsObject, isFetching } = this.props.assessments
