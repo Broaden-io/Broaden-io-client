@@ -49,8 +49,6 @@ class Login extends Component {
               newestOnTop={true}
               autoClose={5000}
             />
-          {/*{this.props.auth.receiveSignUp && <<ActivityIndicator size="large" color="#0000ff"/> }*/}
-            <div className="navbar-header">
               <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
                 <span className="sr-only">Toggle navigation</span>
                 <span className="icon-bar"></span>
@@ -76,7 +74,6 @@ class Login extends Component {
                     </li>
                   </ul>
                 </div>
-              </div>
             </nav>
             <div className="wrapper wrapper-full-page">
               <div className="full-page login-page full-page-background" filter-color="blue" data-image="/assets/img/spacex.jpg" style={{backgroundImage: `url(/assets/img/spacex.jpg)`, width: `100%`}}>
@@ -116,8 +113,8 @@ class Login extends Component {
                                 </div>
                               </div>
                             </div>
-                            <div className="footer text-center">
-                              <button onClick={this.submitForm} className="btn btn-info btn-round btn-wd btn-lg">Let's go</button>
+                            <div className="footer text-center" style={{display:'flex', alignItems: 'center', justifyContent: 'center'}}>
+                              {this.props.auth.isFetching ? <ReactLoading type={"spin"} height={20} width={20} color="#0000ff"/> : <button onClick={this.submitForm} className="btn btn-info btn-round btn-wd btn-lg">Let's go</button>}
                             </div>
                           </div>
                         </form>
