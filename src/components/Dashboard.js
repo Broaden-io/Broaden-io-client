@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import ChartCard from './ChartCard'
 import ScoreCard from './ScoreCard'
 import ChartistGraph from "react-chartist";
+import mixpanel from 'mixpanel-browser'
 import {
   emailsSubscriptionChart,
   completedTasksChart
@@ -19,25 +20,29 @@ var Chartist = require("chartist");
 
 const AddAssessmentButton = (props => {
   return (
-
-    <div className="container">
-      <div className="col-md-4 mr-auto" style={{paddingTop: 70}}>
-        <Link className="btn btn-lg btn-info btn-simple" to={props.link} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
+    <div className="col-md-4">
+      <div className="center-block" style={{paddingTop: 70}}>
+        <Link className="btn btn-lg btn-block btn-border btn-default" to={props.link} style={{ color: '#888', backgroundColor: 'rgba(0,0,0,.05)'}}>
           <i className="material-icons" style={{fontSize: 60}}>add</i>
-          <div className="ripple-container"></div>
-          <h5 style={{letterSpacing: '1px'}}> Take a new assessment </h5>
+         Take a new assessment
+          <div className="ripple-container">
+          </div>
         </Link>
       </div>
     </div>
-
   )
 })
 
 class Dashboard extends Component {
 
-componentWillMount() {
-  const userId = localStorage.getItem('userId')
-  this.props.getAssessments(userId)
+  componentWillMount() {
+    const userId = localStorage.getItem('userId')
+    this.props.getAssessments(userId)
+  }
+
+componentDidMount() {
+  mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
+  mixpanel.track("Dashboard Page");
 }
 
   render() {
@@ -46,7 +51,7 @@ componentWillMount() {
       <div>
         <div className="row">
           {isFetching ? null : assessmentsObject.map((assessment, index)=>{
-              return <ScoreCard key={uuidv1()} assessment={assessment}/>
+            return <ScoreCard key={uuidv1()} assessment={assessment}/>
           })}
           <AddAssessmentButton link={`/rubrics`}/>
         </div>

@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import uuidv1 from 'uuid/v1';
+import mixpanel from 'mixpanel-browser';
 
 const CompetencyButton = props => (
     <li className={props.isActive}
@@ -19,7 +20,7 @@ const CompetencyButton = props => (
     )
 
 const PreviousButton = props => (
-    <button className="btn btn-lg btn-info btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
+    <button className="btn btn-lg btn-rose btn-round btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
       onClick={(e) => {
         e.preventDefault();
         props.setActiveComp(props.activeIndex - 1);
@@ -31,7 +32,7 @@ const PreviousButton = props => (
 
 
 const NextButton = props => (
-    <button className="btn btn-lg btn-info btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
+    <button className="btn btn-lg btn-rose btn-round btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
       onClick={(e) => {
         e.preventDefault();
         props.setActiveComp(props.activeIndex + 1);
@@ -43,7 +44,7 @@ const NextButton = props => (
 
 const FinishButton = withRouter(props => {
   return (
-    <Link className="btn btn-info btn-simple" to={`/dashboard`} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
+    <Link className="btn btn-lg btn-rose btn-round btn-simple" to={`/dashboard`} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
       <div className="ripple-container"></div>
       <h5 style={{letterSpacing: '1px'}}> Finish </h5>
     </Link>
@@ -71,6 +72,11 @@ const FinishButton = withRouter(props => {
     componentWillMount() {
       const id = this.props.match.params.id;
       this.props.getAssessment(localStorage.getItem("userId"), id);
+    }
+
+    componentDidMount() {
+      mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
+      mixpanel.track("Rubric Component Page");
     }
 
     renderCriteriaForLevel(level, compIndex) {

@@ -11,6 +11,7 @@ import bcrypt from 'bcryptjs';
 import serverPath from '../paths';
 import axios from 'axios';
 import Footer from './Footer';
+import mixpanel from 'mixpanel-browser';
 
 class SignUp extends Component {
 
@@ -29,6 +30,11 @@ class SignUp extends Component {
       isValid: false,
       submitted: false
     }
+  }
+
+  componentDidMount() {
+    mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
+    mixpanel.track("Login Page");
   }
 
   validate() {

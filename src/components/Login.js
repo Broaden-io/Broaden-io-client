@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import * as Actions from '../actions/auth';
 import { Alert } from './Alert';
 
+import mixpanel from 'mixpanel-browser'
 class Login extends Component {
 
   constructor(props) {
@@ -24,6 +25,11 @@ class Login extends Component {
       submitted: false,
       loaded: false
     }
+  }
+
+  componentDidMount() {
+    mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
+    mixpanel.track("Login Page");
   }
 
   submitForm(e) {
