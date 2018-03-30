@@ -119,7 +119,7 @@ class Login extends Component {
                                 </div>
                               </div>
                             </div>
-                            <div className="footer text-center" style={{display:'flex', alignItems: 'center', justifyContent: 'center'}}>
+                            <div className="footer text-center loading-icon" >
                               {
                                 this.props.auth.isFetching
                                 ? <ReactLoading type={"spin"} height={20} width={20} color="#0000ff"/>
