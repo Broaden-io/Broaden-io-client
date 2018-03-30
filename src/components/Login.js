@@ -120,7 +120,13 @@ class Login extends Component {
                               </div>
                             </div>
                             <div className="footer text-center" style={{display:'flex', alignItems: 'center', justifyContent: 'center'}}>
-                              {this.props.auth.isFetching ? <ReactLoading type={"spin"} height={20} width={20} color="#0000ff"/> : <button onClick={this.submitForm} className="btn btn-info btn-round btn-wd btn-lg">Let's go</button>}
+                              {
+                                this.props.auth.isFetching
+                                ? <ReactLoading type={"spin"} height={20} width={20} color="#0000ff"/>
+                                : <button onClick={this.submitForm} className="btn btn-info btn-round btn-wd btn-lg">
+                                    Let's go
+                                  </button>
+                              }
                             </div>
                           </div>
                         </form>
