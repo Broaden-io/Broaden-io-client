@@ -15,7 +15,6 @@
     "react-chartist": "^0.13.1",
     "react-cookie": "^2.1.2",
     "react-dom": "^16.2.0",
-    "react-loading": "^1.0.4",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
@@ -30,10 +29,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "jest": "^22.4.3",
+    "jest-localstorage-mock": "^2.2.0",
     "remote-redux-devtools": "^0.5.12"
   }
 }
