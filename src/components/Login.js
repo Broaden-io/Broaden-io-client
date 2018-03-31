@@ -124,7 +124,9 @@ class Login extends Component {
                                 this.props.auth.isFetching
                                 ? <ReactLoading type={"spin"} height={20} width={20} color="#0000ff"/>
                                 : <button onClick={this.submitForm} className="btn btn-info btn-round btn-wd btn-lg">
-                                    Let's go
+ 
+                                  Let &#39; s go
+
                                   </button>
                               }
                             </div>
