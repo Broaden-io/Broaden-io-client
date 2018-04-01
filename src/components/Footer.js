@@ -31,7 +31,7 @@ class Footer extends Component {
                   </ul>
                 </nav>
                 <p className="copyright pull-right">
-                  © <a href="/"> Trubric </a>, made with love by students at Make School
+                  © <a href="/"> Broden.io </a>, made with love by students at Make School
                 </p>
             </div>
           </footer>

@@ -43,7 +43,7 @@ class NavTop extends Component {
               </button>
 
               <a className="navbar-brand" href="/">
-                  &nbsp; TRUBRIC.IO
+                  &nbsp; BROADEN.IO
               </a>
             </div>
             <div className="collapse navbar-collapse">
