@@ -98,7 +98,7 @@ class SignUp extends Component {
                 </button>
                 <a className="navbar-brand" href="/">
                   <i className="material-icons">details</i>
-                    &nbsp; TRUBRIC.IO
+                    &nbsp; BROADEN.IO
                 </a>
               </div>
               <div className="collapse navbar-collapse">
