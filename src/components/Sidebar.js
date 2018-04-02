@@ -47,7 +47,7 @@ class Sidebar extends Component {
               <i className="material-icons">details</i>
             </a>
             <a href="/dashboard" className="simple-text logo-normal">
-              Trubric.io
+              Broaden.io
             </a>
           </div>
           <div className="sidebar-wrapper">
