@@ -83,7 +83,7 @@ class Login extends Component {
             </nav>
             <div className="wrapper wrapper-full-page">
               <div className="full-page login-page full-page-background" filter-color="blue" data-image="/assets/img/spacex.jpg" style={{backgroundImage: `url(/assets/img/spacex.jpg)`, width: `100%`}}>
-                <div class="sidebar-background" />
+                <div className="sidebar-background" />
 
                 <div className="content">
                   <div className="container">
