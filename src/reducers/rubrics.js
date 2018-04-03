@@ -4,15 +4,24 @@ import {
   RUBRICS_FAILURE
 } from '../actions/rubrics'
 
-const rubricsReducer = (state = [], action) => {
+const initialState = {
+  isFetching: false,
+  rubrics: []
+}
+
+const rubricsReducer = (state = initialState, action) => {
   switch (action.type) {
     case REQUEST_RUBRICS_INDEX:
       return {
         ...state,
-        isFetch: action.isFetching
+        isFetching: action.isFetching
       }
     case RUBRICS_INDEX_SUCCESS:
-      return action.rubrics
+      return {
+        ...state,
+        isFetching: action.isFetching,
+        rubrics: action.rubrics
+      }
     case RUBRICS_FAILURE:
       return {
         ...state,

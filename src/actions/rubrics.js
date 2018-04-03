@@ -41,17 +41,13 @@ export function getRubrics() {
 
   return dispatch => {
     dispatch(requestRubricsIndex());
-
-    return fetch(`${serverPath}/rubrics`, config).then((res) => {
-      if (res.status !== 200) {
-        dispatch(rubricsError(res.message));
-        return Promise.reject("Could not get rubrics index")
-      }
+    return fetch(`${serverPath}/rubrics`, config)
+    .then((res) => {
       return res.json();
     }).then((json) => {
       dispatch(receiveRubricsIndex(json))
     }).catch(err => {
-      alert('There was an error: ', err)
+      dispatch(rubricsError(err.message));
     });
   }
 }
