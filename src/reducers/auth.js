@@ -1,3 +1,11 @@
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT_SUCCESS,
+  SIGNUP_FAILURE
+} from '../actions/auth'
+
 const authDefaultState = {
   isFetching: false,
   isAuthenticated: localStorage.getItem('token') ? true : false,
@@ -11,16 +19,16 @@ const authDefaultState = {
   }
 }
 
-export default (state = authDefaultState, action) => {
+const authReducer = (state = authDefaultState, action) => {
   switch (action.type) {
-    case 'LOGIN_REQUEST':
+    case LOGIN_REQUEST:
       return {
         ...state,
         isFetching: action.isFetching,
         isAuthenticated: action.isAuthenticated,
         errorMessage: ''
       }
-    case 'LOGIN_SUCCESS':
+    case LOGIN_SUCCESS:
       return {
         ...state,
         isFetching: action.isFetching,
@@ -28,21 +36,21 @@ export default (state = authDefaultState, action) => {
         errorMessage: '',
         user: action.user
       }
-    case 'LOGIN_FAILURE':
+    case LOGIN_FAILURE:
       return {
         ...state,
         isFetching: action.isFetching,
         isAuthenticated: action.isAuthenticated,
         errorMessage: action.message
       }
-    case 'LOGOUT_SUCCESS':
+    case LOGOUT_SUCCESS:
       return {
         ...state,
         isFetching: action.isFetching,
         isAuthenticated: action.isAuthenticated,
         errorMessage: ''
       }
-    case 'SIGNUP_FAILURE':
+    case SIGNUP_FAILURE:
       return {
         ...state,
         isFetching: action.isFetching,
@@ -53,3 +61,5 @@ export default (state = authDefaultState, action) => {
       return state
   }
 }
+
+export default authReducer

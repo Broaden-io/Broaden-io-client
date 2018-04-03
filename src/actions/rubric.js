@@ -1,19 +1,24 @@
 import history from '../routers/history';
 import serverPath from '../paths';
 
+export const
+REQUEST_RUBRIC_BY_ID = 'REQUEST_RUBRIC_BY_ID',
+RUBRIC_SUCCESS = 'RUBRIC_SUCCESS',
+RUBRIC_FAILURE = 'RUBRIC_FAILURE'
+
 export const requestRubric = (id) => ({
-  type: 'REQUEST_RUBRIC_BY_ID',
+  type: REQUEST_RUBRIC_BY_ID,
   isFetching: true
 })
 
 export const receiveRubric = (rubric) => ({
-  type: 'RUBRIC_SUCCESS',
+  type: RUBRIC_SUCCESS,
   isFetching: false,
   rubric
 })
 
 export const rubricError = (message) => ({
-  type: 'RUBRIC_FAILURE',
+  type: RUBRIC_FAILURE,
   isFetching: false,
   message
 })
@@ -26,7 +31,7 @@ export function getRubricById(id) {
       'Accept': 'application/json, text/plain, */*',
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Bearer ' + localStorage.getItem('token')
-     }
+    }
   }
 
   return dispatch => {
