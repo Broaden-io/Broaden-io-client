@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router'
-import ChartistGraph from 'react-chartist';
 import { Link } from 'react-router-dom';
 import uuidv1 from 'uuid/v1';
 
@@ -17,7 +16,7 @@ const CompetencyScore = withRouter(
   )
 )
 
-  class ScoreCard extends React.Component {
+  class ScoreCard extends Component {
 
     constructor(props) {
       super(props)
@@ -45,9 +44,9 @@ const CompetencyScore = withRouter(
       const { Scales } = competency
 
       Scales.map((scale, index) => {
-        scale.Criteria.map((criterion, index) => {
-          criterion.answer && (scoreTotals.userTotal += criterion.level)
-          scoreTotals.competencyTotal += criterion.level
+        return scale.Criteria.map((criterion, index) => {
+           criterion.answer && (scoreTotals.userTotal += criterion.level)
+          return scoreTotals.competencyTotal += criterion.level
         })
       })
 
@@ -56,8 +55,9 @@ const CompetencyScore = withRouter(
     }
 
     render() {
-      const assessment = this.props.assessment.rubricJSON
-      const { name, description, Competencies } = assessment
+      const { rubricId, rubricJSON } = this.props.assessment
+      const assessment = rubricJSON
+      const { name, Competencies } = assessment
       const totalScore = this.calculateTotalScore()
       const key = uuidv1()
       return (
@@ -73,7 +73,7 @@ const CompetencyScore = withRouter(
 
                       <h4 className="card-title" style={{ display: 'inline' }}>{name}</h4>
 
-                    <Link to={`/rubrics/${this.props.assessment.rubricId}`} className="btn btn-default btn-simple btn-fab btn-fab-mini" style={{ display: 'inline', paddingLeft:50 }}>
+                    <Link to={`/rubrics/${rubricId}`} className="btn btn-default btn-simple btn-fab btn-fab-mini" style={{ display: 'inline', paddingLeft:50 }}>
                       <i className="material-icons">create</i>
                       <div className="ripple-container"></div>
                     </Link>

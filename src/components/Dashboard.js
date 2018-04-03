@@ -4,19 +4,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
-import ChartCard from './ChartCard'
 import ScoreCard from './ScoreCard'
-import ChartistGraph from "react-chartist";
 import mixpanel from 'mixpanel-browser'
-import {
-  emailsSubscriptionChart,
-  completedTasksChart
-} from "../variables/charts";
-import { AccessTime } from "material-ui-icons";
 import "../assets/css/material-dashboard-react.css";
 import uuidv1 from 'uuid/v1';
-
-var Chartist = require("chartist");
 
 const AddAssessmentButton = (props => {
   return (
