@@ -1,18 +1,23 @@
 import serverPath from '../paths';
 
+export const
+REQUEST_ASSESSMENTS = 'REQUEST_ASSESSMENTS',
+ASSESSMENTS_SUCCESS = 'ASSESSMENTS_SUCCESS',
+ASSESSMENTS_FAILURE = 'ASSESSMENTS_FAILURE'
+
 export const requestAssessments = (userId) => ({
-  type: 'REQUEST_ASSESSMENTS',
+  type: REQUEST_ASSESSMENTS,
   isFetching: true
 })
 
 export const receiveAssessments = (assessments) => ({
-  type: 'ASSESSMENTS_SUCCESS',
+  type: ASSESSMENTS_SUCCESS,
   isFetching: false,
   assessments
 })
 
 export const assessmentsError = (message) => ({
-  type: 'ASSESSMENTS_FAILURE',
+  type: ASSESSMENTS_FAILURE,
   isFetching: false,
   message
 })

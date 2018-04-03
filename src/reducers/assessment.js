@@ -1,29 +1,37 @@
-export default (state = {}, action) => {
+import {
+  REQUEST_ASSESSMENT,
+  ASSESSMENT_SUCCESS,
+  ASSESSMENT_FAILURE,
+  REQUEST_UPDATE,
+  UPDATE_ASSESSMENT
+} from '../actions/assessment'
+
+const assessmentReducer = (state = {}, action) => {
   switch (action.type) {
-    case 'REQUEST_ASSESSMENT':
+    case REQUEST_ASSESSMENT:
       return {
         ...state,
         isFetching: action.isFetching
       }
-    case 'ASSESSMENT_SUCCESS':
+    case ASSESSMENT_SUCCESS:
       return {
         errorMessage: '',
         isFetching: action.isFetching,
         assessmentObject: action.assessment
       }
-    case 'ASSESSMENT_FAILURE':
+    case ASSESSMENT_FAILURE:
       return {
         ...state,
         errorMessage: action.message,
         isFetching: action.isFetching
       }
-    case 'REQUEST_UPDATE':
+    case REQUEST_UPDATE:
       return {
         ...state,
         errorMessage: '',
         isFetching: action.isFetching
       }
-    case 'UPDATE_ASSESSMENT':
+    case UPDATE_ASSESSMENT:
       return {
         ...state,
         errorMessage: '',
@@ -34,3 +42,5 @@ export default (state = {}, action) => {
       return {...state}
   }
 }
+
+export default assessmentReducer

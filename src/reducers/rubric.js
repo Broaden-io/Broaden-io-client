@@ -1,8 +1,19 @@
-export default (state = {}, action) => {
+import {
+  REQUEST_RUBRIC_BY_ID,
+  RUBRIC_SUCCESS,
+  RUBRIC_FAILURE
+} from '../actions/rubric'
+
+const rubricReducer = (state = {}, action) => {
   switch (action.type) {
-    case 'RUBRIC_SUCCESS':
+    case REQUEST_RUBRIC_BY_ID:
+      return {
+        ...state,
+        isFetching: action.isFetching
+      }
+    case RUBRIC_SUCCESS:
       return action.rubric
-    case 'RUBRIC_FAILURE':
+    case RUBRIC_FAILURE:
       return {
         errorMessage: action.message
       }
@@ -10,3 +21,5 @@ export default (state = {}, action) => {
       return state
   }
 }
+
+export default rubricReducer

@@ -1,24 +1,30 @@
 import serverPath from '../paths'
 
-export const rubricsError = (message) => {
-  return {
-    type: 'RUBRICS_FAILURE',
-    isFetching: false
-  }
-}
+export const
+REQUEST_RUBRICS_INDEX = 'REQUEST_RUBRICS_INDEX',
+RUBRICS_INDEX_SUCCESS = 'RUBRICS_INDEX_SUCCESS',
+RUBRICS_FAILURE = 'RUBRICS_FAILURE'
 
 export const requestRubricsIndex = () => {
   return {
-    type: 'REQUEST_RUBRICS_INDEX',
+    type: REQUEST_RUBRICS_INDEX,
     isFetching: true
   }
 }
 
 export const receiveRubricsIndex = (rubrics) => {
   return {
-    type: 'RUBRICS_INDEX_SUCCESS',
+    type: RUBRICS_INDEX_SUCCESS,
     isFetching: false,
     rubrics
+  }
+}
+
+export const rubricsError = (message) => {
+  return {
+    type: RUBRICS_FAILURE,
+    isFetching: false,
+    error: message
   }
 }
 

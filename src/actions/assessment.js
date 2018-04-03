@@ -1,30 +1,37 @@
 import serverPath from '../paths';
 import axios from 'axios';
 
+export const
+REQUEST_ASSESSMENT = 'REQUEST_ASSESSMENT',
+ASSESSMENT_SUCCESS = 'ASSESSMENT_SUCCESS',
+ASSESSMENT_FAILURE = 'ASSESSMENT_FAILURE',
+REQUEST_UPDATE = 'REQUEST_UPDATE',
+UPDATE_ASSESSMENT = 'UPDATE_ASSESSMENT'
+
 export const requestAssessment = (userId, rubricId) => ({
-  type: 'REQUEST_ASSESSMENT',
+  type: REQUEST_ASSESSMENT,
   isFetching: true
 })
 
 export const receiveAssessment = (assessment) => ({
-  type: 'ASSESSMENT_SUCCESS',
+  type: ASSESSMENT_SUCCESS,
   isFetching: false,
   assessment
 })
 
 export const assessmentError = (message) => ({
-  type: 'ASSESSMENT_FAILURE',
+  type: ASSESSMENT_FAILURE,
   isFetching: false,
   message
 })
 
 export const requestUpdateAssessment = () => ({
-  type: 'REQUEST_UPDATE',
+  type: REQUEST_UPDATE,
   isFetching: true
 })
 
 export const setUpdatedAssessment = (assessment) => ({
-  type: 'UPDATE_ASSESSMENT',
+  type: UPDATE_ASSESSMENT,
   isFetching: false,
   assessment
 })
@@ -75,28 +82,18 @@ export function updateAssessment(assessment, criteriaId){
     rubricJSON: newRubricJson
   }
 
-  // then send the updated assessment object to the backend
-  // let config = {
-  //   method: 'PUT',
-  //   headers: {
-  //     'Content-Type': 'application/x-www-form-urlencoded',
-  //     'Authorization': 'Bearer ' + localStorage.getItem('token')
-  //   },
-  //   body: newAssessment
-  // }
-
   return dispatch => {
     dispatch(requestUpdateAssessment());
     return axios.post(`${serverPath}/assessments/${newAssessment.id}`, newAssessment).then((res) => {
-        if (res.status !== 200) {
-          dispatch(assessmentError(res.message));
-          return Promise.reject("Could not update assessment");
-        }
-        return res.data.assessment;
-      }).then((assessment) => {
-        dispatch(setUpdatedAssessment(assessment));
-      }).catch(err => console.log("Error: " + err));
-    }
+      if (res.status !== 200) {
+        dispatch(assessmentError(res.message));
+        return Promise.reject("Could not update assessment");
+      }
+      return res.data.assessment;
+    }).then((assessment) => {
+      dispatch(setUpdatedAssessment(assessment));
+    }).catch(err => console.log("Error: " + err));
+  }
 
 }
 
