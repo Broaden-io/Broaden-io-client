@@ -5,26 +5,26 @@ import rubricsReducer from '../reducers/rubrics'
 import rubricReducer from '../reducers/rubric'
 import assessmentReducer from '../reducers/assessment'
 import assessmentsReducer from '../reducers/assessments'
-import reduxCatch from 'redux-catch'
-import Raven from 'raven-js'
+// import reduxCatch from 'redux-catch'
+// import Raven from 'raven-js'
 import { createLogger } from 'redux-logger'
 
 // API key for Sentry (Phones home to report errors)
-const sentryKey = 'ac72c8f5f4ea4b11a10f452169652eb8'
+// const sentryKey = 'ac72c8f5f4ea4b11a10f452169652eb8'
 
 // Instance of Raven for usage with Sentry
-Raven
-  .config(`https://${sentryKey}@app.getsentry.com/<project>`)
-  .install()
+// Raven
+//   .config(`https://${sentryKey}@app.getsentry.com/<project>`)
+//   .install()
 
 // Custom error handler
-const errorHandler = (error, getState, action) => {
-  Raven.context({
-    state: getState(),
-    action,
-  })
-  Raven.captureException(error)
-}
+// const errorHandler = (error, getState, action) => {
+//   Raven.context({
+//     state: getState(),
+//     action,
+//   })
+//   Raven.captureException(error)
+// }
 
 // Combine all reducers
 const reducers = combineReducers({
@@ -36,7 +36,7 @@ const reducers = combineReducers({
 })
 
 // Middlewares
-let middleware = [ thunkMiddleware, reduxCatch(errorHandler) ]
+let middleware = [ thunkMiddleware ]
 // Apply extra middlewares if in dev or testing environments
 if (process.env.NODE_ENV !== 'production') {
   middleware = [ ...middleware, createLogger() ]

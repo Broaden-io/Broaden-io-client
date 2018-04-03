@@ -10,17 +10,17 @@ class DataCard extends Component {
 
   render() {
     return(
-      <div class="card card-stats">
-        <div class="card-header" data-background-color={this.props.color || "blue"}>
-          <i class="material-icons">{this.props.icon}</i>
+      <div className="card card-stats">
+        <div className="card-header" data-background-color={this.props.color || "blue"}>
+          <i className="material-icons">{this.props.icon}</i>
         </div>
-        <div class="card-content">
-          <p class="category">{this.state.category}</p>
-          <h3 class="card-title">{this.state.mainText}</h3>
+        <div className="card-content">
+          <p className="category">{this.state.category}</p>
+          <h3 className="card-title">{this.state.mainText}</h3>
         </div>
-        <div class="card-footer">
-          <div class="stats">
-            <i class="material-icons">{this.props.footerIcon}</i>
+        <div className="card-footer">
+          <div className="stats">
+            <i className="material-icons">{this.props.footerIcon}</i>
             {this.state.footerText}
           </div>
         </div>
