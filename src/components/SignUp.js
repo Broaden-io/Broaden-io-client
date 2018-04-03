@@ -211,17 +211,14 @@ class SignUp extends Component {
                                             </div>
                                           </div>
 
-                                          <div className="footer text-center">
-                                            {/*<button className="btn btn-info btn-round" onClick={() => this.setState({ submitted: true })}>Get Started...</button>
-                                          <SweetAlert
-                                          show={this.state.submitted}
-                                          title="Awesome"
-                                          text="Your account has been created successfully!"
-                                          onConfirm={() => this.setState({ submitted: false })}
-                                          />*/}
-                                          <button className="btn btn-info btn-round btn-lg" onClick={this.submitForm}>Get Started...</button>
-
-
+                                          <div className="footer text-center loading-icon" >
+                                            {
+                                              this.props.auth.isFetching
+                                              ? <ReactLoading type={"spin"} height={20} width={20} color="#0000ff"/>
+                                              : <button className="btn btn-info btn-round btn-lg"
+                                              onClick={this.submitForm}>Get Started...
+                                                </button>
+                                            }
                                         </div>
                                       </div>
                                     </div>
