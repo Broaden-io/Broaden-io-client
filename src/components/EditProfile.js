@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import mixpanel from 'mixpanel-browser';
 
 class EditProfile extends Component {
@@ -75,7 +74,7 @@ class EditProfile extends Component {
                       <div className="form-group">
                         <label>About Me</label>
                         <div className="form-group label-floating is-empty">
-                          <textarea className="form-control" rows="5" value={this.state.bio} onChange={(e) => this.setState({bio: e.target.value})} ></textarea>
+                          <textarea className="form-control" rows="5" value={bio} onChange={(e) => this.setState({bio: e.target.value})} ></textarea>
                         <span className="material-input"></span></div>
                       </div>
                     </div>

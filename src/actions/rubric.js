@@ -1,4 +1,3 @@
-import history from '../routers/history';
 import serverPath from '../paths';
 
 export const

@@ -36,7 +36,7 @@ const reducers = combineReducers({
 })
 
 // Middlewares
-let middleware = [ thunkMiddleware, reduxCatch(error => Raven.captureException(error)) ]
+let middleware = [ thunkMiddleware, reduxCatch(errorHandler) ]
 // Apply extra middlewares if in dev or testing environments
 if (process.env.NODE_ENV !== 'production') {
   middleware = [ ...middleware, createLogger() ]
