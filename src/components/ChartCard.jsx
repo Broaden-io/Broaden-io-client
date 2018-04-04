@@ -19,27 +19,28 @@ class ChartCard extends Component {
       sidebarIsMini: this.props.statsIconColor ? this.props.statsIconColor : "gray",
       chartColor: this.props.chartColor ? this.props.chartColor : "gray",
     }
+    this.propTypes = {
+      classes: PropTypes.object.isRequired,
+      chart: PropTypes.object.isRequired,
+      title: PropTypes.node,
+      text: PropTypes.node,
+      statIcon: PropTypes.func.isRequired,
+      statIconColor: PropTypes.oneOf([
+        "warning",
+        "primary",
+        "danger",
+        "success",
+        "info",
+        "rose",
+        "gray"
+      ]),
+      chartColor: PropTypes.oneOf(["orange", "green", "red", "blue", "purple"]),
+      statLink: PropTypes.object,
+      statText: PropTypes.node
+    };
   }
 
-  propTypes = {
-    classes: PropTypes.object.isRequired,
-    chart: PropTypes.object.isRequired,
-    title: PropTypes.node,
-    text: PropTypes.node,
-    statIcon: PropTypes.func.isRequired,
-    statIconColor: PropTypes.oneOf([
-      "warning",
-      "primary",
-      "danger",
-      "success",
-      "info",
-      "rose",
-      "gray"
-    ]),
-    chartColor: PropTypes.oneOf(["orange", "green", "red", "blue", "purple"]),
-    statLink: PropTypes.object,
-    statText: PropTypes.node
-  };
+
 
   render() {
   return(
