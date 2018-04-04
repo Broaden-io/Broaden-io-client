@@ -40,7 +40,7 @@ componentDidMount() {
   render() {
     const { assessmentsObject, isFetching } = this.props.assessments
     return (
-      <div>
+      <div className="dashboard">
         <div className="row">
           {isFetching ? null : assessmentsObject.map((assessment, index)=>{
             return <ScoreCard key={uuidv1()} assessment={assessment}/>
