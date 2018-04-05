@@ -20,6 +20,7 @@ const CompetencyScore = withRouter(
 
     constructor(props) {
       super(props)
+      this.calculateTotalScore = this.calculateTotalScore.bind(this)
     }
 
 
