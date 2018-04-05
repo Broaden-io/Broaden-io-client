@@ -202,8 +202,8 @@ const FinishButton = withRouter(props => {
         <div className="col-md-12">
           <div className="card">
             <div className="card-header">
-              <h2 className="card-title"> {isFetching ? null : assessment.assessmentObject.rubricJSON.name + " "}
-                <br/> <small className="category">{isFetching ? null : assessment.assessmentObject.rubricJSON.description}</small>
+              <h2 className="card-title"> {this.getIsFetching() ? null : assessment.assessmentObject.rubricJSON.name + " "}
+                <br/> <small className="category">{this.getIsFetching() ? null : assessment.assessmentObject.rubricJSON.description}</small>
               </h2>
             </div>
             <div className="card-content">
