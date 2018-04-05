@@ -94,7 +94,7 @@ class Login extends Component {
                             <div className="card-header text-center" data-background-color="blue">
                               <h4 className="card-title">Login</h4>
                             </div>
-                            <p className="category text-center">Don't have an account?</p>
+                            <p className="category text-center">Don &#39; t have an account?</p>
                             <p className="category text-center">
                               <Link className="btn btn-rose btn-simple" to='/signup'> Sign Up</Link>
                             </p>
@@ -124,7 +124,7 @@ class Login extends Component {
                                 this.props.auth.isFetching
                                 ? <ReactLoading type={"spin"} height={20} width={20} color="#0000ff"/>
                                 : <button onClick={this.submitForm} className="btn btn-info btn-round btn-wd btn-lg">
-                                    Let's go
+                                    Let &#39; s go
                                   </button>
                               }
                             </div>
