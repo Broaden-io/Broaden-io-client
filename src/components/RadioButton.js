@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 
 class RadioButton extends Component {
-
-
-  state = {
-    checked: this.props.beChecked ? true : false
+  constructor(props){
+    super(props)
+    this.state = {
+      checked: this.props.beChecked ? true : false
+    }
   }
 
-  radioButtonChange = (e) => {
+  radioButtonChange(e){
     if (this.state.checked) {
       this.setState({
         checked: false
@@ -20,7 +21,7 @@ class RadioButton extends Component {
     }
   }
 
-  completeAction = (e) => {
+  completeAction(e){
     //When this is called, state.checked wouldn't have been set yet, so we must
     //do the opposite
     if (this.props.hasActions) {
