@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200px" height="1200px" viewBox="0 0 1200 1200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #01BCD4;">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>AppIcon-Light</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="AppIcon-Light" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-Copy-2" fill="#01BCD4" x="0" y="0" width="1200" height="1200" rx="171.292018"></rect>
+        <g id="Broaden-Logo" transform="translate(211.589827, 211.589827)" stroke="#FFFFFF">
+            <g id="Group">
+                <polygon id="Triangle" stroke-width="80" transform="translate(388.500000, 388.500000) scale(1, -1) translate(-388.500000, -388.500000) " points="388.5 0 777 777 0 777"></polygon>
+                <polygon id="Triangle-Copy-2" stroke-width="80" transform="translate(269.912380, 269.912380) scale(1, -1) translate(-269.912380, -269.912380) " points="269.91238 0 539.824759 539.824759 0 539.824759"></polygon>
+                <polygon id="Triangle-Copy" stroke-width="80" transform="translate(328.841994, 328.841994) scale(1, -1) translate(-328.841994, -328.841994) " points="328.841994 0 657.683989 657.683989 0 657.683989"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
