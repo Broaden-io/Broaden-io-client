@@ -96,10 +96,7 @@ class Login extends Component {
                         <div className="card-header text-center" data-background-color="blue">
                           <h4 className="card-title">Login</h4>
                         </div>
-                        <p className="category text-center">Don't have an account?</p>
-                        <p className="category text-center">
-                          <Link className="btn btn-rose btn-simple" to='/signup'> Sign Up</Link>
-                        </p>
+
                         <div className="card-content">
                           <div className="input-group">
                             <span className="input-group-addon">
@@ -148,6 +145,10 @@ class Login extends Component {
                         </button>
                       }
                     </div>
+                    <p className="category text-center">Don't have an account?
+                      <br/>
+                      <Link className="btn btn-default btn-lg btn-simple" to='/signup'> Sign Up</Link>
+                    </p>
                   </div>
                 </form>
               </div>
