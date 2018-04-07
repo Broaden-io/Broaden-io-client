@@ -57,14 +57,14 @@ const CompetencyScore = withRouter(
     render() {
       const { rubricId, rubricJSON } = this.props.assessment
       const assessment = rubricJSON
-      const { name, Competencies } = assessment
+      const { name, iconName, Competencies } = assessment
       const totalScore = this.calculateTotalScore()
       const key = uuidv1()
       return (
         <div className="col-md-4">
           <div className="card">
             <div className="card-header card-header-icon" data-background-color="blue">
-              <i className="material-icons">pie_chart</i>
+              <i className="material-icons">{iconName}</i>
             </div>
             <div className="card-content">
               <div className="typography">
