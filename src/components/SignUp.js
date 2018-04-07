@@ -97,7 +97,7 @@ class SignUp extends Component {
                 </button>
                 <a className="navbar-brand" href="/">
                   <i className="material-icons">details</i>
-                    &nbsp; BROADEN.IO
+                  &nbsp; BROADEN.IO
                 </a>
               </div>
               <div className="collapse navbar-collapse">
@@ -124,126 +124,145 @@ class SignUp extends Component {
                         <div className="card card-signup">
                           <h2 className="card-title text-center">Sign Up</h2>
                           <div className="row">
+
                             <div className="col-md-5 col-md-offset-1">
                               <div className="card-content">
-                                <div className="info info-horizontal">
-                                  <div className="icon icon-rose">
-                                    <i className="material-icons">timeline</i>
-                                  </div>
-                                  <div className="description">
-                                    <h4 className="info-title">Assess your abilities</h4>
-                                    <p className="description">
-                                      Use one of our many detailed Rubrics designed to provide you with actionable learning steps and growth.
-                                    </p>
-                                  </div>
+                                <div className="input-group">
+                                  <span className="input-group-addon">
+                                    <i className="material-icons">
+                                      face
+                                    </i>
+                                  </span>
+                                  <input
+                                    type="text"
+                                    value={this.state.registerForm.username}
+                                    onChange={(e) => {
+                                      this.setState({
+                                        ...this.state,
+                                        registerForm: {
+                                          ...this.state.registerForm,
+                                          username: e.target.value
+                                        }
+                                      }, () => {
+                                        this.validate();
+                                      })
+                                    }}
+                                    className="form-control"
+                                    placeholder="Username..."/>
                                 </div>
-                                <div className="info info-horizontal">
-                                  <div className="icon icon-primary">
-                                    <i className="material-icons">lightbulb_outline</i>
+                                <div className="input-group">
+                                  <span className="input-group-addon">
+                                    <i className="material-icons">email</i>
+                                  </span>
+                                  <input type="text" value={this.state.registerForm.email} onChange={(e) => {
+                                      this.setState({...this.state, registerForm: {...this.state.registerForm, email: e.target.value}}, () => {
+                                        this.validate()
+                                      })
+                                    }} className="form-control" placeholder="Email..."/>
                                   </div>
-                                  <div className="description">
-                                    <h4 className="info-title">Level-up your learning</h4>
-                                    <p className="description">
-                                      Our rubrics are rich with a diverse set of learning resources so you can level up your abilities quickly.
-                                    </p>
-                                  </div>
-                                </div>
-                                <div className="info info-horizontal">
-                                  <div className="icon icon-info">
-                                    <i className="material-icons">group</i>
-                                  </div>
-                                  <div className="description">
-                                    <h4 className="info-title">Build your own curricula</h4>
-                                    <p className="description">
-                                      Develop your own personal rubrics for others to self-assess and grow your curriculum!
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-md-5">
-                              <div className="social text-center">
-                                <Link to="/login" className="btn btn-info btn-round" >
-                                  <i className="material-icons">account_circle</i>  Log In
-                                    <div className="ripple-container"></div></Link>
-                                  </div>
-                                  <div className="card-content">
-                                    <div className="input-group">
-                                      <span className="input-group-addon">
-                                        <i className="material-icons">face</i>
-                                      </span>
-                                      <input type="text" value={this.state.registerForm.username} onChange={(e) => {
-                                          this.setState({...this.state, registerForm: {...this.state.registerForm, username: e.target.value}}, () => {
-                                            this.validate();
-                                          })
-                                        }} className="form-control" placeholder="Username..."/>
-                                      </div>
-                                      <div className="input-group">
-                                        <span className="input-group-addon">
-                                          <i className="material-icons">email</i>
-                                        </span>
-                                        <input type="text" value={this.state.registerForm.email} onChange={(e) => {
-                                            this.setState({...this.state, registerForm: {...this.state.registerForm, email: e.target.value}}, () => {
-                                              this.validate()
+                                  <div className="input-group">
+                                    <span className="input-group-addon">
+                                      <i className="material-icons">lock_outline</i>
+                                    </span>
+                                    <input type="password" value={this.state.rawPassword} onChange={(e) => {
+                                        this.setState({...this.state, rawPassword: e.target.value}, () => {
+                                          this.validate();
+                                        })
+                                      }} placeholder="Password..." className="form-control" />
+                                    </div>
+                                    {/*<!-- If you want to add a checkbox to this form, uncomment this code -->*/}
+                                    <div className="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="optionsCheckboxes" checked={this.state.isHuman} onChange={(e) => {
+                                            this.setState({...this.state, isHuman: !this.state.isHuman}, () => {
+                                              this.validate();
                                             })
-                                          }} className="form-control" placeholder="Email..."/>
-                                        </div>
-                                        <div className="input-group">
-                                          <span className="input-group-addon">
-                                            <i className="material-icons">lock_outline</i>
-                                          </span>
-                                          <input type="password" value={this.state.rawPassword} onChange={(e) => {
-                                              this.setState({...this.state, rawPassword: e.target.value}, () => {
-                                                this.validate();
-                                              })
-                                            }} placeholder="Password..." className="form-control" />
-                                          </div>
-                                          {/*<!-- If you want to add a checkbox to this form, uncomment this code -->*/}
-                                          <div className="checkbox">
-                                            <label>
-                                              <input type="checkbox" name="optionsCheckboxes" checked={this.state.isHuman} onChange={(e) => {
-                                                  this.setState({...this.state, isHuman: !this.state.isHuman}, () => {
-                                                    this.validate();
-                                                  })
-                                                }}/> I am not a robot!
-                                              </label>
-                                            </div>
-                                          </div>
+                                          }}/> I am not a robot!
+                                        </label>
+                                      </div>
+                                    </div>
 
-                                          <div className="footer text-center">
-                                            {/*<button className="btn btn-info btn-round" onClick={() => this.setState({ submitted: true })}>Get Started...</button>
-                                          <SweetAlert
-                                          show={this.state.submitted}
-                                          title="Awesome"
-                                          text="Your account has been created successfully!"
-                                          onConfirm={() => this.setState({ submitted: false })}
-                                          />*/}
-                                          <button className="btn btn-info btn-round btn-lg" onClick={this.submitForm}>Get Started...</button>
+                                    <div className="footer text-center">
+                                      {/*<button className="btn btn-info btn-round" onClick={() => this.setState({ submitted: true })}>Get Started...</button>
+                                    <SweetAlert
+                                    show={this.state.submitted}
+                                    title="Awesome"
+                                    text="Your account has been created successfully!"
+                                    onConfirm={() => this.setState({ submitted: false })}
+                                    />*/}
+                                    <button className="btn btn-info btn-round btn-lg" onClick={this.submitForm}>Get Started...</button>
 
 
-                                        </div>
+                                  </div>
+                                  <div className="social text-center">
+                                    <p> Already have an account?
+                                    <Link to="/login" className="btn btn-primary btn-lg btn-simple btn-round" >
+                                      <i className="material-icons">
+                                        account_circle
+                                      </i>  Log In
+                                      <div className="ripple-container"></div>
+                                    </Link>
+                                    </p>
+                                  </div>
+                                </div>
+                                <div className="col-md-5">
+                                  <div className="card-content">
+                                    <div className="info info-horizontal">
+                                      <div className="icon icon-rose">
+                                        <i className="material-icons">timeline</i>
+                                      </div>
+                                      <div className="description">
+                                        <h4 className="info-title">Assess your abilities</h4>
+                                        <p className="description">
+                                          Use one of our many detailed Rubrics designed to provide you with actionable learning steps and growth.
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <div className="info info-horizontal">
+                                      <div className="icon icon-primary">
+                                        <i className="material-icons">lightbulb_outline</i>
+                                      </div>
+                                      <div className="description">
+                                        <h4 className="info-title">Level-up your learning</h4>
+                                        <p className="description">
+                                          Our rubrics are rich with a diverse set of learning resources so you can level up your abilities quickly.
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <div className="info info-horizontal">
+                                      <div className="icon icon-info">
+                                        <i className="material-icons">group</i>
+                                      </div>
+                                      <div className="description">
+                                        <h4 className="info-title">Build your own curricula</h4>
+                                        <p className="description">
+                                          Develop your own personal rubrics for others to self-assess and grow your curriculum!
+                                        </p>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                            <Footer />
                           </div>
                         </div>
                       </div>
-                    );
-                  }
-                }
+                      <Footer />
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+          }
 
-const mapStateToProps = (state) => {
-  return {
-    auth: state.auth
-  }
-}
+          const mapStateToProps = (state) => {
+            return {
+              auth: state.auth
+            }
+          }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(Actions, dispatch);
-}
+          const mapDispatchToProps = (dispatch) => {
+            return bindActionCreators(Actions, dispatch);
+          }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUp))
+          export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUp))
