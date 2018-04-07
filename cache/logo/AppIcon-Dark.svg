@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200px" height="1200px" viewBox="0 0 1200 1200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>AppIcon-Dark</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="AppIcon-Dark" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Broaden-Logo" transform="translate(138.000000, 140.000000)" stroke="#465156" stroke-width="80">
+            <g id="Group">
+                <polygon id="Triangle" transform="translate(462.000000, 462.000000) scale(1, -1) translate(-462.000000, -462.000000) " points="462 0 924 924 0 924"></polygon>
+                <polygon id="Triangle-Copy-2" transform="translate(320.976884, 320.976884) scale(1, -1) translate(-320.976884, -320.976884) " points="320.976884 0 641.953768 641.953768 0 641.953768"></polygon>
+                <polygon id="Triangle-Copy" transform="translate(391.055345, 391.055345) scale(1, -1) translate(-391.055345, -391.055345) " points="391.055345 0 782.11069 782.11069 0 782.11069"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
