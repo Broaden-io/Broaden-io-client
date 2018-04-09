@@ -56,15 +56,15 @@
   "jest": {
     "rootDir": "",
     "transformIgnorePatterns": [
-  "<rootDir>/node_modules/"
-],
-"unmockedModulePathPatterns": [
-  "<rootDir>/node_modules/cheerio",
-  "<rootDir>/node_modules/react/",
-  "<rootDir>/node_modules/lodash",
-  "<rootDir>/node_modules/material-ui/",
-  "<rootDir>/node_modules/material-ui-icons/"
-],
+      "<rootDir>/node_modules/"
+    ],
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/cheerio",
+      "<rootDir>/node_modules/react/",
+      "<rootDir>/node_modules/lodash",
+      "<rootDir>/node_modules/material-ui/",
+      "<rootDir>/node_modules/material-ui-icons/"
+    ],
     "automock": true
   }
 }

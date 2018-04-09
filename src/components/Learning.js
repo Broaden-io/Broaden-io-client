@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
 import Criteria from './Criteria';
 import { Link } from 'react-router-dom';
-import * as Actions from '../actions/assessment';
+import * as Actions from '../actions/assessments';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import uuidv1 from 'uuid/v1';
 import mixpanel from 'mixpanel-browser';
 
-
 class Learning extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      activeCompetencyIndex: 0
+      activeRubricIndex: null,
     }
     this.icons = [ "dashboard", "explore", "code", "backup", "lock", "bug_report", "line_style", "perm_identity", "star_rate" ]
-    this.getIsFetching = this.getIsFetching.bind(this);
-    this.setActiveComp = this.setActiveComp.bind(this);
+    this.handleDropdownChange = this.handleDropdownChange.bind(this);
   }
 
   componentWillMount() {
-    const id = this.props.match.params.id;
-    this.props.getAssessment(localStorage.getItem("userId"), id);
+    const userId = localStorage.getItem('userId')
+    this.props.getAssessments(userId)
+    const rubricIndex = this.props.match.params.id
+    this.setState({activeRubricIndex: rubricIndex})
   }
 
   componentDidMount() {
@@ -31,51 +31,68 @@ class Learning extends Component {
     mixpanel.track("Learning Mode Page");
   }
 
-  setActiveComp(index) {
-    this.setState({ activeCompetencyIndex: index })
+  renderDropdown() {
+    const { assessmentsObject: assessments } = this.props.assessments
+    console.log('ASSESSMENTS:', assessments)
+    if (assessments.length > 0) {
+      return (
+        <select
+          className="selectpicker"
+          value={this.state.activeRubricIndex}
+          data-style="btn btn-rose btn-round"
+          title="Select One of Your Tracked Skills"
+          data-size="70"
+          onChange={this.handleDropdownChange}>
+          <option value={0} disabled >Select a Skill</option>
+          {assessments.map((assessment, index) => {
+            const { id, name, iconName } = assessment.rubricJSON
+            console.log('NAME', name)
+            return (
+              <option value={id} key={id}>
+                <strong>
+                  <i className="material-icons">{iconName}</i>
+                  &nbsp; {name}
+                </strong>
+              </option>
+            )
+          })}
+        </select>
+      )
+    }
+    return null
   }
 
-  getIsFetching() {
-    const { assessmentObject } = this.props.assessment;
-    if (!assessmentObject) {
-      return true;
-    }
-    return false;
+  handleDropdownChange(event) {
+    this.setState({activeRubricIndex: event.target.value})
+    this.props.history.push(`/learn/${event.target.value}`)
   }
 
   render() {
-
-    const { assessment } = this.props;
-    const { isFetching } = assessment;
+    const { isFetching, assessmentsObject: assessments } = this.props.assessments;
     return (
       <div className="col-md-12">
         <div className="card">
-          <div className="card-header">
-            <h2 className="card-title">
-              {this.getIsFetching() ? null : assessment.assessmentObject.rubricJSON.name + " "}
-              <br/> <small className="category">
-                {this.getIsFetching() ? null : assessment.assessmentObject.rubricJSON.description}
-              </small>
-            </h2>
+          <div className="card-header card-header-icon" style={{display: `inline`}} data-background-color="rose">
+            <i className="material-icons">check_circle</i>
+          </div>
+          <div className="card-header" style={{display: `inline`}}>
+            <h1 style={{display: `inline`}}><small>Learning Mode</small></h1>
+            <div className="col-xs-12">
+              <h5 className="description">
+                After you add a skill and take an intial assessment you can update your progress here.
+                You can level up your skills by seeing what you need to level up next!
+              </h5>
+            </div>
           </div>
           <div className="card-content">
             <div className="row">
-              <div className="col-md-2">
-                <ul className="nav nav-pills nav-pills-rose nav-stacked" role="tablist">
-                </ul>
-              </div>
-              <div className="col-md-10">
-                <div className="tab-content">
-                </div>
+              <div className="col-md-5">
+                {this.renderDropdown()}
               </div>
             </div>
             <div className="row">
-              <div className="col-md-2"> </div>
-              <div style={{display:'flex', justifyContent:'space-between'}}>
-                <div className="col-md-2" style={{display:'flex', flexDirection:'row', justifyContent:'flex-start'}}>
-                </div>
-                <div className="col-md-2" style={{display:'flex', flexDirection:'row', justifyContent:'flex-end'}}>
-                </div>
+              <div className="col-12">
+
               </div>
             </div>
           </div>
@@ -87,7 +104,7 @@ class Learning extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    assessment: state.assessment
+    assessments: state.assessments
   }
 }
 
