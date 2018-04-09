@@ -11,6 +11,7 @@ import Rubric from './Rubric';
 import Footer from './Footer';
 import Profile from './Profile';
 import EditProfile from './EditProfile';
+import Learning from './Learning';
 
 const MenuItem = withRouter(
   (props) => {
@@ -79,8 +80,8 @@ class Sidebar extends Component {
                     </li>
                     <li>
                       <a href="" onClick={() => {
-                        this.props.logoutUser();
-                      }}>
+                          this.props.logoutUser();
+                        }}>
                         <span className="sidebar-mini"> <i className="material-icons">fingerprint</i> </span>
                         <span className="sidebar-normal"> Logout </span>
                       </a>
@@ -100,30 +101,34 @@ class Sidebar extends Component {
                 active={this.props.location.pathname === `/rubrics`}
                 icon="assessment"
                 path={`/rubrics`} />
+              <MenuItem
+                title="Learning Mode"
+                active={this.props.location.pathname === `/learn`}
+                icon="check_circle"
+                path={`/learn`} />
             </ul>
           </div>
         </div>
         <div className="main-panel">
-
           <NavTop />
-
           <div className="content">
             <div className="container-fluid">
               <Switch>
                 <Route path={`/dashboard`} component={Dashboard} />
                 <Route exact={true} path={`/rubrics`} component={RubricsIndex} />
                 <Route path={`/rubrics/:id`} component={Rubric} />
+                <Route path={`/learn`} component={Learning} exact={true} />
                 <Route path={`/:username`} component={Profile} exact={true} />
                 <Route path={`/:username/edit`} component={EditProfile} exact={true} />
               </Switch>
+            </div>
           </div>
-        </div>
-        <Footer />
+          <Footer />
 
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 }
 
 const mapStateToProps = (state) => {
