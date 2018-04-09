@@ -121,7 +121,7 @@ class Sidebar extends Component {
                 <Route path={`/dashboard`} component={Dashboard} />
                 <Route exact={true} path={`/rubrics`} component={RubricsIndex} />
                 <Route path={`/rubrics/:id`} component={Rubric} />
-                <Route path={`/learn`} render={() => <Learning/>} />
+                <Route path={`/learn`} render={() => <Learning/>} exact={true} />
                 <Route path={`/learn/:id`} render={() => <Learning/>} />
                 <Route path={`/:username`} component={Profile} exact={true} />
                 <Route path={`/:username/edit`} component={EditProfile} exact={true} />
