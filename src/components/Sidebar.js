@@ -15,9 +15,10 @@ import Learning from './Learning';
 
 const MenuItem = withRouter(
   (props) => {
+    const state = props.refreshState ? {activeRubricIndex: null} : {}
     return (
       <li className={(props.active) ? `active` : ``}>
-        <Link to={props.path}>
+        <Link to={{pathname: props.path, state: state}}>
           <i className="material-icons">{props.icon}</i>
           <p> {props.title} </p>
         </Link>
@@ -95,17 +96,20 @@ class Sidebar extends Component {
                 title="Dashboard"
                 active={(this.props.location.pathname === `/${user.username}/dashboard`) || (this.props.location.pathname === `/dashboard`)}
                 icon="dashboard"
-                path={`/dashboard`}/>
+                path={`/dashboard`}
+                refreshState={false}/>
               <MenuItem
                 title="Rubrics"
                 active={this.props.location.pathname === `/rubrics`}
                 icon="assessment"
-                path={`/rubrics`} />
+                path={`/rubrics`}
+                refreshState={false}/>
               <MenuItem
                 title="Learning Mode"
                 active={this.props.location.pathname === `/learn`}
                 icon="check_circle"
-                path={`/learn`} />
+                path={`/learn`}
+                refreshState={true} />
             </ul>
           </div>
         </div>
@@ -117,8 +121,8 @@ class Sidebar extends Component {
                 <Route path={`/dashboard`} component={Dashboard} />
                 <Route exact={true} path={`/rubrics`} component={RubricsIndex} />
                 <Route path={`/rubrics/:id`} component={Rubric} />
-                <Route path={`/learn`} component={Learning} exact={true} />
-                <Route path={`/learn/:id`} component={Learning} />
+                <Route path={`/learn`} render={() => <Learning/>} />
+                <Route path={`/learn/:id`} render={() => <Learning/>} />
                 <Route path={`/:username`} component={Profile} exact={true} />
                 <Route path={`/:username/edit`} component={EditProfile} exact={true} />
               </Switch>

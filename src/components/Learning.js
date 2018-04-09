@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import Criteria from './Criteria';
-import { Link } from 'react-router-dom';
 import * as Actions from '../actions/assessments';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
-import uuidv1 from 'uuid/v1';
 import mixpanel from 'mixpanel-browser';
 
 class Learning extends Component {
@@ -14,6 +11,7 @@ class Learning extends Component {
     super(props);
     this.state = {
       activeRubricIndex: null,
+      refreshed: false
     }
     this.icons = [ "dashboard", "explore", "code", "backup", "lock", "bug_report", "line_style", "perm_identity", "star_rate" ]
     this.handleDropdownChange = this.handleDropdownChange.bind(this);
@@ -27,16 +25,21 @@ class Learning extends Component {
   }
 
   componentDidMount() {
+    {/*const { assessmentsObject: assessments } = this.props.assessments
+    if (assessments.length > 0) {
+      const dropdown = document.getElementsByClassName("selectpicker")
+      const el = findDOMNode(this.refs.dropdown)
+    }*/}
     mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
     mixpanel.track("Learning Mode Page");
   }
 
   renderDropdown() {
     const { assessmentsObject: assessments } = this.props.assessments
-    console.log('ASSESSMENTS:', assessments)
     if (assessments.length > 0) {
       return (
         <select
+          ref={node => this.select = node}
           className="selectpicker"
           value={this.state.activeRubricIndex}
           data-style="btn btn-rose btn-round"
@@ -46,7 +49,6 @@ class Learning extends Component {
           <option value={0} disabled >Select a Skill</option>
           {assessments.map((assessment, index) => {
             const { id, name, iconName } = assessment.rubricJSON
-            console.log('NAME', name)
             return (
               <option value={id} key={id}>
                 <strong>
@@ -68,7 +70,7 @@ class Learning extends Component {
   }
 
   render() {
-    const { isFetching, assessmentsObject: assessments } = this.props.assessments;
+    const { assessmentsObject: assessments } = this.props.assessments;
     return (
       <div className="col-md-12">
         <div className="card">
@@ -86,7 +88,7 @@ class Learning extends Component {
           </div>
           <div className="card-content">
             <div className="row">
-              <div className="col-md-5">
+              <div className="col-md-5 col-lg-4 col-xl-3">
                 {this.renderDropdown()}
               </div>
             </div>
