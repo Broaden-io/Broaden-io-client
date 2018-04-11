@@ -106,7 +106,7 @@ class Sidebar extends Component {
                 refreshState={false}/>
               <MenuItem
                 title="Learning Mode"
-                active={this.props.location.pathname === `/learn`}
+                active={this.props.location.pathname.startsWith(`/learn`)}
                 icon="check_circle"
                 path={`/learn`}
                 refreshState={true} />
