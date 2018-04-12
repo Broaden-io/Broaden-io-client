@@ -20,9 +20,22 @@ class Criterion extends Component {
     this.setState({isChecked: !this.state.isChecked})
   }
 
+  renderStrike() {
+    const { text } = this.props.data
+    const { isChecked } = this.state
+    if (isChecked) {
+      return (
+        <strike>
+          <small>&nbsp;{text}</small>
+        </strike>
+      )
+    }
+    return (<small>&nbsp;{text}</small>)
+  }
+
   render() {
     const { id, text, level, answer, Actions: actions } = this.props.data
-    const { isOpen } = this.state
+    const { isOpen, isChecked } = this.state
     return(
       <ul className="list-group">
         <li className="list-group-item">
@@ -34,31 +47,33 @@ class Criterion extends Component {
                 value={this.isChecked}
                 name="optionsCheckboxes"
                 style={{display: `inline`}}/>
-            </label>
-          </div>
-          <span onClick={this.toggleOpen.bind(this)}>
-            <span className="btn btn-info btn-sm btn-round pull-right">
-              <strong>
-                {level === 1 ? `${level} pt` : `${level} pts`}
-              </strong>
+              </label>
+            </div>
+            <span onClick={this.toggleOpen.bind(this)}>
+              <span className={isChecked ? `btn btn-success btn-sm btn-round pull-right` : `btn btn-sm btn-info btn-simple btn-round pull-right`}>
+                <strong>
+                  {level === 1 ? `${level} pt` : `${level} pts`}
+                </strong>
+              </span>
+
+              <h3 className="list-group-item-heading" style={{display: `inline`}}>
+                {this.renderStrike()}
+              </h3>
+              <br/>
+              <button className="btn btn-primary btn-simple">
+                <i className="material-icons">add</i>
+                <strong>&nbsp; Level up this skill</strong>
+                <div className="ripple-container">
+                </div>
+              </button>
             </span>
-
-            <h3 className="list-group-item-heading" style={{display: `inline`}}>&nbsp; <small>{text}</small></h3>
-            <br/>
-            <button className="btn btn-sm btn-primary btn-simple">
-              <i className="material-icons">add</i>
-              &nbsp; See learning actions to level up this skill
-              <div className="ripple-container">
-              </div>
-            </button>
-          </span>
-          <Collapse isOpened={isOpen} springConfig={{stiffness: 170, damping: 26}}>
-            <button className="btn btn-default btn-block">Add a new resource</button>
-          </Collapse>
-        </li>
-      </ul>
-    )
+            <Collapse isOpened={isOpen} springConfig={{stiffness: 170, damping: 26}}>
+              <button className="btn btn-sm btn-default btn-block"><strong>Add a new resource</strong></button>
+            </Collapse>
+          </li>
+        </ul>
+      )
+    }
   }
-}
 
-export default withRouter(connect()(Criterion))
+  export default withRouter(connect()(Criterion))
