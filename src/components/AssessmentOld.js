@@ -66,15 +66,15 @@ class Assessment extends Component {
     const { competencies, totalPointsLeft } = this.state
     return(
       <div className="col-md-12">
-
-        <h4>Skills you still need to master...</h4>
-        {criteria.map((criterion) => {
-          return <Criterion key={uuidv1()} data={criterion}/>
-        })}
         <div className="material-datatables">
-
           <table id="datatables" className="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style={{width:`100%`}}>
-            
+            <thead>
+              <tr>
+                <th></th>
+                <th>Criteria</th>
+                <th className="disabled-sorting text-right">Points</th>
+              </tr>
+            </thead>
             <tfoot>
               <tr>
                 <th></th>
@@ -86,6 +86,11 @@ class Assessment extends Component {
                 } Pts</th>
               </tr>
             </tfoot>
+            <tbody>
+              {criteria.map((criterion) => {
+                return <Criterion key={uuidv1()} data={criterion}/>
+              })}
+            </tbody>
           </table>
         </div>
       </div>
