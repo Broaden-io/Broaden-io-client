@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import uuidv1 from 'uuid/v1'
 import { Collapse } from 'react-collapse'
 import { presets } from 'react-motion'
+import Action from './Action'
 
 class Criterion extends Component {
   state = {
@@ -50,7 +51,11 @@ class Criterion extends Component {
               </label>
             </div>
             <span onClick={this.toggleOpen.bind(this)}>
-              <span className={isChecked ? `btn btn-success btn-sm btn-round pull-right` : `btn btn-sm btn-info btn-simple btn-round pull-right`}>
+              <span className={
+                isChecked
+                ? `btn btn-success btn-sm btn-round pull-right`
+                : `btn btn-sm btn-info btn-simple btn-round pull-right`
+              }>
                 <strong>
                   {level === 1 ? `${level} pt` : `${level} pts`}
                 </strong>
@@ -68,6 +73,8 @@ class Criterion extends Component {
               </button>
             </span>
             <Collapse isOpened={isOpen} springConfig={{stiffness: 170, damping: 26}}>
+              {console.log("Actions:", actions)}
+              {actions.map(action => <Action data={action}/>)}
               <button className="btn btn-sm btn-default btn-block"><strong>Add a new resource</strong></button>
             </Collapse>
           </li>
