@@ -9,13 +9,20 @@ import { presets } from 'react-motion'
 class Action extends Component {
 
   state = {
-  
+
   }
 
   render() {
-    const { name, url } = this.props.data
+    const { name, url, meta } = this.props.data
+    console.log('META', meta)
+
     return(
-      <h4>{url}</h4>
+      <div>
+        <h4>{url}</h4>
+        <ul>
+          <li>{meta.data.ogTitle}</li>
+        </ul>
+      </div>
       )
     }
   }

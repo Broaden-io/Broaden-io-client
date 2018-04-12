@@ -73,7 +73,6 @@ class Criterion extends Component {
               </button>
             </span>
             <Collapse isOpened={isOpen} springConfig={{stiffness: 170, damping: 26}}>
-              {console.log("Actions:", actions)}
               {actions.map(action => <Action data={action}/>)}
               <button className="btn btn-sm btn-default btn-block"><strong>Add a new resource</strong></button>
             </Collapse>

@@ -12,6 +12,7 @@
     "material-ui": "1.0.0-beta.34",
     "material-ui-icons": "1.0.0-beta.17",
     "mixpanel-browser": "^2.19.0",
+    "open-graph-scraper": "^3.1.5",
     "prop-types": "^15.6.0",
     "raven": "^2.4.2",
     "raven-js": "^3.24.0",
