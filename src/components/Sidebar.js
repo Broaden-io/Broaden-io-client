@@ -105,10 +105,10 @@ class Sidebar extends Component {
                 path={`/rubrics`}
                 refreshState={false}/>
               <MenuItem
-                title="Learning Mode"
-                active={this.props.location.pathname.startsWith(`/learn`)}
+                title="Level Up"
+                active={this.props.location.pathname.startsWith(`/levelup`)}
                 icon="check_circle"
-                path={`/learn`}
+                path={`/levelup`}
                 refreshState={true} />
             </ul>
           </div>
@@ -121,8 +121,8 @@ class Sidebar extends Component {
                 <Route path={`/dashboard`} component={Dashboard} />
                 <Route exact={true} path={`/rubrics`} component={RubricsIndex} />
                 <Route path={`/rubrics/:id`} component={Rubric} />
-                <Route path={`/learn`} render={() => <Learning/>} exact={true} />
-                <Route path={`/learn/:id`} render={() => <Learning/>} />
+                <Route path={`/levelup`} render={() => <Learning/>} exact={true} />
+                <Route path={`/levelup/:id`} render={() => <Learning/>} />
                 <Route path={`/:username`} component={Profile} exact={true} />
                 <Route path={`/:username/edit`} component={EditProfile} exact={true} />
               </Switch>

@@ -73,7 +73,7 @@ renderDropdown() {
 
 handleDropdownChange(event) {
   this.setState({activeRubricIndex: event.target.value})
-  this.props.history.push(`/learn/${event.target.value}`)
+  this.props.history.push(`/levelup/${event.target.value}`)
 }
 
 renderAssessment() {
@@ -81,13 +81,10 @@ renderAssessment() {
   if (assessments.length > 0) {
     const id = this.props.match.params.id
     if (id) {
-      console.log('ID', id)
       const assessmentfiltered = assessments.filter(assessment => {
         const assessId = assessment.rubricJSON.id
-        console.log('ASSESSID', assessId)
         return id == assessId
       })
-      console.log('ASSESSMENTFILTERED', assessmentfiltered)
       const assessment = assessmentfiltered[0].rubricJSON
       const { name, description, iconName, Competencies: competencies} = assessment
       const criteria = []
@@ -117,7 +114,7 @@ render() {
           <i className="material-icons">check_circle</i>
         </div>
         <div className="card-header" style={{display: `inline`}}>
-          <h1 style={{display: `inline`}}><small>Learning Mode</small></h1>
+          <h1 style={{display: `inline`}}><small>Level Up</small></h1>
           <div className="col-xs-12">
             <h5 className="description">
               After you add a skill and take an intial assessment you can update your progress here.
