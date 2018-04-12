@@ -6,19 +6,10 @@ import { withRouter } from 'react-router'
 import mixpanel from 'mixpanel-browser'
 import {Collapse} from 'react-collapse'
 import Checkbox from './Checkbox'
+import uuidv1 from 'uuid/v1'
+import Assessment from './Assessment'
 
-const Criterion = withRouter((props) => {
-  const { id, text, level, answer, Actions: actions } = props.data
-  return (
-    <div className="checkbox" style={{display:`inline`}}>
-      <label style={{display:`inline`}}>
-        <input type="checkbox" style={{display:`inline`}} name="optionsCheckboxes" />
-      </label>
-      <h6 style={{display:`inline`}}><small>{text}</small></h6>
-      <br/>
-  </div>
-  )
-})
+
 
 class Learning extends Component {
 
@@ -102,20 +93,15 @@ renderAssessment() {
       const criteria = []
       competencies.forEach((competency) => {
         competency.Scales.forEach((scale) => {
-          console.log('SCALE', scale)
           scale.Criteria.forEach((criterion) => {
-            console.log('CRITERION', criterion)
             criteria.push(criterion)
           })
         })
       })
 
       return (
-        <div className="col-md-4">
-          {criteria.map((criterion) => {
-            return <Criterion data={criterion} />
-          })}
-        </div>
+        <Assessment assessment={assessment} criteria={criteria}/>
+
       )
     }
   }
