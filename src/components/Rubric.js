@@ -20,7 +20,7 @@ const CompetencyButton = props => (
     )
 
 const PreviousButton = props => (
-    <button className="btn btn-lg btn-rose btn-round btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
+    <button className="btn btn-rose btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
       onClick={(e) => {
         e.preventDefault();
         props.setActiveComp(props.activeIndex - 1);
@@ -32,7 +32,7 @@ const PreviousButton = props => (
 
 
 const NextButton = props => (
-    <button className="btn btn-lg btn-rose btn-round btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
+    <button className="btn btn-rose btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
       onClick={(e) => {
         e.preventDefault();
         props.setActiveComp(props.activeIndex + 1);
@@ -44,7 +44,7 @@ const NextButton = props => (
 
 const FinishButton = withRouter(props => {
   return (
-    <Link className="btn btn-lg btn-rose btn-round btn-simple" to={`/dashboard`} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
+    <Link className="btn btn-rose btn-simple" to={`/dashboard`} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
       <div className="ripple-container"></div>
       <h5 style={{letterSpacing: '1px'}}> Finish </h5>
     </Link>
