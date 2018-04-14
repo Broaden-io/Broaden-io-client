@@ -97,7 +97,7 @@ export function updateAssessment(assessment, criteriaId){
 
 }
 
-// GET ASSESSMENT BY ID - assessments show
+// GET ASSESSMENT BY ID - assessments show or create
 export function getAssessment(userId, rubricId) {
   let config = {
     method: 'GET',
@@ -117,7 +117,29 @@ export function getAssessment(userId, rubricId) {
       }
       return res.json();
     }).then((json) => {
-      dispatch(receiveAssessment(json.assessment))
+      const { assessment } = json
+      console.log('ASSESSMENT', assessment)
+
+      const sortedAsessment = assessment.rubricJSON.Competencies.map((comp, index) => {
+        return {
+          ...comp,
+          Scales: comp.Scales.map((scale, index) => {
+            return {
+              ...scale,
+              Criteria: scale.Criteria.map((criteria, index) => {
+                  return criteria
+              }).sort((a , b) => {
+                return a.id - b.id;
+              })
+            }
+          }).sort((a , b) => {
+            return a.id - b.id;
+          })
+        }
+      }).sort((a , b) => {
+        return a.id - b.id;
+      })
+      dispatch(receiveAssessment({...assessment, rubricJSON: {...assessment.rubricJSON, Competencies: [...sortedAsessment]}}))
     }).catch(err => console.log("Error: " + err));
   }
 }
