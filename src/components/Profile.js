@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import mixpanel from 'mixpanel-browser'
+import DropzoneS3Uploader from 'react-dropzone-s3-uploader'
 
 class Profile extends Component {
 
+  componentWillmount(){
+    const userId = localStorage.getItem('userId')
+
+  }
   componentDidMount() {
     mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
     mixpanel.track("Profile Page");
