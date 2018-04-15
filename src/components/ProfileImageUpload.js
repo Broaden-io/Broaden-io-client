@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DropzoneS3Uploader from 'react-dropzone-s3-uploader'
 // const upload = require('superagent')
+//https://medium.com/@tewolfe2/5-steps-to-uploading-files-and-images-to-s3-in-react-using-express-superagent-multer-and-46a9e72244a2
 
  export default class ProfileImageUpload extends React.Component{
     onDrop: function (files) {
@@ -26,7 +27,7 @@ import DropzoneS3Uploader from 'react-dropzone-s3-uploader'
 export default ProfileImageUpload;
 
 
-
+//https://medium.com/ecmastack/uploading-files-with-react-js-and-node-js-e7e6b707f4ef
 // import React, { Component } from 'react';
 // import axios from 'axios';
 //
