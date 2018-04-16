@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import mixpanel from 'mixpanel-browser';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import uuidv1 from 'uuid/v1'
@@ -62,8 +61,7 @@ class Assessment extends Component {
   }
 
   render() {
-    const { assessment, criteria } = this.props
-    const { competencies, totalPointsLeft } = this.state
+    const { criteria } = this.props
     return(
       <div className="col-md-12">
 
@@ -73,8 +71,8 @@ class Assessment extends Component {
         })}
         <div className="material-datatables">
 
-          <table id="datatables" className="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style={{width:`100%`}}>
-            
+          <table id="datatables" className="table table-striped table-no-bordered table-hover" cellSpacing="0" width="100%" style={{width:`100%`}}>
+
             <tfoot>
               <tr>
                 <th></th>

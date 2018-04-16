@@ -4,12 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import mixpanel from 'mixpanel-browser'
-import {Collapse} from 'react-collapse'
-import Checkbox from './Checkbox'
-import uuidv1 from 'uuid/v1'
 import Assessment from './Assessment'
-
-
 
 class Learning extends Component {
 
@@ -32,11 +27,11 @@ class Learning extends Component {
   }
 
   componentDidMount() {
-    {/*const { assessmentsObject: assessments } = this.props.assessments
+    /*const { assessmentsObject: assessments } = this.props.assessments
     if (assessments.length > 0) {
     const dropdown = document.getElementsByClassName("selectpicker")
     const el = findDOMNode(this.refs.dropdown)
-  }*/}
+  }*/
   mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
   mixpanel.track("Learning Mode Page")
 }
@@ -78,16 +73,18 @@ handleDropdownChange(event) {
 
 renderAssessment() {
   const { assessmentsObject: assessments } = this.props.assessments
+  let criteria = []
   if (assessments.length > 0) {
-    const id = this.props.match.params.id
+    const id = parseInt(this.props.match.params.id, 10)
     if (id) {
-      const assessmentfiltered = assessments.filter(assessment => {
+      const assessmentFiltered = assessments.filter(assessment => {
         const assessId = assessment.rubricJSON.id
-        return id == assessId
+        console.log("ID <> assessId", id, assessId)
+        return id === assessId
       })
-      const assessment = assessmentfiltered[0].rubricJSON
-      const { name, description, iconName, Competencies: competencies} = assessment
-      const criteria = []
+      console.log('ASSESSMENTFILTERED', assessmentFiltered)
+      const assessment = assessmentFiltered[0].rubricJSON
+      const { Competencies: competencies} = assessment
       competencies.forEach((competency) => {
         competency.Scales.forEach((scale) => {
           scale.Criteria.forEach((criterion) => {
@@ -95,6 +92,7 @@ renderAssessment() {
           })
         })
       })
+
 
       return (
         <Assessment assessment={assessment} criteria={criteria}/>
@@ -106,7 +104,6 @@ renderAssessment() {
 }
 
 render() {
-  const { assessmentsObject: assessments } = this.props.assessments
   return (
     <div className="col-md-12">
       <div className="card">

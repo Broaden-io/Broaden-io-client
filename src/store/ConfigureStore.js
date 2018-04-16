@@ -5,6 +5,7 @@ import rubricsReducer from '../reducers/rubrics'
 import rubricReducer from '../reducers/rubric'
 import assessmentReducer from '../reducers/assessment'
 import assessmentsReducer from '../reducers/assessments'
+import learningActionReducer from '../reducers/learningAction'
 // import reduxCatch from 'redux-catch'
 // import Raven from 'raven-js'
 import { createLogger } from 'redux-logger'
@@ -33,6 +34,7 @@ const reducers = combineReducers({
   rubric: rubricReducer,
   assessment: assessmentReducer,
   assessments: assessmentsReducer,
+  learningAction: learningActionReducer,
 })
 
 // Middlewares

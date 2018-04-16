@@ -27,6 +27,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
     "react-scripts": "1.1.0",
+    "react-skylight": "^0.5.1",
     "react-test-renderer": "^16.3.1",
     "react-toastify": "^3.4.1",
     "redux": "^3.7.2",
@@ -34,8 +35,6 @@
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^5.0.0",
     "redux-thunk": "^2.2.0",
-    "sweetalert2": "^7.11.0",
-    "sweetalert2-react": "^0.7.2",
     "uuid": "^3.2.1"
   },
   "scripts": {
