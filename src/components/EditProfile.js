@@ -51,7 +51,7 @@ class EditProfile extends Component {
                 localStorage.setItem('email', json.user.email)
                 // localStorage.setItem('avatarURL', json.user.avatarURL)
                 // dispatch(receiveLogin({token: json.token, user: json.user}));
-                history.push(`/dashboard`); // forward to /username
+                // history.push(`/dashboard`); // forward to /username
               }).catch(err => console.log("Error: " + err));
             }
           }
