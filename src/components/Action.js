@@ -61,8 +61,14 @@ class Action extends Component {
     }
   }
   render() {
-    const { name, url, meta } = this.props.data
+    const { customTitle, url, meta, User} = this.props.data
     const { ogTitle, ogDescription, ogType } = meta
+    const firstName = '', lastName = '', username = ''
+    if (User) {
+      const { firstName, lastName, username } = User
+    }
+    const renderedUserName = ((firstName === "") || (lastName === "")) ? username : `${firstName} ${lastName}`;
+
     return(
       <tr>
 
@@ -75,14 +81,15 @@ class Action extends Component {
         <td className="td-name">
           <h5>
             <small>
-              <a href={url} target="_blank">{name ? name : (ogTitle ? ogTitle : url) }</a>
+              <a href={url} target="_blank">{customTitle ? customTitle : (ogTitle ? ogTitle : url) }</a>
             </small>
           </h5>
         </td>
         <td className="td-name">
           <h6>
             <small>
-                {ogTitle ? ogTitle : null }
+                {/* {ogTitle ? ogTitle : null } */}
+                { renderedUserName }
             </small>
           </h6>
         </td>

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import uuidv1 from 'uuid/v1'
 import { Collapse } from 'react-collapse'
 import Action from './Action'
-import Modal from './Modal'
+import ActionCreateModal from './ActionCreateModal'
 
 
 class Criterion extends Component {
@@ -55,7 +55,7 @@ class Criterion extends Component {
 
 
   render() {
-    const { level, Actions: actions } = this.props.data
+    const { text, level, Actions: actions } = this.props.data
     const { isOpen, isChecked } = this.state
     return(
       <ul className="list-group">
@@ -118,7 +118,10 @@ class Criterion extends Component {
                       Add a new resource
                     </strong>
                   </button>
-                  <Modal isVisible={this.state.AddNewResource} toggle={this.toggleAddNewResOff.bind(this)} />
+                  <ActionCreateModal
+                    isVisible={this.state.AddNewResource}
+                    toggle={this.toggleAddNewResOff.bind(this)}
+                    criteria={this.props.data} />
                 </div>
               </div>
             </Collapse>
