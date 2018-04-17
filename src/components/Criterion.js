@@ -22,7 +22,7 @@ class Criterion extends Component {
   }
 
   toggleAddNewRes(e) {
-    this.setState({AddNewResource: !this.AddNewResource})
+    this.setState({AddNewResource: !this.state.AddNewResource})
   }
 
   toggleAddNewResOff() {
@@ -54,7 +54,8 @@ class Criterion extends Component {
 
 
   render() {
-    const { level, Actions: actions } = this.props.data
+    const { data, owner } = this.props
+    const { level, Actions: actions } = data
     const { isOpen, isChecked } = this.state
     return(
       <ul className="list-group">
@@ -84,7 +85,7 @@ class Criterion extends Component {
             </span>
             <span onClick={this.toggleOpen.bind(this)}>
               <br/>
-              <button className="btn btn-primary btn-simple">
+              <button className="btn btn-primary btn-block btn-simple">
                 <i className="material-icons">add</i>
                 <strong>&nbsp; Level up this skill</strong>
                 <div className="ripple-container">
@@ -95,7 +96,7 @@ class Criterion extends Component {
               <div className="row">
                 <div className="col-10">
                 <div className="table-responsive">
-                  <table className="table table-striped">
+                  <table className="table table-shopping">
                     <thead>
                       <tr>
                         {/*<th className="th-description">Vote</th>*/}
@@ -103,12 +104,12 @@ class Criterion extends Component {
                         <th className="th-description">Description</th>
                         <th className="th-description">Contributor</th>
                         <th className="th-description">Type</th>
-                        <th className="th-description">Action</th>
+                        <th className="th-description"></th>
                         <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                      {actions.map(action => <Action key={uuidv1()} data={action}/>)}
+                      {actions.map(action => <Action key={uuidv1()} data={action} rubricOwner={owner} />)}
                     </tbody>
                   </table>
                 </div>
