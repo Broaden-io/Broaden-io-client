@@ -135,11 +135,10 @@ demo.checkFullPageBackgroundImage();
 
 
 
-$().ready(function() {
+$(document).ready(function() {
   demo.checkFullPageBackgroundImage();
   $(document).click(function() {
     setTimeout(function(){
-      $(".selectpicker").selectpicker().selectpicker("render");
     }, 40);
 
   });

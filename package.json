@@ -7,6 +7,7 @@
     "axios": "^0.17.1",
     "babel-jest": "^22.4.3",
     "bcryptjs": "^2.4.3",
+    "bootstrap-select": "^1.12.4",
     "chartist": "^0.10.1",
     "halogen": "^0.2.0",
     "halogenium": "^2.2.3",
