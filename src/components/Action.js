@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import serverPath from '../paths'
+
+import ActionConfirmDeleteModal from './ActionConfirmDeleteModal'
 
 class Action extends Component {
 
-  state = {
+constructor(props) {
+  super(props)
+  this.state = {
+    confirmDelete: false
   }
+}
 
   renderImage(image) {
     if (image) {
@@ -63,8 +68,33 @@ class Action extends Component {
     }
   }
 
+
+  renderDeleteButton() {
+    const { rubricOwner, data } = this.props
+    const { userId: creatorId } = data
+    const userId = parseInt(localStorage.getItem('userId'), 10)
+    if ((userId === creatorId) || (userId === rubricOwner)) {
+      return (
+        <button onClick={() => {this.setState({confirmDelete: true})}} type="button" rel="tooltip" data-placement="left" title="delete" className="btn btn-link" data-original-title="Remove item">
+          <i className="material-icons">delete</i>
+        </button>
+      )
+    } else {
+      return null
+    }
+  }
+
+  toggleConfirmDeleteOn() {
+    this.setState({confirmDelete: true})
+  }
+
+  toggleConfirmDeleteOff() {
+    this.setState({confirmDelete: false})
+  }
+
   render() {
-    const { customTitle, url, meta, User} = this.props.data
+    const { data: action } = this.props
+    const { customTitle, url, meta, User } = action
     const { ogTitle, ogDescription, ogType } = meta ? meta : {ogTitle: '', ogDescription: '', ogType: ''}
     const renderedUserName = User ? User.username : 'broaden user'
 
@@ -77,34 +107,41 @@ class Action extends Component {
       </div>
     </td>*/}
     <td className="td-name">
+
+      <a href={url} target="_blank">
       <h5>
         <small>
-          <a href={url} target="_blank">{customTitle ? customTitle : (ogTitle ? ogTitle : url) }</a>
+          {customTitle ? customTitle : (ogTitle ? ogTitle : url) }
         </small>
       </h5>
+      </a>
+
     </td>
     <td className="td-description">
       <p>{ogDescription ? ogDescription : "" }</p>
     </td>
     <td className="td-name">
       <Link to={`/u/${User.username}`}>
-        <h5>
-          <small>
-            {/* {ogTitle ? ogTitle : null } */}
-            { renderedUserName }
-          </small>
-        </h5>
-      </Link>
-    </td>
-    <td className="td-actions">
-      {this.renderType(ogType)}
-    </td>
-    <td className="td-actions">
-      <button type="button" rel="tooltip" data-placement="left" title="" className="btn btn-link" data-original-title="Remove item">
-        <i className="material-icons">delete</i>
-      </button>
-    </td>
-  </tr>
+
+      <h5>
+        <small>
+          {/* {ogTitle ? ogTitle : null } */}
+          { renderedUserName }
+        </small>
+      </h5>
+    </Link>
+  </td>
+  <td className="td-actions">
+    {this.renderType(ogType)}
+  </td>
+  <td className="td-actions">
+    {this.renderDeleteButton()}
+    <ActionConfirmDeleteModal
+      isVisible={this.state.confirmDelete}
+      toggle={this.toggleConfirmDeleteOff.bind(this)}
+      action={action} />
+  </td>
+</tr>
 )
 }
 }

@@ -6,6 +6,9 @@ export const
 REQUEST_CREATE_LEARNING_ACTION = 'REQUEST_CREATE_LEARNING_ACTION',
 SUCCESS_CREATE_LEARNING_ACTION = 'SUCCESS_CREATE_LEARNING_ACTION',
 FAILURE_CREATE_LEARNING_ACTION = 'FAILURE_CREATE_LEARNING_ACTION',
+REQUEST_DELETE_LEARNING_ACTION = 'REQUEST_DELETE_LEARNING_ACTION',
+SUCCESS_DELETE_LEARNING_ACTION = 'SUCCESS_DELETE_LEARNING_ACTION',
+FAILURE_DELETE_LEARNING_ACTION = 'FAILURE_DELETE_LEARNING_ACTION',
 REQUEST_CREATE_OPEN_GRAPH = 'REQUEST_CREATE_OPEN_GRAPH',
 SUCCESS_CREATE_OPEN_GRAPH = 'SUCCESS_CREATE_OPEN_GRAPH',
 FAILURE_CREATE_OPEN_GRAPH = 'FAILURE_CREATE_OPEN_GRAPH'
@@ -42,6 +45,42 @@ export function createLearningAction(action) {
     }).then((json) => {
       dispatch(successCreateLearningAction(json.action))
     }).catch(err => {dispatch(errorCreateLearningAction(err))});
+  }
+}
+
+export const requestDeleteLearningAction = () => ({
+  type: REQUEST_DELETE_LEARNING_ACTION,
+  isFetching: true
+})
+
+export const successDeleteLearningAction = (action) => ({
+  type: SUCCESS_DELETE_LEARNING_ACTION,
+  isFetching: false,
+  action
+})
+
+export const errorDeleteLearningAction = (message) => ({
+  type: FAILURE_DELETE_LEARNING_ACTION,
+  isFetching: false,
+  message
+})
+
+// CREATE LEARNING ACTION - action create
+export function deleteLearningAction(actionId) {
+
+  return dispatch => {
+    dispatch(requestDeleteLearningAction());
+
+    return axios.delete(`${serverPath}/actions/${actionId}`).then((res) => {
+      if (res.status !== 200) {
+        dispatch(errorDeleteLearningAction(res));
+        return Promise.reject(`Could not create Learning Action: ${res}`)
+      }
+      return res;
+    }).then((json) => {
+      dispatch(successDeleteLearningAction(json))
+      dispatch(getAssessments(parseInt(localStorage.getItem('userId'))))
+    }).catch(err => {dispatch(errorDeleteLearningAction(err))});
   }
 }
 
