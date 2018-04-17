@@ -5,6 +5,7 @@ import uuidv1 from 'uuid/v1'
 import { Collapse } from 'react-collapse'
 import Action from './Action'
 import ActionCreateModal from './ActionCreateModal'
+import ModalWizard from './ModalWizard'
 
 
 class Criterion extends Component {
@@ -121,7 +122,7 @@ class Criterion extends Component {
                   <ActionCreateModal
                     isVisible={this.state.AddNewResource}
                     toggle={this.toggleAddNewResOff.bind(this)}
-                    criteria={this.props.data} />
+                    criterion={this.props.data} />
                 </div>
               </div>
             </Collapse>

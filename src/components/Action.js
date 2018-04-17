@@ -60,6 +60,7 @@ class Action extends Component {
       )
     }
   }
+  
   render() {
     const { customTitle, url, meta, User} = this.props.data
     const { ogTitle, ogDescription, ogType } = meta
