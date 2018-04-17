@@ -93,14 +93,15 @@ class Criterion extends Component {
             </span>
             <Collapse isOpened={isOpen} springConfig={{stiffness: 170, damping: 26}}>
               <div className="row">
+                <div className="col-10">
                 <div className="table-responsive">
-                  <table className="table table-shopping">
+                  <table className="table table-striped">
                     <thead>
                       <tr>
-                        <th className="th-description">Vote</th>
+                        {/*<th className="th-description">Vote</th>*/}
                         <th className="th-description">Name</th>
-                        <th className="th-description">Site</th>
                         <th className="th-description">Description</th>
+                        <th className="th-description">Contributor</th>
                         <th className="th-description">Type</th>
                         <th className="th-description">Action</th>
                         <th></th>
@@ -122,6 +123,7 @@ class Criterion extends Component {
                     toggle={this.toggleAddNewResOff.bind(this)}
                     criterion={this.props.data} />
                 </div>
+              </div>
               </div>
             </Collapse>
           </li>

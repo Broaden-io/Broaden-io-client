@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import serverPath from '../paths'
 
 class Action extends Component {
 
@@ -64,52 +66,47 @@ class Action extends Component {
   render() {
     const { customTitle, url, meta, User} = this.props.data
     const { ogTitle, ogDescription, ogType } = meta ? meta : {ogTitle: '', ogDescription: '', ogType: ''}
-    let firstName = '', lastName = '', username = ''
-    if (User) {
-      firstName = User.firstName
-      lastName = User.lastName
-      username = User.username
-    }
-    const renderedUserName = ((firstName === "") || (lastName === "")) ? username : `${firstName} ${lastName}`;
+    const renderedUserName = User ? User.username : 'broaden user'
 
     return(
       <tr>
-
-        <td className="td-number ">
-          <div className="btn-group btn-group-sm">
-            <button className="btn btn-round btn-info btn-xs"> <i className="material-icons">arrow_upward</i> </button>
-            <button className="btn btn-round btn-info btn-xs"> <i className="material-icons">arrow_downward</i> </button>
-          </div>
-        </td>
-        <td className="td-name">
-          <h5>
-            <small>
-              <a href={url} target="_blank">{customTitle ? customTitle : (ogTitle ? ogTitle : url) }</a>
-            </small>
-          </h5>
-        </td>
-        <td className="td-name">
-          <h6>
-            <small>
-                {/* {ogTitle ? ogTitle : null } */}
-                { renderedUserName }
-            </small>
-          </h6>
-        </td>
-        <td className="td-description">
-          <p>{ogDescription ? ogDescription : "" }</p>
-        </td>
-        <td className="td-actions">
-          {this.renderType(ogType)}
-        </td>
-        <td className="td-actions">
-          <button type="button" rel="tooltip" data-placement="left" title="" className="btn btn-link" data-original-title="Remove item">
-            <i className="material-icons">delete</i>
-          </button>
-        </td>
-      </tr>
-    )
-  }
+        {/*<td className="td-number ">
+        <div className="btn-group btn-group-sm">
+        <button className="btn btn-round btn-info btn-xs"> <i className="material-icons">arrow_upward</i> </button>
+        <button className="btn btn-round btn-info btn-xs"> <i className="material-icons">arrow_downward</i> </button>
+      </div>
+    </td>*/}
+    <td className="td-name">
+      <h5>
+        <small>
+          <a href={url} target="_blank">{customTitle ? customTitle : (ogTitle ? ogTitle : url) }</a>
+        </small>
+      </h5>
+    </td>
+    <td className="td-description">
+      <p>{ogDescription ? ogDescription : "" }</p>
+    </td>
+    <td className="td-name">
+      <Link to={`/u/${User.username}`}>
+        <h5>
+          <small>
+            {/* {ogTitle ? ogTitle : null } */}
+            { renderedUserName }
+          </small>
+        </h5>
+      </Link>
+    </td>
+    <td className="td-actions">
+      {this.renderType(ogType)}
+    </td>
+    <td className="td-actions">
+      <button type="button" rel="tooltip" data-placement="left" title="" className="btn btn-link" data-original-title="Remove item">
+        <i className="material-icons">delete</i>
+      </button>
+    </td>
+  </tr>
+)
+}
 }
 
 export default withRouter(connect()(Action))
