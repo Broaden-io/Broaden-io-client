@@ -1,4 +1,6 @@
-import serverPath from '../paths';
+import serverPath from '../paths'
+import { getAssessments } from './assessments'
+import axios from 'axios'
 
 export const
 REQUEST_CREATE_LEARNING_ACTION = 'REQUEST_CREATE_LEARNING_ACTION',
@@ -26,29 +28,20 @@ export const errorCreateLearningAction = (message) => ({
 })
 
 // CREATE LEARNING ACTION - action create
-export function createLearningAction(userId, criteriaId, action) {
-  let config = {
-    method: 'POST',
-    body: JSON.stringify(action),
-    headers: {
-      'Accept': 'application/json, text/plain, */*',
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-    }
-  }
+export function createLearningAction(action) {
 
   return dispatch => {
     dispatch(requestCreateLearningAction());
 
-    return fetch(`${serverPath}/criteria/${criteriaId}/actions/create`, config).then((res) => {
+    return axios.post(`${serverPath}/criteria/${action.criterionId}/actions/create`, action).then((res) => {
       if (res.status !== 200) {
-        dispatch(errorCreateLearningAction(res.message));
-        return Promise.reject(`Could not create Learning Action: ${res.message}`)
+        dispatch(errorCreateLearningAction(res));
+        return Promise.reject(`Could not create Learning Action: ${res}`)
       }
-      return res.json();
+      return res;
     }).then((json) => {
       dispatch(successCreateLearningAction(json.action))
-    }).catch(err => console.log("There was an error: " + err));
+    }).catch(err => {dispatch(errorCreateLearningAction(err))});
   }
 }
 
@@ -86,12 +79,13 @@ export function createOpenGraph(action) {
     dispatch(requestCreateOpenGraph());
     return fetch(`${serverPath}/opengraph`, config).then((res) => {
       if (res.status !== 200) {
-        dispatch(errorCreateOpenGraph(res.message));
-        return Promise.reject(`Could not create Open Graph because: ${res.message}`)
+        dispatch(errorCreateOpenGraph(res));
+        return Promise.reject(`Could not create Open Graph because: ${res}`)
       }
       return res.json();
     }).then((json) => {
       dispatch(successCreateOpenGraph(json.action))
+      dispatch(getAssessments(action.userId))
     }).catch(err => {
       console.log("There was an error: " + err)
       dispatch(errorCreateOpenGraph(err));

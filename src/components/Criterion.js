@@ -5,8 +5,6 @@ import uuidv1 from 'uuid/v1'
 import { Collapse } from 'react-collapse'
 import Action from './Action'
 import ActionCreateModal from './ActionCreateModal'
-import ModalWizard from './ModalWizard'
-
 
 class Criterion extends Component {
   state = {
@@ -56,7 +54,7 @@ class Criterion extends Component {
 
 
   render() {
-    const { text, level, Actions: actions } = this.props.data
+    const { level, Actions: actions } = this.props.data
     const { isOpen, isChecked } = this.state
     return(
       <ul className="list-group">

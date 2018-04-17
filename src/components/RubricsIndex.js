@@ -6,22 +6,6 @@ import { connect } from 'react-redux';
 import * as Actions from '../actions/rubrics';
 import mixpanel from 'mixpanel-browser';
 
-const RubricElement = withRouter(
-  (props) => {
-    return (
-      <tr>
-        <td>
-          <div>
-            <Link to={`/rubrics/${props.rubricId}`} className="text-info" style={{letterSpacing: '1px'}}>
-            <h4 style={{ fontWeight: 400 }}>{props.name}</h4>
-          </Link>
-        </div>
-      </td>
-      <td> {props.description} </td>
-    </tr>
-  )
-})
-
 class RubricSummary extends Component {
 
   constructor(props) {

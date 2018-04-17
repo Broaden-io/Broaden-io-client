@@ -20,13 +20,15 @@ class ActionCreateModal extends React.Component {
         customTitle: '',
         customType: '',
         customNote: '',
-        creator: localStorage.getItem('userId'),
-        meta: {}
+        userId: parseInt(localStorage.getItem('userId'), 10),
+        meta: {},
+        criterionId: this.props.criterion.id
       },
       fetching: false,
       fetched: false
     }
     this.renderStep = this.renderStep.bind(this)
+    this.submitLearningAction = this.submitLearningAction.bind(this)
   }
 
   renderType(type) {
@@ -67,7 +69,6 @@ class ActionCreateModal extends React.Component {
     axios.post(`${serverPath}/opengraph`, this.state.action)
     .then((response) => {
       const { data } = response
-      console.log('DATA', data)
       this.setState({
         ...this.state,
         action: {
@@ -90,21 +91,21 @@ class ActionCreateModal extends React.Component {
           <BeatLoader color="#E33872" size="16px" margin="4px"/>
         )
       } else {
-        const image = action.meta.ogImage ? <img className="media-object" src={action.meta.ogImage.url} alt={action.meta.ogTitle}/> : null
+        const image = action.meta.ogImage ? <img className="media-object" src={action.meta.ogImage.url} alt={action.meta.ogTitle ? action.meta.ogTitle : 'resource thumbnail'}/> : null
         return (
           <div>
             <div className="row">
               <div className="col-md-8">
                 <div className="form-group bmd-form-group">
                   <label htmlFor={`customTitle${identifier}`} className="bmd-label-floating">Give this Resource a Title</label>
-                  <input type="text" value={action.customTitle != '' ? action.customTitle : (action.meta.ogTitle ? action.meta.ogTitle : null)} className="form-control" id={`customTitle${identifier}`} />
+                  <input type="text" value={action.customTitle !== '' ? action.customTitle : (action.meta.ogTitle ? action.meta.ogTitle : null)} className="form-control" id={`customTitle${identifier}`} />
                   <span className="form-control-feedback">
                     <i className="material-icons">done</i>
                   </span>
                 </div>
                 <div className="form-group bmd-form-group">
                   <label htmlFor={`customNote${identifier}`} className="bmd-label-floating">Add a note for this resource</label>
-                  <TextareaAutosize rows="3" type="text" value={action.customNote != '' ? action.customNote : (action.meta.ogDescription ? action.meta.ogDescription : null)} className="form-control" id={`customNote${identifier}`} />
+                  <TextareaAutosize rows="3" type="text" value={action.customNote !== '' ? action.customNote : (action.meta.ogDescription ? action.meta.ogDescription : null)} className="form-control" id={`customNote${identifier}`} />
                   <span className="form-control-feedback">
                     <i className="material-icons">done</i>
                   </span>
@@ -137,7 +138,7 @@ class ActionCreateModal extends React.Component {
               &nbsp; Reset
               <div className="ripple-container"></div>
             </button>
-            <button onClick={() => {alert("submitted!")}} className="btn btn-info pull-right" type="button">
+            <button onClick={() => {this.submitLearningAction()}} className="btn btn-info pull-right" type="button">
               Save &nbsp;
               <span className="btn-label btn-label-right">
                 <i className="material-icons">keyboard_arrow_right</i>
@@ -163,15 +164,17 @@ class ActionCreateModal extends React.Component {
     }
   }
 
+  submitLearningAction() {
+    this.props.createLearningAction(this.state.action)
+  }
+
   render() {
     var modalStyles = {
       top: '30%',
       overflowY: `scroll`,
       maxHeight: '90%'
     }
-    const { isVisible, toggle, criterion, learningAction, isFetching } = this.props
-    const { action, fetching } = this.state
-    const { url } = action
+    const { isVisible, toggle, criterion } = this.props
     return (
       <div>
         <SkyLightStateless

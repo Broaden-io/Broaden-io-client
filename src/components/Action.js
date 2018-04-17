@@ -60,13 +60,15 @@ class Action extends Component {
       )
     }
   }
-  
+
   render() {
     const { customTitle, url, meta, User} = this.props.data
-    const { ogTitle, ogDescription, ogType } = meta
-    const firstName = '', lastName = '', username = ''
+    const { ogTitle, ogDescription, ogType } = meta ? meta : {ogTitle: '', ogDescription: '', ogType: ''}
+    let firstName = '', lastName = '', username = ''
     if (User) {
-      const { firstName, lastName, username } = User
+      firstName = User.firstName
+      lastName = User.lastName
+      username = User.username
     }
     const renderedUserName = ((firstName === "") || (lastName === "")) ? username : `${firstName} ${lastName}`;
 

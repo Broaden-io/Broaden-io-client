@@ -83,10 +83,8 @@ class Learning extends Component {
       if (id) {
         const assessmentFiltered = assessments.filter(assessment => {
           const assessId = assessment.rubricJSON.id
-          console.log("ID <> assessId", id, assessId)
           return id === assessId
         })
-        console.log('ASSESSMENTFILTERED', assessmentFiltered)
         const assessment = assessmentFiltered[0].rubricJSON
         const { Competencies: competencies} = assessment
         competencies.forEach((competency) => {
