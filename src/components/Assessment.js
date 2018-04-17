@@ -61,13 +61,16 @@ class Assessment extends Component {
   }
 
   render() {
+
     const { criteria, assessment } = this.props
     const { userId } = assessment
+
     return(
       <div className="col-md-12">
 
         <h4>Skills you still need to master...</h4>
         {criteria.map((criterion) => {
+
           return <Criterion key={uuidv1()} data={criterion} owner={userId}/>
         })}
         <div className="material-datatables">

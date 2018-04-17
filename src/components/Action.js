@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+
 import ActionConfirmDeleteModal from './ActionConfirmDeleteModal'
 
 class Action extends Component {
@@ -12,7 +13,6 @@ constructor(props) {
     confirmDelete: false
   }
 }
-
 
   renderImage(image) {
     if (image) {
@@ -68,6 +68,7 @@ constructor(props) {
     }
   }
 
+
   renderDeleteButton() {
     const { rubricOwner, data } = this.props
     const { userId: creatorId } = data
@@ -106,6 +107,7 @@ constructor(props) {
       </div>
     </td>*/}
     <td className="td-name">
+
       <a href={url} target="_blank">
       <h5>
         <small>
@@ -113,12 +115,14 @@ constructor(props) {
         </small>
       </h5>
       </a>
+
     </td>
     <td className="td-description">
       <p>{ogDescription ? ogDescription : "" }</p>
     </td>
     <td className="td-name">
       <Link to={`/u/${User.username}`}>
+
       <h5>
         <small>
           {/* {ogTitle ? ogTitle : null } */}

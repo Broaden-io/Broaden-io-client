@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import * as Actions from '../actions/rubrics';
 import mixpanel from 'mixpanel-browser';
 
+
 const RubricElement = withRouter(
   (props) => {
     return (

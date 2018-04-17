@@ -97,6 +97,7 @@ class Learning extends Component {
 
 
         return (
+
           <Assessment assessment={assessment} criteria={criteria} />
 
         )

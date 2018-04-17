@@ -22,6 +22,7 @@ class Criterion extends Component {
   }
 
   toggleAddNewRes(e) {
+
     this.setState({AddNewResource: !this.state.AddNewResource})
   }
 
@@ -54,6 +55,7 @@ class Criterion extends Component {
 
 
   render() {
+
     const { data, owner } = this.props
     const { level, Actions: actions } = data
     const { isOpen, isChecked } = this.state
@@ -85,6 +87,7 @@ class Criterion extends Component {
             </span>
             <span onClick={this.toggleOpen.bind(this)}>
               <br/>
+
               <button className="btn btn-primary btn-block btn-simple">
                 <i className="material-icons">add</i>
                 <strong>&nbsp; Level up this skill</strong>
@@ -96,6 +99,7 @@ class Criterion extends Component {
               <div className="row">
                 <div className="col-10">
                 <div className="table-responsive">
+
                   <table className="table table-shopping">
                     <thead>
                       <tr>
@@ -104,11 +108,13 @@ class Criterion extends Component {
                         <th className="th-description">Description</th>
                         <th className="th-description">Contributor</th>
                         <th className="th-description">Type</th>
+
                         <th className="th-description"></th>
                         <th></th>
                       </tr>
                     </thead>
                     <tbody>
+
                       {actions.map(action => <Action key={uuidv1()} data={action} rubricOwner={owner} />)}
                     </tbody>
                   </table>
