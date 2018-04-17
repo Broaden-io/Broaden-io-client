@@ -21,7 +21,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body>
+<body class="sidebar-mini">
   <div class="wrapper">
     <div class="sidebar" data-active-color="blue" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
       <!--
@@ -186,265 +186,346 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title">Full Stack Web Skills -
-                  <small class="category">Make School's rubric for getting a job as a professional in full stack web</small>
+                <h4 class="card-title">Learning Actions
+
                 </h4>
+                <small class="category">
+                  Here is where you can level up your skills by seeing what you need to level up next.
+                  After you add a skill and take an intial assessment you can update your progress here.
+                </small>
               </div>
               <div class="card-content">
                 <div class="row">
-                  <div class="col-md-2">
-                    <ul class="nav nav-pills nav-pills-icons nav-pills-rose nav-stacked" role="tablist">
-                      <!--
-                      color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
-                    -->
-                    <li class="active">
-                      <a href="#dashboard-2" role="tab" data-toggle="tab" aria-expanded="true">
-                        <i class="material-icons">dashboard</i> HTML & Templating
-                      </a>
-                    </li>
-                    <li class="">
-                      <a href="#schedule-2" role="tab" data-toggle="tab" aria-expanded="false">
-                        <i class="material-icons">explore</i> CSS
-                      </a>
-                    </li>
-                    <li class="">
-                      <a href="#schedule-2" role="tab" data-toggle="tab" aria-expanded="false">
-                        <i class="material-icons">code</i> Client-Side JavaScript
-                      </a>
-                    </li>
-                    <li class="">
-                      <a href="#schedule-2" role="tab" data-toggle="tab" aria-expanded="false">
-                        <i class="material-icons">backup</i> Backend
-                      </a>
-                    </li>
-                    <li class="">
-                      <a href="#schedule-2" role="tab" data-toggle="tab" aria-expanded="false">
-                        <i class="material-icons">lock</i> DevOps and Security
-                      </a>
-                    </li>
-                    <li class="">
-                      <a href="#schedule-2" role="tab" data-toggle="tab" aria-expanded="false">
-                        <i class="material-icons">bug_report</i> Testing and Debugging
-                      </a>
-                    </li>
-                    <li class="">
-                      <a href="#schedule-2" role="tab" data-toggle="tab" aria-expanded="false">
-                        <i class="material-icons">line_style</i> Databases
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-md-10">
-                  <div class="tab-content">
-                    <div class="tab-pane active" id="dashboard-2">
-                      <div class="col-md-3">
-                        <h3>Initial</h3>
-                        <hr />
-                      <!-- Begin table -->
-                      <table class="table">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" name="optionsCheckboxes" checked="">
-                                </label>
-                              </div>
-                            </td>
-                            <td>Can write the basic HTML boilerplate from memory</td>
-
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" name="optionsCheckboxes" checked>
-                                </label>
-                              </div>
-                            </td>
-                            <td>Needs to look up tags occasionally from documentation</td>
-
-                          </tr>
-
-                        </tbody>
-                      </table>
-                      <!-- End table -->
-                    </div>
-                    <div class="col-md-3">
-                      <h3>Approaching</h3>
-                      <hr />
-                    <!-- Begin table -->
-                    <table class="table">
-                      <tbody>
-                        <tr>
-                          <td>
-                            <div class="checkbox">
-                              <label>
-                                <input type="checkbox" name="optionsCheckboxes" checked="">
-                              </label>
-                            </div>
-                          </td>
-                          <td>Can write basic and advanced HTML tags from memory</td>
-
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="checkbox">
-                              <label>
-                                <input type="checkbox" name="optionsCheckboxes">
-                              </label>
-                            </div>
-                          </td>
-                          <td>Indentation is flawless</td>
-
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="checkbox">
-                              <label>
-                                <input type="checkbox" name="optionsCheckboxes" checked>
-                              </label>
-                            </div>
-                          </td>
-                          <td>Has experience with one templating engine</td>
-
-                        </tr>
-
-                      </tbody>
-                    </table>
-                    <!-- End table -->
+                  <div class="col-sm-3">
+                    <select class="selectpicker" data-style="btn btn-info btn-round" title="Single Select" data-size="7">
+                      <option disabled >Choose Skill</option>
+                      <option value="1" selected>Full Stack Web Skills</option>
+                      <option value="2">Full Stack Mobile Skills</option>
+                      <option value="3">Success Skills</option>
+                      <option value="4">Job Readiness/Internship Skills</option>
+                    </select>
                   </div>
-                  <div class="col-md-3">
-                    <h3>Overtaking</h3>
-                    <hr />
-                  <!-- Begin table -->
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox" name="optionsCheckboxes" >
-                            </label>
-                          </div>
-                        </td>
-                        <td>Uses HTML tags semantically, e.g. uses structural tags (section, header, footer, article, etc.)</td>
-
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox" name="optionsCheckboxes">
-                            </label>
-                          </div>
-                        </td>
-                        <td>Has experience with a few templating engines</td>
-
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox" name="optionsCheckboxes">
-                            </label>
-                          </div>
-                        </td>
-                        <td>Can use advanced HTML tags such as meta tags, title tags, and optimize page load time</td>
-
-                      </tr>
-
-                    </tbody>
-                  </table>
-                  <!-- End table -->
                 </div>
-                <div class="col-md-3">
-                  <h3>Innovating</h3>
-                  <hr />
-                <!-- Begin table -->
-                <table class="table">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" name="optionsCheckboxes" >
-                          </label>
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                      <div class="checkbox" style="display:inline">
+                        <label style="display:inline">
+                          <input type="checkbox" style="display:inline" name="optionsCheckboxes">
+                        </label>
+                      </div>
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <h4 class="panel-title" style="display:inline">
+                          Collapsible Group Item #1
+                          <i class="material-icons">keyboard_arrow_down</i>
+                        </h4>
+                      </a>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="panel-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <h4 class="panel-title">
+                          Collapsible Group Item #2
+                          <i class="material-icons">keyboard_arrow_down</i>
+                        </h4>
+                      </a>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                      <div class="panel-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <h4 class="panel-title">
+                          Collapsible Group Item #3
+                          <i class="material-icons">keyboard_arrow_down</i>
+                        </h4>
+                      </a>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                      <div class="panel-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="card">
+                    <div class="card-header card-header-tabs" data-background-color="rose">
+                      <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                          <span class="nav-tabs-title">Tasks:</span>
+                          <ul class="nav nav-tabs" data-tabs="tabs">
+                            <li class="active">
+                              <a href="#profile" data-toggle="tab">
+                                <i class="material-icons">bug_report</i> Bugs
+                                <div class="ripple-container"></div>
+                              </a>
+                            </li>
+                            <li class="">
+                              <a href="#messages" data-toggle="tab">
+                                <i class="material-icons">code</i> Website
+                                <div class="ripple-container"></div>
+                              </a>
+                            </li>
+                            <li class="">
+                              <a href="#settings" data-toggle="tab">
+                                <i class="material-icons">cloud</i> Server
+                                <div class="ripple-container"></div>
+                              </a>
+                            </li>
+                          </ul>
                         </div>
-                      </td>
-                      <td>Has experience and expertise with multiple templating engines</td>
-
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" name="optionsCheckboxes">
-                          </label>
+                      </div>
+                    </div>
+                    <div class="card-content">
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="profile">
+                          <table class="table">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox" name="optionsCheckboxes" checked>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>Sign contract for "What are conference organizers afraid of?"</td>
+                                <td class="td-actions text-right">
+                                  <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                                    <i class="material-icons">edit</i>
+                                  </button>
+                                  <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                    <i class="material-icons">close</i>
+                                  </button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox" name="optionsCheckboxes">
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                                <td class="td-actions text-right">
+                                  <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                                    <i class="material-icons">edit</i>
+                                  </button>
+                                  <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                    <i class="material-icons">close</i>
+                                  </button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox" name="optionsCheckboxes">
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                                </td>
+                                <td class="td-actions text-right">
+                                  <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                                    <i class="material-icons">edit</i>
+                                  </button>
+                                  <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                    <i class="material-icons">close</i>
+                                  </button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox" name="optionsCheckboxes" checked>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>Create 4 Invisible User Experiences you Never Knew About</td>
+                                <td class="td-actions text-right">
+                                  <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                                    <i class="material-icons">edit</i>
+                                  </button>
+                                  <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                    <i class="material-icons">close</i>
+                                  </button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </div>
-                      </td>
-                      <td>Has manipulated and written HTML programmatically</td>
-
-                    </tr>
-
-                  </tbody>
-                </table>
-                <!-- End table -->
-              </div>
+                        <div class="tab-pane" id="messages">
+                          <table class="table">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox" name="optionsCheckboxes" checked>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                                </td>
+                                <td class="td-actions text-right">
+                                  <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                                    <i class="material-icons">edit</i>
+                                  </button>
+                                  <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                    <i class="material-icons">close</i>
+                                  </button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox" name="optionsCheckboxes">
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>Sign contract for "What are conference organizers afraid of?"</td>
+                                <td class="td-actions text-right">
+                                  <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                                    <i class="material-icons">edit</i>
+                                  </button>
+                                  <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                    <i class="material-icons">close</i>
+                                  </button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="tab-pane" id="settings">
+                          <table class="table">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox" name="optionsCheckboxes">
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                                <td class="td-actions text-right">
+                                  <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                                    <i class="material-icons">edit</i>
+                                  </button>
+                                  <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                    <i class="material-icons">close</i>
+                                  </button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox" name="optionsCheckboxes" checked>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                                </td>
+                                <td class="td-actions text-right">
+                                  <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                                    <i class="material-icons">edit</i>
+                                  </button>
+                                  <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                    <i class="material-icons">close</i>
+                                  </button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox" name="optionsCheckboxes">
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>Sign contract for "What are conference organizers afraid of?"</td>
+                                <td class="td-actions text-right">
+                                  <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                                    <i class="material-icons">edit</i>
+                                  </button>
+                                  <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                    <i class="material-icons">close</i>
+                                  </button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+
         </div>
 
-
       </div>
-
     </div>
+
+
+
+
+
+    <footer class="footer">
+      <div class="container-fluid">
+        <nav class="pull-left">
+          <ul>
+            <li>
+              <a href="#">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Company
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Portofolio
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Blog
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <p class="copyright pull-right">
+          &copy;
+          <script>
+          document.write(new Date().getFullYear())
+          </script>
+          <a href="http://www.creative-tim.com"> Creative Tim </a>, made with love for a better web
+        </p>
+      </div>
+    </footer>
   </div>
-
-
-
-
-
-  <footer class="footer">
-    <div class="container-fluid">
-      <nav class="pull-left">
-        <ul>
-          <li>
-            <a href="#">
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              Company
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              Portofolio
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              Blog
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <p class="copyright pull-right">
-        &copy;
-        <script>
-        document.write(new Date().getFullYear())
-        </script>
-        <a href="http://www.creative-tim.com"> Creative Tim </a>, made with love for a better web
-      </p>
-    </div>
-  </footer>
-</div>
 </div>
 </body>
 <!--   Core JS Files   -->

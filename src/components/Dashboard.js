@@ -17,7 +17,7 @@ const AddAssessmentButton = (props => {
           to={props.link} style={{ color: '#888', backgroundColor: 'rgba(0,0,0,.05)'}}>
           <i className="material-icons" style={{fontSize: 60}}>add
           </i>
-           Take a new assessment
+           Add a Skill to Level-Up
            <div className="ripple-container">
           </div>
         </Link>

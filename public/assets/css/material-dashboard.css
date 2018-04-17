@@ -5601,10 +5601,10 @@ be a descendant of the grid when it is being dragged.
  * Licensed under MIT (https://github.com/silviomoreto/bootstrap-select/blob/master/LICENSE)
  */
 
-select.bs-select-hidden,
+/* select.bs-select-hidden,
 select.selectpicker {
     display: none !important;
-}
+} */
 
 .bootstrap-select {
     width: 220px \0;

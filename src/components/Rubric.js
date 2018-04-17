@@ -197,7 +197,6 @@ const FinishButton = withRouter(props => {
     render() {
 
       const { assessment } = this.props;
-      const { isFetching } = assessment;
       return (
         <div className="col-md-12">
           <div className="card">
