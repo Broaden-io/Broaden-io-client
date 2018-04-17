@@ -22,44 +22,6 @@ const RubricElement = withRouter(
   )
 })
 
-const RubricSummaryPlain = withRouter(
-  (props) => {
-    return (
-      <div className="card card-pricing card-plain">
-        <div className="card-content">
-          <h6 className="category">Freelancer</h6>
-          <div className="icon">
-            <i className="material-icons">weekend</i>
-          </div>
-          <h3 className="card-title">FREE</h3>
-          <p className="card-description">
-            This is good if your company size is between 2 and 10 Persons.
-          </p>
-          <a href="#pablo" className="btn btn-white btn-round">Choose Plan</a>
-        </div>
-      </div>
-  )
-})
-
-const RubricSummaryRaised = withRouter(
-  (props) => {
-    return (
-      <div className="card card-pricing card-raised">
-        <div className="card-content">
-          <h6 className="category">Small Company</h6>
-          <div className="icon icon-rose">
-            <i className="material-icons">home</i>
-          </div>
-          <h3 className="card-title">$29</h3>
-          <p className="card-description">
-            This is good if your company size is between 2 and 10 Persons.
-          </p>
-          <a href="#pablo" className="btn btn-rose btn-round">Choose Plan</a>
-        </div>
-      </div>
-  )
-})
-
 class RubricSummary extends Component {
 
   constructor(props) {
@@ -67,14 +29,54 @@ class RubricSummary extends Component {
     this.state = {
       isHovered: false
     }
+    this.colors = ['primary', 'info', 'rose', 'warning', 'danger']
+  }
+
+  renderSummary() {
+    const { index, rubric } = this.props
+    const { name, iconName, description, id } = rubric
+    const color = this.colors[index]
+    // if (this.state.isHovered) {
+      return (
+        <div className="card card-pricing card-raised">
+          <div className="card-content">
+            <h6 className="category"><strong>{name}</strong></h6>
+            <div className={`icon icon-${color}`}>
+              <i className="material-icons">{iconName}</i>
+            </div>
+            <p className="card-description">
+              {description}
+            </p>
+            <Link to={`/rubrics/${id}`} className={`btn btn-${color} btn-round`}>Choose Roadmap</Link>
+          </div>
+        </div>
+      )
+    // } else {
+    //   return (
+    //     <div className="card card-pricing card-plain">
+    //       <div className="card-content">
+    //         <h6 className="category">{name}</h6>
+    //         <div className="icon">
+    //           <i className="material-icons">{iconName}</i>
+    //         </div>
+    //         <p className="card-description">
+    //           {description}
+    //         </p>
+    //         <a href="#pablo" className="btn btn-white btn-round">Choose Skill</a>
+    //       </div>
+    //     </div>
+    //   )
+    // }
   }
 
   render() {
-
-
-
     return (
-
+      <div
+        className="col-md-4"
+        onMouseEnter={() => { this.setState({isHovered: true})}}
+        onMouseLeave={() => { this.setState({isHovered: false})}} >
+        {this.renderSummary()}
+      </div>
     )
   }
 }
@@ -93,10 +95,9 @@ class RubricsIndex extends Component {
 
   drawRubrics() {
     const { rubrics } = this.props.rubrics
-
     if (rubrics.length !== 0) {
       const theRubes = rubrics.map((rubric, index) => {
-        return (<RubricElement key={index} index={index} name={rubric.name} rubricId={rubric.id} description={rubric.description} />)
+        return (<RubricSummary key={index} index={index} rubric={rubric} />)
       }).sort((a , b) => {
         return a.id - b.id;
       })
@@ -106,142 +107,17 @@ class RubricsIndex extends Component {
 
   render() {
     return (
-
-      <div className="wrapper">
-        <div className="" >
-          <div className="content">
-            <div className="container">
-              <div className="row">
-                <div className="col-md-6 col-md-offset-3 text-center">
-                  <h2 className="title">Pick a Roadmap to Master</h2>
-                  <h5 className="description">Once you pick a skill we will take a </h5>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-3">
-                  <div className="card card-pricing card-plain">
-                    <div className="card-content">
-                      <h6 className="category">Freelancer</h6>
-                      <div className="icon">
-                        <i className="material-icons">weekend</i>
-                      </div>
-                      <h3 className="card-title">FREE</h3>
-                      <p className="card-description">
-                        This is good if your company size is between 2 and 10 Persons.
-                      </p>
-                      <a href="#pablo" className="btn btn-white btn-round">Choose Plan</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-3">
-                  <div className="card card-pricing card-raised">
-                    <div className="card-content">
-                      <h6 className="category">Small Company</h6>
-                      <div className="icon icon-rose">
-                        <i className="material-icons">home</i>
-                      </div>
-                      <h3 className="card-title">$29</h3>
-                      <p className="card-description">
-                        This is good if your company size is between 2 and 10 Persons.
-                      </p>
-                      <a href="#pablo" className="btn btn-rose btn-round">Choose Plan</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-3">
-                  <div className="card card-pricing card-plain">
-                    <div className="card-content">
-                      <h6 className="category">Medium Company</h6>
-                      <div className="icon">
-                        <i className="material-icons">business</i>
-                      </div>
-                      <h3 className="card-title">$69</h3>
-                      <p className="card-description">
-                        This is good if your company size is between 11 and 99 Persons.
-                      </p>
-                      <a href="#pablo" className="btn btn-white btn-round">Choose Plan</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-3">
-                  <div className="card card-pricing card-plain">
-                    <div className="card-content">
-                      <h6 className="category">Enterprise</h6>
-                      <div className="icon">
-                        <i className="material-icons">account_balance</i>
-                      </div>
-                      <h3 className="card-title">$159</h3>
-                      <p className="card-description">
-                        This is good if your company size is 99+ persons.
-                      </p>
-                      <a href="#pablo" className="btn btn-white btn-round">Choose Plan</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-8 col-md-offset-2 text-center">
+              <h2 className="title">Pick a Roadmap to Master</h2>
+              <h5 className="description">Once you pick a roadmap we will take you to an initial assessment so you how far you've already progressed</h5>
             </div>
           </div>
-          <div className="col-md-12">
-            <div className="card">
-              <div className="card-header card-header-icon" data-background-color="rose">
-                <i className="material-icons">assignment</i>
-              </div>
-              <div className="card-content">
-                <h4 className="card-title">Please pick a goal or skill that you'd like to track...</h4>
-                <div className="table-responsive">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th><h2 style={{ marginTop: 0 }}><small>Name</small></h2></th>
-                        <th><h2 style={{ marginTop: 0 }}><small>Description</small></h2></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {this.drawRubrics()}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+          <div className="row">
+            {this.drawRubrics()}
           </div>
-          <footer className="footer">
-            <div className="container">
-              <nav className="pull-left">
-                <ul>
-                  <li>
-                    <a href="#">
-                      Home
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Company
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Portofolio
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Blog
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-              <p className="copyright pull-right">
-                &copy;
-                <script>
-                  document.write(new Date().getFullYear())
-                </script>
-                <a href="http://www.creative-tim.com"> Creative Tim </a>, made with love for a better web
-              </p>
-            </div>
-          </footer>
         </div>
-      </div>
-
     );
   }
 }
