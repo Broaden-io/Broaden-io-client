@@ -83,7 +83,7 @@ const CompetencyScore = withRouter(
 
                   <div className="justify-content-center">
                     <div className="col-sm-11">
-                      <span className="tim-note">OVERALL SCORE</span>
+                      <span className="tim-note">OVERALL PROGRESS</span>
                       <h1>{ totalScore }%</h1>
                     </div>
                   </div>

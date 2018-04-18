@@ -117,7 +117,7 @@ class Learning extends Component {
             <h1 style={{display: `inline`}}><small>Level Up</small></h1>
             <div className="col-xs-12">
               <h5 className="description">
-                After you add a skill and take an intial assessment you can update your progress here.
+                After you add a roadmap and take an intial assessment you can update your progress here.
                 You can level up your skills by seeing what you need to level up next!
               </h5>
             </div>
