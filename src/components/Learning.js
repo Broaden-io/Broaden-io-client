@@ -4,12 +4,9 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import mixpanel from 'mixpanel-browser'
-import {Collapse} from 'react-collapse'
-import Checkbox from './Checkbox'
-import uuidv1 from 'uuid/v1'
 import Assessment from './Assessment'
-
-
+import $ from 'jquery'
+import 'bootstrap-select'
 
 class Learning extends Component {
 
@@ -31,113 +28,115 @@ class Learning extends Component {
     this.setState({activeRubricIndex: rubricIndex})
   }
 
-  componentDidMount() {
-    {/*const { assessmentsObject: assessments } = this.props.assessments
-    if (assessments.length > 0) {
-    const dropdown = document.getElementsByClassName("selectpicker")
-    const el = findDOMNode(this.refs.dropdown)
-  }*/}
-  mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
-  mixpanel.track("Learning Mode Page")
-}
-
-renderDropdown() {
-  const { assessmentsObject: assessments } = this.props.assessments
-  if (assessments.length > 0) {
-    return (
-      <select
-        ref={node => this.select = node}
-        className="selectpicker"
-        value={this.state.activeRubricIndex}
-        data-style="btn btn-rose btn-round"
-        title="Select One of Your Tracked Skills"
-        data-size="70"
-        onChange={this.handleDropdownChange}>
-        <option value={0} disabled >Select a Skill</option>
-        {assessments.map((assessment, index) => {
-          const { id, name, iconName } = assessment.rubricJSON
-          return (
-            <option value={id} key={id}>
-              <strong>
-                <i className="material-icons">{iconName}</i>
-                &nbsp; {name}
-              </strong>
-            </option>
-          )
-        })}
-      </select>
-    )
+  componentDidUpdate() {
+    const dropdown = document.getElementById("bootstrapSelect")
+    $(dropdown).selectpicker().selectpicker("render")
   }
-  return null
-}
 
-handleDropdownChange(event) {
-  this.setState({activeRubricIndex: event.target.value})
-  this.props.history.push(`/levelup/${event.target.value}`)
-}
+  componentDidMount() {
 
-renderAssessment() {
-  const { assessmentsObject: assessments } = this.props.assessments
-  if (assessments.length > 0) {
-    const id = this.props.match.params.id
-    if (id) {
-      const assessmentfiltered = assessments.filter(assessment => {
-        const assessId = assessment.rubricJSON.id
-        return id == assessId
-      })
-      const assessment = assessmentfiltered[0].rubricJSON
-      const { name, description, iconName, Competencies: competencies} = assessment
-      const criteria = []
-      competencies.forEach((competency) => {
-        competency.Scales.forEach((scale) => {
-          scale.Criteria.forEach((criterion) => {
-            criteria.push(criterion)
-          })
-        })
-      })
+    mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
+    mixpanel.track("Learning Mode Page")
+  }
 
+  renderDropdown() {
+    const { assessmentsObject: assessments } = this.props.assessments
+    if (assessments.length > 0) {
       return (
-        <Assessment assessment={assessment} criteria={criteria}/>
-
+        <select
+          ref={node => this.select = node}
+          id="bootstrapSelect"
+          className="selectpicker"
+          value={this.state.activeRubricIndex}
+          data-style="btn btn-rose btn-round"
+          title="Select One of Your Tracked Skills"
+          data-size="70"
+          onChange={this.handleDropdownChange}>
+          <option value={0} disabled >Select a Skill</option>
+          {assessments.map((assessment, index) => {
+            const { id, name, iconName } = assessment.rubricJSON
+            return (
+              <option value={id} key={id}>
+                <strong>
+                  <i className="material-icons">{iconName}</i>
+                  &nbsp; {name}
+                </strong>
+              </option>
+            )
+          })}
+        </select>
       )
     }
+    return null
   }
-  return null
-}
 
-render() {
-  const { assessmentsObject: assessments } = this.props.assessments
-  return (
-    <div className="col-md-12">
-      <div className="card">
-        <div className="card-header card-header-icon" style={{display: `inline`}} data-background-color="rose">
-          <i className="material-icons">check_circle</i>
-        </div>
-        <div className="card-header" style={{display: `inline`}}>
-          <h1 style={{display: `inline`}}><small>Level Up</small></h1>
-          <div className="col-xs-12">
-            <h5 className="description">
-              After you add a skill and take an intial assessment you can update your progress here.
-              You can level up your skills by seeing what you need to level up next!
-            </h5>
+  handleDropdownChange(event) {
+    this.setState({activeRubricIndex: event.target.value})
+    this.props.history.push(`/levelup/${event.target.value}`)
+  }
+
+  renderAssessment() {
+    const { assessmentsObject: assessments } = this.props.assessments
+    let criteria = []
+    if (assessments.length > 0) {
+      const id = parseInt(this.props.match.params.id, 10)
+      if (id) {
+        const assessmentFiltered = assessments.filter(assessment => {
+          const assessId = assessment.rubricJSON.id
+          return id === assessId
+        })
+        const assessment = assessmentFiltered[0].rubricJSON
+        const { Competencies: competencies} = assessment
+        competencies.forEach((competency) => {
+          competency.Scales.forEach((scale) => {
+            scale.Criteria.forEach((criterion) => {
+              criteria.push(criterion)
+            })
+          })
+        })
+
+
+        return (
+          <Assessment assessment={assessment} criteria={criteria} />
+
+        )
+      }
+    }
+    return null
+  }
+
+  render() {
+    return (
+      <div className="col-md-12">
+        <div className="card">
+          <div className="card-header card-header-icon" style={{display: `inline`}} data-background-color="rose">
+            <i className="material-icons">check_circle</i>
           </div>
-        </div>
-        <div className="card-content">
-          <div className="row">
-            <div className="col-md-5 col-lg-4 col-xl-3">
-              {this.renderDropdown()}
+          <div className="card-header" style={{display: `inline`}}>
+            <h1 style={{display: `inline`}}><small>Level Up</small></h1>
+            <div className="col-xs-12">
+              <h5 className="description">
+                After you add a skill and take an intial assessment you can update your progress here.
+                You can level up your skills by seeing what you need to level up next!
+              </h5>
             </div>
           </div>
-          <div className="row">
-            <div className="col-12">
-              {this.renderAssessment()}
+          <div className="card-content">
+            <div className="row">
+              <div className="col-md-5 col-lg-4 col-xl-3">
+                {this.renderDropdown()}
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-12">
+                {this.renderAssessment()}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
