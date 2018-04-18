@@ -16,6 +16,8 @@ class ActionConfirmDeleteModal extends React.Component {
         <SkyLightStateless
           isVisible={isVisible}
           onCloseClicked={toggle}
+          closeOnEsc={true}
+          hideOnOverlayClicked={true}
           title="Are you sure you want to delete?"
         >
           <hr/>

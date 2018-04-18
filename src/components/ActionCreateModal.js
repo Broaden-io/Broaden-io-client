@@ -180,6 +180,8 @@ class ActionCreateModal extends React.Component {
         <SkyLightStateless
           dialogStyles={modalStyles}
           isVisible={isVisible}
+          closeOnEsc={true}
+          hideOnOverlayClicked={true}
           onCloseClicked={() => {
             this.setState({
               action: {

@@ -99,7 +99,7 @@ class Sidebar extends Component {
                 path={`/dashboard`}
                 refreshState={false}/>
               <MenuItem
-                title="Rubrics"
+                title="Roadmaps"
                 active={this.props.location.pathname === `/rubrics`}
                 icon="assessment"
                 path={`/rubrics`}
