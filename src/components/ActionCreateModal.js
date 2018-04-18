@@ -126,7 +126,7 @@ class ActionCreateModal extends React.Component {
                   customTitle: '',
                   customType: '',
                   customNote: '',
-                  creator: localStorage.getItem('userId'),
+                  userId: localStorage.getItem('userId'),
                   meta: {}
                 },
                 fetching: false,
