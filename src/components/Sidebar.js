@@ -123,8 +123,8 @@ class Sidebar extends Component {
                 <Route path={`/rubrics/:id`} component={Rubric} />
                 <Route path={`/levelup`} render={() => <Learning/>} exact={true} />
                 <Route path={`/levelup/:id`} render={() => <Learning/>} />
-                <Route path={`/:username`} component={Profile} exact={true} />
-                <Route path={`/:username/edit`} component={EditProfile} exact={true} />
+                <Route path={`/u/:username`} component={Profile} exact={true} />
+                <Route path={`/profile`} component={EditProfile} exact={true} />
               </Switch>
             </div>
           </div>

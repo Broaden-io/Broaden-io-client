@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import mixpanel from 'mixpanel-browser';
+import history from '../routers/history';
+import serverPath from '../paths';
 
 class EditProfile extends Component {
 
@@ -22,7 +24,38 @@ class EditProfile extends Component {
   submitForm() {
     // go through items in the state and only send the ones that have been updated
     // make sure that the user can only submit an edit request for their OWN user account
-  }
+    var config = {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/x-www-form-urlencoded' },
+        body: this.state
+      }
+
+            return dispatch => {
+              console.log('requesting login')
+              // dispatch(requestLogin(creds));
+
+              return fetch(`${serverPath}/user/${localStorage.getItem('username')}`, config).then((res) => {
+                if (res.status !== 200) {
+                  // dispatch(loginError(res.statusText));
+                  return Promise.reject("Could not login");
+                }
+                return res.json();
+              }).then((json) => {
+                // localStorage.setItem('token', json.token);
+                localStorage.setItem('userId', json.user.id)
+                localStorage.setItem('username', json.user.username)
+                localStorage.setItem('firstName', json.user.firstName)
+                localStorage.setItem('lastName', json.user.lastName)
+                localStorage.setItem('email', json.user.email)
+                // localStorage.setItem('avatarURL', json.user.avatarURL)
+                // dispatch(receiveLogin({token: json.token, user: json.user}));
+                // history.push(`/dashboard`); // forward to /username
+              }).catch(err => console.log("Error: " + err));
+            }
+          }
+
 
 // Kash was here
 

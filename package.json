@@ -25,6 +25,7 @@
     "react-collapse": "^4.0.3",
     "react-cookie": "^2.1.2",
     "react-dom": "^16.2.0",
+    "react-dropzone-s3-uploader": "^1.1.0",
     "react-loading": "^1.0.4",
     "react-motion": "^0.5.2",
     "react-redux": "^5.0.7",
