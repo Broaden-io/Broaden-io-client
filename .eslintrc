@@ -1,0 +1,28 @@
+{
+    "parser": "babel-eslint",
+    "extends": [
+        "airbnb-base",
+        "eslint:recommended",
+    ],
+    "rules": {
+        "indent": [
+            "error",
+            4
+          ],
+        "no-tabs": 0,
+        "class-methods-use-this": "off",
+        "no-underscore-dangle": "off",
+        "no-plusplus": "off",
+        "no-mixed-spaces-and-tabs": "off",
+        "react/jsx-uses-react": "error",
+        "react/jsx-uses-vars": "error"
+    },
+    "globals": {
+        "document": true,
+        "window": true,
+        "alert": true
+    },
+    "plugins": [
+        "react"
+    ]
+}
