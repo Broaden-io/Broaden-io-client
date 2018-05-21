@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 class Footer extends Component {
 
-  render() {
-    return (
-      <footer className="footer">
-        <div className="container-fluid">
-            <nav className="pull-left">
-                <ul>
-                  {/*<li>
+    render() {
+        return (
+            <footer className="footer">
+                <div className="container-fluid">
+                    <nav className="pull-left">
+                        <ul>
+                            {/*<li>
                     <a href="">
                           Home
                     </a>
@@ -28,17 +28,17 @@ class Footer extends Component {
                         Contact
                       </a>
                     </li>*/}
-                  </ul>
-                </nav>
-                <p className="copyright pull-right">
+                        </ul>
+                    </nav>
+                    <p className="copyright pull-right">
                   © <a href="/"> Broaden.io </a>, made with love by students at Make School
-                </p>
-            </div>
-          </footer>
+                    </p>
+                </div>
+            </footer>
 
 
-    );
-  }
+        );
+    }
 }
 
 export default Footer;
