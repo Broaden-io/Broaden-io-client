@@ -14,136 +14,136 @@ import EditProfile from './EditProfile';
 import Learning from './Learning';
 
 const MenuItem = withRouter(
-  (props) => {
-    const state = props.refreshState ? {activeRubricIndex: null} : {}
-    return (
-      <li className={(props.active) ? `active` : ``}>
-        <Link to={{pathname: props.path, state: state}}>
-          <i className="material-icons">{props.icon}</i>
-          <p> {props.title} </p>
-        </Link>
-      </li>
-    )
-  }
+    (props) => {
+        const state = props.refreshState ? {activeRubricIndex: null} : {}
+        return (
+            <li className={(props.active) ? `active` : ``}>
+                <Link to={{pathname: props.path, state: state}}>
+                    <i className="material-icons">{props.icon}</i>
+                    <p> {props.title} </p>
+                </Link>
+            </li>
+        )
+    }
 )
 
 class Sidebar extends Component {
 
-  render() {
+    render() {
 
-    const user = {
-      username: localStorage.getItem('username'),
-      userId: localStorage.getItem('userId'),
-      firstName: localStorage.getItem('firstName'),
-      lastName: localStorage.getItem('lastName'),
-      avatarURL: localStorage.getItem('avatarURL'),
-    }
+        const user = {
+            username: localStorage.getItem('username'),
+            userId: localStorage.getItem('userId'),
+            firstName: localStorage.getItem('firstName'),
+            lastName: localStorage.getItem('lastName'),
+            avatarURL: localStorage.getItem('avatarURL'),
+        }
 
-    const renderedUserName = ((user.firstName === 'null') || (user.lastName === 'null')) ? user.username : `${user.firstName} ${user.lastName}`;
+        const renderedUserName = ((user.firstName === 'null') || (user.lastName === 'null')) ? user.username : `${user.firstName} ${user.lastName}`;
 
-    return (
-      <div className="wrapper">
-        <div className="sidebar" data-active-color="rose" data-background-color="white" data-image="/assets/img/sidebar-1.jpg">
-          <div className="logo">
-            <a href="" className="simple-text logo-mini">
-              <i className="material-icons">details</i>
-            </a>
-            <a href="/dashboard" className="simple-text logo-normal">
+        return (
+            <div className="wrapper">
+                <div className="sidebar" data-active-color="rose" data-background-color="white" data-image="/assets/img/sidebar-1.jpg">
+                    <div className="logo">
+                        <a href="" className="simple-text logo-mini">
+                            <i className="material-icons">details</i>
+                        </a>
+                        <a href="/dashboard" className="simple-text logo-normal">
               Broaden.io
-            </a>
-          </div>
-          <div className="sidebar-wrapper">
-            <div className="user">
-              <div className="photo">
-                <img alt="avatar" src={user.avatarURL} />
-              </div>
-              <div className="info">
-                <a data-toggle="collapse" href="#collapseExample" className="collapsed">
-                  <span>
-                    {renderedUserName}
-                    <b className="caret"></b>
-                  </span>
-                </a>
-                <div className="clearfix"></div>
-                <div className="collapse" id="collapseExample">
-                  <ul className="nav">
-                    <li>
-                      <Link to={`/${user.username}`}>
-                        <span className="sidebar-mini"> <i className="material-icons">person</i> </span>
-                        <span className="sidebar-normal"> My Profile </span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to={`/${user.username}/edit`}>
-                        <span className="sidebar-mini"> <i className="material-icons">settings</i> </span>
-                        <span className="sidebar-normal"> Edit Profile </span>
-                      </Link>
-                    </li>
-                    <li>
-                      <a href="" onClick={() => {
-                          this.props.logoutUser();
-                        }}>
-                        <span className="sidebar-mini"> <i className="material-icons">fingerprint</i> </span>
-                        <span className="sidebar-normal"> Logout </span>
-                      </a>
-                    </li>
-                  </ul>
+                        </a>
+                    </div>
+                    <div className="sidebar-wrapper">
+                        <div className="user">
+                            <div className="photo">
+                                <img alt="avatar" src={user.avatarURL} />
+                            </div>
+                            <div className="info">
+                                <a data-toggle="collapse" href="#collapseExample" className="collapsed">
+                                    <span>
+                                        {renderedUserName}
+                                        <b className="caret"></b>
+                                    </span>
+                                </a>
+                                <div className="clearfix"></div>
+                                <div className="collapse" id="collapseExample">
+                                    <ul className="nav">
+                                        <li>
+                                            <Link to={`/${user.username}`}>
+                                                <span className="sidebar-mini"> <i className="material-icons">person</i> </span>
+                                                <span className="sidebar-normal"> My Profile </span>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to={`/${user.username}/edit`}>
+                                                <span className="sidebar-mini"> <i className="material-icons">settings</i> </span>
+                                                <span className="sidebar-normal"> Edit Profile </span>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <a href="" onClick={() => {
+                                                this.props.logoutUser();
+                                            }}>
+                                                <span className="sidebar-mini"> <i className="material-icons">fingerprint</i> </span>
+                                                <span className="sidebar-normal"> Logout </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <ul className="nav">
+                            <MenuItem
+                                title="Dashboard"
+                                active={(this.props.location.pathname === `/${user.username}/dashboard`) || (this.props.location.pathname === `/dashboard`)}
+                                icon="dashboard"
+                                path={`/dashboard`}
+                                refreshState={false}/>
+                            <MenuItem
+                                title="Roadmaps"
+                                active={this.props.location.pathname === `/rubrics`}
+                                icon="assessment"
+                                path={`/rubrics`}
+                                refreshState={false}/>
+                            <MenuItem
+                                title="Level Up"
+                                active={this.props.location.pathname.startsWith(`/levelup`)}
+                                icon="check_circle"
+                                path={`/levelup`}
+                                refreshState={true} />
+                        </ul>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <ul className="nav">
-              <MenuItem
-                title="Dashboard"
-                active={(this.props.location.pathname === `/${user.username}/dashboard`) || (this.props.location.pathname === `/dashboard`)}
-                icon="dashboard"
-                path={`/dashboard`}
-                refreshState={false}/>
-              <MenuItem
-                title="Roadmaps"
-                active={this.props.location.pathname === `/rubrics`}
-                icon="assessment"
-                path={`/rubrics`}
-                refreshState={false}/>
-              <MenuItem
-                title="Level Up"
-                active={this.props.location.pathname.startsWith(`/levelup`)}
-                icon="check_circle"
-                path={`/levelup`}
-                refreshState={true} />
-            </ul>
-          </div>
-        </div>
-        <div className="main-panel">
-          <NavTop />
-          <div className="content">
-            <div className="container-fluid">
-              <Switch>
-                <Route path={`/dashboard`} component={Dashboard} />
-                <Route exact={true} path={`/rubrics`} component={RubricsIndex} />
-                <Route path={`/rubrics/:id`} component={Rubric} />
-                <Route path={`/levelup`} render={() => <Learning/>} exact={true} />
-                <Route path={`/levelup/:id`} render={() => <Learning/>} />
-                <Route path={`/:username`} component={Profile} exact={true} />
-                <Route path={`/:username/edit`} component={EditProfile} exact={true} />
-              </Switch>
-            </div>
-          </div>
-          <Footer />
+                <div className="main-panel">
+                    <NavTop />
+                    <div className="content">
+                        <div className="container-fluid">
+                            <Switch>
+                                <Route path={`/dashboard`} component={Dashboard} />
+                                <Route exact={true} path={`/rubrics`} component={RubricsIndex} />
+                                <Route path={`/rubrics/:id`} component={Rubric} />
+                                <Route path={`/levelup`} render={() => <Learning/>} exact={true} />
+                                <Route path={`/levelup/:id`} render={() => <Learning/>} />
+                                <Route path={`/:username`} component={Profile} exact={true} />
+                                <Route path={`/:username/edit`} component={EditProfile} exact={true} />
+                            </Switch>
+                        </div>
+                    </div>
+                    <Footer />
 
-        </div>
-      </div>
-    );
-  }
+                </div>
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = (state) => {
-  return {
-    auth: state.auth
-  }
+    return {
+        auth: state.auth
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(Actions, dispatch);
+    return bindActionCreators(Actions, dispatch);
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sidebar))

@@ -5,19 +5,19 @@ import { withRouter } from 'react-router'
 import * as Actions from '../actions/auth';
 
 class NavTop extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      sidebarIsMini: false
+    constructor(props) {
+        super(props)
+        this.state = {
+            sidebarIsMini: false
+        }
     }
-  }
 
-  render() {
+    render() {
 
-    return (
-      <nav className="navbar navbar-transparent navbar-absolute">
-        <div className="container-fluid">
-          {/*<div className="navbar-minimize">
+        return (
+            <nav className="navbar navbar-transparent navbar-absolute">
+                <div className="container-fluid">
+                    {/*<div className="navbar-minimize">
             <button
             onClick={this.setState({sidebarIsMini: !this.state.sidebarIsMini})}
             id="minimizeSidebar"
@@ -27,56 +27,56 @@ class NavTop extends Component {
             </button>
             </div>*/}
 
-            <div className="navbar-header">
+                    <div className="navbar-header">
 
-              <button
-                type="button"
-                className="navbar-toggle"
-                data-toggle="collapse"
-                >
-                <span className="sr-only">
+                        <button
+                            type="button"
+                            className="navbar-toggle"
+                            data-toggle="collapse"
+                        >
+                            <span className="sr-only">
                   Toggle navigation
-                </span>
-                <span className="icon-bar" />
-                <span className="icon-bar" />
-                <span className="icon-bar" />
-              </button>
+                            </span>
+                            <span className="icon-bar" />
+                            <span className="icon-bar" />
+                            <span className="icon-bar" />
+                        </button>
 
-              <a className="navbar-brand" href="/">
+                        <a className="navbar-brand" href="/">
                   &nbsp; BROADEN.IO
-              </a>
-            </div>
-            <div className="collapse navbar-collapse">
-              <ul className="nav navbar-nav navbar-right">
-                  <li className="">
-                    <a href="" onClick={() => {
-                      this.props.logoutUser();
-                    }}>
-                      <i className="material-icons">fingerprint</i> Logout
-                    </a>
-                  </li>
-                  <li>
-                    <a href={`/${localStorage.getItem('username')}`}>
-                      <i className="material-icons">person</i>
-                      <p className="hidden-lg hidden-md">Profile</p>
-                    </a>
-                  </li>
-                  <li className="separator hidden-lg hidden-md" />
-                </ul>
-              </div>
-            </div>
-          </nav>
+                        </a>
+                    </div>
+                    <div className="collapse navbar-collapse">
+                        <ul className="nav navbar-nav navbar-right">
+                            <li className="">
+                                <a href="" onClick={() => {
+                                    this.props.logoutUser();
+                                }}>
+                                    <i className="material-icons">fingerprint</i> Logout
+                                </a>
+                            </li>
+                            <li>
+                                <a href={`/${localStorage.getItem('username')}`}>
+                                    <i className="material-icons">person</i>
+                                    <p className="hidden-lg hidden-md">Profile</p>
+                                </a>
+                            </li>
+                            <li className="separator hidden-lg hidden-md" />
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         );
-      }
     }
+}
 const mapStateToProps = (state) => {
-  return {
-    auth: state.auth
-  }
+    return {
+        auth: state.auth
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(Actions, dispatch);
+    return bindActionCreators(Actions, dispatch);
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavTop))

@@ -6,92 +6,92 @@ import Criterion from './Criterion'
 
 class Assessment extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      competencies: [],
-      totalPointsLeft: 0,
+    constructor(props) {
+        super(props);
+        this.state = {
+            competencies: [],
+            totalPointsLeft: 0,
+        }
     }
-  }
 
-  componentDidMount() {
+    componentDidMount() {
 
-  }
-
-  getCompetencyForCriteriaId(criteria) {
-    const { assessment } = this.props
-    const { scaleId } = criteria
-    const competency = assessment.Competencies.filter((competency) => {
-      var isCompetency = false
-      competency.Scales.forEach((scale) => {
-        if (scale.id === scaleId) { isCompetency = true }
-      })
-      return isCompetency
-    })
-    if (competency.length > 1) {
-      console.log(`Warning competency length is greater than 1 when returning from filter.  Filter resulted in ${competency.length} results.`)
     }
-    return competency[0]
-  }
 
-  updateCompetenciesArray(targetCompetency) {
-    const { competencies } = this.state
-    var isNewCompetency = true
-    competencies.forEach((competency) => {
-      if (competency.id === targetCompetency.id) {
-        isNewCompetency = false
-      }
-    })
-    if (isNewCompetency) {
-      this.setState({
-        ...this.state,
-        competencies: [
-          ...competencies,
-          targetCompetency
-        ]
-      })
+    getCompetencyForCriteriaId(criteria) {
+        const { assessment } = this.props
+        const { scaleId } = criteria
+        const competency = assessment.Competencies.filter((competency) => {
+            var isCompetency = false
+            competency.Scales.forEach((scale) => {
+                if (scale.id === scaleId) { isCompetency = true }
+            })
+            return isCompetency
+        })
+        if (competency.length > 1) {
+            console.log(`Warning competency length is greater than 1 when returning from filter.  Filter resulted in ${competency.length} results.`)
+        }
+        return competency[0]
     }
-  }
 
-  updatePointsLeft(points) {
-    this.setState({
-      ...this.state,
-      totalPointsLeft: this.totalPointsLeft + points
-    })
-  }
+    updateCompetenciesArray(targetCompetency) {
+        const { competencies } = this.state
+        var isNewCompetency = true
+        competencies.forEach((competency) => {
+            if (competency.id === targetCompetency.id) {
+                isNewCompetency = false
+            }
+        })
+        if (isNewCompetency) {
+            this.setState({
+                ...this.state,
+                competencies: [
+                    ...competencies,
+                    targetCompetency
+                ]
+            })
+        }
+    }
 
-  render() {
+    updatePointsLeft(points) {
+        this.setState({
+            ...this.state,
+            totalPointsLeft: this.totalPointsLeft + points
+        })
+    }
 
-    const { criteria, assessment } = this.props
-    const { userId } = assessment
+    render() {
 
-    return(
-      <div className="col-md-12">
+        const { criteria, assessment } = this.props
+        const { userId } = assessment
 
-        <h4>Skills you still need to master...</h4>
-        {criteria.map((criterion) => {
+        return(
+            <div className="col-md-12">
 
-          return <Criterion key={uuidv1()} data={criterion} owner={userId}/>
-        })}
-        <div className="material-datatables">
+                <h4>Skills you still need to master...</h4>
+                {criteria.map((criterion) => {
 
-          <table id="datatables" className="table table-striped table-no-bordered table-hover" cellSpacing="0" width="100%" style={{width:`100%`}}>
+                    return <Criterion key={uuidv1()} data={criterion} owner={userId}/>
+                })}
+                <div className="material-datatables">
 
-            <tfoot>
-              <tr>
-                <th></th>
-                <th>TOTAL POINTS LEFT</th>
-                <th className="disabled-sorting text-right">{
-                  criteria.reduce((acc, criterion) => {
-                    return acc + criterion.level
-                  }, 0)
-                } Pts</th>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-      </div>
-    );
-  }
+                    <table id="datatables" className="table table-striped table-no-bordered table-hover" cellSpacing="0" width="100%" style={{width:`100%`}}>
+
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>TOTAL POINTS LEFT</th>
+                                <th className="disabled-sorting text-right">{
+                                    criteria.reduce((acc, criterion) => {
+                                        return acc + criterion.level
+                                    }, 0)
+                                } Pts</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        );
+    }
 }
 export default withRouter(connect()(Assessment))

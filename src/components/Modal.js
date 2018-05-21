@@ -3,20 +3,20 @@ import {SkyLightStateless} from 'react-skylight';
 
 class Modal extends React.Component {
 
-  render() {
+    render() {
 
-    return (
-      <div>
-        <SkyLightStateless
-          isVisible={this.props.isVisible}
-          onCloseClicked={() => {this.props.toggle()}}
-          title="A Stateless Modal"
-        >
+        return (
+            <div>
+                <SkyLightStateless
+                    isVisible={this.props.isVisible}
+                    onCloseClicked={() => {this.props.toggle()}}
+                    title="A Stateless Modal"
+                >
           I'm a Stateless modal!
-        </SkyLightStateless>
-      </div>
-    )
-  }
+                </SkyLightStateless>
+            </div>
+        )
+    }
 }
 
 Modal.displayName = 'Message';
