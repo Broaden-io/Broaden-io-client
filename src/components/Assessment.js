@@ -94,5 +94,4 @@ class Assessment extends Component {
     );
   }
 }
-
 export default withRouter(connect()(Assessment))
