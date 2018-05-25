@@ -37,7 +37,6 @@ This project is licensed under the MIT License - see the [LICENSE.](https://tldr
 
 -------------------
 
-![screen shot 2018-03-01 at 2 21 22 pm](https://github.com/Jeffchiucp/Rubrics-Frontend/blob/master/cache/Showcase-Devices-Mockup.jpg?raw=true)
 
 
 ## Updating to New Releases
