@@ -1,5 +1,5 @@
 const serverPaths = {
-  dev: 'http://localhost:8000',
+  dev: 'https://rubrics-server.herokuapp.com',
   prod: 'https://rubrics-server.herokuapp.com'
 }
 
