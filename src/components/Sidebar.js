@@ -11,12 +11,14 @@ import Rubric from './Rubric';
 import Footer from './Footer';
 import Profile from './Profile';
 import EditProfile from './EditProfile';
+import Learning from './Learning';
 
 const MenuItem = withRouter(
   (props) => {
+    const state = props.refreshState ? {activeRubricIndex: null} : {}
     return (
       <li className={(props.active) ? `active` : ``}>
-        <Link to={props.path}>
+        <Link to={{pathname: props.path, state: state}}>
           <i className="material-icons">{props.icon}</i>
           <p> {props.title} </p>
         </Link>
@@ -79,8 +81,8 @@ class Sidebar extends Component {
                     </li>
                     <li>
                       <a href="" onClick={() => {
-                        this.props.logoutUser();
-                      }}>
+                          this.props.logoutUser();
+                        }}>
                         <span className="sidebar-mini"> <i className="material-icons">fingerprint</i> </span>
                         <span className="sidebar-normal"> Logout </span>
                       </a>
@@ -94,36 +96,44 @@ class Sidebar extends Component {
                 title="Dashboard"
                 active={(this.props.location.pathname === `/${user.username}/dashboard`) || (this.props.location.pathname === `/dashboard`)}
                 icon="dashboard"
-                path={`/dashboard`}/>
+                path={`/dashboard`}
+                refreshState={false}/>
               <MenuItem
-                title="Rubrics"
+                title="Roadmaps"
                 active={this.props.location.pathname === `/rubrics`}
                 icon="assessment"
-                path={`/rubrics`} />
+                path={`/rubrics`}
+                refreshState={false}/>
+              <MenuItem
+                title="Level Up"
+                active={this.props.location.pathname.startsWith(`/levelup`)}
+                icon="check_circle"
+                path={`/levelup`}
+                refreshState={true} />
             </ul>
           </div>
         </div>
         <div className="main-panel">
-
           <NavTop />
-
           <div className="content">
             <div className="container-fluid">
               <Switch>
                 <Route path={`/dashboard`} component={Dashboard} />
                 <Route exact={true} path={`/rubrics`} component={RubricsIndex} />
                 <Route path={`/rubrics/:id`} component={Rubric} />
+                <Route path={`/levelup`} render={() => <Learning/>} exact={true} />
+                <Route path={`/levelup/:id`} render={() => <Learning/>} />
                 <Route path={`/:username`} component={Profile} exact={true} />
                 <Route path={`/:username/edit`} component={EditProfile} exact={true} />
               </Switch>
+            </div>
           </div>
-        </div>
-        <Footer />
+          <Footer />
 
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 }
 
 const mapStateToProps = (state) => {

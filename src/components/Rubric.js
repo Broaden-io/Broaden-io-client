@@ -9,96 +9,96 @@ import uuidv1 from 'uuid/v1';
 import mixpanel from 'mixpanel-browser';
 
 const CompetencyButton = props => (
-    <li className={props.isActive}
-      onClick={() => {
-        props.setActiveComp(props.index)
-      }}>
-      <a href="" onClick={(e) => e.preventDefault()} role="tab" data-toggle="tab" aria-expanded="true">
-         {props.name}
-        </a>
-      </li>
-    )
+  <li className={props.isActive}
+    onClick={() => {
+      props.setActiveComp(props.index)
+    }}>
+    <a href="" onClick={(e) => e.preventDefault()} role="tab" data-toggle="tab" aria-expanded="true">
+      {props.name}
+    </a>
+  </li>
+)
 
 const PreviousButton = props => (
-    <button className="btn btn-lg btn-rose btn-round btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
-      onClick={(e) => {
-        e.preventDefault();
-        props.setActiveComp(props.activeIndex - 1);
-      }}>
-      <div className="ripple-container"></div>
-      <h5 style={{letterSpacing: '1px'}}> Previous </h5>
-    </button>
-  )
+  <button className="btn btn-rose btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
+    onClick={(e) => {
+      e.preventDefault();
+      props.setActiveComp(props.activeIndex - 1);
+    }}>
+    <div className="ripple-container"></div>
+    <h5 style={{letterSpacing: '1px'}}> Previous </h5>
+  </button>
+)
 
 
 const NextButton = props => (
-    <button className="btn btn-lg btn-rose btn-round btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
-      onClick={(e) => {
-        e.preventDefault();
-        props.setActiveComp(props.activeIndex + 1);
-      }}>
-      <div className="ripple-container"></div>
-      <h5 style={{letterSpacing: '1px'}}> Next </h5>
-    </button>
-  )
+  <button className="btn btn-rose btn-simple"  style={{backgroundColor: 'rgba(0,0,0,.04)'}}
+    onClick={(e) => {
+      e.preventDefault();
+      props.setActiveComp(props.activeIndex + 1);
+    }}>
+    <div className="ripple-container"></div>
+    <h5 style={{letterSpacing: '1px'}}> Next </h5>
+  </button>
+)
 
 const FinishButton = withRouter(props => {
   return (
-    <Link className="btn btn-lg btn-rose btn-round btn-simple" to={`/dashboard`} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
-      <div className="ripple-container"></div>
-      <h5 style={{letterSpacing: '1px'}}> Finish </h5>
-    </Link>
-  )
+    <Link className="btn btn-rose btn-simple" to={`/dashboard`} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
+    <div className="ripple-container"></div>
+    <h5 style={{letterSpacing: '1px'}}> Finish </h5>
+  </Link>
+)
 })
 
-  class Rubric extends Component {
+class Rubric extends Component {
 
-    constructor(props) {
-      super(props);
-      this.state = {
-        activeCompetencyIndex: 0
-      }
-      this.icons = [ "dashboard", "explore", "code", "backup", "lock", "bug_report", "line_style", "perm_identity", "star_rate" ]
-      this.renderCompetencies = this.renderCompetencies.bind(this);
-      this.renderCompetencyButtons = this.renderCompetencyButtons.bind(this);
-      this.renderCriteriaForLevel = this.renderCriteriaForLevel.bind(this);
-      this.renderLevels = this.renderLevels.bind(this);
-      this.getIsFetching = this.getIsFetching.bind(this);
-      this.renderNextOrFinish = this.renderNextOrFinish.bind(this);
-      this.setActiveComp = this.setActiveComp.bind(this);
-      this.renderPreviousButton = this.renderPreviousButton.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeCompetencyIndex: 0
     }
+    this.icons = [ "dashboard", "explore", "code", "backup", "lock", "bug_report", "line_style", "perm_identity", "star_rate" ]
+    this.renderCompetencies = this.renderCompetencies.bind(this);
+    this.renderCompetencyButtons = this.renderCompetencyButtons.bind(this);
+    this.renderCriteriaForLevel = this.renderCriteriaForLevel.bind(this);
+    this.renderLevels = this.renderLevels.bind(this);
+    this.getIsFetching = this.getIsFetching.bind(this);
+    this.renderNextOrFinish = this.renderNextOrFinish.bind(this);
+    this.setActiveComp = this.setActiveComp.bind(this);
+    this.renderPreviousButton = this.renderPreviousButton.bind(this);
+  }
 
-    componentWillMount() {
-      const id = this.props.match.params.id;
-      this.props.getAssessment(localStorage.getItem("userId"), id);
-    }
+  componentWillMount() {
+    const id = this.props.match.params.id;
+    this.props.getAssessment(localStorage.getItem("userId"), id);
+  }
 
-    componentDidMount() {
-      mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
-      mixpanel.track("Rubric Component Page");
-    }
+  componentDidMount() {
+    mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
+    mixpanel.track("Rubric Component Page");
+  }
 
-    renderCriteriaForLevel(level, compIndex) {
-      const { Competencies } = this.props.assessment.assessmentObject.rubricJSON;
-      if (Competencies) {
-        return Competencies[compIndex].Scales.map((scale, index) => {
-          // if the criteria level matches the level parameter, add the
-          // criteria component
-          return scale.Criteria.filter(criteria => criteria.level === level).map((criteria, index) => {
-            return <Criteria
-              key={criteria.id}
-              answer={criteria.answer}
-              id={criteria.id}
-              text={criteria.text} />
-            }).sort((a , b) => {
-              return a.id - b.id;
-            })
+  renderCriteriaForLevel(level, compIndex) {
+    const { Competencies } = this.props.assessment.assessmentObject.rubricJSON;
+    if (Competencies) {
+      return Competencies[compIndex].Scales.map((scale, index) => {
+        // if the criteria level matches the level parameter, add the
+        // criteria component
+        return scale.Criteria.filter(criteria => criteria.level === level).map((criteria, index) => {
+          return <Criteria
+            key={criteria.id}
+            answer={criteria.answer}
+            id={criteria.id}
+            text={criteria.text} />
           }).sort((a , b) => {
             return a.id - b.id;
           })
-        }
+        }).sort((a , b) => {
+          return a.id - b.id;
+        })
       }
+    }
 
     renderLevels(compIndex) {
       const levelNames = ['Initial', 'Approaching', 'Overtaking', 'Innovating'];
@@ -128,6 +128,7 @@ const FinishButton = withRouter(props => {
           }
           return (
             <div className={`tab-pane ${active}`} key={uuidv1()} id="dashboard-2">
+              <h2><small className="text-default">Competency: </small><small className="text-primary">{comp.name}</small></h2>
               {this.getIsFetching() ? null : this.renderLevels(index)}
             </div>
           )
@@ -158,7 +159,7 @@ const FinishButton = withRouter(props => {
               isActive={active}
               icon={this.icons[index]}
               setActiveComp={this.setActiveComp}
-              />
+            />
           )
         }).sort((a , b) => {
           return a.id - b.id;
@@ -197,7 +198,6 @@ const FinishButton = withRouter(props => {
     render() {
 
       const { assessment } = this.props;
-      const { isFetching } = assessment;
       return (
         <div className="col-md-12">
           <div className="card">
@@ -206,21 +206,16 @@ const FinishButton = withRouter(props => {
                 <br/> <small className="category">{this.getIsFetching() ? null : assessment.assessmentObject.rubricJSON.description}</small>
               </h2>
             </div>
-            <div className="card-content">
+            <div className="card-content" style={{paddingTop: `0`}}>
               <div className="row">
-                <div className="col-md-2">
-                  <ul className="nav nav-pills nav-pills-rose nav-stacked" role="tablist">
-                    {this.renderCompetencyButtons()}
-                  </ul>
-                </div>
-                <div className="col-md-10">
-                  <div className="tab-content">
+
+                <div className="col-md-12">
+                  <div className="tab-content" style={{marginTop: `0`}}>
                     {this.renderCompetencies()}
                   </div>
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-2"> </div>
                 <div style={{display:'flex', justifyContent:'space-between'}}>
                   <div className="col-md-2" style={{display:'flex', flexDirection:'row', justifyContent:'flex-start'}}>
                     {this.renderPreviousButton()}
@@ -237,14 +232,14 @@ const FinishButton = withRouter(props => {
     }
   }
 
-const mapStateToProps = (state) => {
-  return {
-    assessment: state.assessment
+  const mapStateToProps = (state) => {
+    return {
+      assessment: state.assessment
+    }
   }
-}
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(Actions, dispatch);
-}
+  const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(Actions, dispatch);
+  }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Rubric));
+  export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Rubric));

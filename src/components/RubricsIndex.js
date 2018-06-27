@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import * as Actions from '../actions/rubrics';
 import mixpanel from 'mixpanel-browser';
 
+
 const RubricElement = withRouter(
   (props) => {
     return (
@@ -13,15 +14,74 @@ const RubricElement = withRouter(
         <td>
           <div>
             <Link to={`/rubrics/${props.rubricId}`} className="text-info" style={{letterSpacing: '1px'}}>
-              <h4 style={{ fontWeight: 400 }}>{props.name}</h4>
-            </Link>
+            <h4 style={{ fontWeight: 400 }}>{props.name}</h4>
+          </Link>
+        </div>
+      </td>
+      <td> {props.description} </td>
+    </tr>
+  )
+})
+
+class RubricSummary extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      isHovered: false
+    }
+    this.colors = ['primary', 'info', 'rose', 'warning', 'danger']
+  }
+
+  renderSummary() {
+    const { index, rubric } = this.props
+    const { name, iconName, description, id } = rubric
+    const color = this.colors[index]
+    // if (this.state.isHovered) {
+      return (
+        <div className="card card-pricing card-raised">
+          <div className="card-content">
+            <h6 className="category"><strong>{name}</strong></h6>
+            <div className={`icon icon-${color}`}>
+              <i className="material-icons">{iconName}</i>
+            </div>
+            <p className="card-description">
+              {description}
+            </p>
+            <Link to={`/rubrics/${id}`} className={`btn btn-${color} btn-round`}>Choose Roadmap</Link>
           </div>
-        </td>
-        <td> {props.description} </td>
-      </tr>
+        </div>
+      )
+    // } else {
+    //   return (
+    //     <div className="card card-pricing card-plain">
+    //       <div className="card-content">
+    //         <h6 className="category">{name}</h6>
+    //         <div className="icon">
+    //           <i className="material-icons">{iconName}</i>
+    //         </div>
+    //         <p className="card-description">
+    //           {description}
+    //         </p>
+    //         <a href="#pablo" className="btn btn-white btn-round">Choose Skill</a>
+    //       </div>
+    //     </div>
+    //   )
+    // }
+  }
+
+  render() {
+    return (
+      <div
+        className="col-md-4"
+        onMouseEnter={() => { this.setState({isHovered: true})}}
+        onMouseLeave={() => { this.setState({isHovered: false})}} >
+        {this.renderSummary()}
+      </div>
     )
   }
-)
+}
+
 
 class RubricsIndex extends Component {
 
@@ -36,10 +96,9 @@ class RubricsIndex extends Component {
 
   drawRubrics() {
     const { rubrics } = this.props.rubrics
-
     if (rubrics.length !== 0) {
-       const theRubes = rubrics.map((rubric, index) => {
-        return (<RubricElement key={index} index={index} name={rubric.name} rubricId={rubric.id} description={rubric.description} />)
+      const theRubes = rubrics.map((rubric, index) => {
+        return (<RubricSummary key={index} index={index} rubric={rubric} />)
       }).sort((a , b) => {
         return a.id - b.id;
       })
@@ -49,29 +108,17 @@ class RubricsIndex extends Component {
 
   render() {
     return (
-      <div className="col-md-12">
-        <div className="card">
-          <div className="card-header card-header-icon" data-background-color="rose">
-            <i className="material-icons">assignment</i>
-          </div>
-          <div className="card-content">
-            <h4 className="card-title">Please pick a goal or skill that you'd like to track...</h4>
-            <div className="table-responsive">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th><h2 style={{ marginTop: 0 }}><small>Name</small></h2></th>
-                    <th><h2 style={{ marginTop: 0 }}><small>Description</small></h2></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.drawRubrics()}
-                </tbody>
-              </table>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-8 col-md-offset-2 text-center">
+              <h2 className="title">Pick a Roadmap to Master</h2>
+              <h5 className="description">Once you pick a roadmap we will take you to an initial assessment so you how far you've already progressed</h5>
             </div>
           </div>
+          <div className="row">
+            {this.drawRubrics()}
+          </div>
         </div>
-      </div>
     );
   }
 }
