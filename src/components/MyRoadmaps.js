@@ -55,13 +55,13 @@ class RubricsIndex extends Component {
             <i className="material-icons">assignment</i>
           </div>
           <div className="card-content">
-            <h4 className="card-title">Please pick a goal or skill that you'd like to track...</h4>
+            <h2 className="card-title">Your Roadmaps</h2>
             <div className="table-responsive">
               <table className="table">
                 <thead>
                   <tr>
-                    <th><h2 style={{ marginTop: 0 }}><small>Name</small></h2></th>
-                    <th><h2 style={{ marginTop: 0 }}><small>Description</small></h2></th>
+                    <th><h4 style={{ marginTop: 0 }}><small>Name</small></h4></th>
+                    <th><h4 style={{ marginTop: 0 }}><small>Description</small></h4></th>
                   </tr>
                 </thead>
                 <tbody>

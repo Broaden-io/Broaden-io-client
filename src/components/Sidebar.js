@@ -7,6 +7,7 @@ import * as Actions from '../actions/auth';
 import NavTop from './NavTop';
 import Dashboard from './Dashboard';
 import RubricsIndex from './RubricsIndex';
+import MyRoadmaps from './MyRoadmaps';
 import Rubric from './Rubric';
 import Footer from './Footer';
 import Profile from './Profile';
@@ -68,6 +69,12 @@ class Sidebar extends Component {
                 <div className="collapse" id="collapseExample">
                   <ul className="nav">
                     <li>
+                      <Link to={`/users/${user.userId}/rubrics`}>
+                        <span className="sidebar-mini"> <i className="material-icons">toc</i> </span>
+                        <span className="sidebar-normal"> My Roadmaps </span>
+                      </Link>
+                    </li>
+                    <li>
                       <Link to={`/${user.username}`}>
                         <span className="sidebar-mini"> <i className="material-icons">person</i> </span>
                         <span className="sidebar-normal"> My Profile </span>
@@ -125,6 +132,7 @@ class Sidebar extends Component {
                 <Route path={`/levelup/:id`} render={() => <Learning/>} />
                 <Route path={`/:username`} component={Profile} exact={true} />
                 <Route path={`/:username/edit`} component={EditProfile} exact={true} />
+                <Route path={'/users/:userId/rubrics'} component={MyRoadmaps} />
               </Switch>
             </div>
           </div>
