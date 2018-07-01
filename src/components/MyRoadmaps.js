@@ -9,16 +9,18 @@ import mixpanel from 'mixpanel-browser';
 const RubricElement = withRouter(
   (props) => {
     return (
-      <tr>
-        <td>
-          <div>
-            <Link to={`/rubrics/${props.rubricId}`} className="text-info" style={{letterSpacing: '1px'}}>
-              <h4 style={{ fontWeight: 400 }}>{props.name}</h4>
-            </Link>
-          </div>
-        </td>
-        <td> {props.description} </td>
-      </tr>
+      <Link to={`/rubrics/${props.rubricId}`} className="text-info" style={{letterSpacing: '1px'}}>
+
+      <div className="card">
+        <div className="card-header card-header-icon" data-background-color="rose">
+          <i className="material-icons">{props.iconName}</i>
+        </div>
+        <div className="card-content">
+          <h4 className="card-title">{props.name}</h4>
+          <p>{props.description}</p>
+        </div>
+      </div>
+      </Link>
     )
   }
 )
@@ -39,7 +41,7 @@ class RubricsIndex extends Component {
 
     if (rubrics.length !== 0) {
        const theRubes = rubrics.map((rubric, index) => {
-        return (<RubricElement key={index} index={index} name={rubric.name} rubricId={rubric.id} description={rubric.description} />)
+        return (<RubricElement key={index} index={index} name={rubric.name} rubricId={rubric.id} description={rubric.description} iconName={rubric.iconName}/>)
       }).sort((a , b) => {
         return a.id - b.id;
       })
@@ -49,26 +51,14 @@ class RubricsIndex extends Component {
 
   render() {
     return (
-      <div className="col-md-12">
+      <div className="col-sm-9 col-md-7 col-lg-5">
+        <h2 >Your Roadmaps</h2>
+        {this.drawRubrics()}
         <div className="card">
-          <div className="card-header card-header-icon" data-background-color="rose">
-            <i className="material-icons">assignment</i>
-          </div>
           <div className="card-content">
-            <h2 className="card-title">Your Roadmaps</h2>
-            <div className="table-responsive">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th><h4 style={{ marginTop: 0 }}><small>Name</small></h4></th>
-                    <th><h4 style={{ marginTop: 0 }}><small>Description</small></h4></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.drawRubrics()}
-                </tbody>
-              </table>
-            </div>
+            <i className="material-icons">add</i>
+            <h4 className="card-title">Add a New Roadmap</h4>
+
           </div>
         </div>
       </div>
