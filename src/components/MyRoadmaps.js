@@ -9,11 +9,12 @@ import mixpanel from 'mixpanel-browser';
 const RubricElement = withRouter(
   (props) => {
     const userId = localStorage.getItem('userId')
+    console.log('PROPS.ICONCOLOR', props.iconColor)
     return (
       <Link to={`/users/${userId}/rubrics/${props.rubricId}`} className="text-info" style={{letterSpacing: '1px'}}>
 
       <div className="card">
-        <div className="card-header card-header-icon" data-background-color="rose">
+        <div className="card-header card-header-icon" data-background-color={props.iconColor}>
           <i className="material-icons">{props.iconName}</i>
         </div>
         <div className="card-content">
@@ -42,7 +43,7 @@ class MyRoadmaps extends Component {
 
     if (rubrics.length !== 0) {
       const theRubes = rubrics.map((rubric, index) => {
-        return (<RubricElement key={index} index={index} name={rubric.name} rubricId={rubric.id} description={rubric.description} iconName={rubric.iconName}/>)
+        return (<RubricElement key={index} index={index} {...rubric} />)
       }).sort((a , b) => {
         return a.id - b.id;
       })
