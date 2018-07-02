@@ -68,32 +68,24 @@ export function getRubricById(id) {
       return res.json();
     }).then((response) => {
       dispatch(receiveRubric(response.rubric))
+
     }).catch(err => console.log("Error: " + err));
   }
 }
 
 // Create a New Rubric
 export function createNewRubric(userId, rubric) {
-  let config = {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json, text/plain, */*',
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-    },
-    body: rubric,
-  }
-
   return dispatch => {
     dispatch(createRubric());
 
-    return fetch(`${serverPath}/users/${userId}/rubrics/create`, config).then((res) => {
+    return axios.post(`${serverPath}/users/${userId}/rubrics/create`, rubric).then((res) => {
       if (res.status !== 200) {
         dispatch(createRubricFailure(res.message));
-        return Promise.reject("Could not get rubric")
+        return Promise.reject("Could not create rubric")
       }
-      return res.json();
+      return res.data;
     }).then((response) => {
+      console.log('RESPONSE', response.rubric)
       dispatch(createRubricSuccess(response.rubric))
     }).catch(err => console.log("Error: " + err));
   }

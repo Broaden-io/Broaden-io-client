@@ -8,7 +8,7 @@ import {
 } from '../actions/rubric'
 
 const initialState = {
-  isFetching: false,
+  isFetching: true,
   message: '',
   rubric: {
     id: '',
@@ -23,10 +23,12 @@ const initialState = {
 }
 
 const rubricReducer = (state = initialState, action) => {
+
   switch (action.type) {
     case REQUEST_RUBRIC_BY_ID:
       return {
         ...state,
+        ...action
       }
     case RUBRIC_SUCCESS:
       return {
@@ -46,7 +48,8 @@ const rubricReducer = (state = initialState, action) => {
     case CREATE_RUBRIC_SUCCESS:
       return {
         ...state,
-        ...action
+        ...action,
+        rubric: {...action.rubric}
       }
     case CREATE_RUBRIC_FAILURE:
       return {

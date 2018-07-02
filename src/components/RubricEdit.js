@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
 import * as Actions from '../actions/rubric';
@@ -8,6 +8,9 @@ import mixpanel from 'mixpanel-browser';
 
 class RubricEdit extends Component {
 
+  state = {
+    needsNewRubric: false,
+  }
   // 1. Check to see if it is in 'edit' or 'new' mode
   // 2. Map state to props
   // 3. Render the component
@@ -17,12 +20,14 @@ class RubricEdit extends Component {
     const { createNewRubric, getRubricById } = this.props
     const { pathname } = this.props.location
     const { rubricId, userId } = this.props.match.params
-    const username = localStorage.getItem('username')
+    const firstName = localStorage.getItem('firstName')
+    const lastName = localStorage.getItem('lastName')
     const newRubric = {
-      name: `${username}\'s New Roadmap`
+      name: `${firstName} ${lastName}\'s New Roadmap`
     }
 
-    if (pathname.includes('/rubric/new')) {
+    if (pathname.includes('rubric/new')) {
+      this.setState({needsNewRubric: true})
       createNewRubric(userId, newRubric)
     } else {
       getRubricById(rubricId);
@@ -34,19 +39,24 @@ class RubricEdit extends Component {
     mixpanel.track("Rubrics Index Component Page");
   }
 
+  redirect(isFetching, needsNewRubric, userId, id) {
+    if (!isFetching && needsNewRubric) {
+      return <Redirect from={`/users/${userId}/rubric/new`} to={`/users/${userId}/rubrics/${id}`} />
+    }
+  }
+
   render() {
-    console.log("props", this.props)
+    const { needsNewRubric } = this.state
     const { isFetching, rubric } = this.props
-    const { name, iconName, description, levelOne, levelTwo, levelThree, levelFour } = rubric
+    const { name, id, userId, iconName, description, levelOne, levelTwo, levelThree, levelFour } = rubric
     return (
       <div className="col-sm-9 col-md-7 col-lg-5">
+        {this.redirect(isFetching, needsNewRubric, userId, id)}
         <h2>Roadmap</h2>
-
         <div className="card">
           <div className="card-content">
             <i className="material-icons">add</i>
             <h4 className="card-title">{name}</h4>
-
           </div>
         </div>
       </div>
@@ -55,6 +65,7 @@ class RubricEdit extends Component {
 }
 
 const mapStateToProps = (state) => {
+
   return {
     ...state.rubric,
   }
