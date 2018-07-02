@@ -13,6 +13,7 @@ import Footer from './Footer';
 import Profile from './Profile';
 import EditProfile from './EditProfile';
 import Learning from './Learning';
+import RubricEdit from './RubricEdit';
 
 const MenuItem = withRouter(
   (props) => {
@@ -132,7 +133,9 @@ class Sidebar extends Component {
                 <Route path={`/levelup/:id`} render={() => <Learning/>} />
                 <Route path={`/:username`} component={Profile} exact={true} />
                 <Route path={`/:username/edit`} component={EditProfile} exact={true} />
-                <Route path={'/users/:userId/rubrics'} component={MyRoadmaps} />
+                <Route path={'/users/:userId/rubrics'} component={MyRoadmaps} exact={true} />
+                <Route path={'/users/:userId/rubrics/:rubricId'} component={RubricEdit} exact={true} />
+                <Route path={'/users/:userId/rubric/new'} component={RubricEdit} exact={true} />
               </Switch>
             </div>
           </div>

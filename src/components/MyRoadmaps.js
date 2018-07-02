@@ -8,8 +8,9 @@ import mixpanel from 'mixpanel-browser';
 
 const RubricElement = withRouter(
   (props) => {
+    const userId = localStorage.getItem('userId')
     return (
-      <Link to={`/rubrics/${props.rubricId}`} className="text-info" style={{letterSpacing: '1px'}}>
+      <Link to={`/users/${userId}/rubrics/${props.rubricId}`} className="text-info" style={{letterSpacing: '1px'}}>
 
       <div className="card">
         <div className="card-header card-header-icon" data-background-color="rose">
@@ -20,12 +21,12 @@ const RubricElement = withRouter(
           <p>{props.description}</p>
         </div>
       </div>
-      </Link>
-    )
-  }
+    </Link>
+  )
+}
 )
 
-class RubricsIndex extends Component {
+class MyRoadmaps extends Component {
 
   componentWillMount() {
     this.props.getRubrics();
@@ -40,7 +41,7 @@ class RubricsIndex extends Component {
     const { rubrics } = this.props.rubrics
 
     if (rubrics.length !== 0) {
-       const theRubes = rubrics.map((rubric, index) => {
+      const theRubes = rubrics.map((rubric, index) => {
         return (<RubricElement key={index} index={index} name={rubric.name} rubricId={rubric.id} description={rubric.description} iconName={rubric.iconName}/>)
       }).sort((a , b) => {
         return a.id - b.id;
@@ -50,20 +51,22 @@ class RubricsIndex extends Component {
   }
 
   render() {
+    const userId = localStorage.getItem('userId')
     return (
       <div className="col-sm-9 col-md-7 col-lg-5">
         <h2 >Your Roadmaps</h2>
         {this.drawRubrics()}
+        <Link to={`/users/${userId}/rubric/new`} className="text-info" style={{letterSpacing: '1px'}}>
         <div className="card">
           <div className="card-content">
             <i className="material-icons">add</i>
             <h4 className="card-title">Add a New Roadmap</h4>
-
           </div>
         </div>
-      </div>
-    );
-  }
+      </Link>
+    </div>
+  );
+}
 }
 
 const mapStateToProps = (state) => {
@@ -77,4 +80,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(Actions, dispatch);
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RubricsIndex));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyRoadmaps));
