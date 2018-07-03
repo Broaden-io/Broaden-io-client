@@ -5,6 +5,7 @@ import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
 import * as Actions from '../actions/rubric';
 import mixpanel from 'mixpanel-browser';
+import Input from './Input';
 
 class RubricEdit extends Component {
 
@@ -45,18 +46,27 @@ class RubricEdit extends Component {
     }
   }
 
+  goBack() {
+    this.props.history.goBack()
+  }
+
   render() {
     const { needsNewRubric } = this.state
     const { isFetching, rubric } = this.props
     const { name, id, userId, iconName, description, levelOne, levelTwo, levelThree, levelFour } = rubric
+    const firstName = localStorage.getItem('firstName')
+    const lastName = localStorage.getItem('lastName')
     return (
       <div className="col-sm-9 col-md-7 col-lg-5">
         {this.redirect(isFetching, needsNewRubric, userId, id)}
-        <h2>Roadmap</h2>
+        <button onClick={this.goBack.bind(this)} style={{padding: '0'}} className="btn btn-lg btn-info btn-round btn-simple">
+            <i className="material-icons">arrow_back_ios</i> back
+        </button>
         <div className="card">
           <div className="card-content">
             <i className="material-icons">add</i>
-            <h4 className="card-title">{name}</h4>
+            <h4 className="card-title">What skillset does this roadmap assess/achieve?</h4>
+            <Input text={ name === `${firstName} ${lastName}\'s New Roadmap` ? `` : name } placeholder="e.g. Code Review..." autoFocus={true}/>
           </div>
         </div>
       </div>

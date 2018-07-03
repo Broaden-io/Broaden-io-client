@@ -9,9 +9,8 @@ import mixpanel from 'mixpanel-browser';
 const RubricElement = withRouter(
   (props) => {
     const userId = localStorage.getItem('userId')
-    console.log('PROPS.ICONCOLOR', props.iconColor)
     return (
-      <Link to={`/users/${userId}/rubrics/${props.rubricId}`} className="text-info" style={{letterSpacing: '1px'}}>
+      <Link to={`/users/${userId}/rubrics/${props.id}`} className="text-info" style={{letterSpacing: '1px'}}>
 
       <div className="card">
         <div className="card-header card-header-icon" data-background-color={props.iconColor}>
