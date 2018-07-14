@@ -7,12 +7,12 @@ import ActionConfirmDeleteModal from './ActionConfirmDeleteModal'
 
 class Action extends Component {
 
-constructor(props) {
-  super(props)
-  this.state = {
-    confirmDelete: false
+  constructor(props) {
+    super(props)
+    this.state = {
+      confirmDelete: false
+    }
   }
-}
 
   renderImage(image) {
     if (image) {
@@ -106,44 +106,44 @@ constructor(props) {
         <button className="btn btn-round btn-info btn-xs"> <i className="material-icons">arrow_downward</i> </button>
       </div>
     </td>*/}
-    <td className="td-name">
+        <td className="td-name">
 
-      <a href={url} target="_blank">
-      <h5>
-        <small>
-          {customTitle ? customTitle : (ogTitle ? ogTitle : url) }
-        </small>
-      </h5>
-      </a>
+          <a href={url} target="_blank">
+            <h5>
+              <small>
+                {customTitle ? customTitle : (ogTitle ? ogTitle : url) }
+              </small>
+            </h5>
+          </a>
 
-    </td>
-    <td className="td-description">
-      <p>{ogDescription ? ogDescription : "" }</p>
-    </td>
-    <td className="td-name">
-      <Link to={`/u/${User.username}`}>
+        </td>
+        <td className="td-description">
+          <p>{ogDescription ? ogDescription : "" }</p>
+        </td>
+        <td className="td-name">
+          <Link to={`/u/${User.username}`}>
 
-      <h5>
-        <small>
-          {/* {ogTitle ? ogTitle : null } */}
-          { renderedUserName }
-        </small>
-      </h5>
-    </Link>
-  </td>
-  <td className="td-actions">
-    {this.renderType(ogType)}
-  </td>
-  <td className="td-actions">
-    {this.renderDeleteButton()}
-    <ActionConfirmDeleteModal
-      isVisible={this.state.confirmDelete}
-      toggle={this.toggleConfirmDeleteOff.bind(this)}
-      action={action} />
-  </td>
-</tr>
-)
-}
+            <h5>
+              <small>
+                {/* {ogTitle ? ogTitle : null } */}
+                { renderedUserName }
+              </small>
+            </h5>
+          </Link>
+        </td>
+        <td className="td-actions">
+          {this.renderType(ogType)}
+        </td>
+        <td className="td-actions">
+          {this.renderDeleteButton()}
+          <ActionConfirmDeleteModal
+            isVisible={this.state.confirmDelete}
+            toggle={this.toggleConfirmDeleteOff.bind(this)}
+            action={action} />
+        </td>
+      </tr>
+    )
+  }
 }
 
 export default withRouter(connect()(Action))

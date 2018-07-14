@@ -27,48 +27,48 @@ class NavTop extends Component {
             </button>
             </div>*/}
 
-            <div className="navbar-header">
+          <div className="navbar-header">
 
-              <button
-                type="button"
-                className="navbar-toggle"
-                data-toggle="collapse"
-                >
-                <span className="sr-only">
+            <button
+              type="button"
+              className="navbar-toggle"
+              data-toggle="collapse"
+            >
+              <span className="sr-only">
                   Toggle navigation
-                </span>
-                <span className="icon-bar" />
-                <span className="icon-bar" />
-                <span className="icon-bar" />
-              </button>
+              </span>
+              <span className="icon-bar" />
+              <span className="icon-bar" />
+              <span className="icon-bar" />
+            </button>
 
-              <a className="navbar-brand" href="/">
+            <a className="navbar-brand" href="/">
                   &nbsp; BROADEN.IO
-              </a>
-            </div>
-            <div className="collapse navbar-collapse">
-              <ul className="nav navbar-nav navbar-right">
-                  <li className="">
-                    <a href="" onClick={() => {
-                      this.props.logoutUser();
-                    }}>
-                      <i className="material-icons">fingerprint</i> Logout
-                    </a>
-                  </li>
-                  <li>
-                    <a href={`/${localStorage.getItem('username')}`}>
-                      <i className="material-icons">person</i>
-                      <p className="hidden-lg hidden-md">Profile</p>
-                    </a>
-                  </li>
-                  <li className="separator hidden-lg hidden-md" />
-                </ul>
-              </div>
-            </div>
-          </nav>
-        );
-      }
-    }
+            </a>
+          </div>
+          <div className="collapse navbar-collapse">
+            <ul className="nav navbar-nav navbar-right">
+              <li className="">
+                <a href="" onClick={() => {
+                  this.props.logoutUser();
+                }}>
+                  <i className="material-icons">fingerprint</i> Logout
+                </a>
+              </li>
+              <li>
+                <a href={`/${localStorage.getItem('username')}`}>
+                  <i className="material-icons">person</i>
+                  <p className="hidden-lg hidden-md">Profile</p>
+                </a>
+              </li>
+              <li className="separator hidden-lg hidden-md" />
+            </ul>
+          </div>
+        </div>
+      </nav>
+    );
+  }
+}
 const mapStateToProps = (state) => {
   return {
     auth: state.auth
