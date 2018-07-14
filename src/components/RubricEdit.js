@@ -60,7 +60,7 @@ class RubricEdit extends Component {
       <div className="col-sm-9 col-md-7 col-lg-5">
         {this.redirect(isFetching, needsNewRubric, userId, id)}
         <button onClick={this.goBack.bind(this)} style={{padding: '0'}} className="btn btn-lg btn-info btn-round btn-simple">
-            <i className="material-icons">arrow_back_ios</i> back
+          <i className="material-icons">arrow_back_ios</i> back
         </button>
         <div className="card">
           <div className="card-content">

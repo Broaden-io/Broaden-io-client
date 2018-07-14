@@ -12,18 +12,18 @@ const RubricElement = withRouter(
     return (
       <Link to={`/users/${userId}/rubrics/${props.id}`} className="text-info" style={{letterSpacing: '1px'}}>
 
-      <div className="card">
-        <div className="card-header card-header-icon" data-background-color={props.iconColor}>
-          <i className="material-icons">{props.iconName}</i>
+        <div className="card">
+          <div className="card-header card-header-icon" data-background-color={props.iconColor}>
+            <i className="material-icons">{props.iconName}</i>
+          </div>
+          <div className="card-content">
+            <h4 className="card-title">{props.name}</h4>
+            <p>{props.description}</p>
+          </div>
         </div>
-        <div className="card-content">
-          <h4 className="card-title">{props.name}</h4>
-          <p>{props.description}</p>
-        </div>
-      </div>
-    </Link>
-  )
-}
+      </Link>
+    )
+  }
 )
 
 class MyRoadmaps extends Component {
@@ -57,16 +57,16 @@ class MyRoadmaps extends Component {
         <h2 >Your Roadmaps</h2>
         {this.drawRubrics()}
         <Link to={`/users/${userId}/rubric/new`} className="text-info" style={{letterSpacing: '1px'}}>
-        <div className="card">
-          <div className="card-content">
-            <i className="material-icons">add</i>
-            <h4 className="card-title">Add a New Roadmap</h4>
+          <div className="card">
+            <div className="card-content">
+              <i className="material-icons">add</i>
+              <h4 className="card-title">Add a New Roadmap</h4>
+            </div>
           </div>
-        </div>
-      </Link>
-    </div>
-  );
-}
+        </Link>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state) => {

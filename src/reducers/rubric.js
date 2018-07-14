@@ -25,39 +25,39 @@ const initialState = {
 const rubricReducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case REQUEST_RUBRIC_BY_ID:
-      return {
-        ...state,
-        ...action
-      }
-    case RUBRIC_SUCCESS:
-      return {
-        ...state,
-        ...action
-      }
-    case RUBRIC_FAILURE:
-      return {
-        ...state,
-        ...action
-      }
-    case CREATE_RUBRIC:
-      return {
-        ...state,
-        ...action
-      }
-    case CREATE_RUBRIC_SUCCESS:
-      return {
-        ...state,
-        ...action,
-        rubric: {...action.rubric}
-      }
-    case CREATE_RUBRIC_FAILURE:
-      return {
-        ...state,
-        ...action
-      }
-    default:
-      return state
+  case REQUEST_RUBRIC_BY_ID:
+    return {
+      ...state,
+      ...action
+    }
+  case RUBRIC_SUCCESS:
+    return {
+      ...state,
+      ...action
+    }
+  case RUBRIC_FAILURE:
+    return {
+      ...state,
+      ...action
+    }
+  case CREATE_RUBRIC:
+    return {
+      ...state,
+      ...action
+    }
+  case CREATE_RUBRIC_SUCCESS:
+    return {
+      ...state,
+      ...action,
+      rubric: {...action.rubric}
+    }
+  case CREATE_RUBRIC_FAILURE:
+    return {
+      ...state,
+      ...action
+    }
+  default:
+    return state
   }
 }
 
