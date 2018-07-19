@@ -2,12 +2,21 @@ import serverPath from '../paths';
 import axios from 'axios';
 
 export const
-  REQUEST_RUBRIC_BY_ID = 'REQUEST_RUBRIC_BY_ID',
-  RUBRIC_SUCCESS = 'RUBRIC_SUCCESS',
-  RUBRIC_FAILURE = 'RUBRIC_FAILURE',
-  CREATE_RUBRIC = 'CREATE_RUBRIC',
-  CREATE_RUBRIC_SUCCESS = 'CREATE_RUBRIC_SUCCESS',
-  CREATE_RUBRIC_FAILURE = 'CREATE_RUBRIC_FAILURE'
+REQUEST_RUBRIC_BY_ID = 'REQUEST_RUBRIC_BY_ID',
+RUBRIC_SUCCESS = 'RUBRIC_SUCCESS',
+RUBRIC_FAILURE = 'RUBRIC_FAILURE',
+CREATE_RUBRIC = 'CREATE_RUBRIC',
+CREATE_RUBRIC_SUCCESS = 'CREATE_RUBRIC_SUCCESS',
+CREATE_RUBRIC_FAILURE = 'CREATE_RUBRIC_FAILURE',
+UPDATE_INPUT = 'UPDATE_INPUT',
+UPDATE_INPUT_DB = 'UPDATE_INPUT_DB'
+
+export const updateInput = (value) => ({
+  type: UPDATE_INPUT,
+  rubric: {
+    name: value
+  }
+})
 
 // REQUEST RUBRIC
 export const requestRubric = () => ({
@@ -88,5 +97,20 @@ export function createNewRubric(userId, rubric) {
       console.log('RESPONSE', response.rubric)
       dispatch(createRubricSuccess(response.rubric))
     }).catch(err => console.log("Error: " + err));
+  }
+}
+
+export function updateNameInput(value) {
+  return dispatch => {
+    dispatch()
+  }
+}
+
+export function updateInputDB(value) {
+  return dispatch => {
+    dispatch({
+      type: UPDATE_INPUT,
+      payload: axios.put(`${serverPath}/`)
+    })
   }
 }

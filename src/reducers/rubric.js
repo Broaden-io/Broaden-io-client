@@ -25,6 +25,11 @@ const initialState = {
 const rubricReducer = (state = initialState, action) => {
 
   switch (action.type) {
+  case 'UPDATE_INPUT':
+    return {
+      ...state,
+      ...action,
+    }
   case REQUEST_RUBRIC_BY_ID:
     return {
       ...state,

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import classNames from 'classnames'
 
 export class Input extends Component {
 
@@ -26,8 +27,6 @@ export class Input extends Component {
   }
 
   drawInputForm(valid) {
-    {/*console.log("Text:",this.props.text)
-    console.log("Cond:", !(this.props.text === null || this.props.text === ""))*/}
     if (valid === true){
       return (
         <div className={(this.props.label) ? `form-group label-floating has-success` : `form-group has-success`}>
@@ -80,7 +79,6 @@ export class Input extends Component {
 
   render() {
     const valid = (this.props.validation != null) ? this.validate() : null
-    {/*console.log("Valid:", valid)*/}
     return (
       <div>
         {this.drawInputForm(valid)}
