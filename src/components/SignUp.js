@@ -172,6 +172,7 @@ class SignUp extends Component {
                             </span>
                             <Input
                               text={this.state.rawPassword}
+                              type ="password"
                               onChange={(newValue, valid) => this.setState({...this.state, rawPassword: newValue, isValid: valid})}
                               validation="(.{8,})"
                               label="Password"
