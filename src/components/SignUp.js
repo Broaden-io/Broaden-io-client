@@ -139,27 +139,11 @@ class SignUp extends Component {
                                       face
                               </i>
                             </span>
-                            {/*<input
-                              type="text"
-                              value={this.state.registerForm.username}
-                              onChange={(e) => {
-                                this.setState({
-                                  ...this.state,
-                                  registerForm: {
-                                    ...this.state.registerForm,
-                                    username: e.target.value
-                                  }
-                                }, () => {
-                                  this.validate();
-                                })
-                              }}
-                              className="form-control"
-                            placeholder="Username..."/>*/}
                             <Input
                               text={this.state.registerForm.username}
                               onChange={(newValue, valid) => this.setState({...this.state, registerForm: {...this.state.registerForm, username: newValue}, isValid: valid})}
                               validation="([a-zA-Z0-9.,]{5,})"
-                              placeholder="Username ..."
+                              label="Username ..."
                               errorMessage="Username must be 5 or more characters"
                               submitted={this.state.submitted}
                             />
@@ -186,11 +170,6 @@ class SignUp extends Component {
                             <span className="input-group-addon">
                               <i className="material-icons">lock_outline</i>
                             </span>
-                            {/*<input type="password" value={this.state.rawPassword} onChange={(e) => {
-                              this.setState({...this.state, rawPassword: e.target.value}, () => {
-                                this.validate();
-                              })
-                            }} placeholder="Password..." className="form-control" />*/}
                             <Input
                               text={this.state.rawPassword}
                               onChange={(newValue, valid) => this.setState({...this.state, rawPassword: newValue, isValid: valid})}
@@ -213,13 +192,6 @@ class SignUp extends Component {
                         </div>
 
                         <div className="footer text-center">
-                          {/*<button className="btn btn-info btn-round" onClick={() => this.setState({ submitted: true })}>Get Started...</button>
-                                    <SweetAlert
-                                    show={this.state.submitted}
-                                    title="Awesome"
-                                    text="Your account has been created successfully!"
-                                    onConfirm={() => this.setState({ submitted: false })}
-                                    />*/}
                           <button className="btn btn-info btn-round btn-lg" onClick={this.submitForm}>Get Started...</button>
 
 
