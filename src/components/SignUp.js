@@ -11,6 +11,7 @@ import serverPath from '../paths';
 import axios from 'axios';
 import Footer from './Footer';
 import mixpanel from 'mixpanel-browser';
+import Input from './Input';
 
 class SignUp extends Component {
 
@@ -133,42 +134,41 @@ class SignUp extends Component {
                                       face
                               </i>
                             </span>
-                            <input
-                              type="text"
-                              value={this.state.registerForm.username}
-                              onChange={(e) => {
-                                this.setState({
-                                  ...this.state,
-                                  registerForm: {
-                                    ...this.state.registerForm,
-                                    username: e.target.value
-                                  }
-                                }, () => {
-                                  this.validate();
-                                })
-                              }}
+                            <Input
+                              text={this.state.registerForm.username}
+                              onChange={(newValue) => this.setState({registerForm: {...this.state.registerFrom, username: newValue}})}
+                              placeholder="Username ..."
+                              validation="([A-Za-z]{5,})"
+                              errorMessage="Username must be 5 or more characters"
                               className="form-control"
-                              placeholder="Username..."/>
+                            />
                           </div>
                           <div className="input-group">
                             <span className="input-group-addon">
                               <i className="material-icons">email</i>
                             </span>
-                            <input type="text" value={this.state.registerForm.email} onChange={(e) => {
-                              this.setState({...this.state, registerForm: {...this.state.registerForm, email: e.target.value}}, () => {
-                                this.validate()
-                              })
-                            }} className="form-control" placeholder="Email..."/>
+                            <Input
+                              text={this.state.registerForm.email}
+                              onChange={(newValue) => this.setState({registerForm: {...this.state.registerFrom, email: newValue}})}
+                              placeholder="Email ..."
+                              validation="([a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])+)"
+                              errorMessage="Invalid Email Address"
+                              className="form-control"
+                            />
                           </div>
                           <div className="input-group">
                             <span className="input-group-addon">
                               <i className="material-icons">lock_outline</i>
                             </span>
-                            <input type="password" value={this.state.rawPassword} onChange={(e) => {
-                              this.setState({...this.state, rawPassword: e.target.value}, () => {
-                                this.validate();
-                              })
-                            }} placeholder="Password..." className="form-control" />
+                            <Input
+                              text={this.state.registerForm.password}
+                              onChange={(newValue) => this.setState({registerForm: {...this.state.registerFrom, password: newValue}})}
+                              placeholder="Password ..."
+                              validation="([.]{5,})"
+                              errorMessage="Password must be 5 or more characters"
+                              className="form-control"
+                              id="inputError1"
+                            />
                           </div>
                           {/*<!-- If you want to add a checkbox to this form, uncomment this code -->*/}
                           <div className="checkbox">
