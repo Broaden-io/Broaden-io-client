@@ -11,6 +11,7 @@ import serverPath from '../paths';
 import axios from 'axios';
 import Footer from './Footer';
 import mixpanel from 'mixpanel-browser';
+import Input from './Input';
 
 class SignUp extends Component {
 
@@ -24,9 +25,22 @@ class SignUp extends Component {
         username: "",
         email: ""
       },
+      valid: [
+        {
+          isValid: false,
+          errMsg: "Please fill out the form inputs."
+        },
+        {
+          isValid: false,
+          errMsg: "Please fill out the form inputs."
+        },
+        {
+          isValid: false,
+          errMsg: "Please fill out the form inputs."
+        }
+      ],
       rawPassword: "",
       isHuman: false,
-      isValid: false,
       submitted: false
     }
   }
@@ -37,7 +51,7 @@ class SignUp extends Component {
   }
 
   validate() {
-    if (this.state.registerForm.username.length > 4
+    /* if (this.state.registerForm.username.length > 4
       && this.state.isHuman
       && this.state.rawPassword.length > 4) {
       this.setState({
@@ -47,33 +61,41 @@ class SignUp extends Component {
       this.setState({
         isValid: false
       })
-    }
+    } */
   }
 
   submitForm() {
-    if (this.state.isValid) {
-      bcrypt.genSalt(11, (err, salt) => {
-        bcrypt.hash(this.state.rawPassword, salt, (err, hash) => {
-          const newUser = {...this.state.registerForm, password: hash}
-          axios.post(`${serverPath}/signup`, newUser)
-            .then(response => {
-              if (response.status === 200) {
-                this.props.loginUser({ username: newUser.username, password: this.state.rawPassword })
-              } else {
-                return Promise.reject('could not signup')
-              }
-            }).then(() => {
-              if (!this.props.auth.isAuthenticated) {
-                Alert('signupError');
-              }
-            }).catch(error => {
-              Alert('signupError');
-            })
-        });
-      });
-    } else {
-      Alert('signupError');
+    // e.preventDefault();
+    this.setState({
+      ...this.state,
+      submitted: true
+    });
+    console.log(this.state);
+    for (var item of this.state.valid) {
+      if (!item.isValid) {
+        Alert('signupError', item.errMsg);
+        return;
+      }
     }
+    bcrypt.genSalt(11, (err, salt) => {
+      bcrypt.hash(this.state.rawPassword, salt, (err, hash) => {
+        const newUser = {...this.state.registerForm, password: hash}
+        axios.post(`${serverPath}/signup`, newUser)
+          .then(response => {
+            if (response.status === 200) {
+              this.props.loginUser({ username: newUser.username, password: this.state.rawPassword })
+            } else {
+              return Promise.reject('could not signup')
+            }
+          }).then(() => {
+            if (!this.props.auth.isAuthenticated) {
+              Alert('signupError', '');
+            }
+          }).catch(error => {
+            Alert('signupError', '');
+          })
+      });
+    });
   }
 
 
@@ -133,42 +155,40 @@ class SignUp extends Component {
                                       face
                               </i>
                             </span>
-                            <input
-                              type="text"
-                              value={this.state.registerForm.username}
-                              onChange={(e) => {
-                                this.setState({
-                                  ...this.state,
-                                  registerForm: {
-                                    ...this.state.registerForm,
-                                    username: e.target.value
-                                  }
-                                }, () => {
-                                  this.validate();
-                                })
-                              }}
-                              className="form-control"
-                              placeholder="Username..."/>
+                            <Input
+                              text={this.state.registerForm.username}
+                              onChange={(newValue, valid, errMsg) => this.setState({...this.state, registerForm: {...this.state.registerForm, username: newValue}, valid: [{isValid: valid, errMsg: errMsg}, ...this.state.valid.slice(1)]})}
+                              validation="([a-zA-Z0-9.,]{5,})"
+                              label="Username"
+                              errorMessage="Username should be 5+ characters containing alphabet and number."
+                              submitted={this.state.submitted}
+                            />
                           </div>
                           <div className="input-group">
                             <span className="input-group-addon">
                               <i className="material-icons">email</i>
                             </span>
-                            <input type="text" value={this.state.registerForm.email} onChange={(e) => {
-                              this.setState({...this.state, registerForm: {...this.state.registerForm, email: e.target.value}}, () => {
-                                this.validate()
-                              })
-                            }} className="form-control" placeholder="Email..."/>
+                            <Input
+                              text={this.state.registerForm.email}
+                              onChange={(newValue, valid, errMsg) => this.setState({...this.state, registerForm: {...this.state.registerForm, email: newValue}, valid: [...this.state.valid.slice(0, 1), {isValid: valid, errMsg: errMsg}, ...this.state.valid.slice(2)]})}
+                              validation="(?:[a-z0-9!#$%'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%'*+/=?^_`{|}~-]+)*|(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"
+                              label="Email"
+                              errorMessage="Input valid email address."
+                              submitted={this.state.submitted}
+                            />
                           </div>
                           <div className="input-group">
                             <span className="input-group-addon">
                               <i className="material-icons">lock_outline</i>
                             </span>
-                            <input type="password" value={this.state.rawPassword} onChange={(e) => {
-                              this.setState({...this.state, rawPassword: e.target.value}, () => {
-                                this.validate();
-                              })
-                            }} placeholder="Password..." className="form-control" />
+                            <Input
+                              text={this.state.rawPassword}
+                              onChange={(newValue, valid, errMsg) => this.setState({...this.state, rawPassword: newValue, valid: [...this.state.valid.slice(0, 2), {isValid: valid, errMsg: errMsg}]})}
+                              validation="(.{8,})"
+                              label="Password"
+                              errorMessage="Password should be 8+ characters."
+                              submitted={this.state.submitted}
+                            />
                           </div>
                           {/*<!-- If you want to add a checkbox to this form, uncomment this code -->*/}
                           <div className="checkbox">
@@ -183,13 +203,6 @@ class SignUp extends Component {
                         </div>
 
                         <div className="footer text-center">
-                          {/*<button className="btn btn-info btn-round" onClick={() => this.setState({ submitted: true })}>Get Started...</button>
-                                    <SweetAlert
-                                    show={this.state.submitted}
-                                    title="Awesome"
-                                    text="Your account has been created successfully!"
-                                    onConfirm={() => this.setState({ submitted: false })}
-                                    />*/}
                           <button className="btn btn-info btn-round btn-lg" onClick={this.submitForm}>Get Started...</button>
 
 
