@@ -5,7 +5,7 @@ export class Input extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      
     }
     this.drawInputForm = this.drawInputForm.bind(this)
   }
@@ -23,7 +23,7 @@ export class Input extends Component {
   onChange(e) {
     const regex = new RegExp(this.props.validation)
     const valid = regex.test(e.target.value);
-    this.props.onChange(e.target.value, valid);
+    this.props.onChange(e.target.value, valid, this.props.errorMessage);
   }
 
   drawErrorMessage() {
@@ -42,7 +42,7 @@ export class Input extends Component {
         <div className={(this.props.label) ? `form-group label-floating has-success` : `form-group has-success`}>
           {this.drawLabel()}
           <input
-            onChange={(e) => this.props.onChange(e.target.value)}
+            onChange={(e) => this.onChange(e)}
             type={(this.props.type) ? this.props.type : `text`}
             className="form-control form-control-success"
             placeholder={this.props.placeholder}
@@ -56,7 +56,7 @@ export class Input extends Component {
         <div className={(this.props.label) ? `form-group label-floating has-danger` : `form-group has-danger`}>
           {this.drawLabel()}
           <input
-            onChange={(e) => this.props.onChange(e.target.value)}
+            onChange={(e) => this.onChange(e)}
             type={(this.props.type) ? this.props.type : `text`}
             className="form-control form-control-danger"
             placeholder={this.props.placeholder}
@@ -71,7 +71,7 @@ export class Input extends Component {
         <div className={(this.props.label) ? `form-group label-floating` : `form-group`}>
           {this.drawLabel()}
           <input
-            onChange={(e) => this.props.onChange(e.target.value)}
+            onChange={(e) => this.onChange(e)}
             type={(this.props.type) ? this.props.type : `text`}
             className="form-control"
             placeholder={this.props.placeholder}
