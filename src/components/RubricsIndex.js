@@ -14,14 +14,14 @@ const RubricElement = withRouter(
         <td>
           <div>
             <Link to={`/rubrics/${props.rubricId}`} className="text-info" style={{letterSpacing: '1px'}}>
-            <h4 style={{ fontWeight: 400 }}>{props.name}</h4>
-          </Link>
-        </div>
-      </td>
-      <td> {props.description} </td>
-    </tr>
-  )
-})
+              <h4 style={{ fontWeight: 400 }}>{props.name}</h4>
+            </Link>
+          </div>
+        </td>
+        <td> {props.description} </td>
+      </tr>
+    )
+  })
 
 class RubricSummary extends Component {
 
@@ -38,20 +38,20 @@ class RubricSummary extends Component {
     const { name, iconName, description, id } = rubric
     const color = this.colors[index]
     // if (this.state.isHovered) {
-      return (
-        <div className="card card-pricing card-raised">
-          <div className="card-content">
-            <h6 className="category"><strong>{name}</strong></h6>
-            <div className={`icon icon-${color}`}>
-              <i className="material-icons">{iconName}</i>
-            </div>
-            <p className="card-description">
-              {description}
-            </p>
-            <Link to={`/rubrics/${id}`} className={`btn btn-${color} btn-round`}>Choose Roadmap</Link>
+    return (
+      <div className="card card-pricing card-raised">
+        <div className="card-content">
+          <h6 className="category"><strong>{name}</strong></h6>
+          <div className={`icon icon-${color}`}>
+            <i className="material-icons">{iconName}</i>
           </div>
+          <p className="card-description">
+            {description}
+          </p>
+          <Link to={`/rubrics/${id}`} className={`btn btn-${color} btn-round`}>Choose Roadmap</Link>
         </div>
-      )
+      </div>
+    )
     // } else {
     //   return (
     //     <div className="card card-pricing card-plain">
@@ -108,17 +108,17 @@ class RubricsIndex extends Component {
 
   render() {
     return (
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 col-md-offset-2 text-center">
-              <h2 className="title">Pick a Roadmap to Master</h2>
-              <h5 className="description">Once you pick a roadmap we will take you to an initial assessment so you how far you've already progressed</h5>
-            </div>
-          </div>
-          <div className="row">
-            {this.drawRubrics()}
+      <div className="container">
+        <div className="row">
+          <div className="col-md-8 col-md-offset-2 text-center">
+            <h2 className="title">Pick a Roadmap to Master</h2>
+            <h5 className="description">Once you pick a roadmap we will take you to an initial assessment so you how far you've already progressed</h5>
           </div>
         </div>
+        <div className="row">
+          {this.drawRubrics()}
+        </div>
+      </div>
     );
   }
 }

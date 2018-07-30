@@ -24,7 +24,7 @@ class EditProfile extends Component {
     // make sure that the user can only submit an edit request for their OWN user account
   }
 
-// Kash was here
+  // Kash was here
 
   render() {
     const { username, email, bio, firstName, lastName } = this.state;
@@ -46,46 +46,46 @@ class EditProfile extends Component {
                     <div className="form-group label-floating is-empty">
                       <label className="control-label">Username</label>
                       <input type="text" className="form-control" value={username} onChange={(e) => this.setState({username: e.target.value})}/>
-                    <span className="material-input"></span></div>
+                      <span className="material-input"></span></div>
                   </div>
                   <div className="col-md-4">
                     <div className="form-group label-floating is-empty">
                       <label className="control-label">Email address</label>
                       <input type="email" className="form-control" value={email} onChange={(e) => this.setState({email: e.target.value})}/>
-                    <span className="material-input"></span></div>
-                  </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="form-group label-floating is-empty">
-                        <label className="control-label">First Name</label>
-                        <input type="text" className="form-control" value={firstName} onChange={(e) => this.setState({firstName: e.target.value})}/>
                       <span className="material-input"></span></div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="form-group label-floating is-empty">
-                        <label className="control-label">Last Name</label>
-                        <input type="text" className="form-control" value={lastName} onChange={(e) => this.setState({lastName: e.target.value})}/>
-                      <span className="material-input"></span></div>
-                    </div>
                   </div>
-                  <div className="row">
-                    <div className="col-md-12">
-                      <div className="form-group">
-                        <label>About Me</label>
-                        <div className="form-group label-floating is-empty">
-                          <textarea className="form-control" rows="5" value={bio} onChange={(e) => this.setState({bio: e.target.value})} ></textarea>
+                </div>
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group label-floating is-empty">
+                      <label className="control-label">First Name</label>
+                      <input type="text" className="form-control" value={firstName} onChange={(e) => this.setState({firstName: e.target.value})}/>
+                      <span className="material-input"></span></div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group label-floating is-empty">
+                      <label className="control-label">Last Name</label>
+                      <input type="text" className="form-control" value={lastName} onChange={(e) => this.setState({lastName: e.target.value})}/>
+                      <span className="material-input"></span></div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <label>About Me</label>
+                      <div className="form-group label-floating is-empty">
+                        <textarea className="form-control" rows="5" value={bio} onChange={(e) => this.setState({bio: e.target.value})} ></textarea>
                         <span className="material-input"></span></div>
-                      </div>
                     </div>
                   </div>
-                  <button type="submit" className="btn btn-rose pull-right">Update Profile</button>
-                  <div className="clearfix"></div>
+                </div>
+                <button type="submit" className="btn btn-rose pull-right">Update Profile</button>
+                <div className="clearfix"></div>
               </form>
             </div>
           </div>
         </div>
-    </div>
+      </div>
     );
   }
 }

@@ -9,6 +9,7 @@ import * as Actions from '../actions/auth';
 import { Alert } from './Alert';
 
 import mixpanel from 'mixpanel-browser'
+
 class Login extends Component {
 
   constructor(props) {
@@ -54,7 +55,7 @@ class Login extends Component {
               position={'top-center'}
               newestOnTop={true}
               autoClose={5000}
-              />
+            />
             <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
               <span className="sr-only">Toggle navigation</span>
               <span className="icon-bar"></span>
@@ -139,38 +140,38 @@ class Login extends Component {
                         <div className="footer text-center loading-icon" >
                           {
                             this.props.auth.isFetching
-                            ? <ReactLoading type={"spin"} height={20} width={20} color="#0000ff"/>
-                          : <button onClick={this.submitForm} className="btn btn-info btn-round btn-wd btn-lg">
+                              ? <ReactLoading type={"spin"} height={20} width={20} color="#0000ff"/>
+                              : <button onClick={this.submitForm} className="btn btn-info btn-round btn-wd btn-lg">
                           Let's go
-                        </button>
-                      }
-                    </div>
-                    <p className="category text-center">Don't have an account?
-                      <br/>
-                      <Link className="btn btn-default btn-lg btn-simple" to='/signup'> Sign Up</Link>
-                    </p>
+                              </button>
+                          }
+                        </div>
+                        <p className="category text-center">Don't have an account?
+                          <br/>
+                          <Link className="btn btn-default btn-lg btn-simple" to='/signup'> Sign Up</Link>
+                        </p>
+                      </div>
+                    </form>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <footer className="footer">
-          <div className="container">
-            <p className="copyright pull-right">
+            <footer className="footer">
+              <div className="container">
+                <p className="copyright pull-right">
               &copy;
 
-              {/*{`${(document.write(new Date().getFullYear()))}`}*/}
+                  {/*{`${(document.write(new Date().getFullYear()))}`}*/}
 
-              <small><a href="/"> Broaden.io </a>, made with love for the betterment of education</small>
-            </p>
+                  <small><a href="/"> Broaden.io </a>, made with love for the betterment of education</small>
+                </p>
+              </div>
+            </footer>
           </div>
-        </footer>
+        </div>
       </div>
-    </div>
-  </div>
-);
-}
+    );
+  }
 }
 
 const mapStateToProps = (state) => {

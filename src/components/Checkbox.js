@@ -37,10 +37,10 @@ class Checkbox extends Component {
     return(
       <label>
         <input type="checkbox" checked={this.state.checked} name="optionsCheckboxes" onClick={this.checkboxChange}/>
-          <span className="checkbox-material">
-            <span className="check"/>
-          </span>
-       {this.props.label}
+        <span className="checkbox-material">
+          <span className="check"/>
+        </span>
+        {this.props.label}
       </label>
 
     );

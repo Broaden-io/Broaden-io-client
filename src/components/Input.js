@@ -50,10 +50,10 @@ class Input extends Component {
             {this.props.required ? "*" : ""}
           </small>
         </label>
-          <input className="form-control" name={this.props.name} type={this.props.type}
+        <input className="form-control" name={this.props.name} type={this.props.type}
           required={this.props.required} aria-required={this.props.required}
           onChange={this.setInputText} value={this.state.inputText}/>
-          <span className="material-input"></span>
+        <span className="material-input"></span>
       </div>
 
     );

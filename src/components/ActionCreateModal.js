@@ -67,18 +67,18 @@ class ActionCreateModal extends React.Component {
   getOpenGraph() {
     this.setState({...this.state, fetching: true})
     axios.post(`${serverPath}/opengraph`, this.state.action)
-    .then((response) => {
-      const { data } = response
-      this.setState({
-        ...this.state,
-        action: {
-          ...this.state.action,
-          ...data
-        },
-        fetching: false,
-        fetched: true
+      .then((response) => {
+        const { data } = response
+        this.setState({
+          ...this.state,
+          action: {
+            ...this.state.action,
+            ...data
+          },
+          fetching: false,
+          fetched: true
+        })
       })
-    })
   }
 
   renderStep() {

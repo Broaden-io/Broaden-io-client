@@ -23,7 +23,7 @@ class Routes extends Component {
       }
       return <Sidebar />
     } else if (this.props.location.pathname === '/' || this.props.location.pathname === '/dashboard') {
-        return <Redirect from='/' to='/signup' exact />
+      return <Redirect from='/' to='/signup' exact />
     }
   }
 

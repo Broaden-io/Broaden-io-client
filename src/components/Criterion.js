@@ -68,33 +68,33 @@ class Criterion extends Component {
                 value={this.isChecked}
                 name="optionsCheckboxes"
                 style={{display: `inline`}}/>
-                {this.renderName()}
-              </label>
-            </div>
-            <span
-              className={
-                isChecked
+              {this.renderName()}
+            </label>
+          </div>
+          <span
+            className={
+              isChecked
                 ? `btn btn-success btn-sm btn-round pull-right`
                 : `btn btn-sm btn-info btn-simple btn-round pull-right`
-              }>
-              <h4>
-                <strong>
-                  {level === 1 ? `${level} pt` : `${level} pts`}
-                </strong>
-              </h4>
-            </span>
-            <span onClick={this.toggleOpen.bind(this)}>
-              <br/>
-              <button className="btn btn-primary btn-simple">
-                <i className="material-icons">add</i>
-                <strong>&nbsp; Level up this skill</strong>
-                <div className="ripple-container">
-                </div>
-              </button>
-            </span>
-            <Collapse isOpened={isOpen} springConfig={{stiffness: 170, damping: 26}}>
-              <div className="row">
-                <div className="col-10">
+            }>
+            <h4>
+              <strong>
+                {level === 1 ? `${level} pt` : `${level} pts`}
+              </strong>
+            </h4>
+          </span>
+          <span onClick={this.toggleOpen.bind(this)}>
+            <br/>
+            <button className="btn btn-primary btn-simple">
+              <i className="material-icons">add</i>
+              <strong>&nbsp; Level up this skill</strong>
+              <div className="ripple-container">
+              </div>
+            </button>
+          </span>
+          <Collapse isOpened={isOpen} springConfig={{stiffness: 170, damping: 26}}>
+            <div className="row">
+              <div className="col-10">
                 <div className="table-responsive">
                   <table className="table table-shopping">
                     <thead>
@@ -125,12 +125,12 @@ class Criterion extends Component {
                     criterion={this.props.data} />
                 </div>
               </div>
-              </div>
-            </Collapse>
-          </li>
-        </ul>
-      )
-    }
+            </div>
+          </Collapse>
+        </li>
+      </ul>
+    )
   }
+}
 
-  export default withRouter(connect()(Criterion))
+export default withRouter(connect()(Criterion))

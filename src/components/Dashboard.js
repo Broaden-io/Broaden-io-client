@@ -18,7 +18,7 @@ const AddAssessmentButton = (props => {
           <i className="material-icons" style={{fontSize: 60}}>add
           </i>
            Add a Skill to Level-Up
-           <div className="ripple-container">
+          <div className="ripple-container">
           </div>
         </Link>
       </div>
@@ -32,10 +32,10 @@ class Dashboard extends Component {
     this.props.getAssessments(userId)
   }
 
-componentDidMount() {
-  mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
-  mixpanel.track("Dashboard Page");
-}
+  componentDidMount() {
+    mixpanel.init('333f6269317ae9b78a29c535e29f00bf')
+    mixpanel.track("Dashboard Page");
+  }
 
   render() {
     const { assessmentsObject, isFetching } = this.props.assessments

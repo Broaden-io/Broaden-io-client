@@ -37,12 +37,12 @@ class RadioButton extends Component {
   render() {
 
     return(
-        <label>
-          <input type="radio" name="optionsRadios" checked={this.state.checked} onClick={this.radioButtonChange}/>
-            <span className="circle"/>
-            <span className="check"/>
-            {this.props.label}
-        </label>
+      <label>
+        <input type="radio" name="optionsRadios" checked={this.state.checked} onClick={this.radioButtonChange}/>
+        <span className="circle"/>
+        <span className="check"/>
+        {this.props.label}
+      </label>
 
     );
   }

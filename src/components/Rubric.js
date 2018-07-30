@@ -45,10 +45,10 @@ const NextButton = props => (
 const FinishButton = withRouter(props => {
   return (
     <Link className="btn btn-rose btn-simple" to={`/dashboard`} style={{backgroundColor: 'rgba(0,0,0,.04)'}}>
-    <div className="ripple-container"></div>
-    <h5 style={{letterSpacing: '1px'}}> Finish </h5>
-  </Link>
-)
+      <div className="ripple-container"></div>
+      <h5 style={{letterSpacing: '1px'}}> Finish </h5>
+    </Link>
+  )
 })
 
 class Rubric extends Component {
@@ -91,155 +91,155 @@ class Rubric extends Component {
             answer={criteria.answer}
             id={criteria.id}
             text={criteria.text} />
-          }).sort((a , b) => {
-            return a.id - b.id;
-          })
         }).sort((a , b) => {
           return a.id - b.id;
         })
-      }
-    }
-
-    renderLevels(compIndex) {
-      const levelNames = ['Initial', 'Approaching', 'Overtaking', 'Innovating'];
-      return levelNames.map((levelName, index) => {
-        return (
-          <div key={uuidv1()} className='col-md-3'>
-            <h3> {levelName} </h3>
-            <hr />
-            <table className="table">
-              <tbody >
-                {this.renderCriteriaForLevel(index + 1, compIndex)}
-              </tbody>
-            </table>
-          </div>
-        )
+      }).sort((a , b) => {
+        return a.id - b.id;
       })
     }
+  }
 
-    renderCompetencies() {
-      const { assessmentObject } = this.props.assessment;
-      if (assessmentObject) {
-        const { Competencies } = assessmentObject.rubricJSON;
-        return Competencies.map((comp, index) => {
-          let active = '';
-          if (index === this.state.activeCompetencyIndex) {
-            active = 'active';
-          }
-          return (
-            <div className={`tab-pane ${active}`} key={uuidv1()} id="dashboard-2">
-              <h2><small className="text-default">Competency: </small><small className="text-primary">{comp.name}</small></h2>
-              {this.getIsFetching() ? null : this.renderLevels(index)}
-            </div>
-          )
-        }).sort((a , b) => {
-          return a.id - b.id;
-        })
-      }
-    }
-
-    setActiveComp(index) {
-      this.setState({ activeCompetencyIndex: index })
-    }
-
-    renderCompetencyButtons() {
-      const { assessmentObject } = this.props.assessment;
-      if (assessmentObject) {
-        const { Competencies } = assessmentObject.rubricJSON;
-        return Competencies.map((comp, index) => {
-          let active = '';
-          if (index === this.state.activeCompetencyIndex) {
-            active = 'active';
-          }
-          return (
-            <CompetencyButton
-              name={comp.name}
-              key={uuidv1()}
-              index={index}
-              isActive={active}
-              icon={this.icons[index]}
-              setActiveComp={this.setActiveComp}
-            />
-          )
-        }).sort((a , b) => {
-          return a.id - b.id;
-        })
-      }
-    }
-    getIsFetching() {
-      const { assessmentObject } = this.props.assessment;
-      if (!assessmentObject) {
-        return true;
-      }
-      return false;
-    }
-
-    renderNextOrFinish() {
-      const { assessmentObject } = this.props.assessment;
-      if (assessmentObject) {
-        const { Competencies } = assessmentObject.rubricJSON;
-        if ( this.state.activeCompetencyIndex === Competencies.length - 1) {
-          return <FinishButton />
-        } else {
-          return <NextButton activeIndex={this.state.activeCompetencyIndex} setActiveComp={this.setActiveComp} />
-        }
-      }
-    }
-
-    renderPreviousButton() {
-      const { assessmentObject } = this.props.assessment;
-      if (assessmentObject) {
-        if ( this.state.activeCompetencyIndex !== 0) {
-          return <PreviousButton activeIndex={this.state.activeCompetencyIndex} setActiveComp={this.setActiveComp} />
-        }
-      }
-    }
-
-    render() {
-
-      const { assessment } = this.props;
+  renderLevels(compIndex) {
+    const levelNames = ['Initial', 'Approaching', 'Overtaking', 'Innovating'];
+    return levelNames.map((levelName, index) => {
       return (
-        <div className="col-md-12">
-          <div className="card">
-            <div className="card-header">
-              <h2 className="card-title"> {this.getIsFetching() ? null : assessment.assessmentObject.rubricJSON.name + " "}
-                <br/> <small className="category">{this.getIsFetching() ? null : assessment.assessmentObject.rubricJSON.description}</small>
-              </h2>
-            </div>
-            <div className="card-content" style={{paddingTop: `0`}}>
-              <div className="row">
+        <div key={uuidv1()} className='col-md-3'>
+          <h3> {levelName} </h3>
+          <hr />
+          <table className="table">
+            <tbody >
+              {this.renderCriteriaForLevel(index + 1, compIndex)}
+            </tbody>
+          </table>
+        </div>
+      )
+    })
+  }
 
-                <div className="col-md-12">
-                  <div className="tab-content" style={{marginTop: `0`}}>
-                    {this.renderCompetencies()}
-                  </div>
+  renderCompetencies() {
+    const { assessmentObject } = this.props.assessment;
+    if (assessmentObject) {
+      const { Competencies } = assessmentObject.rubricJSON;
+      return Competencies.map((comp, index) => {
+        let active = '';
+        if (index === this.state.activeCompetencyIndex) {
+          active = 'active';
+        }
+        return (
+          <div className={`tab-pane ${active}`} key={uuidv1()} id="dashboard-2">
+            <h2><small className="text-default">Competency: </small><small className="text-primary">{comp.name}</small></h2>
+            {this.getIsFetching() ? null : this.renderLevels(index)}
+          </div>
+        )
+      }).sort((a , b) => {
+        return a.id - b.id;
+      })
+    }
+  }
+
+  setActiveComp(index) {
+    this.setState({ activeCompetencyIndex: index })
+  }
+
+  renderCompetencyButtons() {
+    const { assessmentObject } = this.props.assessment;
+    if (assessmentObject) {
+      const { Competencies } = assessmentObject.rubricJSON;
+      return Competencies.map((comp, index) => {
+        let active = '';
+        if (index === this.state.activeCompetencyIndex) {
+          active = 'active';
+        }
+        return (
+          <CompetencyButton
+            name={comp.name}
+            key={uuidv1()}
+            index={index}
+            isActive={active}
+            icon={this.icons[index]}
+            setActiveComp={this.setActiveComp}
+          />
+        )
+      }).sort((a , b) => {
+        return a.id - b.id;
+      })
+    }
+  }
+  getIsFetching() {
+    const { assessmentObject } = this.props.assessment;
+    if (!assessmentObject) {
+      return true;
+    }
+    return false;
+  }
+
+  renderNextOrFinish() {
+    const { assessmentObject } = this.props.assessment;
+    if (assessmentObject) {
+      const { Competencies } = assessmentObject.rubricJSON;
+      if ( this.state.activeCompetencyIndex === Competencies.length - 1) {
+        return <FinishButton />
+      } else {
+        return <NextButton activeIndex={this.state.activeCompetencyIndex} setActiveComp={this.setActiveComp} />
+      }
+    }
+  }
+
+  renderPreviousButton() {
+    const { assessmentObject } = this.props.assessment;
+    if (assessmentObject) {
+      if ( this.state.activeCompetencyIndex !== 0) {
+        return <PreviousButton activeIndex={this.state.activeCompetencyIndex} setActiveComp={this.setActiveComp} />
+      }
+    }
+  }
+
+  render() {
+
+    const { assessment } = this.props;
+    return (
+      <div className="col-md-12">
+        <div className="card">
+          <div className="card-header">
+            <h2 className="card-title"> {this.getIsFetching() ? null : assessment.assessmentObject.rubricJSON.name + " "}
+              <br/> <small className="category">{this.getIsFetching() ? null : assessment.assessmentObject.rubricJSON.description}</small>
+            </h2>
+          </div>
+          <div className="card-content" style={{paddingTop: `0`}}>
+            <div className="row">
+
+              <div className="col-md-12">
+                <div className="tab-content" style={{marginTop: `0`}}>
+                  {this.renderCompetencies()}
                 </div>
               </div>
-              <div className="row">
-                <div style={{display:'flex', justifyContent:'space-between'}}>
-                  <div className="col-md-2" style={{display:'flex', flexDirection:'row', justifyContent:'flex-start'}}>
-                    {this.renderPreviousButton()}
-                  </div>
-                  <div className="col-md-2" style={{display:'flex', flexDirection:'row', justifyContent:'flex-end'}}>
-                    {this.renderNextOrFinish()}
-                  </div>
+            </div>
+            <div className="row">
+              <div style={{display:'flex', justifyContent:'space-between'}}>
+                <div className="col-md-2" style={{display:'flex', flexDirection:'row', justifyContent:'flex-start'}}>
+                  {this.renderPreviousButton()}
+                </div>
+                <div className="col-md-2" style={{display:'flex', flexDirection:'row', justifyContent:'flex-end'}}>
+                  {this.renderNextOrFinish()}
                 </div>
               </div>
             </div>
           </div>
         </div>
-      );
-    }
+      </div>
+    );
   }
+}
 
-  const mapStateToProps = (state) => {
-    return {
-      assessment: state.assessment
-    }
+const mapStateToProps = (state) => {
+  return {
+    assessment: state.assessment
   }
+}
 
-  const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators(Actions, dispatch);
-  }
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(Actions, dispatch);
+}
 
-  export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Rubric));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Rubric));
