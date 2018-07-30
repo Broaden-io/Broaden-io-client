@@ -1,9 +1,9 @@
 import serverPath from '../paths'
 
 export const
-REQUEST_RUBRICS_INDEX = 'REQUEST_RUBRICS_INDEX',
-RUBRICS_INDEX_SUCCESS = 'RUBRICS_INDEX_SUCCESS',
-RUBRICS_FAILURE = 'RUBRICS_FAILURE'
+  REQUEST_RUBRICS_INDEX = 'REQUEST_RUBRICS_INDEX',
+  RUBRICS_INDEX_SUCCESS = 'RUBRICS_INDEX_SUCCESS',
+  RUBRICS_FAILURE = 'RUBRICS_FAILURE'
 
 export const requestRubricsIndex = () => {
   return {
@@ -42,12 +42,12 @@ export function getRubrics() {
   return dispatch => {
     dispatch(requestRubricsIndex());
     return fetch(`${serverPath}/rubrics`, config)
-    .then((res) => {
-      return res.json();
-    }).then((json) => {
-      dispatch(receiveRubricsIndex(json))
-    }).catch(err => {
-      dispatch(rubricsError(err.message));
-    });
+      .then((res) => {
+        return res.json();
+      }).then((json) => {
+        dispatch(receiveRubricsIndex(json))
+      }).catch(err => {
+        dispatch(rubricsError(err.message));
+      });
   }
 }

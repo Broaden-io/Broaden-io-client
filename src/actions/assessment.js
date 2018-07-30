@@ -2,11 +2,11 @@ import serverPath from '../paths';
 import axios from 'axios';
 
 export const
-REQUEST_ASSESSMENT = 'REQUEST_ASSESSMENT',
-ASSESSMENT_SUCCESS = 'ASSESSMENT_SUCCESS',
-ASSESSMENT_FAILURE = 'ASSESSMENT_FAILURE',
-REQUEST_UPDATE = 'REQUEST_UPDATE',
-UPDATE_ASSESSMENT = 'UPDATE_ASSESSMENT'
+  REQUEST_ASSESSMENT = 'REQUEST_ASSESSMENT',
+  ASSESSMENT_SUCCESS = 'ASSESSMENT_SUCCESS',
+  ASSESSMENT_FAILURE = 'ASSESSMENT_FAILURE',
+  REQUEST_UPDATE = 'REQUEST_UPDATE',
+  UPDATE_ASSESSMENT = 'UPDATE_ASSESSMENT'
 
 export const requestAssessment = (userId, rubricId) => ({
   type: REQUEST_ASSESSMENT,
@@ -127,7 +127,7 @@ export function getAssessment(userId, rubricId) {
             return {
               ...scale,
               Criteria: scale.Criteria.map((criteria, index) => {
-                  return criteria
+                return criteria
               }).sort((a , b) => {
                 return a.id - b.id;
               })

@@ -21,7 +21,7 @@ class Criteria extends Component {
               <input type="checkbox" name="optionsCheckboxes"
                 checked={this.props.answer}
                 onChange={this.handleCheck.bind(this)}
-               />
+              />
             </label>
           </div>
         </td>

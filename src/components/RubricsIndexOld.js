@@ -38,7 +38,7 @@ class RubricsIndex extends Component {
     const { rubrics } = this.props.rubrics
 
     if (rubrics.length !== 0) {
-       const theRubes = rubrics.map((rubric, index) => {
+      const theRubes = rubrics.map((rubric, index) => {
         return (<RubricElement key={index} index={index} name={rubric.name} rubricId={rubric.id} description={rubric.description} />)
       }).sort((a , b) => {
         return a.id - b.id;
