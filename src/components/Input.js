@@ -1,63 +1,101 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-// Here's a code Snippet of how to contruct this component in HTML: -->
-// <Input name="email" type="email" label="Email Address" required={true}
-// errorMessage="Bad email address"validation="/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/" />
+export class Input extends Component {
 
-class Input extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
 
-  //Should consider decomposing props objects into multiple variables so we dont
-  //have to call this.props.* when using prop variables
-
-  state = {
-    inputText: "",
-    validated: true
+    }
+    this.drawInputForm = this.drawInputForm.bind(this)
   }
 
-  setInputText = (e) => {
-    e.preventDefault();
-    this.setState({
-      inputText: e.target.value
-    }, this.validate())
-  }
-
-  validate = () => {
-    if (this.props.validation) {
-      const regex = new RegExp(this.props.validation)
-      if (regex.test(this.state.inputText)){
-        this.setState({
-          validated: true
-        })
-      } else {
-        this.setState({
-          validated: false
-        })
-      }
+  drawLabel() {
+    if (this.props.label){
+      return (
+        <label className="control-label">
+          {this.props.label}
+        </label>
+      )
     }
   }
 
+  onChange(e) {
+    const regex = new RegExp(this.props.validation)
+    const valid = regex.test(e.target.value);
+    this.props.onChange(e.target.value, valid, this.props.errorMessage);
+  }
 
-  drawErrorMessage = () => this.props.errorMessage || "Invalid input"
+  drawErrorMessage() {
+    if (this.props.errorMessage) {
+      return (<div className="form-control-feedback">{this.props.errorMessage}</div>)
+    } else {
+      return <div className="form-control-feedback">Invalid input</div>
+    }
+  }
+
+  drawInputForm(valid) {
+    {/*console.log("Text:",this.props.text)
+    console.log("Cond:", !(this.props.text === null || this.props.text === ""))*/}
+    if (valid === true){
+      return (
+        <div className={(this.props.label) ? `form-group label-floating has-success` : `form-group has-success`}>
+          {this.drawLabel()}
+          <input
+            onChange={(e) => this.onChange(e)}
+            type={(this.props.type) ? this.props.type : `text`}
+            className="form-control form-control-success"
+            placeholder={this.props.placeholder}
+            value={this.props.text}
+            disabled={(this.props.type === 'disabled') ? true : false}
+            />
+        </div>
+      )
+    } else if (valid === false && ((this.props.text === null || this.props.text === "") === false || this.props.submitted)) {
+      return (
+        <div className={(this.props.label) ? `form-group label-floating has-danger` : `form-group has-danger`}>
+          {this.drawLabel()}
+          <input
+            onChange={(e) => this.onChange(e)}
+            type={(this.props.type) ? this.props.type : `text`}
+            className="form-control form-control-danger"
+            placeholder={this.props.placeholder}
+            value={this.props.text}
+            disabled={(this.props.type === 'disabled') ? true : false}
+            />
+          {this.drawErrorMessage()}
+        </div>
+      )
+    } else {
+      return (
+        <div className={(this.props.label) ? `form-group label-floating` : `form-group`}>
+          {this.drawLabel()}
+          <input
+            onChange={(e) => this.onChange(e)}
+            type={(this.props.type) ? this.props.type : `text`}
+            className="form-control"
+            placeholder={this.props.placeholder}
+            value={this.props.text}
+            />
+        </div>
+      )
+    }
+  }
+
+  validate() {
+    const regex = new RegExp(this.props.validation)
+    const valid = regex.test(this.props.text);
+    return valid;
+  }
 
   render() {
-
-    return(
-      <div className="form-group label-floating is-empty">
-        <div className="form-control-feedback">{this.state.validated ? "" : this.drawErrorMessage()}</div>
-        <label className="control-label">
-          {this.props.label}
-          <small>
-            {this.props.required ? "*" : ""}
-          </small>
-        </label>
-        <input className="form-control" name={this.props.name} type={this.props.type}
-          required={this.props.required} aria-required={this.props.required}
-          onChange={this.setInputText} value={this.state.inputText}/>
-        <span className="material-input"></span>
+    const valid = (this.props.validation != null) ? this.validate() : null
+    return (
+      <div>
+        {this.drawInputForm(valid)}
       </div>
-
-    );
+    )
   }
 }
 
-export default Input;
+export default Input
