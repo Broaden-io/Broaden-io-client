@@ -5,7 +5,7 @@ export class Input extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      
+
     }
     this.drawInputForm = this.drawInputForm.bind(this)
   }

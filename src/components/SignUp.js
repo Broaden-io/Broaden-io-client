@@ -25,9 +25,22 @@ class SignUp extends Component {
         username: "",
         email: ""
       },
+      valid: [
+        {
+          isValid: false,
+          errMsg: "Please fill out the form inputs."
+        },
+        {
+          isValid: false,
+          errMsg: "Please fill out the form inputs."
+        },
+        {
+          isValid: false,
+          errMsg: "Please fill out the form inputs."
+        }
+      ],
       rawPassword: "",
       isHuman: false,
-      isValid: false,
       submitted: false
     }
   }
@@ -38,7 +51,7 @@ class SignUp extends Component {
   }
 
   validate() {
-    if (this.state.registerForm.username.length > 4
+    /* if (this.state.registerForm.username.length > 4
       && this.state.isHuman
       && this.state.rawPassword.length > 4) {
       this.setState({
@@ -48,7 +61,7 @@ class SignUp extends Component {
       this.setState({
         isValid: false
       })
-    }
+    } */
   }
 
   submitForm() {
@@ -57,9 +70,12 @@ class SignUp extends Component {
       ...this.state,
       submitted: true
     });
-    if (!this.state.isValid) {
-      console.log("validation error");
-      return;
+    console.log(this.state);
+    for (var item of this.state.valid) {
+      if (!item.isValid) {
+        Alert('signupError', item.errMsg);
+        return;
+      }
     }
     bcrypt.genSalt(11, (err, salt) => {
       bcrypt.hash(this.state.rawPassword, salt, (err, hash) => {
@@ -73,10 +89,10 @@ class SignUp extends Component {
             }
           }).then(() => {
             if (!this.props.auth.isAuthenticated) {
-              Alert('signupError');
+              Alert('signupError', '');
             }
           }).catch(error => {
-            Alert('signupError');
+            Alert('signupError', '');
           })
       });
     });
@@ -141,10 +157,10 @@ class SignUp extends Component {
                             </span>
                             <Input
                               text={this.state.registerForm.username}
-                              onChange={(newValue, valid) => this.setState({...this.state, registerForm: {...this.state.registerForm, username: newValue}, isValid: valid})}
+                              onChange={(newValue, valid, errMsg) => this.setState({...this.state, registerForm: {...this.state.registerForm, username: newValue}, valid: [{isValid: valid, errMsg: errMsg}, ...this.state.valid.slice(1)]})}
                               validation="([a-zA-Z0-9.,]{5,})"
-                              label="Username ..."
-                              errorMessage="Username must be 5 or more characters"
+                              label="Username"
+                              errorMessage="Username should be 5+ characters containing alphabet and number."
                               submitted={this.state.submitted}
                             />
                           </div>
@@ -152,14 +168,9 @@ class SignUp extends Component {
                             <span className="input-group-addon">
                               <i className="material-icons">email</i>
                             </span>
-                            {/*<input type="text" value={this.state.registerForm.email} onChange={(e) => {
-                              this.setState({...this.state, registerForm: {...this.state.registerForm, email: e.target.value}}, () => {
-                                this.validate()
-                              })
-                            }} className="form-control" placeholder="Email..."/>*/}
                             <Input
                               text={this.state.registerForm.email}
-                              onChange={(newValue, valid) => this.setState({...this.state, registerForm: {...this.state.registerForm, email: newValue}, isValid: valid})}
+                              onChange={(newValue, valid, errMsg) => this.setState({...this.state, registerForm: {...this.state.registerForm, email: newValue}, valid: [...this.state.valid.slice(0, 1), {isValid: valid, errMsg: errMsg}, ...this.state.valid.slice(2)]})}
                               validation="(?:[a-z0-9!#$%'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%'*+/=?^_`{|}~-]+)*|(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"
                               label="Email"
                               errorMessage="Input valid email address."
@@ -172,8 +183,7 @@ class SignUp extends Component {
                             </span>
                             <Input
                               text={this.state.rawPassword}
-                              type ="password"
-                              onChange={(newValue, valid) => this.setState({...this.state, rawPassword: newValue, isValid: valid})}
+                              onChange={(newValue, valid, errMsg) => this.setState({...this.state, rawPassword: newValue, valid: [...this.state.valid.slice(0, 2), {isValid: valid, errMsg: errMsg}]})}
                               validation="(.{8,})"
                               label="Password"
                               errorMessage="Password should be 8+ characters."
