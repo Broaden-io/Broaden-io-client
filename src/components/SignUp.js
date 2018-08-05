@@ -70,7 +70,7 @@ class SignUp extends Component {
       ...this.state,
       submitted: true
     });
-    console.log(this.state);
+    //console.log(this.state);
     for (var item of this.state.valid) {
       if (!item.isValid) {
         Alert('signupError', item.errMsg);
