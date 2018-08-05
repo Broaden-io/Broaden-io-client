@@ -8,30 +8,10 @@ class Footer extends Component {
         <div className="container-fluid">
           <nav className="pull-left">
             <ul>
-              {/*<li>
-                    <a href="">
-                          Home
-                    </a>
-                   </li>
-                   <li>
-                     <a href="">
-                        Mission
-                     </a>
-                   </li>
-                   <li>
-                    <a href="">
-                      Blog
-                    </a>
-                    </li>
-                    <li>
-                      <a href="">
-                        Contact
-                      </a>
-                    </li>*/}
             </ul>
           </nav>
           <p className="copyright pull-right">
-                  © <a href="/"> Broaden.io </a>, made with love by students at Make School
+                  © <small><a href="/"> Broaden.io </a>, made with love for the betterment of education</small>
           </p>
         </div>
       </footer>
