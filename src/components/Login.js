@@ -139,7 +139,7 @@ class Login extends Component {
                               onChange={(newValue, valid, errMsg) => this.setState({...this.state, loginForm: {...this.state.loginForm, password: newValue}, valid: [...this.state.valid.slice(0, 1), {isValid: valid, errMsg: errMsg}]})}
                               validation="(.{1,})"
                               label="Password"
-                              errorMessage="Password should be 1+ characters."
+                              errorMessage="Password should be 8+ characters."
                               submitted={this.state.submitted}
                             />
                           </div>
@@ -149,7 +149,7 @@ class Login extends Component {
                             this.props.auth.isFetching
                               ? <ReactLoading type={"spin"} height={20} width={20} color="#0000ff"/>
                               : <button onClick={this.submitForm} className="btn btn-info btn-round btn-wd btn-lg">
-                          Let's go
+                          Let&#39;s go
                               </button>
                           }
                         </div>
