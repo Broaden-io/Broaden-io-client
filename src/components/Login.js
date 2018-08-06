@@ -153,7 +153,7 @@ class Login extends Component {
                               </button>
                           }
                         </div>
-                        <p className="category text-center">Don't have an account?
+                        <p className="category text-center">Don&#39;t have an account?
                           <br/>
                           <Link className="btn btn-default btn-lg btn-simple" to='/signup'> Sign Up</Link>
                         </p>
