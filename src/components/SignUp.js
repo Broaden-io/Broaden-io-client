@@ -70,7 +70,7 @@ class SignUp extends Component {
       ...this.state,
       submitted: true
     });
-    console.log(this.state);
+    //console.log(this.state);
     for (var item of this.state.valid) {
       if (!item.isValid) {
         Alert('signupError', item.errMsg);
@@ -160,7 +160,7 @@ class SignUp extends Component {
                               onChange={(newValue, valid, errMsg) => this.setState({...this.state, registerForm: {...this.state.registerForm, username: newValue}, valid: [{isValid: valid, errMsg: errMsg}, ...this.state.valid.slice(1)]})}
                               validation="([a-zA-Z0-9.,]{5,})"
                               label="Username"
-                              errorMessage="Username should be 5+ characters containing alphabet and number."
+                              errorMessage="Username should be 5+ characters containing alphabetical and, or numerical characters."
                               submitted={this.state.submitted}
                             />
                           </div>
