@@ -125,7 +125,7 @@ class Login extends Component {
                               onChange={(newValue, valid, errMsg) => this.setState({...this.state, loginForm: {...this.state.loginForm, username: newValue}, valid: [{isValid: valid, errMsg: errMsg}, ...this.state.valid.slice(1)]})}
                               validation="([a-zA-Z0-9.,]{5,})"
                               label="Username"
-                              errorMessage="Username should be 5+ characters containing alphabet and number."
+                              errorMessage="Username should be 5+ characters containing alphabetical and, or numerical characters."
                               submitted={this.state.submitted}
                             />
                           </div>
