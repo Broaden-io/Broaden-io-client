@@ -1,4 +1,6 @@
 # Frontend 
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FJeffchiucp%2FBroaden-io-client.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FJeffchiucp%2FBroaden-io-client?ref=badge_shield)
+
 
 ## Table of Contents
 
@@ -38,6 +40,9 @@ This project is licensed under the MIT License - see the [LICENSE.](https://tldr
 -------------------
 
 
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FJeffchiucp%2FBroaden-io-client.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FJeffchiucp%2FBroaden-io-client?ref=badge_large)
 
 ## Updating to New Releases
 
