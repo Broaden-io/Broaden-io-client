@@ -3,3 +3,51 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.form-control-feedback {
+  opacity: 1;
+  position: relative;
+  width: auto;
+  text-align: left;
+  color: red;
+  line-height: normal;
+  font-size: 12px;
+}
+
+.form-control-danger {
+  background-image: linear-gradient(#f44336, #f44336), linear-gradient(#D2D2D2, #D2D2D2) !important;
+  background-size: 100% 2px, 100% 1px !important;
+  transition-duration: 0.3s !important;
+}
+
+.has-danger .control-label {
+  color: red !important;
+}
+
+.has-danger:before {
+  content: "\f00d";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  color: red;
+  font-size: 18px;
+  padding-right: 0.5em;
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
+
+.has-success:before {
+  content: "\f00c";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  color: #07882e;
+  font-size: 18px;
+  padding-right: 0.5em;
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
