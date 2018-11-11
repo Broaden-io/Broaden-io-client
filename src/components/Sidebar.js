@@ -89,8 +89,8 @@ class Sidebar extends Component {
                     </li>
                     <li>
                       <a href="" onClick={() => {
-                        this.props.logoutUser();
-                      }}>
+                          this.props.logoutUser();
+                        }}>
                         <span className="sidebar-mini"> <i className="material-icons">fingerprint</i> </span>
                         <span className="sidebar-normal"> Logout </span>
                       </a>

@@ -5,6 +5,9 @@ export class Input extends Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+
+    }
     this.drawInputForm = this.drawInputForm.bind(this)
   }
 
@@ -18,6 +21,12 @@ export class Input extends Component {
     }
   }
 
+  onChange(e) {
+    const regex = new RegExp(this.props.validation)
+    const valid = regex.test(e.target.value);
+    this.props.onChange(e.target.value, valid, this.props.errorMessage);
+  }
+
   drawErrorMessage() {
     if (this.props.errorMessage) {
       return (<div className="form-control-feedback">{this.props.errorMessage}</div>)
@@ -27,32 +36,34 @@ export class Input extends Component {
   }
 
   drawInputForm(valid) {
+    {/*console.log("Text:",this.props.text)
+    console.log("Cond:", !(this.props.text === null || this.props.text === ""))*/}
     if (valid === true){
       return (
         <div className={(this.props.label) ? `form-group label-floating has-success` : `form-group has-success`}>
           {this.drawLabel()}
           <input
-            onChange={(e) => this.props.onChange(e.target.value)}
+            onChange={(e) => this.onChange(e)}
             type={(this.props.type) ? this.props.type : `text`}
             className="form-control form-control-success"
             placeholder={this.props.placeholder}
             value={this.props.text}
             disabled={(this.props.type === 'disabled') ? true : false}
-            {...this.props}/>
+            />
         </div>
       )
-    } else if (valid === false && ((this.props.text === null || this.props.text === "") === false)) {
+    } else if (valid === false && ((this.props.text === null || this.props.text === "") === false || this.props.submitted)) {
       return (
         <div className={(this.props.label) ? `form-group label-floating has-danger` : `form-group has-danger`}>
           {this.drawLabel()}
           <input
-            onChange={(e) => this.props.onChange(e.target.value)}
+            onChange={(e) => this.onChange(e)}
             type={(this.props.type) ? this.props.type : `text`}
             className="form-control form-control-danger"
             placeholder={this.props.placeholder}
             value={this.props.text}
             disabled={(this.props.type === 'disabled') ? true : false}
-            {...this.props}/>
+            />
           {this.drawErrorMessage()}
         </div>
       )
@@ -61,12 +72,12 @@ export class Input extends Component {
         <div className={(this.props.label) ? `form-group label-floating` : `form-group`}>
           {this.drawLabel()}
           <input
-            onChange={(e) => this.props.onChange(e.target.value)}
+            onChange={(e) => this.onChange(e)}
             type={(this.props.type) ? this.props.type : `text`}
             className="form-control"
             placeholder={this.props.placeholder}
             value={this.props.text}
-            {...this.props}/>
+            />
         </div>
       )
     }
@@ -74,7 +85,8 @@ export class Input extends Component {
 
   validate() {
     const regex = new RegExp(this.props.validation)
-    return regex.test(this.props.text)
+    const valid = regex.test(this.props.text);
+    return valid;
   }
 
   render() {

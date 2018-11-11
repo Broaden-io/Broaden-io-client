@@ -7,9 +7,8 @@ import { ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
 import * as Actions from '../actions/auth';
 import { Alert } from './Alert';
-
 import mixpanel from 'mixpanel-browser'
-
+import Input from './Input';
 class Login extends Component {
 
   constructor(props) {
@@ -22,7 +21,16 @@ class Login extends Component {
         password: ""
       },
       isHuman: false,
-      isValid: false,
+      valid: [
+        {
+          isValid: false,
+          errMsg: "Please fill out the form inputs."
+        },
+        {
+          isValid: false,
+          errMsg: "Please fill out the form inputs."
+        }
+      ],
       submitted: false,
       loaded: false
     }
@@ -35,12 +43,21 @@ class Login extends Component {
 
   submitForm(e) {
     e.preventDefault();
+    this.setState({
+      ...this.state,
+      submitted: true
+    });
+    for (var item of this.state.valid) {
+      if (!item.isValid) {
+        Alert('loginError', item.errMsg);
+        return;
+      }
+    }
     this.props.loginUser(this.state.loginForm).then(() => {
       if (this.props.auth.isAuthenticated) {
         this.props.history.push(`/dashboard`);
       } else {
-        console.log("Failed to log in!")
-        Alert('loginError')
+        Alert('loginError', '');
       }
     });
   }
@@ -103,38 +120,28 @@ class Login extends Component {
                             <span className="input-group-addon">
                               <i className="material-icons">face</i>
                             </span>
-                            <div className="form-group label-floating">
-                              <label className="control-label">username</label>
-                              <input
-                                type="text"
-                                value={this.state.loginForm.username}
-                                onChange={(e) => this.setState({
-                                  loginForm: {
-                                    ...this.state.loginForm,
-                                    username: e.target.value
-                                  }
-                                })}
-                                className="form-control" />
-                            </div>
+                            <Input
+                              text={this.state.loginForm.username}
+                              onChange={(newValue, valid, errMsg) => this.setState({...this.state, loginForm: {...this.state.loginForm, username: newValue}, valid: [{isValid: valid, errMsg: errMsg}, ...this.state.valid.slice(1)]})}
+                              validation="([a-zA-Z0-9.,]{5,})"
+                              label="Username"
+                              errorMessage="Username should be 5+ characters containing alphabetical and, or numerical characters."
+                              submitted={this.state.submitted}
+                            />
                           </div>
 
                           <div className="input-group">
                             <span className="input-group-addon">
                               <i className="material-icons">lock_outline</i>
                             </span>
-                            <div className="form-group label-floating">
-                              <label className="control-label">Password</label>
-                              <input
-                                type="password"
-                                value={this.state.loginForm.password}
-                                onChange={(e) => this.setState({
-                                  loginForm: {
-                                    ...this.state.loginForm,
-                                    password: e.target.value
-                                  }
-                                })}
-                                className="form-control" />
-                            </div>
+                            <Input
+                              text={this.state.loginForm.password}
+                              onChange={(newValue, valid, errMsg) => this.setState({...this.state, loginForm: {...this.state.loginForm, password: newValue}, valid: [...this.state.valid.slice(0, 1), {isValid: valid, errMsg: errMsg}]})}
+                              validation="(.{1,})"
+                              label="Password"
+                              errorMessage="Password should be 8+ characters."
+                              submitted={this.state.submitted}
+                            />
                           </div>
                         </div>
                         <div className="footer text-center loading-icon" >
@@ -142,11 +149,11 @@ class Login extends Component {
                             this.props.auth.isFetching
                               ? <ReactLoading type={"spin"} height={20} width={20} color="#0000ff"/>
                               : <button onClick={this.submitForm} className="btn btn-info btn-round btn-wd btn-lg">
-                          Let's go
+                          Let&#39;s go
                               </button>
                           }
                         </div>
-                        <p className="category text-center">Don't have an account?
+                        <p className="category text-center">Don&#39;t have an account?
                           <br/>
                           <Link className="btn btn-default btn-lg btn-simple" to='/signup'> Sign Up</Link>
                         </p>
@@ -160,9 +167,6 @@ class Login extends Component {
               <div className="container">
                 <p className="copyright pull-right">
               &copy;
-
-                  {/*{`${(document.write(new Date().getFullYear()))}`}*/}
-
                   <small><a href="/"> Broaden.io </a>, made with love for the betterment of education</small>
                 </p>
               </div>
