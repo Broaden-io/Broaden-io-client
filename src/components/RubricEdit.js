@@ -66,7 +66,7 @@ class RubricEdit extends Component {
       <div className="col-sm-10 col-md-9 col-lg-8">
         {this.redirect(isFetching, needsNewRubric, userId, id)}
         <button onClick={this.goBack.bind(this)} style={{padding: '0'}} className="btn btn-lg btn-info btn-round btn-simple">
-            <i className="material-icons">arrow_back_ios</i> back
+          <i className="material-icons">arrow_back_ios</i> back
         </button>
         <div className="card">
           <div className="card-header card-header-icon" data-background-color={iconColor}>
@@ -79,64 +79,64 @@ class RubricEdit extends Component {
 
               <h4>What skillset does this roadmap assess/achieve?</h4>
               <div className="row">
-                  <label className="col-sm-2 label-on-left">Name (Title)</label>
-                  <div className="col-sm-10">
-                      <div className="form-group label-floating is-empty">
-                        <Input onChange={this.updateNameInput.bind(this)} text={ name === `${firstName} ${lastName}'s New Roadmap` ? `` : name } placeholder="e.g. Code Review..." autoFocus={true}/>
-                          <span className="help-block">What skillset does this roadmap assess/achieve?</span>
-                      </div>
+                <label className="col-sm-2 label-on-left">Name (Title)</label>
+                <div className="col-sm-10">
+                  <div className="form-group label-floating is-empty">
+                    <Input onChange={this.updateNameInput.bind(this)} text={ name === `${firstName} ${lastName}'s New Roadmap` ? `` : name } placeholder="e.g. Code Review..." autoFocus={true}/>
+                    <span className="help-block">What skillset does this roadmap assess/achieve?</span>
                   </div>
+                </div>
               </div>
               <div>&nbsp;</div>
 
               <h4>How would you describe this roadmap in more detail?</h4>
               <div className="row">
-                  <label className="col-sm-2 label-on-left">Description</label>
-                  <div className="col-sm-10">
-                      <div className="form-group label-floating is-empty">
-                        <textarea className="form-control text-info" onChange={e => {e.preventDefault(); console.log(e.target.value);}} rows="5" text={description} placeholder={`e.g. "A comprehensive roadmap for getting a job as a data scientist. I made this roadmap because..."`}></textarea>
-                          <span className="help-block">Enter any detailed information about you'd like to share about this roadmap.  What inspired you to make it?  Why are you're qualified to make it?  What a person could expect to achieve by completing it?</span>
-                      </div>
+                <label className="col-sm-2 label-on-left">Description</label>
+                <div className="col-sm-10">
+                  <div className="form-group label-floating is-empty">
+                    <textarea className="form-control text-info" onChange={e => {e.preventDefault(); console.log(e.target.value);}} rows="5" text={description} placeholder={`e.g. "A comprehensive roadmap for getting a job as a data scientist. I made this roadmap because..."`}></textarea>
+                    <span className="help-block">Enter any detailed information about you'd like to share about this roadmap.  What inspired you to make it?  Why are you're qualified to make it?  What a person could expect to achieve by completing it?</span>
                   </div>
+                </div>
               </div>
               <div>&nbsp;</div>
 
               <h4 className="text-default">Describe the 4 different levels of skill for <b>{name}</b></h4>
               <div className="row">
-                  <label className="col-sm-2 label-on-left">Level 1</label>
-                  <div className="col-sm-10">
-                      <div className="form-group label-floating is-empty">
-                        <Input onChange={this.updateNameInput.bind(this)} text={levelOne} placeholder="e.g. Unsatisfactory, Beginner, Initial..." />
-                          <span className="help-block">How would you describe the initial level of mastery of your Roadmap?</span>
-                      </div>
+                <label className="col-sm-2 label-on-left">Level 1</label>
+                <div className="col-sm-10">
+                  <div className="form-group label-floating is-empty">
+                    <Input onChange={this.updateNameInput.bind(this)} text={levelOne} placeholder="e.g. Unsatisfactory, Beginner, Initial..." />
+                    <span className="help-block">How would you describe the initial level of mastery of your Roadmap?</span>
                   </div>
+                </div>
               </div>
               <div className="row">
-                  <label className="col-sm-2 label-on-left">Level 2</label>
-                  <div className="col-sm-10">
-                      <div className="form-group label-floating is-empty">
-                        <Input onChange={this.updateNameInput.bind(this)} text={levelTwo} placeholder="e.g. Competant, Intermediate, Approaching..." />
-                          <span className="help-block">How would you describe the second level of mastery of your Roadmap?</span>
-                      </div>
+                <label className="col-sm-2 label-on-left">Level 2</label>
+                <div className="col-sm-10">
+                  <div className="form-group label-floating is-empty">
+                    <Input onChange={this.updateNameInput.bind(this)} text={levelTwo} placeholder="e.g. Competant, Intermediate, Approaching..." />
+                    <span className="help-block">How would you describe the second level of mastery of your Roadmap?</span>
                   </div>
+                </div>
               </div>
               <div className="row">
-                  <label className="col-sm-2 label-on-left">Level 3</label>
-                  <div className="col-sm-10">
-                      <div className="form-group label-floating is-empty">
-                        <Input onChange={this.updateNameInput.bind(this)} text={levelThree} placeholder="e.g. Proficient, Advanced, Overtaking..." />
-                          <span className="help-block">How would you describe the third level of mastery of your Roadmap?</span>
-                      </div>
+                <label className="col-sm-2 label-on-left">Level 3</label>
+                <div className="col-sm-10">
+                  <div className="form-group label-floating is-empty">
+                    <Input onChange={this.updateNameInput.bind(this)} text={levelThree} placeholder="e.g. Proficient, Advanced, Overtaking..." />
+                    <span className="help-block">How would you describe the third level of mastery of your Roadmap?</span>
                   </div>
+                </div>
               </div>
               <div className="row">
-                  <label className="col-sm-2 label-on-left">Level 4</label>
-                  <div className="col-sm-10">
-                      <div className="form-group label-floating is-empty">
-                        <Input onChange={this.updateNameInput.bind(this)} text={levelFour} placeholder="e.g. Professional, Expert, Innovating..." />
-                          <span className="help-block">How would you describe the last level of mastery of your Roadmap?</span>
-                      </div>
+                <label className="col-sm-2 label-on-left">Level 4</label>
+                <div className="col-sm-10">
+                  <div className="form-group label-floating is-empty">
+                    <Input onChange={this.updateNameInput.bind(this)} text={levelFour} placeholder="e.g. Professional, Expert, Innovating..." />
+                    <span className="help-block">How would you describe the last level of mastery of your Roadmap?</span>
                   </div>
+                </div>
               </div>
               <div>&nbsp;</div>
 
