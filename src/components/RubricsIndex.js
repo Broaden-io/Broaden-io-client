@@ -6,23 +6,6 @@ import { connect } from 'react-redux';
 import * as Actions from '../actions/rubrics';
 import mixpanel from 'mixpanel-browser';
 
-
-const RubricElement = withRouter(
-  (props) => {
-    return (
-      <tr>
-        <td>
-          <div>
-            <Link to={`/rubrics/${props.rubricId}`} className="text-info" style={{letterSpacing: '1px'}}>
-              <h4 style={{ fontWeight: 400 }}>{props.name}</h4>
-            </Link>
-          </div>
-        </td>
-        <td> {props.description} </td>
-      </tr>
-    )
-  })
-
 class RubricSummary extends Component {
 
   constructor(props) {
@@ -37,7 +20,6 @@ class RubricSummary extends Component {
     const { index, rubric } = this.props
     const { name, iconName, description, id } = rubric
     const color = this.colors[index]
-    // if (this.state.isHovered) {
     return (
       <div className="card card-pricing card-raised">
         <div className="card-content">
@@ -52,22 +34,6 @@ class RubricSummary extends Component {
         </div>
       </div>
     )
-    // } else {
-    //   return (
-    //     <div className="card card-pricing card-plain">
-    //       <div className="card-content">
-    //         <h6 className="category">{name}</h6>
-    //         <div className="icon">
-    //           <i className="material-icons">{iconName}</i>
-    //         </div>
-    //         <p className="card-description">
-    //           {description}
-    //         </p>
-    //         <a href="#pablo" className="btn btn-white btn-round">Choose Skill</a>
-    //       </div>
-    //     </div>
-    //   )
-    // }
   }
 
   render() {

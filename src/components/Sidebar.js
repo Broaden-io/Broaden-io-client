@@ -7,11 +7,13 @@ import * as Actions from '../actions/auth';
 import NavTop from './NavTop';
 import Dashboard from './Dashboard';
 import RubricsIndex from './RubricsIndex';
+import MyRoadmaps from './MyRoadmaps';
 import Rubric from './Rubric';
 import Footer from './Footer';
 import Profile from './Profile';
 import EditProfile from './EditProfile';
 import Learning from './Learning';
+import RubricEdit from './RubricEdit';
 
 const MenuItem = withRouter(
   (props) => {
@@ -68,6 +70,12 @@ class Sidebar extends Component {
                 <div className="collapse" id="collapseExample">
                   <ul className="nav">
                     <li>
+                      <Link to={`/users/${user.userId}/rubrics`}>
+                        <span className="sidebar-mini"> <i className="material-icons">toc</i> </span>
+                        <span className="sidebar-normal"> My Roadmaps </span>
+                      </Link>
+                    </li>
+                    <li>
                       <Link to={`/${user.username}`}>
                         <span className="sidebar-mini"> <i className="material-icons">person</i> </span>
                         <span className="sidebar-normal"> My Profile </span>
@@ -81,8 +89,8 @@ class Sidebar extends Component {
                     </li>
                     <li>
                       <a href="" onClick={() => {
-                          this.props.logoutUser();
-                        }}>
+                        this.props.logoutUser();
+                      }}>
                         <span className="sidebar-mini"> <i className="material-icons">fingerprint</i> </span>
                         <span className="sidebar-normal"> Logout </span>
                       </a>
@@ -125,6 +133,9 @@ class Sidebar extends Component {
                 <Route path={`/levelup/:id`} render={() => <Learning/>} />
                 <Route path={`/:username`} component={Profile} exact={true} />
                 <Route path={`/:username/edit`} component={EditProfile} exact={true} />
+                <Route path={'/users/:userId/rubrics'} component={MyRoadmaps} exact={true} />
+                <Route path={'/users/:userId/rubrics/:rubricId'} component={RubricEdit} exact={true} />
+                <Route path={'/users/:userId/rubric/new'} component={RubricEdit} exact={true} />
               </Switch>
             </div>
           </div>

@@ -1,11 +1,25 @@
 import serverPath from '../paths';
+import axios from 'axios';
 
 export const
   REQUEST_RUBRIC_BY_ID = 'REQUEST_RUBRIC_BY_ID',
   RUBRIC_SUCCESS = 'RUBRIC_SUCCESS',
-  RUBRIC_FAILURE = 'RUBRIC_FAILURE'
+  RUBRIC_FAILURE = 'RUBRIC_FAILURE',
+  CREATE_RUBRIC = 'CREATE_RUBRIC',
+  CREATE_RUBRIC_SUCCESS = 'CREATE_RUBRIC_SUCCESS',
+  CREATE_RUBRIC_FAILURE = 'CREATE_RUBRIC_FAILURE',
+  UPDATE_INPUT = 'UPDATE_INPUT',
+  UPDATE_INPUT_DB = 'UPDATE_INPUT_DB'
 
-export const requestRubric = (id) => ({
+export const updateInput = (value) => ({
+  type: UPDATE_INPUT,
+  rubric: {
+    name: value
+  }
+})
+
+// REQUEST RUBRIC
+export const requestRubric = () => ({
   type: REQUEST_RUBRIC_BY_ID,
   isFetching: true
 })
@@ -22,6 +36,25 @@ export const rubricError = (message) => ({
   message
 })
 
+// CREATE NEW RUBRIC
+export const createRubric = (id) => ({
+  type: CREATE_RUBRIC,
+  isFetching: true
+})
+
+export const createRubricSuccess = (rubric) => ({
+  type: CREATE_RUBRIC_SUCCESS,
+  isFetching: false,
+  rubric
+})
+
+export const createRubricFailure = (message) => ({
+  type: CREATE_RUBRIC_FAILURE,
+  isFetching: false,
+  message
+})
+
+
 // GET RUBRIC BY ID - rubrics show
 export function getRubricById(id) {
   let config = {
@@ -34,7 +67,7 @@ export function getRubricById(id) {
   }
 
   return dispatch => {
-    dispatch(requestRubric(id));
+    dispatch(requestRubric());
 
     return fetch(`${serverPath}/rubrics/${id}`, config).then((res) => {
       if (res.status !== 200) {
@@ -42,8 +75,42 @@ export function getRubricById(id) {
         return Promise.reject("Could not get rubric")
       }
       return res.json();
-    }).then((json) => {
-      dispatch(receiveRubric(json.rubric))
+    }).then((response) => {
+      dispatch(receiveRubric(response.rubric))
+
     }).catch(err => console.log("Error: " + err));
+  }
+}
+
+// Create a New Rubric
+export function createNewRubric(userId, rubric) {
+  return dispatch => {
+    dispatch(createRubric());
+
+    return axios.post(`${serverPath}/users/${userId}/rubrics/create`, rubric).then((res) => {
+      if (res.status !== 200) {
+        dispatch(createRubricFailure(res.message));
+        return Promise.reject("Could not create rubric")
+      }
+      return res.data;
+    }).then((response) => {
+      console.log('RESPONSE', response.rubric)
+      dispatch(createRubricSuccess(response.rubric))
+    }).catch(err => console.log("Error: " + err));
+  }
+}
+
+export function updateNameInput(value) {
+  return dispatch => {
+    dispatch()
+  }
+}
+
+export function updateInputDB(value) {
+  return dispatch => {
+    dispatch({
+      type: UPDATE_INPUT,
+      payload: axios.put(`${serverPath}/`)
+    })
   }
 }

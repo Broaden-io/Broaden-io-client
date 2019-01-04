@@ -1,5 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose} from 'redux'
 import thunkMiddleware from 'redux-thunk'
+import promise from 'redux-promise-middleware'
+import createDebounce from 'redux-debounced';
 import authReducer from '../reducers/auth'
 import rubricsReducer from '../reducers/rubrics'
 import rubricReducer from '../reducers/rubric'
@@ -41,7 +43,7 @@ const reducers = combineReducers({
 let middleware = [ thunkMiddleware ]
 // Apply extra middlewares if in dev or testing environments
 if (process.env.NODE_ENV !== 'production') {
-  middleware = [ ...middleware, createLogger() ]
+  middleware = [ ...middleware, promise(), createDebounce(), createLogger() ]
 }
 const middlewares = applyMiddleware(...middleware)
 
