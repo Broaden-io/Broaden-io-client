@@ -9,7 +9,6 @@ import * as Actions from '../actions/auth';
 import { Alert } from './Alert';
 import mixpanel from 'mixpanel-browser'
 import Input from './Input';
-
 class Login extends Component {
 
   constructor(props) {
