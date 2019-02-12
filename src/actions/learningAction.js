@@ -79,7 +79,7 @@ export function deleteLearningAction(actionId) {
       return res;
     }).then((json) => {
       dispatch(successDeleteLearningAction(json))
-      dispatch(getAssessments(parseInt(localStorage.getItem('userId'), 10)))
+      dispatch(getAssessments(parseInt(localStorage.getItem('userId'))))
     }).catch(err => {dispatch(errorDeleteLearningAction(err))});
   }
 }
