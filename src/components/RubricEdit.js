@@ -21,6 +21,7 @@ class RubricEdit extends Component {
       levelTwo: '',
       levelThree: '',
       levelFour: '',
+      components: [],
     }
   }
 
@@ -100,8 +101,8 @@ class RubricEdit extends Component {
                       onChange={(newValue) => this.updateNameInput(newValue, "name")}
                       placeholder="e.g. Code Review..."
                       autoFocus={true}
+                      helpBlock="What skillset does this roadmap assess/achieve?"
                     />
-                    <span className="help-block">What skillset does this roadmap assess/achieve?</span>
                   </div>
                 </div>
               </div>
@@ -134,8 +135,8 @@ class RubricEdit extends Component {
                       onChange={(newValue) => this.updateNameInput(newValue, "levelOne")}
                       text={this.state.rubric.levelOne}
                       placeholder="e.g. Unsatisfactory, Beginner, Initial..."
+                      helpBlock="How would you describe the initial level of mastery of your Roadmap?"
                     />
-                    <span className="help-block">How would you describe the initial level of mastery of your Roadmap?</span>
                   </div>
                 </div>
               </div>
@@ -147,8 +148,8 @@ class RubricEdit extends Component {
                       onChange={(newValue) => this.updateNameInput(newValue, "levelTwo")}
                       text={this.state.rubric.levelTwo}
                       placeholder="e.g. Competant, Intermediate, Approaching..."
+                      helpBlock="How would you describe the second level of mastery of your Roadmap?"
                     />
-                    <span className="help-block">How would you describe the second level of mastery of your Roadmap?</span>
                   </div>
                 </div>
               </div>
@@ -160,8 +161,8 @@ class RubricEdit extends Component {
                       onChange={(newValue) => this.updateNameInput(newValue, "levelThree")}
                       text={this.state.rubric.levelThree}
                       placeholder="e.g. Proficient, Advanced, Overtaking..."
+                      helpBlock="How would you describe the third level of mastery of your Roadmap?"
                     />
-                    <span className="help-block">How would you describe the third level of mastery of your Roadmap?</span>
                   </div>
                 </div>
               </div>
@@ -173,8 +174,8 @@ class RubricEdit extends Component {
                       onChange={(newValue) => this.updateNameInput(newValue, "levelFour")}
                       text={this.state.rubric.levelFour}
                       placeholder="e.g. Professional, Expert, Innovating..."
+                      helpBlock="How would you describe the last level of mastery of your Roadmap?"
                     />
-                    <span className="help-block">How would you describe the last level of mastery of your Roadmap?</span>
                   </div>
                 </div>
               </div>

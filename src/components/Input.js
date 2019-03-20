@@ -49,7 +49,8 @@ export class Input extends Component {
             placeholder={this.props.placeholder}
             value={this.props.text}
             disabled={(this.props.type === 'disabled') ? true : false}
-            />
+          />
+          <span className="help-block">{(this.props.helpBlock) ? this.props.helpBlock : ``}</span>
         </div>
       )
     } else if (valid === false && ((this.props.text === null || this.props.text === "") === false || this.props.submitted)) {
@@ -63,7 +64,8 @@ export class Input extends Component {
             placeholder={this.props.placeholder}
             value={this.props.text}
             disabled={(this.props.type === 'disabled') ? true : false}
-            />
+          />
+          <span className="help-block">{(this.props.helpBlock) ? this.props.helpBlock : ``}</span>
           {this.drawErrorMessage()}
         </div>
       )
@@ -77,7 +79,8 @@ export class Input extends Component {
             className="form-control"
             placeholder={this.props.placeholder}
             value={this.props.text}
-            />
+          />
+          <span className="help-block">{(this.props.helpBlock) ? this.props.helpBlock : ``}</span>
         </div>
       )
     }
