@@ -12,7 +12,18 @@ class RubricEdit extends Component {
   state = {
     needsNewRubric: false,
     nameInput: "",
+    rubric: {
+      id: '',
+      name: '',
+      description: '',
+      userId: '',
+      levelOne: '',
+      levelTwo: '',
+      levelThree: '',
+      levelFour: '',
+    }
   }
+
   // 1. Check to see if it is in 'edit' or 'new' mode
   // 2. Map state to props
   // 3. Render the component
@@ -51,9 +62,11 @@ class RubricEdit extends Component {
     this.props.history.goBack()
   }
 
-  updateNameInput(e) {
-    e.preventDefault();
-    this.props.updateNameInput(e.target.value);
+  updateNameInput(value, key) {
+    console.log(key, value)
+    // console.log(this.props)
+    // this.props.updateNameInput(e);
+    this.setState({...this.state, rubric: {...this.state.rubric, [key]: value}})
   }
 
   render() {
@@ -82,7 +95,12 @@ class RubricEdit extends Component {
                 <label className="col-sm-2 label-on-left">Name (Title)</label>
                 <div className="col-sm-10">
                   <div className="form-group label-floating is-empty">
-                    <Input onChange={this.updateNameInput.bind(this)} text={ name === `${firstName} ${lastName}'s New Roadmap` ? `` : name } placeholder="e.g. Code Review..." autoFocus={true}/>
+                    <Input
+                      text={this.state.rubric.name}
+                      onChange={(newValue) => this.updateNameInput(newValue, "name")}
+                      placeholder="e.g. Code Review..."
+                      autoFocus={true}
+                    />
                     <span className="help-block">What skillset does this roadmap assess/achieve?</span>
                   </div>
                 </div>
@@ -94,7 +112,13 @@ class RubricEdit extends Component {
                 <label className="col-sm-2 label-on-left">Description</label>
                 <div className="col-sm-10">
                   <div className="form-group label-floating is-empty">
-                    <textarea className="form-control text-info" onChange={e => {e.preventDefault(); console.log(e.target.value);}} rows="5" text={description} placeholder={`e.g. "A comprehensive roadmap for getting a job as a data scientist. I made this roadmap because..."`}></textarea>
+                    <textarea
+                      className="form-control text-info"
+                      onChange={(e) => this.updateNameInput(e.target.value, "description")}
+                      rows="5"
+                      text={this.state.rubric.description}
+                      placeholder={`e.g. "A comprehensive roadmap for getting a job as a data scientist. I made this roadmap because..."`}
+                    ></textarea>
                     <span className="help-block">Enter any detailed information about you'd like to share about this roadmap.  What inspired you to make it?  Why are you're qualified to make it?  What a person could expect to achieve by completing it?</span>
                   </div>
                 </div>
@@ -106,7 +130,11 @@ class RubricEdit extends Component {
                 <label className="col-sm-2 label-on-left">Level 1</label>
                 <div className="col-sm-10">
                   <div className="form-group label-floating is-empty">
-                    <Input onChange={this.updateNameInput.bind(this)} text={levelOne} placeholder="e.g. Unsatisfactory, Beginner, Initial..." />
+                    <Input
+                      onChange={(newValue) => this.updateNameInput(newValue, "levelOne")}
+                      text={this.state.rubric.levelOne}
+                      placeholder="e.g. Unsatisfactory, Beginner, Initial..."
+                    />
                     <span className="help-block">How would you describe the initial level of mastery of your Roadmap?</span>
                   </div>
                 </div>
@@ -115,7 +143,11 @@ class RubricEdit extends Component {
                 <label className="col-sm-2 label-on-left">Level 2</label>
                 <div className="col-sm-10">
                   <div className="form-group label-floating is-empty">
-                    <Input onChange={this.updateNameInput.bind(this)} text={levelTwo} placeholder="e.g. Competant, Intermediate, Approaching..." />
+                    <Input
+                      onChange={(newValue) => this.updateNameInput(newValue, "levelTwo")}
+                      text={this.state.rubric.levelTwo}
+                      placeholder="e.g. Competant, Intermediate, Approaching..."
+                    />
                     <span className="help-block">How would you describe the second level of mastery of your Roadmap?</span>
                   </div>
                 </div>
@@ -124,7 +156,11 @@ class RubricEdit extends Component {
                 <label className="col-sm-2 label-on-left">Level 3</label>
                 <div className="col-sm-10">
                   <div className="form-group label-floating is-empty">
-                    <Input onChange={this.updateNameInput.bind(this)} text={levelThree} placeholder="e.g. Proficient, Advanced, Overtaking..." />
+                    <Input
+                      onChange={(newValue) => this.updateNameInput(newValue, "levelThree")}
+                      text={this.state.rubric.levelThree}
+                      placeholder="e.g. Proficient, Advanced, Overtaking..."
+                    />
                     <span className="help-block">How would you describe the third level of mastery of your Roadmap?</span>
                   </div>
                 </div>
@@ -133,7 +169,11 @@ class RubricEdit extends Component {
                 <label className="col-sm-2 label-on-left">Level 4</label>
                 <div className="col-sm-10">
                   <div className="form-group label-floating is-empty">
-                    <Input onChange={this.updateNameInput.bind(this)} text={levelFour} placeholder="e.g. Professional, Expert, Innovating..." />
+                    <Input
+                      onChange={(newValue) => this.updateNameInput(newValue, "levelFour")}
+                      text={this.state.rubric.levelFour}
+                      placeholder="e.g. Professional, Expert, Innovating..."
+                    />
                     <span className="help-block">How would you describe the last level of mastery of your Roadmap?</span>
                   </div>
                 </div>
