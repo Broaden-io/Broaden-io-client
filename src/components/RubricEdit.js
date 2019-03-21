@@ -93,6 +93,16 @@ class RubricEdit extends Component {
     const updatedList = [...this.state.rubric[key]]
     updatedList[pIndex].push('')
     this.setState({...this.state, rubric: {...this.state.rubric, [key]: updatedList}})
+
+    if (key === "Competencies") {
+      const skillList = [...this.state.rubric["Skills"], ['']]
+      const evalList = [...this.state.rubric["Evaluations"], ['', '', '', '']]
+      this.setState({...this.state, rubric: {...this.state.rubric, ["Skills"]: skillList, ["Evaluations"]: evalList}})
+    }
+    if (key === "Skills") {
+      const evalList = [...this.state.rubric["Evaluations"], ['', '', '', '']]
+      this.setState({...this.state, rubric: {...this.state.rubric, ["Evaluations"]: evalList}})
+    }
   }
 
   render() {
@@ -214,6 +224,20 @@ class RubricEdit extends Component {
                 pIndex={0}
                 addItemList={this.addItemList}
               />
+              {this.state.rubric.Competencies[0].map((value, index) => {
+                return (
+                  <ExtendableList
+                    childCategory={"Skills"}
+                    parentCategory={this.state.rubric.Competencies[0][index]}
+                    items={this.state.rubric.Skills[index]}
+                    updateInputList={this.updateInputList}
+                    placeholder={"e.g. Body Language (when Speaking), Citing (when Writing)..."}
+                    helpBlock={"What is a skill to have to be knowledgeable in this competency?"}
+                    pIndex={index}
+                    addItemList={this.addItemList}
+                  />
+                )
+              })}
             </div>
           </div>
         </div>
