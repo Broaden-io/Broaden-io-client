@@ -111,6 +111,8 @@ class RubricEdit extends Component {
     const { name, id, userId, iconName, iconColor, description, levelOne, levelTwo, levelThree, levelFour } = rubric
     const firstName = localStorage.getItem('firstName')
     const lastName = localStorage.getItem('lastName')
+    const allSkills = this.state.rubric.Skills.reduce((acc, skillGroup) => [...acc, ...skillGroup])
+    const evalLabels = [this.state.rubric.levelOne, this.state.rubric.levelTwo, this.state.rubric.levelThree, this.state.rubric.levelFour]
     return (
       <div className="col-sm-10 col-md-9 col-lg-8">
         {/* {this.redirect(isFetching, needsNewRubric, userId, id)} */}
@@ -224,7 +226,7 @@ class RubricEdit extends Component {
                 pIndex={0}
                 addItemList={this.addItemList}
               />
-              {this.state.rubric.Competencies[0].map((value, index) => {
+              {this.state.rubric.Competencies[0].map((competency, index) => {
                 return (
                   <ExtendableList
                     childCategory={"Skills"}
@@ -235,6 +237,20 @@ class RubricEdit extends Component {
                     helpBlock={"What is a skill to have to be knowledgeable in this competency?"}
                     pIndex={index}
                     addItemList={this.addItemList}
+                  />
+                )
+              })}
+              {allSkills.map((skill, index) => {
+                return (
+                  <ExtendableList
+                    childCategory={"Evaluations"}
+                    inputLabels={evalLabels}
+                    parentCategory={allSkills[index]}
+                    items={this.state.rubric.Evaluations[index]}
+                    updateInputList={this.updateInputList}
+                    placeholder={"e.g. Knowing common elements (Competant), Knowing all elements (Proficient)..."}
+                    helpBlock={"How would you evaluate this skill at this level?"}
+                    pIndex={index}
                   />
                 )
               })}
