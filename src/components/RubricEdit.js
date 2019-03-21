@@ -37,6 +37,7 @@ class RubricEdit extends Component {
     this.updateNameInput = this.updateNameInput.bind(this)
     this.updateInputList = this.updateInputList.bind(this)
     this.addItemList = this.addItemList.bind(this)
+    this.submitForm = this.submitForm.bind(this)
   }
 
   // 1. Check to see if it is in 'edit' or 'new' mode
@@ -78,8 +79,6 @@ class RubricEdit extends Component {
   }
 
   updateNameInput(value, key) {
-    // console.log(this.props)
-    // this.props.updateNameInput(e);
     this.setState({...this.state, rubric: {...this.state.rubric, [key]: value}})
   }
 
@@ -105,6 +104,10 @@ class RubricEdit extends Component {
     }
   }
 
+  submitForm(e) {
+    e.preventDefault()
+  }
+
   render() {
     const { needsNewRubric } = this.state
     const { isFetching, rubric } = this.props
@@ -116,7 +119,7 @@ class RubricEdit extends Component {
     return (
       <div className="col-sm-10 col-md-9 col-lg-8">
         {/* {this.redirect(isFetching, needsNewRubric, userId, id)} */}
-        <button onClick={this.goBack.bind(this)} style={{padding: '0'}} className="btn btn-lg btn-info btn-round btn-simple">
+        <button onClick={this.goBack} style={{padding: '0'}} className="btn btn-lg btn-info btn-round btn-simple">
           <i className="material-icons">arrow_back_ios</i> back
         </button>
         <div className="card">
@@ -127,133 +130,143 @@ class RubricEdit extends Component {
             <h2 className={`card-title text-${iconColor}`}><small>Edit <b>{name}</b> Roadmap...</small></h2>
             <div className="form-horizontal">
 
+              <form onSubmit={this.submitForm}>
+                <h4>What skillset does this roadmap assess/achieve?</h4>
+                <div className="row">
+                  <label className="col-sm-2 label-on-left">Name (Title)</label>
+                  <div className="col-sm-10">
+                    <div className="form-group label-floating is-empty">
+                      <Input
+                        text={this.state.rubric.name}
+                        onChange={(newValue) => this.updateNameInput(newValue, "name")}
+                        placeholder="e.g. Code Review..."
+                        autoFocus={true}
+                        helpBlock="What skillset does this roadmap assess/achieve?"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div>&nbsp;</div>
 
-              <h4>What skillset does this roadmap assess/achieve?</h4>
-              <div className="row">
-                <label className="col-sm-2 label-on-left">Name (Title)</label>
-                <div className="col-sm-10">
-                  <div className="form-group label-floating is-empty">
-                    <Input
-                      text={this.state.rubric.name}
-                      onChange={(newValue) => this.updateNameInput(newValue, "name")}
-                      placeholder="e.g. Code Review..."
-                      autoFocus={true}
-                      helpBlock="What skillset does this roadmap assess/achieve?"
-                    />
+                <h4>How would you describe this roadmap in more detail?</h4>
+                <div className="row">
+                  <label className="col-sm-2 label-on-left">Description</label>
+                  <div className="col-sm-10">
+                    <div className="form-group label-floating is-empty">
+                      <textarea
+                        className="form-control text-info"
+                        onChange={(e) => this.updateNameInput(e.target.value, "description")}
+                        rows="5"
+                        text={this.state.rubric.description}
+                        placeholder={`e.g. "A comprehensive roadmap for getting a job as a data scientist. I made this roadmap because..."`}
+                      ></textarea>
+                      <span className="help-block">Enter any detailed information about you'd like to share about this roadmap.  What inspired you to make it?  Why are you're qualified to make it?  What a person could expect to achieve by completing it?</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div>&nbsp;</div>
+                <div>&nbsp;</div>
 
-              <h4>How would you describe this roadmap in more detail?</h4>
-              <div className="row">
-                <label className="col-sm-2 label-on-left">Description</label>
-                <div className="col-sm-10">
-                  <div className="form-group label-floating is-empty">
-                    <textarea
-                      className="form-control text-info"
-                      onChange={(e) => this.updateNameInput(e.target.value, "description")}
-                      rows="5"
-                      text={this.state.rubric.description}
-                      placeholder={`e.g. "A comprehensive roadmap for getting a job as a data scientist. I made this roadmap because..."`}
-                    ></textarea>
-                    <span className="help-block">Enter any detailed information about you'd like to share about this roadmap.  What inspired you to make it?  Why are you're qualified to make it?  What a person could expect to achieve by completing it?</span>
+                <h4 className="text-default">Describe the 4 different levels of skill for <b>{name}</b></h4>
+                <div className="row">
+                  <label className="col-sm-2 label-on-left">Level 1</label>
+                  <div className="col-sm-10">
+                    <div className="form-group label-floating is-empty">
+                      <Input
+                        onChange={(newValue) => this.updateNameInput(newValue, "levelOne")}
+                        text={this.state.rubric.levelOne}
+                        placeholder="e.g. Unsatisfactory, Beginner, Initial..."
+                        helpBlock="How would you describe the initial level of mastery of your Roadmap?"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div>&nbsp;</div>
+                <div className="row">
+                  <label className="col-sm-2 label-on-left">Level 2</label>
+                  <div className="col-sm-10">
+                    <div className="form-group label-floating is-empty">
+                      <Input
+                        onChange={(newValue) => this.updateNameInput(newValue, "levelTwo")}
+                        text={this.state.rubric.levelTwo}
+                        placeholder="e.g. Competant, Intermediate, Approaching..."
+                        helpBlock="How would you describe the second level of mastery of your Roadmap?"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <label className="col-sm-2 label-on-left">Level 3</label>
+                  <div className="col-sm-10">
+                    <div className="form-group label-floating is-empty">
+                      <Input
+                        onChange={(newValue) => this.updateNameInput(newValue, "levelThree")}
+                        text={this.state.rubric.levelThree}
+                        placeholder="e.g. Proficient, Advanced, Overtaking..."
+                        helpBlock="How would you describe the third level of mastery of your Roadmap?"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <label className="col-sm-2 label-on-left">Level 4</label>
+                  <div className="col-sm-10">
+                    <div className="form-group label-floating is-empty">
+                      <Input
+                        onChange={(newValue) => this.updateNameInput(newValue, "levelFour")}
+                        text={this.state.rubric.levelFour}
+                        placeholder="e.g. Professional, Expert, Innovating..."
+                        helpBlock="How would you describe the last level of mastery of your Roadmap?"
+                      />
+                    </div>
+                  </div>
+                </div>
 
-              <h4 className="text-default">Describe the 4 different levels of skill for <b>{name}</b></h4>
-              <div className="row">
-                <label className="col-sm-2 label-on-left">Level 1</label>
-                <div className="col-sm-10">
-                  <div className="form-group label-floating is-empty">
-                    <Input
-                      onChange={(newValue) => this.updateNameInput(newValue, "levelOne")}
-                      text={this.state.rubric.levelOne}
-                      placeholder="e.g. Unsatisfactory, Beginner, Initial..."
-                      helpBlock="How would you describe the initial level of mastery of your Roadmap?"
+                <ExtendableList
+                  childCategory={"Competencies"}
+                  childCategorySingular={"Competency"}
+                  parentCategory={this.state.rubric.name}
+                  items={this.state.rubric.Competencies[0]}
+                  updateInputList={this.updateInputList}
+                  placeholder={"e.g. Testing (in CS), Inequalities (in Algebra)..."}
+                  helpBlock={"What categories or topics are prevalent in this subject?"}
+                  pIndex={0}
+                  addItemList={this.addItemList}
+                />
+
+                {this.state.rubric.Competencies[0].map((competency, index) => {
+                  return (
+                    <ExtendableList
+                      childCategory={"Skills"}
+                      childCategorySingular={"Skill"}
+                      parentCategory={this.state.rubric.Competencies[0][index]}
+                      items={this.state.rubric.Skills[index]}
+                      updateInputList={this.updateInputList}
+                      placeholder={"e.g. Body Language (when Speaking), Citing (when Writing)..."}
+                      helpBlock={"What is a skill to have to be knowledgeable in this competency?"}
+                      pIndex={index}
+                      addItemList={this.addItemList}
                     />
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <label className="col-sm-2 label-on-left">Level 2</label>
-                <div className="col-sm-10">
-                  <div className="form-group label-floating is-empty">
-                    <Input
-                      onChange={(newValue) => this.updateNameInput(newValue, "levelTwo")}
-                      text={this.state.rubric.levelTwo}
-                      placeholder="e.g. Competant, Intermediate, Approaching..."
-                      helpBlock="How would you describe the second level of mastery of your Roadmap?"
+                  )
+                })}
+
+                {allSkills.map((skill, index) => {
+                  return (
+                    <ExtendableList
+                      childCategory={"Evaluations"}
+                      inputLabels={evalLabels}
+                      parentCategory={allSkills[index]}
+                      items={this.state.rubric.Evaluations[index]}
+                      updateInputList={this.updateInputList}
+                      placeholder={"e.g. Knowing common elements (Competant), Knowing all elements (Proficient)..."}
+                      helpBlock={"How would you evaluate this skill at this level?"}
+                      pIndex={index}
                     />
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <label className="col-sm-2 label-on-left">Level 3</label>
-                <div className="col-sm-10">
-                  <div className="form-group label-floating is-empty">
-                    <Input
-                      onChange={(newValue) => this.updateNameInput(newValue, "levelThree")}
-                      text={this.state.rubric.levelThree}
-                      placeholder="e.g. Proficient, Advanced, Overtaking..."
-                      helpBlock="How would you describe the third level of mastery of your Roadmap?"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <label className="col-sm-2 label-on-left">Level 4</label>
-                <div className="col-sm-10">
-                  <div className="form-group label-floating is-empty">
-                    <Input
-                      onChange={(newValue) => this.updateNameInput(newValue, "levelFour")}
-                      text={this.state.rubric.levelFour}
-                      placeholder="e.g. Professional, Expert, Innovating..."
-                      helpBlock="How would you describe the last level of mastery of your Roadmap?"
-                    />
-                  </div>
-                </div>
-              </div>
-              <ExtendableList
-                childCategory={"Competencies"}
-                parentCategory={this.state.rubric.name}
-                items={this.state.rubric.Competencies[0]}
-                updateInputList={this.updateInputList}
-                placeholder={"e.g. Testing (in CS), Inequalities (in Algebra)..."}
-                helpBlock={"What categories or topics are prevalent in this subject?"}
-                pIndex={0}
-                addItemList={this.addItemList}
-              />
-              {this.state.rubric.Competencies[0].map((competency, index) => {
-                return (
-                  <ExtendableList
-                    childCategory={"Skills"}
-                    parentCategory={this.state.rubric.Competencies[0][index]}
-                    items={this.state.rubric.Skills[index]}
-                    updateInputList={this.updateInputList}
-                    placeholder={"e.g. Body Language (when Speaking), Citing (when Writing)..."}
-                    helpBlock={"What is a skill to have to be knowledgeable in this competency?"}
-                    pIndex={index}
-                    addItemList={this.addItemList}
-                  />
-                )
-              })}
-              {allSkills.map((skill, index) => {
-                return (
-                  <ExtendableList
-                    childCategory={"Evaluations"}
-                    inputLabels={evalLabels}
-                    parentCategory={allSkills[index]}
-                    items={this.state.rubric.Evaluations[index]}
-                    updateInputList={this.updateInputList}
-                    placeholder={"e.g. Knowing common elements (Competant), Knowing all elements (Proficient)..."}
-                    helpBlock={"How would you evaluate this skill at this level?"}
-                    pIndex={index}
-                  />
-                )
-              })}
+                  )
+                })}
+
+                <button type="submit" className="btn btn-success pull-right"><i class="material-icons">done</i> Submit Rubric</button>
+                <div className="clearfix"></div>
+              </form>
+
             </div>
           </div>
         </div>
