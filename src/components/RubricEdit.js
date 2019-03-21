@@ -6,23 +6,37 @@ import { connect } from 'react-redux';
 import * as Actions from '../actions/rubric';
 import mixpanel from 'mixpanel-browser';
 import Input from './Input';
+import ExtendableList from './ExtendableList';
 
 class RubricEdit extends Component {
-
-  state = {
-    needsNewRubric: false,
-    nameInput: "",
-    rubric: {
-      id: '',
-      name: '',
-      description: '',
-      userId: '',
-      levelOne: '',
-      levelTwo: '',
-      levelThree: '',
-      levelFour: '',
-      components: [],
+  // Needed for this.state to correctly reference state when function is passed down
+  constructor(props) {
+    super(props)
+    this.state = {
+      needsNewRubric: false,
+      nameInput: "",
+      rubric: {
+        id: '',
+        name: '',
+        description: '',
+        userId: '',
+        levelOne: '',
+        levelTwo: '',
+        levelThree: '',
+        levelFour: '',
+        Competencies: [['']],
+        Skills: [['']],
+        Evaluations: [['', '', '', '']]
+      }
     }
+
+    this.componentWillMount = this.componentWillMount.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
+    this.redirect = this.redirect.bind(this)
+    this.goBack = this.goBack.bind(this)
+    this.updateNameInput = this.updateNameInput.bind(this)
+    this.updateInputList = this.updateInputList.bind(this)
+    this.addItemList = this.addItemList.bind(this)
   }
 
   // 1. Check to see if it is in 'edit' or 'new' mode
@@ -64,10 +78,21 @@ class RubricEdit extends Component {
   }
 
   updateNameInput(value, key) {
-    console.log(key, value)
     // console.log(this.props)
     // this.props.updateNameInput(e);
     this.setState({...this.state, rubric: {...this.state.rubric, [key]: value}})
+  }
+
+  updateInputList(value, key, pIndex, cIndex) {
+    const updatedList = [...this.state.rubric[key]]
+    updatedList[pIndex][cIndex] = value
+    this.setState({...this.state, rubric: {...this.state.rubric, [key]: updatedList}})
+  }
+
+  addItemList(key, pIndex) {
+    const updatedList = [...this.state.rubric[key]]
+    updatedList[pIndex].push('')
+    this.setState({...this.state, rubric: {...this.state.rubric, [key]: updatedList}})
   }
 
   render() {
@@ -78,7 +103,7 @@ class RubricEdit extends Component {
     const lastName = localStorage.getItem('lastName')
     return (
       <div className="col-sm-10 col-md-9 col-lg-8">
-        {this.redirect(isFetching, needsNewRubric, userId, id)}
+        {/* {this.redirect(isFetching, needsNewRubric, userId, id)} */}
         <button onClick={this.goBack.bind(this)} style={{padding: '0'}} className="btn btn-lg btn-info btn-round btn-simple">
           <i className="material-icons">arrow_back_ios</i> back
         </button>
@@ -179,10 +204,16 @@ class RubricEdit extends Component {
                   </div>
                 </div>
               </div>
-              <div>&nbsp;</div>
-
-
-
+              <ExtendableList
+                childCategory={"Competencies"}
+                parentCategory={this.state.rubric.name}
+                items={this.state.rubric.Competencies[0]}
+                updateInputList={this.updateInputList}
+                placeholder={"e.g. Testing (in CS), Inequalities (in Algebra)..."}
+                helpBlock={"What categories or topics are prevalent in this subject?"}
+                pIndex={0}
+                addItemList={this.addItemList}
+              />
             </div>
           </div>
         </div>
