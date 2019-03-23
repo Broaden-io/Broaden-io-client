@@ -24,7 +24,7 @@ const ExtendableList = props => {
         )
       })}
 
-      {props.addItemList && <button type="button" onClick={() => props.addItemList(props.childCategory, props.pIndex)} className="btn btn-success"><i class="material-icons">add</i>{` Add ${props.childCategory}`}</button>}
+      {props.addItemList && <button type="button" onClick={() => props.addItemList(props.childCategory, props.pIndex)} className="btn btn-success"><i className="material-icons">add</i>{` Add ${props.childCategory}`}</button>}
       <div>&nbsp;</div>
     </div>
   )

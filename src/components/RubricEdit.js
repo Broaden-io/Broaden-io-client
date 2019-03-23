@@ -7,6 +7,7 @@ import * as Actions from '../actions/rubric';
 import mixpanel from 'mixpanel-browser';
 import Input from './Input';
 import ExtendableList from './ExtendableList';
+import serverPath from '../paths';
 
 class RubricEdit extends Component {
   // Needed for this.state to correctly reference state when function is passed down
@@ -55,12 +56,12 @@ class RubricEdit extends Component {
       name: `${firstName} ${lastName}'s New Roadmap`
     }
 
-    if (pathname.includes('rubric/new')) {
-      this.setState({needsNewRubric: true})
-      createNewRubric(userId, newRubric)
-    } else {
-      getRubricById(rubricId);
-    }
+    // if (pathname.includes('rubric/new')) {
+    //   this.setState({needsNewRubric: true})
+    //   createNewRubric(userId, newRubric)
+    // } else {
+    //   getRubricById(rubricId);
+    // }
   }
 
   componentDidMount() {
@@ -105,6 +106,37 @@ class RubricEdit extends Component {
   }
 
   submitForm(e) {
+    const rubric = {
+      name: this.state.rubric.name,
+      description: this.state.rubric.description,
+      levelOne: this.state.rubric.levelOne,
+      levelTwo: this.state.rubric.levelTwo,
+      levelThree: this.state.rubric.levelThree,
+      levelFour: this.state.rubric.levelFour,
+    }
+
+    let config = {
+      method: 'POST',
+      body: JSON.stringify(rubric),
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }
+    }
+
+    const userId = localStorage.getItem('userId')
+    fetch(`${serverPath}/users/${userId}/rubrics/create`, config).then((res) => {
+      if (res.status !== 200) {
+        return Promise.reject(`Could not save user`)
+      }
+      return res.json();
+    }).then((json) => {
+      this.props.history.push(`/users/${userId}/rubrics`)
+    }).catch(err => {
+      console.log("There was an error: " + err)
+    });
+
     e.preventDefault()
   }
 
@@ -244,6 +276,7 @@ class RubricEdit extends Component {
                       helpBlock={"What is a skill to have to be knowledgeable in this competency?"}
                       pIndex={index}
                       addItemList={this.addItemList}
+                      key={index}
                     />
                   )
                 })}
@@ -259,11 +292,12 @@ class RubricEdit extends Component {
                       placeholder={"e.g. Knowing common elements (Competant), Knowing all elements (Proficient)..."}
                       helpBlock={"How would you evaluate this skill at this level?"}
                       pIndex={index}
+                      key={index}
                     />
                   )
                 })}
 
-                <button type="submit" className="btn btn-success pull-right"><i class="material-icons">done</i> Submit Rubric</button>
+                <button type="submit" className="btn btn-success pull-right"><i className="material-icons">done</i> Submit Rubric</button>
                 <div className="clearfix"></div>
               </form>
 
