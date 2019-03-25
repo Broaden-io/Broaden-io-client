@@ -1,17 +1,46 @@
 import React, { Component } from 'react';
 import mixpanel from 'mixpanel-browser';
+import serverPath from '../paths';
 
 class EditProfile extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
+      id: localStorage.getItem('userId'),
       username: '',
       email: '',
       bio: '',
       firstName: '',
       lastName: ''
     }
+
+    let config = {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }
+    }
+
+    const user = fetch(`${serverPath}/users/${this.state.id}`, config).then((res) => {
+      if (res.status !== 200) {
+        return Promise.reject("Could not get user info");
+      }
+      return res.json();
+    }).then((json) => {
+      this.setState({
+        username: json.username,
+        email: json.email,
+        bio: json.bio,
+        firstName: json.firstName,
+        lastName: json.lastName
+      })
+    }).catch(err => {
+      console.log("Error: " + err)
+    });
   }
 
   componentDidMount() {
@@ -19,7 +48,7 @@ class EditProfile extends Component {
     mixpanel.track("Edit Profile Page");
   }
 
-  submitForm() {
+  submitForm(e) {
     // go through items in the state and only send the ones that have been updated
     // make sure that the user can only submit an edit request for their OWN user account
   }
@@ -40,7 +69,7 @@ class EditProfile extends Component {
               <h4 className="card-title">Edit Profile  -
                 <small className="category">  Complete your profile</small>
               </h4>
-              <form>
+              <form onSubmit={this.submitForm.bind(this)}>
                 <div className="row">
                   <div className="col-md-3">
                     <div className="form-group label-floating is-empty">
