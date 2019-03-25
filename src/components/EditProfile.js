@@ -49,6 +49,42 @@ class EditProfile extends Component {
   }
 
   submitForm(e) {
+    const body = {
+      username: this.state.username,
+      email: this.state.email,
+      bio: this.state.bio,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName
+    }
+
+    let config = {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }
+    }
+
+    const username = localStorage.getItem('username')
+    fetch(`${serverPath}/users/${username}`, config).then((res) => {
+      if (res.status !== 200) {
+        return Promise.reject(`Could not save user`)
+      }
+      return res.json();
+    }).then((json) => {
+      localStorage.setItem('username', body.username)
+      localStorage.setItem('email', body.email)
+      localStorage.setItem('bio', body.bio)
+      localStorage.setItem('firstName', body.firstName)
+      localStorage.setItem('lastName', body.lastName)
+      this.props.history.push(`/${username}`)
+    }).catch(err => {
+      console.log("There was an error: " + err)
+    });
+
+    e.preventDefault()
     // go through items in the state and only send the ones that have been updated
     // make sure that the user can only submit an edit request for their OWN user account
   }
