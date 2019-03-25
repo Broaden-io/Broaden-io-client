@@ -107,12 +107,17 @@ class RubricEdit extends Component {
 
   submitForm(e) {
     const rubric = {
-      name: this.state.rubric.name,
-      description: this.state.rubric.description,
-      levelOne: this.state.rubric.levelOne,
-      levelTwo: this.state.rubric.levelTwo,
-      levelThree: this.state.rubric.levelThree,
-      levelFour: this.state.rubric.levelFour,
+      rubric: {
+        name: this.state.rubric.name,
+        description: this.state.rubric.description,
+        levelOne: this.state.rubric.levelOne,
+        levelTwo: this.state.rubric.levelTwo,
+        levelThree: this.state.rubric.levelThree,
+        levelFour: this.state.rubric.levelFour,
+      },
+      competencies: this.state.rubric.Competencies,
+      skills: this.state.rubric.Skills,
+      evaluations: this.state.rubric.Evaluations
     }
 
     let config = {
@@ -126,7 +131,7 @@ class RubricEdit extends Component {
     }
 
     const userId = localStorage.getItem('userId')
-    fetch(`${serverPath}/users/${userId}/rubrics/create`, config).then((res) => {
+    fetch(`${serverPath}/users/${userId}/completeRubrics/create`, config).then((res) => {
       if (res.status !== 200) {
         return Promise.reject(`Could not save user`)
       }
